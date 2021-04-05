@@ -39,11 +39,11 @@ POOL_SIZE = 2
 
 def InsertDb(x):
     db = mysql.connector.connect(
-        host='localhost'
-        database='coba'
+        host='localhost',
+        database='coba',
         user='admin',
-        password='raspberry'
-        pool_name='mypool'
+        password='raspberry',
+        pool_name='mypool',
         pool_size=POOL_SIZE+1
     )
 
