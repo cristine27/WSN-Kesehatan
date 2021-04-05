@@ -65,13 +65,12 @@ def InsertDb(x):
 
 
 while 1:
-	print('test')
-	x = ser.readline().decode("ascii").strip()
-	print(x)
-    	with concurrent.futures.ThreadPoolExecutor() as executor:
-        	f1 = executor.submit(getData, x)
-        	print(f1.result())
+    x = ser.readline().decode("ascii").strip()
+    print(x)
+    # with concurrent.futures.ThreadPoolExecutor() as executor:
+    #     f1 = executor.submit(getData, x)
+    #     print(f1.result())
 
-        	if f1.result() != None:
-            	f2 = executor.submit(InsertDb, f1.result())
-            	print(f2.result())
+    #     if f1.result() != None:
+    #         f2 = executor.submit(InsertDb, f1.result())
+    #         print(f2.result())
