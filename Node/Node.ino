@@ -32,7 +32,7 @@ int oksigen = 0; //oksigen dalam darah
 int i = 0; //variabel looping
 int temp = 0; //jumlah pulse yang terdeteksi
 String pesan = "";
-
+String psn = "";
 String namaNode1 = "Node 1";
 String namaNode2 = "Node 2";
 
@@ -79,7 +79,9 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:  
-
+  psn = "Node|1|2|3|4";
+  xbee.print(psn);
+  Serial.print(psn);
   /*tanpa menggunakan trigger serial*/
   pox.update();
   bacaSensorDetak();
