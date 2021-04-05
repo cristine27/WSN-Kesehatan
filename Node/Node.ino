@@ -72,16 +72,17 @@ void setup() {
   Serial.println("Pulse oxymeter test!");
   Serial.println("Adafruit MLX90164 test!");
   
-  checkStatus();
-
-  pox.setOnBeatDetectedCallback(onBeatDetected);
+//  checkStatus();
+psn = "Node|1|2|3|4";
+  xbee.print(psn);
+//  pox.setOnBeatDetectedCallback(onBeatDetected);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:  
   psn = "Node|1|2|3|4";
   xbee.print(psn);
-  Serial.print(psn);
+  
   /*tanpa menggunakan trigger serial*/
   pox.update();
   bacaSensorDetak();
