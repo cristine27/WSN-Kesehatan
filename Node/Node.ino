@@ -17,7 +17,7 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 /*Initial Setting*/
 #define REPORTING_PERIOD_MS     1000
-#define REPORTING_PERIOD_ML     2000
+#define REPORTING_PERIOD_ML     5000
 
 long prev_temperatur = 0;
 uint32_t tsLastReport = 0;
@@ -31,14 +31,16 @@ int detak = 0; //detak jantung
 int oksigen = 0; //oksigen dalam darah
 int i = 0; //variabel looping
 int temp = 0; //jumlah pulse yang terdeteksi
+int sekarang = 0;
 String pesan = "";
 String psn = "";
 String namaNode1 = "Node 1";
 String namaNode2 = "Node 2";
 
 // dipanggil jika terdapat detak yang terdeteksi
-void onBeatDetected()
+bool onBeatDetected()
 {
+    return true;
     Serial.println("Beat!");
 }
 
@@ -72,32 +74,31 @@ void setup() {
   Serial.println("Pulse oxymeter test!");
   Serial.println("Adafruit MLX90164 test!");
   
-//  checkStatus();
-psn = "Node|1|2|3|4";
-  xbee.print(psn);
-//  pox.setOnBeatDetectedCallback(onBeatDetected);
+  checkStatus();
+
+  pox.setOnBeatDetectedCallback(onBeatDetected);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:  
-  psn = "Node|1|2|3|4";
-  xbee.print(psn);
   
   /*tanpa menggunakan trigger serial*/
-  pox.update();
   bacaSensorDetak();
   bacaSensorSuhu();
 
   pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
-   
-  Serial.println("Hasil Pemantauan :");
-  Serial.print(namaNode1+" ");
-  Serial.print("BPM : " + String(detak) + "bpm | ");
-  Serial.print("Sa02 : " + String(oksigen) + "% | ");
-  Serial.print("Suhu : " + String(suhu) + "*c");
-  Serial.println();
-
+  sekarang = millis();
+  if(sekarang - temp > 10000){
+     Serial.println("Hasil Pemantauan :");
+    Serial.print(namaNode1+" ");
+    Serial.print("BPM : " + String(detak) + "bpm | ");
+    Serial.print("Sa02 : " + String(oksigen) + "% | ");
+    Serial.print("Suhu : " + String(suhu) + "*c");
+    Serial.println();
+    temp = sekarang;
   xbee.print(pesan);
+  }
+  
   }
 
   /*menggunakan trigger serial
@@ -130,11 +131,12 @@ void loop() {
 
 void bacaSensorDetak(){
 //  Serial.println("masuk detak");
-  if (millis() - tsLastReport > REPORTING_PERIOD_MS) {
+  pox.update();
+  if (onBeatDetected()) {
     detak = pox.getHeartRate();
     oksigen = pox.getSpO2();
-    tsLastReport = millis();
   }
+  delay(10);
 }
 
 void bacaSensorSuhu(){
