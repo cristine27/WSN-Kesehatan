@@ -55,7 +55,7 @@ def InsertDb(x):
     localtime = [4]
 
     query = (
-        "INSERT INTO sense (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
+        "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
     values = (localtime, node, detak, oksigen, suhu)
     cursor.execute(query, values)
 
