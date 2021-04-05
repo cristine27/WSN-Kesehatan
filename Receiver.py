@@ -68,8 +68,8 @@ while 1:
     x = ser.readline().decode("ascii").strip()
     with concurrent.futures.ThreadPoolExecutor() as executor:
         f1 = executor.submit(getData, x)
-        print(f1)
+        print(f1.result())
 
-        if f1.result != None:
+        if f1.result() != None:
             f2 = executor.submit(InsertDb, f1.result())
             print(f2.result())
