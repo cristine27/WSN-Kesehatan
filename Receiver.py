@@ -10,8 +10,10 @@ from mysql.connector import Error
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
+GPIO.setup(23,GPIO.OUT)
+
 # initial serial
-ser = serial.Serial(
+s = serial.Serial(
     port='/dev/ttyS0',
     baudrate=9600,
     timeout=1
@@ -65,8 +67,8 @@ def InsertDb(x):
 
 
 while 1:
-    x = ser.readline().decode("ascii").strip()
-    print(x)
+    msg = s.readline(s.inWaiting())
+    print(msg)
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     f1 = executor.submit(getData, x)
     #     print(f1.result())
