@@ -68,11 +68,13 @@ def InsertDb(x):
     cursor.close()
     db.close()
 
+s.flushOutput()
+s.flushInput()
+s.flush()
 
-serial.flushInput()
-serial.flushOutput()
 while 1:
-    msg = s.readline().decode("ascii").strip()
+
+    msg = s.readline(s.inWaiting()).decode("ascii").strip()
     print(msg)
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     f1 = executor.submit(getData, x)
