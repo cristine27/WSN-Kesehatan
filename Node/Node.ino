@@ -6,21 +6,17 @@
 #include "MAX30100_PulseOximeter.h"
 #include <SoftwareSerial.h>
 
+/*initialization sensor*/
+PulseOximeter pox;
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+
 /*xbee transmisi*/
 #define rxPin 19
 #define txPin 18
 SoftwareSerial xbee = SoftwareSerial(rxPin, txPin);
 
-/*initialization sensor*/
-PulseOximeter pox;
-Adafruit_MLX90614 mlx = Adafruit_MLX90614();
-
-/*Initial Setting*/
-#define REPORTING_PERIOD_MS     1000
-#define REPORTING_PERIOD_ML     5000
-
-long prev_temperatur = 0;
-uint32_t tsLastReport = 0;
+const long interval_temperatur = 10000;
+unsigned long prev_temperatur = 0;
 
 /*variabel*/
 bool isDetakNyala = false; //check apakah sensor max30100 nyala 
@@ -29,9 +25,10 @@ bool isTempNyala = false; //check apakah sensor mlx90164 nyala
 float suhu = 0.0; //suhu tubuh
 int detak = 0; //detak jantung
 int oksigen = 0; //oksigen dalam darah
-int i = 0; //variabel looping
-int temp = 0; //jumlah pulse yang terdeteksi
-int sekarang = 0;
+
+int temp = 0; //temp waktu
+int sekarang = 0;//waktu sekarang
+
 String pesan = "";
 String psn = "";
 String namaNode1 = "Node 1";
@@ -45,22 +42,20 @@ bool onBeatDetected()
 }
 
 void checkStatus(){
-  
-    if(!mlx.begin()){
-      Serial.println("MLX90164 FAILED");
-      for(;;);
-    }
-    else {
-      isTempNyala = true;
-      Serial.println("SUCCESS");
-    }
-    
-    if (!pox.begin()) {
+    if(!pox.begin()) {
       Serial.println("FAILED");
       for(;;);
     } else {
-        isDetakNyala = true;
-        Serial.println("SUCCESS");
+      isDetakNyala = true;
+      Serial.println("SUCCESS");
+    }
+        
+    if(!mlx.begin()){
+      Serial.println("MLX90164 FAILED");
+      for(;;);
+    } else {
+      isTempNyala = true;
+      Serial.println("SUCCESS");
     }
 }
 
@@ -73,8 +68,11 @@ void setup() {
   /*Test kerja sensor*/
   Serial.println("Pulse oxymeter test!");
   Serial.println("Adafruit MLX90164 test!");
+  pox.begin();//pox harus di letakkan sebelum mlx
   
-  checkStatus();
+  mlx.begin();  
+  
+//  checkStatus();
 
   pox.setOnBeatDetectedCallback(onBeatDetected);
 }
@@ -90,12 +88,12 @@ void loop() {
   sekarang = millis();
   if(sekarang - temp > 10000){
      Serial.println("Hasil Pemantauan :");
-    Serial.print(namaNode1+" ");
-    Serial.print("BPM : " + String(detak) + "bpm | ");
-    Serial.print("Sa02 : " + String(oksigen) + "% | ");
-    Serial.print("Suhu : " + String(suhu) + "*c");
-    Serial.println();
-    temp = sekarang;
+      Serial.print(namaNode1+" ");
+      Serial.print("BPM : " + String(detak) + "bpm | ");
+      Serial.print("Sa02 : " + String(oksigen) + "% | ");
+      Serial.print("Suhu : " + String(suhu) + "*c");
+      Serial.println();
+      temp = sekarang;
   xbee.print(pesan);
   }
   
@@ -140,10 +138,13 @@ void bacaSensorDetak(){
 }
 
 void bacaSensorSuhu(){
-//  Serial.println("masuk suhu");
-  if(millis() - prev_temperatur > REPORTING_PERIOD_ML){
-    suhu = mlx.readObjectTempC();
-    prev_temperatur = millis();
+  unsigned long curr_temperatur = millis();
+
+  if(curr_temperatur - prev_temperatur >= interval_temperatur){
+      prev_temperatur = curr_temperatur;
+      Serial.println("masuk suhu");
+      suhu = mlx.readObjectTempC();
+      Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
   }
 }
 
