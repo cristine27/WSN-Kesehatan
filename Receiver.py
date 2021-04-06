@@ -35,7 +35,7 @@ def getData(x):
 
     localtime = datetime.now()
     print(localtime)
-    #localtime = localtime.strftime('%Y-%m-%d %H:%M:%S')
+    # localtime = localtime.strftime('%Y-%m-%d %H:%M:%S')
     return node, detak, oksigen, suhu, localtime
 
 
@@ -68,18 +68,20 @@ def InsertDb(x):
     cursor.close()
     db.close()
 
-s.flushOutput()
+
 s.flushInput()
+s.flushOutput()
 s.flush()
 
 while 1:
+    if s.inWaiting() != 0:
+        msg = s.readline().decode("ascii").strip()
+        print(msg)
+        # with concurrent.futures.ThreadPoolExecutor() as executor:
+        #     f1 = executor.submit(getData, x)
+        #     print(f1.result())
 
-    msg = s.readline(s.inWaiting()).decode("ascii").strip()
-    print(msg)
-    # with concurrent.futures.ThreadPoolExecutor() as executor:
-    #     f1 = executor.submit(getData, x)
-    #     print(f1.result())
-
-    #     if f1.result() != None:
-    #         f2 = executor.submit(InsertDb, f1.result())
-    #         print(f2.result())
+        #     if f1.result() != None:
+        #         f2 = executor.submit(InsertDb, f1.result())
+        #         print(f2.result())
+    }
