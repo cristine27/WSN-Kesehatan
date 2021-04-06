@@ -69,6 +69,8 @@ def InsertDb(x):
     db.close()
 
 
+serial.flushInput()
+serial.flushOutput()
 while 1:
     msg = s.readline().decode("ascii").strip()
     print(msg)
