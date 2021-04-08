@@ -31,6 +31,10 @@ def getData(x):
         oksigen = parsed[2]
         suhu = parsed[3]
 
+    node = str(node)
+    detak = int(detak)
+    oksigen = int(oksigen)
+    suhu = float(suhu)
     print(node, detak, oksigen, suhu)
 
     localtime = datetime.datetime.now()
