@@ -14,7 +14,7 @@ GPIO.setup(23, GPIO.OUT)
 
 # initial serial
 s = serial.Serial(
-    port='/dev/ttyS0',
+    port='/dev/USB0',
     baudrate=9600,
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
