@@ -142,9 +142,9 @@ void bacaSensorSuhu(){
 
   if(curr_temperatur - prev_temperatur >= interval_temperatur){
       prev_temperatur = curr_temperatur;
-      Serial.println("masuk suhu");
+//      Serial.println("masuk suhu");
       suhu = mlx.readObjectTempC();
-      Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
+//      Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
   }
 }
 
