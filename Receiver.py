@@ -75,7 +75,7 @@ s.flush()
 
 while 1:
 	msg = s.readline().decode("ascii").strip()
-        print(msg)
+    print(msg)
         # with concurrent.futures.ThreadPoolExecutor() as executor:
         #     f1 = executor.submit(getData, x)
         #     print(f1.result())
