@@ -64,7 +64,7 @@ def InsertDb(x):
     db = mysql.connector.connect(
         host='localhost',
         database='coba',
-        user='root',
+        user='phpmyadmin',
         password='raspberry',
         pool_name='mypool',
         pool_size=POOL_SIZE+1
