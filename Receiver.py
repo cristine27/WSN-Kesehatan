@@ -12,6 +12,11 @@ from mysql.connector import Error
 # GPIO.setwarnings(False)
 # GPIO.setup(23, GPIO.OUT)
 
+global node = ""
+global detak = 0
+global oksigen = 0
+global suhu = 0.0
+
 # initial serial
 s = serial.Serial(
     port='/dev/ttyUSB0',
