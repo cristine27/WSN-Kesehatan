@@ -74,8 +74,7 @@ s.flushOutput()
 s.flush()
 
 while 1:
-    if s.inWaiting() != 0:
-        msg = s.readline().decode("ascii").strip()
+	msg = s.readline().decode("ascii").strip()
         print(msg)
         # with concurrent.futures.ThreadPoolExecutor() as executor:
         #     f1 = executor.submit(getData, x)
@@ -84,4 +83,4 @@ while 1:
         #     if f1.result() != None:
         #         f2 = executor.submit(InsertDb, f1.result())
         #         print(f2.result())
-    }
+    
