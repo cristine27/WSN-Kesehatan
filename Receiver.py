@@ -34,6 +34,10 @@ s = serial.Serial(
 
 
 def getData(x):
+    global node
+    global detak
+    global oksigen
+    global suhu
     parsed = x.split("|")
     if len(parsed) > 1:
         node = parsed[0]
