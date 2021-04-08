@@ -12,6 +12,11 @@ from mysql.connector import Error
 # GPIO.setwarnings(False)
 # GPIO.setup(23, GPIO.OUT)
 
+global node
+global detak
+global oksigen
+global suhu
+
 node = "test"
 detak = 0
 oksigen = 0
