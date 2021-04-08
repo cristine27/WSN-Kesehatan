@@ -8,9 +8,9 @@ import mysql.connector  # connect python dengan mysql
 from mysql.connector import Error
 
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(23, GPIO.OUT)
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setwarnings(False)
+# GPIO.setup(23, GPIO.OUT)
 
 # initial serial
 s = serial.Serial(
