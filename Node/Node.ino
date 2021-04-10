@@ -98,7 +98,7 @@ void loop() {
   suhu = 1.1;
   pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
   
-  if(sekarang - temp > 10000){
+  if(sekarang - temp > 5000){
      Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode1+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
