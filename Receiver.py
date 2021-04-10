@@ -94,33 +94,37 @@ def InsertDb(x):
         pool_size=POOL_SIZE+1
     )
 
-    print("masuk function insertDB")
+    if(db){
+        print("koneksi berhasil")
+    }
 
-    cursor = db.cursor(buffered=True)
+    print("masuk function insertDB")
+    print(x)
+    # cursor = db.cursor(buffered=True)
     # hasil get data dari arduino
-    node = x[0]
-    detak = x[1]
-    oksigen = x[2]
-    suhu = x[3]
-    waktu = [4]
+    # node = x[0]
+    # detak = x[1]
+    # oksigen = x[2]
+    # suhu = x[3]
+    # waktu = [4]
 
     # convert data sebelum masuk ke db
-    node = str(node)
-    detak = int(detak)
-    oksigen = int(oksigen)
-    suhu = float(suhu)
+    # node = str(node)
+    # detak = int(detak)
+    # oksigen = int(oksigen)
+    # suhu = float(suhu)
 
-    queryInsert = (
-        "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
-    values = (waktu, node, detak, oksigen, suhu)
+    # queryInsert = (
+    #     "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
+    # values = (waktu, node, detak, oksigen, suhu)
 
-    cursor.execute(queryInsert, values)
+    # cursor.execute(queryInsert, values)
 
-    # commit data ke database
-    db.commit()
+    # # commit data ke database
+    # db.commit()
 
-    cursor.close()
-    db.close()
+    # cursor.close()
+    # db.close()
 
 
 while appRunning:
@@ -133,8 +137,9 @@ while appRunning:
         while sensing:
             # ambil data sensing arduino
             msg = s.readline().decode("ascii").strip()
-            print("masuk while sensing")
             print(msg)
+            print("masuk while sensing")
+
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 future = executor.submit(getData, msg)
                 print(future.result)
