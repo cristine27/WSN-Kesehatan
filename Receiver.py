@@ -147,7 +147,7 @@ while appRunning:
                     future = executor.submit(getData, msg)
                     if(future.done()):
                         print("future selesai")
-                        data = future.result
+                        data = future.result()
                         print(data)
                         # print("data future" + str(data))
                         # print(len(data))
