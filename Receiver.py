@@ -96,9 +96,6 @@ def InsertDb(x):
         pool_size=POOL_SIZE+1
     )
 
-    if(db.is_connected()):
-        print("db connected")
-
     print("masuk function insertDB")
     print(x)
     # cursor = db.cursor(buffered=True)
