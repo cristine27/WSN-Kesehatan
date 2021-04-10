@@ -95,17 +95,17 @@ void loop() {
   detak = 10;
   oksigen = 10;
   suhu = 1.1;
-//  if(sekarang - temp > 10000){
+  if(sekarang - temp > 1000){
      Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode1+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
       Serial.print("Sa02 : " + String(oksigen) + "% | ");
       Serial.print("Suhu : " + String(suhu) + "*c");
       Serial.println();
-      pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu + "/n";
+      pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
       temp = sekarang;
   xbee.print(pesan);
-//  }
+  }
   
   }
 
