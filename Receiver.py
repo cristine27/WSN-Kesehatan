@@ -139,7 +139,6 @@ while appRunning:
             print("hasil sensing ardu : ")
             print(msg)
             print("masuk while sensing")
-            global counter
             counter = counter + 1
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
