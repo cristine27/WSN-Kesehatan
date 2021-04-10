@@ -70,15 +70,15 @@ def getData(x):
         detak = potong[1]
         oksigen = potong[2]
         suhu = potong[3]
-        print("masuk if getdata")
-        print(node)
+        # print("masuk if getdata")
+        # print(node)
 
     waktu = datetime.datetime.now()
     # print(localtime)
     waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
-    print("masuk function getData")
-    print("data = ")
-    print(node, detak, oksigen, suhu, waktu)
+    # print("masuk function getData")
+    # print("data = ")
+    # print(node, detak, oksigen, suhu, waktu)
     return node, detak, oksigen, suhu, waktu
 
 
