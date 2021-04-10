@@ -134,9 +134,10 @@ while appRunning:
             # ambil data sensing arduino
             msg = s.readline().decode("ascii").strip()
             print("masuk while sensing")
+            print(msg)
             with concurrent.futures.ThreadPoolExecutor() as executor:
-                f1 = executor.submit(getData, msg)
-                print(f1)
-                if f1.result() != None:
-                    f2 = executor.submit(InsertDb, f1.result())
+                future = executor.submit(getData, msg)
+                print(future.result)
+                if future.result != None:
+                    f2 = executor.submit(InsertDb, future.result)
                     print(f2.result())
