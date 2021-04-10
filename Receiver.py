@@ -1,9 +1,8 @@
 # Base-station Code
 
-import concurrent.futures  # thread
+import concurrent.futures  # threads
 import datetime  # waktu
 import serial  # akses serial port
-import RPi.GPIO as GPIO  # input output
 import mysql.connector  # connect python dengan mysql
 from mysql.connector import Error
 
@@ -12,15 +11,10 @@ from mysql.connector import Error
 # GPIO.setwarnings(False)
 # GPIO.setup(23, GPIO.OUT)
 
-global node
-global detak
-global oksigen
-global suhu
-
-node = "test"
-detak = 0
-oksigen = 0
-suhu = 0.0
+# variabel
+appRunning = True
+MenuShow = True
+Sensing = True
 
 # initial serial
 s = serial.Serial(
@@ -32,32 +26,55 @@ s = serial.Serial(
     timeout=1
 )
 
+# default tampilan
+print("Aplikasi Base Station Berjalan")
+print("----------------------")
+print("Daftar Menu Perintah : ")
+print("1. Check status Node")
+print("2. Mulai Pemeriksaan")
+print("3. Stop Pemeriksaan")
+print("4. Keluar dari Aplikasi")
+print("----------------------")
+print("Silahkan Input Nomor Perintah : ")
+
+perintah = input()
+print(perintah)
+
+
+def mainMenu():
+    print("Aplikasi Base Station Berjalan")
+    print("----------------------")
+    print("Daftar Menu Perintah : ")
+    print("1. Check status Node")
+    print("2. Mulai Pemeriksaan")
+    print("3. Stop Pemeriksaan")
+    print("4. Keluar dari Aplikasi")
+    print("----------------------")
+    print("Silahkan Input Nomor Perintah : ")
+
+
+def validateData(x):
+    potong = x.split("|")
+    if len(potong) > 1:
+        if(potong[0] != "" & & potong[1] != 0 & & potong[2] != 0 & & potong[3] != 0):
+            return True
+
 
 def getData(x):
-    global node
-    global detak
-    global oksigen
-    global suhu
-    parsed = x.split("|")
-    if len(parsed) > 1:
-        node = parsed[0]
-        detak = parsed[1]
-        oksigen = parsed[2]
-        suhu = parsed[3]
+    if(validateData(x)):
+        node = potong[0]
+        detak = potong[1]
+        oksigen = potong[2]
+        suhu = potong[3]
 
-    node = str(node)
-    detak = int(detak)
-    oksigen = int(oksigen)
-    suhu = float(suhu)
-    print(node, detak, oksigen, suhu)
-
-    localtime = datetime.datetime.now()
-    print(localtime)
+    waktu = datetime.datetime.now()
+    # print(localtime)
     localtime = localtime.strftime('%Y-%m-%d %H:%M:%S')
-    return node, detak, oksigen, suhu, localtime
+    return node, detak, oksigen, suhu, waktu
 
 
-POOL_SIZE = 2
+# jumlah threads(jumlah max req dari dari app)
+POOL_SIZE = 5
 
 
 def InsertDb(x):
@@ -71,27 +88,45 @@ def InsertDb(x):
     )
 
     cursor = db.cursor(buffered=True)
+    # hasil get data dari arduino
     node = x[0]
     detak = x[1]
     oksigen = x[2]
     suhu = x[3]
-    localtime = [4]
+    waktu = [4]
 
-    query = (
+    # convert data sebelum masuk ke db
+    node = str(node)
+    detak = int(detak)
+    oksigen = int(oksigen)
+    suhu = float(suhu)
+
+    queryInsert = (
         "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
-    values = (localtime, node, detak, oksigen, suhu)
+    values = (waktu, node, detak, oksigen, suhu)
+
     cursor.execute(query, values)
 
+    # commit data ke database
     db.commit()
+
     cursor.close()
     db.close()
 
 
-while 1:
-    msg = s.readline().decode("ascii").strip()
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        f1 = executor.submit(getData, msg)
-        print(f1.result())
-        if f1.result() != None:
-            f2 = executor.submit(InsertDb, f1.result())
-            print(f2.result())
+while appRunning:
+    while MenuShow:
+        print(" ")
+        if(perintah == "2"):
+            s.write(str.encode("a"))
+            print("Pemeriksaan sedang dilakukan mohon tunggu...")
+            print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
+            while sensing:
+                # ambil data sensing arduino
+                msg = s.readline().decode("ascii").strip()
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    f1 = executor.submit(getData, msg)
+                    print(f1.result())
+                    if f1.result() != None:
+                        f2 = executor.submit(InsertDb, f1.result())
+                        print(f2.result())

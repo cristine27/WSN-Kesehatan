@@ -79,6 +79,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:  
+
+  if(xbee.available()){
+    byte temp = xbee.read();
+    if(temp=='a'){
+      Serial.println(temp);
+    }
+  }
   
   /*tanpa menggunakan trigger serial*/
   bacaSensorDetak();
@@ -86,6 +93,9 @@ void loop() {
 
   pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
   sekarang = millis();
+  detak = 10;
+  oksigen = 10;
+  suhu = 1.1;
   if(sekarang - temp > 10000){
      Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode1+" ");
