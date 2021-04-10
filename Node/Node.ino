@@ -102,7 +102,7 @@ void loop() {
       Serial.print("Sa02 : " + String(oksigen) + "% | ");
       Serial.print("Suhu : " + String(suhu) + "*c");
       Serial.println();
-      pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
+      pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu + "/n";
       temp = sekarang;
   xbee.print(pesan);
 //  }
