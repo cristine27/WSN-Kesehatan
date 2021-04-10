@@ -91,7 +91,6 @@ void loop() {
   bacaSensorDetak();
   bacaSensorSuhu();
 
-  pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
   sekarang = millis();
   detak = 10;
   oksigen = 10;
@@ -103,6 +102,7 @@ void loop() {
       Serial.print("Sa02 : " + String(oksigen) + "% | ");
       Serial.print("Suhu : " + String(suhu) + "*c");
       Serial.println();
+      pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
       temp = sekarang;
   xbee.print(pesan);
   }
