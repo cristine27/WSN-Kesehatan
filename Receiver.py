@@ -141,8 +141,9 @@ while appRunning:
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 future = executor.submit(getData, msg)
-                data = future.result()
+                if(future.done()):
+                    print(future.result())
                 # print("data future" + str(data))
                 # print(len(data))
                 if data != None:
-                    f2 = executor.submit(InsertDb, future.result())
+                    f2 = executor.submit(InsertDb, future.result)
