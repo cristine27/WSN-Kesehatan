@@ -92,6 +92,7 @@ void loop() {
   bacaSensorSuhu();
 
   sekarang = millis();
+  namaNode1 = "test";
   detak = 10;
   oksigen = 10;
   suhu = 1.1;
