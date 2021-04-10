@@ -100,12 +100,12 @@ void loop() {
   
   if(sekarang - temp > 10000){
      Serial.println("Hasil Pemantauan :");
-//      Serial.print(namaNode1+" ");
-//      Serial.print("BPM : " + String(detak) + "bpm | ");
-//      Serial.print("Sa02 : " + String(oksigen) + "% | ");
-//      Serial.print("Suhu : " + String(suhu) + "*c");
-//      Serial.println();
-xbee.print(pesan);
+      Serial.print(namaNode1+" ");
+      Serial.print("BPM : " + String(detak) + "bpm | ");
+      Serial.print("Sa02 : " + String(oksigen) + "% | ");
+      Serial.print("Suhu : " + String(suhu) + "*c");
+      Serial.println();
+      xbee.print(pesan);
       temp = sekarang;
       
   }
