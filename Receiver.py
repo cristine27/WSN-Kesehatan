@@ -38,7 +38,7 @@ print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
 
 perintah = input()
-print(perintah)
+# print(perintah)
 
 
 def mainMenu():
@@ -55,10 +55,11 @@ def mainMenu():
 
 
 def validateData(x):
-    print("masuk function validate")
+    # print("masuk function validate")
     potong = x.split("|")
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0):
+            print("masuk function validate")
             return True
 
 
@@ -144,6 +145,6 @@ while appRunning:
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 future = executor.submit(getData, msg)
                 print(future.result())
-                if future.result != None:
+                if future.result() != None:
                     f2 = executor.submit(InsertDb, future.result)
                     print(f2.result())
