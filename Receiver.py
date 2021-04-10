@@ -13,8 +13,8 @@ from mysql.connector import Error
 
 # variabel
 appRunning = True
-MenuShow = True
-Sensing = True
+menuShow = True
+sensing = True
 
 # initial serial
 s = serial.Serial(
@@ -56,11 +56,12 @@ def mainMenu():
 def validateData(x):
     potong = x.split("|")
     if len(potong) > 1:
-        if(potong[0] != "" & & potong[1] != 0 & & potong[2] != 0 & & potong[3] != 0):
+        if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0):
             return True
 
 
 def getData(x):
+    potong = x.split("|")
     if(validateData(x)):
         node = potong[0]
         detak = potong[1]
@@ -69,7 +70,7 @@ def getData(x):
 
     waktu = datetime.datetime.now()
     # print(localtime)
-    localtime = localtime.strftime('%Y-%m-%d %H:%M:%S')
+    waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
     return node, detak, oksigen, suhu, waktu
 
 
@@ -105,7 +106,7 @@ def InsertDb(x):
         "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
     values = (waktu, node, detak, oksigen, suhu)
 
-    cursor.execute(query, values)
+    cursor.execute(queryInsert, values)
 
     # commit data ke database
     db.commit()
@@ -115,7 +116,7 @@ def InsertDb(x):
 
 
 while appRunning:
-    while MenuShow:
+    while menuShow:
         print(" ")
         if(perintah == "2"):
             s.write(str.encode("a"))
