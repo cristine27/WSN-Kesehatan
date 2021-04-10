@@ -15,6 +15,7 @@ from mysql.connector import Error
 appRunning = True
 menuShow = True
 sensing = True
+counter = 0
 
 # initial serial
 s = serial.Serial(
@@ -138,12 +139,16 @@ while appRunning:
             print("hasil sensing ardu : ")
             print(msg)
             print("masuk while sensing")
+            global
+            counter++
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(getData, msg)
-                if(future.done()):
-                    print(future.result())
-                # print("data future" + str(data))
-                # print(len(data))
-                if data != None:
-                    f2 = executor.submit(InsertDb, future.result)
+                if(counter > 5):
+                    counter = 0
+                    future = executor.submit(getData, msg)
+                    if(future.done()):
+                        print(future.result())
+                        # print("data future" + str(data))
+                        # print(len(data))
+                        # if data != None:
+                        #     f2 = executor.submit(InsertDb, future.result)
