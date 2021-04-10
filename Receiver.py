@@ -136,7 +136,7 @@ while appRunning:
             print("masuk while sensing")
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 f1 = executor.submit(getData, msg)
-                print(f1.result())
+                print(f1)
                 if f1.result() != None:
                     f2 = executor.submit(InsertDb, f1.result())
                     print(f2.result())
