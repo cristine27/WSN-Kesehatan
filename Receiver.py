@@ -144,6 +144,5 @@ while appRunning:
                 data = future.result()
                 # print("data future" + str(data))
                 # print(len(data))
-                if future != None:
-                    f2 = executor.submit(InsertDb, future.result)
-                    print(f2)
+                if data != None:
+                    f2 = executor.submit(InsertDb, future.result())
