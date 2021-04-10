@@ -69,6 +69,7 @@ def getData(x):
         detak = potong[1]
         oksigen = potong[2]
         suhu = potong[3]
+        print(node)
 
     waktu = datetime.datetime.now()
     # print(localtime)
