@@ -94,9 +94,8 @@ def InsertDb(x):
         pool_size=POOL_SIZE+1
     )
 
-    if(db){
-        print("koneksi berhasil")
-    }
+    if(db.ping()):
+        print("db connected")
 
     print("masuk function insertDB")
     print(x)
