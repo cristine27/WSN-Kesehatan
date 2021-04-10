@@ -69,6 +69,7 @@ def getData(x):
         detak = potong[1]
         oksigen = potong[2]
         suhu = potong[3]
+        print("masuk if getdata")
         print(node)
 
     waktu = datetime.datetime.now()
@@ -141,7 +142,7 @@ while appRunning:
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 future = executor.submit(getData, msg)
-                print(future.result)
+                print(future.result())
                 if future.result != None:
                     f2 = executor.submit(InsertDb, future.result)
                     print(f2.result())
