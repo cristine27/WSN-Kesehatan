@@ -54,8 +54,9 @@ def mainMenu():
     print("Silahkan Input Nomor Perintah : ")
 
 
-def validateData(potong):
+def validateData(x):
     print("masuk function validate")
+    potong = x.split("|")
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0):
             return True
@@ -63,7 +64,7 @@ def validateData(potong):
 
 def getData(x):
     potong = x.split("|")
-    if(validateData(potong)):
+    if(validateData(x)):
         node = potong[0]
         detak = potong[1]
         oksigen = potong[2]
