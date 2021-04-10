@@ -42,6 +42,7 @@ print(perintah)
 
 
 def mainMenu():
+    print("masuk function mainMenu")
     print("Aplikasi Base Station Berjalan")
     print("----------------------")
     print("Daftar Menu Perintah : ")
@@ -54,6 +55,7 @@ def mainMenu():
 
 
 def validateData(x):
+    print("masuk function validate")
     potong = x.split("|")
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0):
@@ -71,6 +73,7 @@ def getData(x):
     waktu = datetime.datetime.now()
     # print(localtime)
     waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
+    print("masuk function getData")
     return node, detak, oksigen, suhu, waktu
 
 
@@ -87,6 +90,8 @@ def InsertDb(x):
         pool_name='mypool',
         pool_size=POOL_SIZE+1
     )
+
+    print("masuk function insertDB")
 
     cursor = db.cursor(buffered=True)
     # hasil get data dari arduino
@@ -116,18 +121,18 @@ def InsertDb(x):
 
 
 while appRunning:
-    while menuShow:
-        print(" ")
-        if(perintah == "2"):
-            s.write(str.encode("a"))
-            print("Pemeriksaan sedang dilakukan mohon tunggu...")
-            print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
-            while sensing:
-                # ambil data sensing arduino
-                msg = s.readline().decode("ascii").strip()
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    f1 = executor.submit(getData, msg)
-                    print(f1.result())
-                    if f1.result() != None:
-                        f2 = executor.submit(InsertDb, f1.result())
-                        print(f2.result())
+    # while menuShow:
+    #     print(" ")
+    if(perintah == "2"):
+        s.write(str.encode("a"))
+        print("Pemeriksaan sedang dilakukan mohon tunggu...")
+        print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
+        while sensing:
+            # ambil data sensing arduino
+            msg = s.readline().decode("ascii").strip()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                f1 = executor.submit(getData, msg)
+                print(f1.result())
+                if f1.result() != None:
+                    f2 = executor.submit(InsertDb, f1.result())
+                    print(f2.result())
