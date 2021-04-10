@@ -142,7 +142,7 @@ while appRunning:
             counter = counter + 1
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
-                if(counter > 5):
+                if(counter >= 10):
                     counter = 0
                     future = executor.submit(getData, msg)
                     if(future.done()):
