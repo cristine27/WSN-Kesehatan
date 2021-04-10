@@ -133,6 +133,7 @@ while appRunning:
         while sensing:
             # ambil data sensing arduino
             msg = s.readline().decode("ascii").strip()
+            print("masuk while sensing")
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 f1 = executor.submit(getData, msg)
                 print(f1.result())
