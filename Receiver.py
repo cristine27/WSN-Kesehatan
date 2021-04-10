@@ -74,6 +74,8 @@ def getData(x):
     # print(localtime)
     waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
     print("masuk function getData")
+    print("data = ")
+    print(node, detak, oksigen, suhu, waktu)
     return node, detak, oksigen, suhu, waktu
 
 
