@@ -54,9 +54,8 @@ def mainMenu():
     print("Silahkan Input Nomor Perintah : ")
 
 
-def validateData(x):
+def validateData(potong):
     print("masuk function validate")
-    potong = x.split("|")
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0):
             return True
@@ -64,7 +63,7 @@ def validateData(x):
 
 def getData(x):
     potong = x.split("|")
-    if(validateData(x)):
+    if(validateData(potong)):
         node = potong[0]
         detak = potong[1]
         oksigen = potong[2]
@@ -95,7 +94,7 @@ def InsertDb(x):
         pool_size=POOL_SIZE+1
     )
 
-    if(db.ping()):
+    if(db.is_connected()):
         print("db connected")
 
     print("masuk function insertDB")
