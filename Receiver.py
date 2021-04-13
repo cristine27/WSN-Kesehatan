@@ -1,11 +1,12 @@
 # Base-station Code
 
-import concurrent.futures  # threads
-import datetime  # waktu
-import serial  # akses serial port
-import time
-import mysql.connector  # connect python dengan mysql
 from mysql.connector import Error
+import mysql.connector  # connect python dengan mysql
+import time
+import serial  # akses serial port
+import datetime  # waktu
+import concurrent.futures  # threads
+import threading
 
 
 # GPIO.setmode(GPIO.BCM)
@@ -141,7 +142,7 @@ while appRunning:
             print(msg)
             counter = counter + 1
 
-            with concurrent.futures.ThreadPoolExecutor() as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 future = executor.submit(getData, msg)
                 if(future.done()):
                     print("future selesai")
