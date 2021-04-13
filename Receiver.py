@@ -89,18 +89,29 @@ def getData(x):
 POOL_SIZE = 10
 
 
-def InsertDb(x):
-    db = mysql.connector.connect(
-        host='localhost',
-        database='coba',
-        user='phpmyadmin',
-        password='raspberry',
-        pool_name='mypool',
-        pool_size=POOL_SIZE+1
-    )
+def konekDb():
+    # connect to mysql database
+    db = None
+    try:
+        db = mysql.connector.connect(
+            host='localhost',
+            database='coba',
+            user='phpmyadmin',
+            password='raspberry',
+            pool_name='mypool',
+            pool_size=POOL_SIZE+1
+        )
 
-    print("masuk function insertDB")
-    print(x)
+    if db.is_connected():
+        print("connected to MySQL database")
+
+    except Error as e:
+        print(e)
+
+
+def InsertDb(x):
+    konekDb()
+
     cursor = db.cursor(buffered=True)
     # hasil get data dari arduino
     node = x[0]
