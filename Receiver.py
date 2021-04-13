@@ -110,10 +110,10 @@ def InsertDb(x):
     waktu = [4]
 
     # convert data sebelum masuk ke db
-    # node = str(node)
-    # detak = int(detak)
-    # oksigen = int(oksigen)
-    # suhu = float(suhu)
+    node = str(node)
+    detak = int(detak)
+    oksigen = int(oksigen)
+    suhu = float(suhu)
 
     queryInsert = (
         "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
@@ -141,7 +141,7 @@ while appRunning:
             print("hasil sensing ardu : ")
             print(msg)
             counter = counter + 1
-            time.sleep(1)
+            time.sleep(5)
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 future = executor.submit(getData, msg)
                 # if(future.done()):
