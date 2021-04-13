@@ -128,12 +128,13 @@ def InsertDb(x):
     suhu = x[3]
     waktu = [4]
     print("cursor")
+
     # convert data sebelum masuk ke db
-    # node = str(node)
-    # detak = int(detak)
-    # oksigen = int(oksigen)
-    # suhu = float(suhu)
-    # print("convert")
+    node = str(node)
+    detak = int(detak)
+    oksigen = int(oksigen)
+    suhu = float(suhu)
+    print("convert")
 
     queryInsert = (
         "INSERT INTO data (waktu, node, detak, oksigen, suhu)"
