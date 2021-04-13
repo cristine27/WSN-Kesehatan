@@ -72,8 +72,8 @@ def getData(x):
         detak = potong[1]
         oksigen = potong[2]
         suhu = potong[3]
-        # print("masuk if getdata")
-        # print(node)
+        print("masuk if getdata")
+        print(node)
 
     waktu = datetime.datetime.now()
     # print(localtime)
@@ -85,7 +85,7 @@ def getData(x):
 
 
 # jumlah threads(jumlah max req dari dari app)
-POOL_SIZE = 5
+POOL_SIZE = 10
 
 
 def InsertDb(x):
@@ -100,31 +100,31 @@ def InsertDb(x):
 
     print("masuk function insertDB")
     print(x)
-    # cursor = db.cursor(buffered=True)
-    # hasil get data dari arduino
-    # node = x[0]
-    # detak = x[1]
-    # oksigen = x[2]
-    # suhu = x[3]
-    # waktu = [4]
+    cursor = db.cursor(buffered=True)
+    hasil get data dari arduino
+    node = x[0]
+    detak = x[1]
+    oksigen = x[2]
+    suhu = x[3]
+    waktu = [4]
 
-    # convert data sebelum masuk ke db
-    # node = str(node)
-    # detak = int(detak)
-    # oksigen = int(oksigen)
-    # suhu = float(suhu)
+    convert data sebelum masuk ke db
+    node = str(node)
+    detak = int(detak)
+    oksigen = int(oksigen)
+    suhu = float(suhu)
 
-    # queryInsert = (
-    #     "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
-    # values = (waktu, node, detak, oksigen, suhu)
+    queryInsert = (
+        "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
+    values = (waktu, node, detak, oksigen, suhu)
 
-    # cursor.execute(queryInsert, values)
+    cursor.execute(queryInsert, values)
 
-    # # commit data ke database
-    # db.commit()
+    # commit data ke database
+    db.commit()
 
-    # cursor.close()
-    # db.close()
+    cursor.close()
+    db.close()
 
 
 while appRunning:
@@ -139,7 +139,6 @@ while appRunning:
             msg = s.readline().decode("ascii").strip()
             print("hasil sensing ardu : ")
             print(msg)
-            print("masuk while sensing")
             counter = counter + 1
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
