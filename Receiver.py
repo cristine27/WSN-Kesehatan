@@ -110,7 +110,15 @@ def konekDb():
 
 
 def InsertDb(x):
-    konekDb()
+    # konekDb()
+    db = mysql.connector.connect(
+        host='localhost',
+        database='coba',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
 
     cursor = db.cursor(buffered=True)
     # hasil get data dari arduino
@@ -131,7 +139,7 @@ def InsertDb(x):
     values = (waktu, node, detak, oksigen, suhu)
 
     cursor.execute(queryInsert, values)
-
+    print("execute query")
     # commit data ke database
     db.commit()
 
@@ -162,4 +170,5 @@ while appRunning:
                 print(data)
 
                 if data != None:
+                    print("masuk submit")
                     future2 = executor.submit(InsertDb, data)
