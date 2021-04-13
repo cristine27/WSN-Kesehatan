@@ -141,15 +141,14 @@ while appRunning:
             print("hasil sensing ardu : ")
             print(msg)
             counter = counter + 1
-            time.sleep(10)
+            time.sleep(1)
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 future = executor.submit(getData, msg)
-                if(future.done()):
-                    print("future selesai")
-                    time.sleep(10)
-                    data = future.result()
-                    print(data)
-                    # print("data future" + str(data))
-                    # print(len(data))
-                    # if data != None:
-                    #     f2 = executor.submit(InsertDb, future.result)
+                # if(future.done()):
+                print("future selesai")
+                time.sleep(1)
+                data = future.result()
+                print(data)
+
+                if data != None:
+                    future2 = executor.submit(InsertDb, data)
