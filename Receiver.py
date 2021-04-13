@@ -101,18 +101,18 @@ def InsertDb(x):
     print("masuk function insertDB")
     print(x)
     cursor = db.cursor(buffered=True)
-    #hasil get data dari arduino
+    # hasil get data dari arduino
     node = x[0]
     detak = x[1]
     oksigen = x[2]
     suhu = x[3]
     waktu = [4]
 
-    convert data sebelum masuk ke db
-    node = str(node)
-    detak = int(detak)
-    oksigen = int(oksigen)
-    suhu = float(suhu)
+    # convert data sebelum masuk ke db
+    # node = str(node)
+    # detak = int(detak)
+    # oksigen = int(oksigen)
+    # suhu = float(suhu)
 
     queryInsert = (
         "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
