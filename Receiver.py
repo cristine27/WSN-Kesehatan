@@ -141,7 +141,7 @@ while appRunning:
             print("hasil sensing ardu : ")
             print(msg)
             counter = counter + 1
-
+            time.sleep(10)
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 future = executor.submit(getData, msg)
                 if(future.done()):
