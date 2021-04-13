@@ -101,7 +101,7 @@ def InsertDb(x):
     print("masuk function insertDB")
     print(x)
     cursor = db.cursor(buffered=True)
-    hasil get data dari arduino
+    #hasil get data dari arduino
     node = x[0]
     detak = x[1]
     oksigen = x[2]
