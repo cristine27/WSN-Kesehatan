@@ -161,7 +161,7 @@ while appRunning:
             print(msg)
             counter = counter + 1
             time.sleep(5)
-            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
                 future = executor.submit(getData, msg)
                 # if(future.done()):
                 print("future selesai")
