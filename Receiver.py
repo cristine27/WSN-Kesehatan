@@ -133,11 +133,11 @@ def InsertDb(x):
     detak = int(detak)
     oksigen = int(oksigen)
     suhu = float(suhu)
-
+    print("convert")
     queryInsert = (
         "INSERT INTO data (waktu, node, detak, oksigen, suhu) VALUES (%s, %s, %s, %s, %s)")
     values = (waktu, node, detak, oksigen, suhu)
-
+    print("query")
     cursor.execute(queryInsert, values)
     print("execute query")
     # commit data ke database
