@@ -18,6 +18,7 @@ appRunning = True
 menuShow = True
 sensing = True
 counter = 0
+db = None
 
 # initial serial
 s = serial.Serial(
@@ -91,7 +92,6 @@ POOL_SIZE = 10
 
 def konekDb():
     # connect to mysql database
-    db = None
     try:
         db = mysql.connector.connect(
             host='localhost',
@@ -102,8 +102,8 @@ def konekDb():
             pool_size=POOL_SIZE+1
         )
 
-    if db.is_connected():
-        print("connected to MySQL database")
+        if db.is_connected():
+            print("connected to MySQL database")
 
     except Error as e:
         print(e)
