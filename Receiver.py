@@ -146,6 +146,7 @@ while appRunning:
                 future = executor.submit(getData, msg)
                 if(future.done()):
                     print("future selesai")
+                    time.sleep(10)
                     data = future.result()
                     print(data)
                     # print("data future" + str(data))
