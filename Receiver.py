@@ -131,9 +131,10 @@ def InsertDb(x):
 
     # convert data sebelum masuk ke db
     node = str(node)
-    detak = int(detak)
-    oksigen = int(oksigen)
-    suhu = float(suhu)
+    detak = str(detak)
+    oksigen = str(oksigen)
+    suhu = str(suhu)
+    waktu = str(waktu)
     print("convert")
 
     queryInsert = (
