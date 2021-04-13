@@ -127,7 +127,7 @@ def InsertDb(x):
     oksigen = x[2]
     suhu = x[3]
     waktu = [4]
-
+    print("cursor")
     # convert data sebelum masuk ke db
     node = str(node)
     detak = int(detak)
