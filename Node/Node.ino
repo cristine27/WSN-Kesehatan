@@ -31,8 +31,8 @@ int sekarang = 0;//waktu sekarang
 
 String pesan = "";
 String psn = "";
-String namaNode1 = "Node 1";
-String namaNode2 = "Node 2";
+String namaNode = "nama";
+//String namaNode2 = "Node 2";
 
 // dipanggil jika terdapat detak yang terdeteksi
 bool onBeatDetected()
@@ -90,21 +90,23 @@ void loop() {
   /*tanpa menggunakan trigger serial*/
   bacaSensorDetak();
   bacaSensorSuhu();
-
+  
   sekarang = millis();
-  namaNode1 = "test";
-  detak = 10;
-  oksigen = 10;
-  suhu = 1.1;
-  pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
+//  namaNode1 = "test";
+//  detak = 10;
+//  oksigen = 10;
+//  suhu = 1.1;
+//  pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
   
   if(sekarang - temp > 5000){
+//    determineNamaNode();
      Serial.println("Hasil Pemantauan :");
-      Serial.print(namaNode1+" ");
+      Serial.print(namaNode+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
       Serial.print("Sa02 : " + String(oksigen) + "% | ");
       Serial.print("Suhu : " + String(suhu) + "*c");
       Serial.println();
+      pesan = namaNode + "|" + detak + "|" + oksigen + "|" + suhu;
       xbee.print(pesan);
       temp = sekarang;
       
@@ -167,4 +169,15 @@ void matikanSensorDetak(){
 
 void nyalakanSensorDetak(){
   pox.resume();
+}
+
+void determineNamaNode(){
+  Serial.print("panggil");
+  if(detak!=0 && suhu==1037.55){//node detak
+    Serial.print("masuk if");
+    namaNode = "node1";
+  }
+  if(detak==0 && suhu!=1037.55){//node temperatur
+    namaNode = "node2";
+  }
 }

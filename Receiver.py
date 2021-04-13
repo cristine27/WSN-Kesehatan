@@ -3,6 +3,7 @@
 import concurrent.futures  # threads
 import datetime  # waktu
 import serial  # akses serial port
+import time
 import mysql.connector  # connect python dengan mysql
 from mysql.connector import Error
 
@@ -20,11 +21,11 @@ counter = 0
 # initial serial
 s = serial.Serial(
     port='/dev/ttyUSB0',
-    baudrate=9600,
-    parity=serial.PARITY_NONE,
-    stopbits=serial.STOPBITS_ONE,
-    bytesize=serial.EIGHTBITS,
-    timeout=1
+    baudrate=9600
+    # parity=serial.PARITY_NONE,
+    # stopbits=serial.STOPBITS_ONE,
+    # bytesize=serial.EIGHTBITS,
+    # timeout=1
 )
 
 # default tampilan
@@ -142,14 +143,12 @@ while appRunning:
             counter = counter + 1
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
-                if(counter >= 10):
-                    counter = 0
-                    future = executor.submit(getData, msg)
-                    if(future.done()):
-                        print("future selesai")
-                        data = future.result()
-                        print(data)
-                        # print("data future" + str(data))
-                        # print(len(data))
-                        # if data != None:
-                        #     f2 = executor.submit(InsertDb, future.result)
+                future = executor.submit(getData, msg)
+                if(future.done()):
+                    print("future selesai")
+                    data = future.result()
+                    print(data)
+                    # print("data future" + str(data))
+                    # print(len(data))
+                    # if data != None:
+                    #     f2 = executor.submit(InsertDb, future.result)
