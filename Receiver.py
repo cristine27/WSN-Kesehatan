@@ -169,6 +169,6 @@ while appRunning:
                 data = future.result()
                 print(data)
 
-                if data != None:
+                if future.done() and data != None:
                     print("masuk submit")
                     future2 = executor.submit(InsertDb, data)
