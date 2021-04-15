@@ -265,8 +265,8 @@ while appRunning:
             finding = False
 
             respon = s.readline().decode("ascii").strip()
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                # future = executor.submit(goingOffline,respon)
+            # with concurrent.futures.ThreadPoolExecutor() as executor:
+            #     # future = executor.submit(goingOffline,respon)
 
             print("Mematikan Program Base Statsion")
             os.system("Receiver.py")
