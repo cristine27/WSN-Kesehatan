@@ -228,9 +228,10 @@ while appRunning:
             s.write(str.encode("b").strip())
 
             while(counter < 30):
-                respon = s.readline().decode().strip()
+                respon = s.readline().decode("ascii").strip()
+                print(respon)
                 time.sleep(5)
-                with concurrent.futures.ThreadPoolExecutor() as executor:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     counterStart()
                     counter += 1
                     future3 = executor.submit(getPingNode, respon)
