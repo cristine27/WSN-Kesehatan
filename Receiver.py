@@ -57,7 +57,7 @@ def validateData(x):
     # print("masuk function validate")
     potong = x.split("|")
     if len(potong) > 1:
-        if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0):
+        if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0 and potong[4] != None):
             print("masuk function validate")
             return True
 
