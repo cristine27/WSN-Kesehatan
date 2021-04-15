@@ -229,7 +229,7 @@ while appRunning:
 
             while(counter < 30):
                 respon = s.readline().decode().strip()
-		time.sleep(5)
+                time.sleep(5)
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     counterStart()
                     counter += 1
