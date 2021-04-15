@@ -225,9 +225,10 @@ while appRunning:
             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
 
             s.write(str.encode("b").strip())
-
+            respon = s.readline().decode("ascii").strip()
+            print(respon)
             while(counter < 30):
-                respon = s.readline().decode("ascii").strip()
+
                 print(respon)
                 time.sleep(5)
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
