@@ -120,15 +120,14 @@ def getPingNode(x):
     potong = x.split("|")
     if validateData:
         node = potong[0]
-        detak = potong[1]
-        oksigen = potong[2]
-        suhu = potong[3]
         statusNode = potong[4]
 
-        waktu = datetime.datetime.now()
-        waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
+    waktu = datetime.datetime.now()
+    waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
 
-        return node, statusNode, waktu
+    node = str(node)
+
+    return node, statusNode, waktu
 
 
 def counterStart():
