@@ -133,7 +133,7 @@ def getPingNode(x):
 
 def counterStart():
     global statusNode
-    enter - "try : "
+    enter = "try : "
 
     if counter > 30:
         print("Node Offline")
