@@ -19,8 +19,8 @@ const long interval_temperatur = 10000;
 unsigned long prev_temperatur = 0;
 
 /*variabel*/
-bool isDetakNyala = false; //check apakah sensor max30100 nyala 
-bool isTempNyala = false; //check apakah sensor mlx90164 nyala
+bool isMlxOn = false; //check apakah sensor max30100 nyala 
+bool isMaxOn = false; //check apakah sensor mlx90164 nyala
 
 float suhu = 0.0; //suhu tubuh
 int detak = 0; //detak jantung
@@ -39,23 +39,23 @@ bool onBeatDetected()
     Serial.println("Beat!");
 }
 
-void checkStatus(){
-    if(!pox.begin()) {
-      Serial.println("FAILED");
-      for(;;);
-    } else {
-      isDetakNyala = true;
-      Serial.println("SUCCESS");
-    }
-        
-    if(!mlx.begin()){
-      Serial.println("MLX90164 FAILED");
-      for(;;);
-    } else {
-      isTempNyala = true;
-      Serial.println("SUCCESS");
-    }
-}
+//void checkStatus(){
+//    if(!pox.begin()) {
+//      Serial.println("FAILED");
+//      for(;;);
+//    } else {
+//      isDetakNyala = true;
+//      Serial.println("SUCCESS");
+//    }
+//        
+//    if(!mlx.begin()){
+//      Serial.println("MLX90164 FAILED");
+//      for(;;);
+//    } else {
+//      isTempNyala = true;
+//      Serial.println("SUCCESS");
+//    }
+//}
 
 void setup() {
   // put your setup code here, to run once:
@@ -73,11 +73,12 @@ void setup() {
 //  checkStatus();
 
   pox.setOnBeatDetectedCallback(onBeatDetected);
+  checkStatus();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:  
-
+  int stat = 0;
   if(xbee.available()){
     byte temp = xbee.read();
     if(temp=='a'){
@@ -95,6 +96,10 @@ void loop() {
 //  oksigen = 10;
 //  suhu = 1.1;
 //  pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
+
+  if(isMlxOn || isMaxOn){
+    stat = 1;
+  }
   
   if(sekarang - temp > 6000){
       Serial.println("Hasil Pemantauan :");
@@ -102,8 +107,9 @@ void loop() {
       Serial.print("BPM : " + String(detak) + "bpm | ");
       Serial.print("Sa02 : " + String(oksigen) + "% | ");
       Serial.print("Suhu : " + String(suhu) + "*c");
+      Serial.print("Status : " + String(stat));
       Serial.println();
-      pesan = namaNode + "|" + detak + "|" + oksigen + "|" + suhu + '\n';
+      pesan = namaNode + "|" + detak + "|" + oksigen + "|" + suhu + "|" + stat + '\n';
       xbee.print(pesan);
       temp = sekarang;
       
@@ -168,13 +174,11 @@ void nyalakanSensorDetak(){
   pox.resume();
 }
 
-void determineNamaNode(){
-  Serial.print("panggil");
-  if(detak!=0 && suhu==1037.55){//node detak
-    Serial.print("masuk if");
-    namaNode = "node1";
+void checkStatus(){
+  if(pox.begin()){//node temperatur
+    isMaxOn = true;
   }
-  if(detak==0 && suhu!=1037.55){//node temperatur
-    namaNode = "node2";
+  if(mlx.begin()){//node detak
+    isMlxOn = true;
   }
 }
