@@ -200,98 +200,98 @@ while appRunning:
     while menuShow:
         print(" ")
         if(perintah == "2"):
-                s.write(str.encode("a"))
-                print("Pemeriksaan sedang dilakukan mohon tunggu...")
-                print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
-                while sensing:
-                    # ambil data sensing arduino
-                    msg = s.readline().decode("ascii").strip()
-                    print("hasil sensing arduino : ")
-                    print(msg)
-                    counter = counter + 1
-                    time.sleep(5)
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-                        future = executor.submit(getDataSense, msg)
-                        # if(future.done()):
-                        print("future selesai")
-                        time.sleep(1)
-                        data = future.result()
-                        print(data)
+            s.write(str.encode("a"))
+            print("Pemeriksaan sedang dilakukan mohon tunggu...")
+            print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
+            while sensing:
+                # ambil data sensing arduino
+                msg = s.readline().decode("ascii").strip()
+                print("hasil sensing arduino : ")
+                print(msg)
+                counter = counter + 1
+                time.sleep(5)
+                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                    future = executor.submit(getDataSense, msg)
+                    # if(future.done()):
+                    print("future selesai")
+                    time.sleep(1)
+                    data = future.result()
+                    print(data)
 
-                        if future.done() and data != None:
-                            print("masuk submit")
-                            future2 = executor.submit(InsertDb, data)
+                    if future.done() and data != None:
+                        print("masuk submit")
+                        future2 = executor.submit(InsertDb, data)
 
-            elif perintah == "1":
-                print("Mengirim perintah check status")
-                print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
+        elif perintah == "1":
+            print("Mengirim perintah check status")
+            print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
 
-                s.write(str.encode("b").strip())
+            s.write(str.encode("b").strip())
 
-                while(counter < 30):
-                    respon = s.readline().decode().strip()
-                    with concurrent.futures.ThreadPoolExecutor() as executor:
-                        counterStart()
-                        counter += 1
-                        future3 = executor.submit(checkArduinoStatus, respon)
-
-                        data
-                        if future3.done() and future3.result() != None:
-                            print("")
-                            print("Hasil Check Status Node")
-                            print(future3.result())
-                            future4 = executor.submit(
-                                getPingNode, future3.result())
-                            global statusNode
-                            statusNode = True
-                            respon += 1
-
-                if respon == 0:
-                    print(" ")
-                    print("Node Tidak Merespon")
-                    print("Silahkan Check Perangkat")
-                    print(" ")
-                else:
-                    print(" ")
-                    print("Check Node Selesai")
-                    print(" ")
-                defaulCounter()
-                respon = 0
-                mainMenu()
-
-            # turn off base station
-            elif perintah == "3":
-                s.write(str.encode("c").strip())
-                finding = False
-
-                respon = s.readline().decode("ascii").strip()
+            while(counter < 30):
+                respon = s.readline().decode().strip()
                 with concurrent.futures.ThreadPoolExecutor() as executor:
-                    # future = executor.submit(goingOffline,respon)
+                    counterStart()
+                    counter += 1
+                    future3 = executor.submit(checkArduinoStatus, respon)
 
-                print("Mematikan Program Base Statsion")
-                os.system("Receiver.py")
-                print("================================")
-                print("Sensing Telah Dihentikan")
-                print("Base Station Offline")
-                exit()
+                    data
+                    if future3.done() and future3.result() != None:
+                        print("")
+                        print("Hasil Check Status Node")
+                        print(future3.result())
+                        future4 = executor.submit(
+                            getPingNode, future3.result())
+                        global statusNode
+                        statusNode = True
+                        respon += 1
 
-            # turn off sensing
-            elif perintah == "4":
-                s.write(str.encode("c").strip())
-                finding = False
-
-                print("Sensing telah Dihentikan !")
-                statusSensing = False
-
-                respon = s.readlin().decode("ascii").strip()
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    future = executor.submit(updateStatusSensing, respon)
-
-                mainMenu()
-
+            if respon == 0:
+                print(" ")
+                print("Node Tidak Merespon")
+                print("Silahkan Check Perangkat")
+                print(" ")
             else:
-                print("Input Perintah Salah")
-                print("Restart Aplikasi")
-                exit()
+                print(" ")
+                print("Check Node Selesai")
+                print(" ")
+            defaulCounter()
+            respon = 0
+            mainMenu()
 
-            perintah = input()
+        # turn off base station
+        elif perintah == "3":
+            s.write(str.encode("c").strip())
+            finding = False
+
+            respon = s.readline().decode("ascii").strip()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                # future = executor.submit(goingOffline,respon)
+
+            print("Mematikan Program Base Statsion")
+            os.system("Receiver.py")
+            print("================================")
+            print("Sensing Telah Dihentikan")
+            print("Base Station Offline")
+            exit()
+
+        # turn off sensing
+        elif perintah == "4":
+            s.write(str.encode("c").strip())
+            finding = False
+
+            print("Sensing telah Dihentikan !")
+            statusSensing = False
+
+            respon = s.readlin().decode("ascii").strip()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                future = executor.submit(updateStatusSensing, respon)
+
+            mainMenu()
+
+        else:
+            print("Input Perintah Salah")
+            print("Restart Aplikasi")
+            exit()
+
+        perintah = input()
