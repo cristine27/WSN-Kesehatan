@@ -70,7 +70,6 @@ def getDataSense(x):
         oksigen = potong[2]
         suhu = potong[3]
         statusNode = potong[4]
-        statusSensing = potong[5]
         # print("masuk if getdata")
         # print(node)
 
@@ -80,7 +79,7 @@ def getDataSense(x):
     # print("masuk function getData")
     # print("data = ")
     # print(node, detak, oksigen, suhu, waktu)
-    return node, detak, oksigen, suhu, waktu
+    return node, detak, oksigen, suhu waktu
 
 
 # jumlah threads(jumlah max req dari dari app)
@@ -144,7 +143,7 @@ def counterStart():
     return enter
 
 
-def setDefCounter():
+def resetCounter():
     global counter
     counter = 0
 
@@ -233,15 +232,13 @@ while appRunning:
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     counterStart()
                     counter += 1
-                    future3 = executor.submit(checkArduinoStatus, respon)
+                    future3 = executor.submit(getPingNode, respon)
 
-                    data
                     if future3.done() and future3.result() != None:
                         print("")
                         print("Hasil Check Status Node")
                         print(future3.result())
-                        future4 = executor.submit(
-                            getPingNode, future3.result())
+                        # future4 = executor.submit(, future3.result())
                         global statusNode
                         statusNode = True
                         respon += 1
@@ -255,7 +252,7 @@ while appRunning:
                 print(" ")
                 print("Check Node Selesai")
                 print(" ")
-            defaulCounter()
+            resetCounter()
             respon = 0
             mainMenu()
 
