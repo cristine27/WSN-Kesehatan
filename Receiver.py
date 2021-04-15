@@ -79,7 +79,7 @@ def getDataSense(x):
     # print("masuk function getData")
     # print("data = ")
     # print(node, detak, oksigen, suhu, waktu)
-    return node, detak, oksigen, suhu waktu
+    return node, detak, oksigen, suhu, waktu
 
 
 # jumlah threads(jumlah max req dari dari app)
@@ -229,11 +229,12 @@ while appRunning:
 
             while(counter < 30):
                 respon = s.readline().decode().strip()
+		time.sleep(5)
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     counterStart()
                     counter += 1
                     future3 = executor.submit(getPingNode, respon)
-
+                    time.sleep(1)
                     if future3.done() and future3.result() != None:
                         print("")
                         print("Hasil Check Status Node")
