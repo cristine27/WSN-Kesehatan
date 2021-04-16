@@ -224,7 +224,7 @@ while appRunning:
             print("Mengirim perintah check status")
             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
 
-            s.write(str.encode("b").strip())
+            s.write(str.encode("b"))
             respon = s.readline().decode("ascii").strip()
             print(respon)
             while(counter < 30):
