@@ -1,5 +1,4 @@
 # Base-station Code
-
 from mysql.connector import Error
 import mysql.connector  # connect python dengan mysql
 import time
@@ -13,7 +12,9 @@ appRunning = True
 menuShow = True
 sensing = True
 counter = 0
-db = None
+
+global statusNode
+
 
 # initial serial
 s = serial.Serial(
@@ -81,11 +82,6 @@ def getDataSense(x):
     # print(node, detak, oksigen, suhu, waktu)
     return node, detak, oksigen, suhu, waktu
 
-
-# jumlah threads(jumlah max req dari dari app)
-POOL_SIZE = 10
-
-
 def konekDb():
     # connect to mysql database
     try:
@@ -115,6 +111,40 @@ def updateStatusSensing(dataSensing):
         pool_size=POOL_SIZE+1
     )
 
+    waktu = datetime.datetime.now()
+    waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
+    TempStatus = 0
+
+    # cursor = db.cursor(buffered=True)
+
+    # queryNode2 = ("UPDATE nodesensor SET status")
+
+def goingOffline(namaNode){
+    db = mysql.connector.connect(
+        host='localhost',
+        database='coba',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
+
+    waktu = datetime.datetime.now()
+    waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
+    TempStatus = 0
+
+    cursor = db.cursor(buffered=True)
+
+    queryUpdate = ("UPDATE data SET status = %s, waktu = %s WHERE namaNode == %s")
+    valueUpdate = (TempStatus, waktu, namaNode)
+
+    cursor.execute(queryUpdate,valueUpdate)
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+}
 
 def getPingNode(x):
     potong = x.split("|")
@@ -176,8 +206,8 @@ def InsertDb(x):
     print("convert")
 
     queryInsert = (
-        "INSERT INTO data (waktu, node, detak, oksigen, suhu)"
-        "VALUES (%s, %s, %s, %s, %s)"
+        "INSERT INTO data (waktu, node, detak, oksigen, suhu, status)"
+        "VALUES (%s, %s, %s, %s, %s, %s)"
     )
 
     values = (waktu, node, detak, oksigen, suhu)
@@ -193,6 +223,8 @@ def InsertDb(x):
     cursor.close()
     db.close()
 
+# jumlah threads(jumlah max req dari dari app)
+POOL_SIZE = 10
 
 while appRunning:
     while menuShow:
@@ -258,33 +290,37 @@ while appRunning:
             respon = 0
             mainMenu()
 
-        # turn off base station
+        # turn off sensing dan base station
         elif perintah == "3":
             s.write(str.encode("c").strip())
             finding = False
 
+            print("Silahkan masukkan nama node yang akan dimatikan : ")
+            namaNode = input()
+
             respon = s.readline().decode("ascii").strip()
-            # with concurrent.futures.ThreadPoolExecutor() as executor:
-            #     # future = executor.submit(goingOffline,respon)
+            print(respon)
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                future = executor.submit(goingOffline,namaNode)
 
             print("Mematikan Program Base Statsion")
-            os.system("Receiver.py")
+            # os.system("Receiver.py")
             print("================================")
             print("Sensing Telah Dihentikan")
             print("Base Station Offline")
             exit()
 
         # turn off sensing
-        elif perintah == "4":
-            s.write(str.encode("c").strip())
-            finding = False
+        # elif perintah == "4":
+        #     s.write(str.encode("c").strip())
+        #     finding = False
 
-            print("Sensing telah Dihentikan !")
-            statusSensing = False
+        #     print("Sensing telah Dihentikan !")
+        #     statusSensing = False
 
-            respon = s.readlin().decode("ascii").strip()
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(updateStatusSensing, respon)
+        #     respon = s.readlin().decode("ascii").strip()
+        #     with concurrent.futures.ThreadPoolExecutor() as executor:
+        #         future = executor.submit(updateStatusSensing, respon)
 
             mainMenu()
 
