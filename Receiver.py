@@ -119,7 +119,7 @@ def updateStatusSensing(dataSensing):
 
     # queryNode2 = ("UPDATE nodesensor SET status")
 
-def goingOffline(namaNode){
+def goingOffline(namaNode):
     db = mysql.connector.connect(
         host='localhost',
         database='coba',
@@ -144,7 +144,6 @@ def goingOffline(namaNode){
     cursor.close()
     db.close()
 
-}
 
 def getPingNode(x):
     potong = x.split("|")
