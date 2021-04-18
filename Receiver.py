@@ -14,8 +14,11 @@ sensing = True
 counter = 0
 
 global statusNode
-
-
+global namaNode
+Node = {
+    "node1": "offline",
+    "node2": "offline"
+    }
 # initial serial
 s = serial.Serial(
     port='/dev/ttyUSB0',
@@ -58,7 +61,7 @@ def validateData(x):
     # print("masuk function validate")
     potong = x.split("|")
     if len(potong) > 1:
-        if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0 and potong[4] != None):
+        if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0 and potong[4] != -1):
             print("masuk function validate")
             return True
 
@@ -147,23 +150,29 @@ def goingOffline(namaNode):
 
 def getPingNode(x):
     potong = x.split("|")
-    if validateData:
+    temp = ""
+    if validateData(x):
         node = potong[0]
-        statusNode = potong[4]
-
-    waktu = datetime.datetime.now()
-    waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
-
-    node = str(node)
-
-    return node, statusNode, waktu
+        status = potong[4]
+    
+    if(str(status)=="1"):
+        temp = "online"
+    else:
+        temp = "offline"
+        
+    if(str(node)=="node1"):
+        Node["node1"] = temp
+    else:
+        Node["node2"] = temp
+    
+    return node, status
 
 
 def counterStart():
     global statusNode
     enter = "try : "
 
-    if counter > 30:
+    if counter > 20:
         print("Node Offline")
         print("")
         statusNode = False
@@ -258,29 +267,31 @@ while appRunning:
             s.write(str.encode("b"))
             msg = s.readline().decode("ascii").strip()
             time.sleep(5)
-            while(counter < 30):
+            while(counter < 20):
+                respon = 0
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     counterStart()
                     counter += 1
+                    time.sleep(1)
                     future3 = executor.submit(getPingNode, msg)
                     time.sleep(1)
                     if future3.done() and future3.result() != None:
                         respon = 1
                         print("")
                         print("Hasil Check Status Node")
-                        print(future3.result())
                         # future4 = executor.submit(, future3.result())
                         global statusNode
                         statusNode = True
-
-            if respon == 0:
+                        print(future3.result())
+            if respon == 1:
                 print(" ")
-                print("Node Tidak Merespon")
-                print("Silahkan Check Perangkat")
+                print(Node)
+                print("Check Node Selesai")
                 print(" ")
             else:
                 print(" ")
-                print("Check Node Selesai")
+                print("Node Tidak Merespon")
+                print("Silahkan Cek Perangkat")
                 print(" ")
             resetCounter()
             respon = 0
