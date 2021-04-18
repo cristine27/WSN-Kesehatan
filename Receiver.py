@@ -35,8 +35,8 @@ print("----------------------")
 print("Daftar Menu Perintah : ")
 print("1. Check status Node")
 print("2. Mulai Pemeriksaan")
-print("3. Keluar dari Aplikasi")
-print("4. Stop Pemeriksaan")
+print("3. Stop Pemeriksaan")
+print("4. Keluar dari Aplikasi")
 print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
 
@@ -301,35 +301,37 @@ while appRunning:
         elif perintah == "3":
             s.write(str.encode("c").strip())
             finding = False
-
+            
+            print("Silahkan masukkan jumlah node yang akan dimatikan :")
+            jumlahNode = int(input())
+            
             print("Silahkan masukkan nama node yang akan dimatikan : ")
+            print("format penulisan : namaNode1,namaNode2")
             namaNode = input()
-
+            
+            temp = namaNode.split(",")
+            print(len(temp))
             respon = s.readline().decode("ascii").strip()
             print(respon)
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(goingOffline,namaNode)
-
-            print("Mematikan Program Base Statsion")
-            # os.system("Receiver.py")
-            print("================================")
-            print("Sensing Telah Dihentikan")
-            print("Base Station Offline")
-            exit()
-
-        # turn off sensing
-        # elif perintah == "4":
-        #     s.write(str.encode("c").strip())
-        #     finding = False
-
-        #     print("Sensing telah Dihentikan !")
-        #     statusSensing = False
-
-        #     respon = s.readlin().decode("ascii").strip()
-        #     with concurrent.futures.ThreadPoolExecutor() as executor:
-        #         future = executor.submit(updateStatusSensing, respon)
-
+            while(jumlahNode>0):
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    future = executor.submit(goingOffline,temp[jumlahNode-1])
+                    jumlahNode = jumlahNode - 1
+            print("Node berhasil dimatikan")
             mainMenu()
+            
+        # turn off basestation
+        elif perintah == "4":
+             s.write(str.encode("c").strip())
+             print("Mematikan Program Base Statsion")
+             # os.system("Receiver.py")
+             print("================================")
+             print("Sensing Telah Dihentikan")
+             print("Base Station Offline")
+             exit()
+
+
+            
 
         else:
             print("Input Perintah Salah")
