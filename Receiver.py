@@ -257,25 +257,22 @@ while appRunning:
             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
 
             s.write(str.encode("b"))
-            respon = s.readline().decode("ascii").strip()
-            print(respon)
+            msg = s.readline().decode("ascii").strip()
+            time.sleep(5)
             while(counter < 30):
-
-                print(respon)
-                time.sleep(5)
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     counterStart()
                     counter += 1
-                    future3 = executor.submit(getPingNode, respon)
+                    future3 = executor.submit(getPingNode, msg)
                     time.sleep(1)
                     if future3.done() and future3.result() != None:
+                        respon = 1
                         print("")
                         print("Hasil Check Status Node")
                         print(future3.result())
                         # future4 = executor.submit(, future3.result())
                         global statusNode
                         statusNode = True
-                        respon += 1
 
             if respon == 0:
                 print(" ")
