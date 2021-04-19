@@ -12,6 +12,8 @@ appRunning = True
 menuShow = True
 sensing = True
 counter = 0
+insertDataPasien = True
+
 
 global statusNode
 global namaNode
@@ -230,6 +232,73 @@ def InsertDb(x):
 
     cursor.close()
     db.close()
+    
+def verifyidPasien(idPasien,IdNode):
+    db = mysql.connector.connect(
+        host='localhost',
+        database='coba',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
+    isValid = True
+    cursor = db.cursor(buffered=True)
+    
+    cursor.execute("Select idPasien, IdNode FROM pemeriksaan")
+    
+    res = cursor.fetchall()
+    
+    for x in res:
+        if x == "" or x == 0:
+            print(x)
+            isValid = False
+    
+    return isValid
+
+def insertDataNodePasien(x):
+    db = mysql.connector.connect(
+        host='localhost',
+        database='coba',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
+    
+    cursor = db.cursor(buffered=True)
+    potong = x.split(",")
+    if(len(potong)>0):
+        idPasien = potong[0]
+        idNode = potong[1]
+        if(idPasien!=0 and idNode!=""):
+            if(verifyidPasien(idPasien,idNode)):
+                queryInsert = (
+                    "INSERT INTO test (idPasien, idNode)"
+                    "VALUES (%s, %s)"
+                )
+                
+                values = (idPasien,idNode)
+
+                print("query")
+
+                cursor.execute(queryInsert, values)
+
+                print("execute query")
+                # commit data ke database
+                db.commit()
+
+                cursor.close()
+                db.close()
+            else:
+                print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
+                print("Silahkan ulangi atau check data kembali)")
+                global insertDataPasien
+                insertDataPasien = False
+                mainMenu()
+                
+            
+    
 
 # jumlah threads(jumlah max req dari dari app)
 POOL_SIZE = 10
@@ -239,36 +308,52 @@ while appRunning:
         print(" ")
         if(perintah == "2"):
             s.write(str.encode("a"))
-            print("Pemeriksaan sedang dilakukan mohon tunggu...")
-            print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
-            while sensing:
-                # ambil data sensing arduino
-                msg = s.readline().decode("ascii").strip()
-                print("hasil sensing arduino : ")
-                print(msg)
-                counter = counter + 1
-                time.sleep(5)
-                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-                    future = executor.submit(getDataSense, msg)
-                    # if(future.done()):
-                    print("future selesai")
-                    time.sleep(1)
-                    data = future.result()
-                    print(data)
+            
+            print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
+            jumlahPasien = int(input())
+            
+            #while(jumlahPasien>0):
+            print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
+            print("Format Penulisan : idPasien1,namaNode")
+            print("Penulisan dilakukan persatu pasien")
+            isFinishInsertData = True
+            while(jumlahPasien>0):
+                formatPasien = input()
+                insertDataNodePasien(formatPasien)
+            
+            if insertDataPasien:
+                print("Pemeriksaan sedang dilakukan mohon tunggu...")
+                print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
+                while sensing:
+                    # ambil data sensing arduino
+                    msg = s.readline().decode("ascii").strip()
+                    print("hasil sensing arduino : ")
+                    print(msg)
+                    counter = counter + 1
+                    time.sleep(5)
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                        future = executor.submit(getDataSense, msg)
+                        # if(future.done()):
+                        print("future selesai")
+                        time.sleep(1)
+                        data = future.result()
+                        print(data)
 
-                    if future.done() and data != None:
-                        print("masuk submit")
-                        future2 = executor.submit(InsertDb, data)
+                        if future.done() and data != None:
+                            print("masuk submit")
+                            future2 = executor.submit(InsertDb, data)
 
         elif perintah == "1":
+            #getPasien()
             print("Mengirim perintah check status")
             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
 
             s.write(str.encode("b"))
             msg = s.readline().decode("ascii").strip()
             time.sleep(5)
+            respon = 0
             while(counter < 20):
-                respon = 0
+                #respon = 0
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     counterStart()
                     counter += 1
@@ -288,8 +373,9 @@ while appRunning:
                 print(Node)
                 print("Check Node Selesai")
                 print(" ")
-            else:
+            elif(respon==0 and counter==20):
                 print(" ")
+                print(Node)
                 print("Node Tidak Merespon")
                 print("Silahkan Cek Perangkat")
                 print(" ")
