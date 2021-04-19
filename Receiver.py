@@ -15,6 +15,9 @@ counter = 0
 insertDataPasien = True
 idPasien = 0
 
+Pasien = {
+    
+}
 
 global statusNode
 global namaNode
@@ -58,6 +61,29 @@ def mainMenu():
     print("4. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
+    
+def mapNodeName():
+    db = mysql.connector.connect(
+            host='localhost',
+            database='coba',
+            user='phpmyadmin',
+            password='raspberry',
+            pool_name='mypool',
+            pool_size=POOL_SIZE+1
+    )
+    
+    cursor = db.cursor(buffered=True)
+    
+    cursor.execute("SELECT namaNode from N")
+    
+    res = cursor.fetchall()
+    
+    for x in res:
+        nama = x[0]
+        if nama not in Pasien.keys():
+            Pasien[nama] = 0
+    
+    print(Pasien)
 
 
 def validateData(x):
@@ -141,7 +167,7 @@ def goingOffline(namaNode):
 
     cursor = db.cursor(buffered=True)
 
-    queryUpdate = ("UPDATE data SET status = %s, waktu = %s WHERE namaNode == %s")
+    queryUpdate = ("UPDATE node SET status = %s, waktu = %s WHERE namaNode == %s")
     valueUpdate = (TempStatus, waktu, namaNode)
 
     cursor.execute(queryUpdate,valueUpdate)
@@ -207,21 +233,22 @@ def InsertDb(x):
     suhu = x[3]
     waktu = [4]
     print("cursor")
-
+    
     # convert data sebelum masuk ke db
     node = str(node)
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
     waktu = str(waktu)
+    idPasien = int(idPasien)
     print("convert")
 
     queryInsert = (
-        "INSERT INTO data (idPasien, waktu, node, detak, oksigen, suhu, status)"
-        "VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        "INSERT INTO P (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
+        "VALUES (%s, %s, %s, %s, %s, %s)"
     )
 
-    values = (idPasien, waktu, node, detak, oksigen, suhu)
+    values = (idPasien, waktu, node, detak, oksigen, suhu, status)
 
     print("query")
 
@@ -234,7 +261,7 @@ def InsertDb(x):
     cursor.close()
     db.close()
     
-def verifyidPasien(idPasien,IdNode):
+def verifyidPasien(idPasien):
     db = mysql.connector.connect(
         host='localhost',
         database='coba',
@@ -246,12 +273,35 @@ def verifyidPasien(idPasien,IdNode):
     isValid = True
     cursor = db.cursor(buffered=True)
     
-    cursor.execute("Select idPasien, IdNode FROM pemeriksaan")
+    cursor.execute("Select idPasien FROM pasien")
     
     res = cursor.fetchall()
     
     for x in res:
-        if x == "" or x == 0:
+        if x == 0:
+            print(x)
+            isValid = False
+    
+    return isValid
+
+def verifyidNode(namaNode):
+    db = mysql.connector.connect(
+        host='localhost',
+        database='coba',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
+    isValid = True
+    cursor = db.cursor(buffered=True)
+    
+    cursor.execute("Select idN FROM N WHERE namaNode=namaNode")
+    
+    res = cursor.fetchall()
+    
+    for x in res:
+        if x == 0:
             print(x)
             isValid = False
     
@@ -271,9 +321,9 @@ def insertDataNodePasien(x):
     potong = x.split(",")
     if(len(potong)>0):
         idP = potong[0]
-        idNode = potong[1]
-        if(idP!=0 and idNode!=""):
-            if(verifyidPasien(idP,idNode)):
+        Node = potong[1]
+        if(idP!=0 and Node!=""):
+            if(verifyidPasien(idP) and verifyidNode(Node)):
                 """
                 queryInsert = (
                     "INSERT INTO test (idPasien, idNode)"
@@ -295,7 +345,7 @@ def insertDataNodePasien(x):
                 """
                 global idPasien 
                 idPasien = idP
-                print("Assign Pasien pada Node Berhasil")
+                print("Assign Pasien pada Node Berhasil") 
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
@@ -314,7 +364,7 @@ while appRunning:
         print(" ")
         if(perintah == "2"):
             s.write(str.encode("a"))
-            
+            mapNodeName()
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             jumlahPasien = int(input())
             
@@ -324,6 +374,7 @@ while appRunning:
             print("Penulisan dilakukan persatu pasien")
             isFinishInsertData = True
             while(jumlahPasien>0):
+                jumlahPasien = jumlahPasien - 1
                 formatPasien = input()
                 insertDataNodePasien(formatPasien)
             
