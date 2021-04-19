@@ -13,6 +13,7 @@ menuShow = True
 sensing = True
 counter = 0
 insertDataPasien = True
+idPasien = 0
 
 
 global statusNode
@@ -216,11 +217,11 @@ def InsertDb(x):
     print("convert")
 
     queryInsert = (
-        "INSERT INTO data (waktu, node, detak, oksigen, suhu, status)"
-        "VALUES (%s, %s, %s, %s, %s, %s)"
+        "INSERT INTO data (idPasien, waktu, node, detak, oksigen, suhu, status)"
+        "VALUES (%s, %s, %s, %s, %s, %s, %s)"
     )
 
-    values = (waktu, node, detak, oksigen, suhu)
+    values = (idPasien, waktu, node, detak, oksigen, suhu)
 
     print("query")
 
@@ -269,10 +270,11 @@ def insertDataNodePasien(x):
     cursor = db.cursor(buffered=True)
     potong = x.split(",")
     if(len(potong)>0):
-        idPasien = potong[0]
+        idP = potong[0]
         idNode = potong[1]
-        if(idPasien!=0 and idNode!=""):
-            if(verifyidPasien(idPasien,idNode)):
+        if(idP!=0 and idNode!=""):
+            if(verifyidPasien(idP,idNode)):
+                """
                 queryInsert = (
                     "INSERT INTO test (idPasien, idNode)"
                     "VALUES (%s, %s)"
@@ -290,6 +292,10 @@ def insertDataNodePasien(x):
 
                 cursor.close()
                 db.close()
+                """
+                global idPasien 
+                idPasien = idP
+                print("Assign Pasien pada Node Berhasil")
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
