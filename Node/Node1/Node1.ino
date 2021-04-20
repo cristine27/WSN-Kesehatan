@@ -30,7 +30,7 @@ int temp = 0; //temp waktu
 int sekarang = 0;//waktu sekarang
 
 String pesan = "";
-String namaNode = "node2";
+String namaNode = "node1";
 
 // dipanggil jika terdapat detak yang terdeteksi
 bool onBeatDetected()
@@ -78,7 +78,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:  
-  int stat = 0;
   if(xbee.available()){
     byte temp = xbee.read();
     if(temp=='a'){
@@ -89,6 +88,7 @@ void loop() {
   /*tanpa menggunakan trigger serial*/
   bacaSensorDetak();
   bacaSensorSuhu();
+  int stat = enkapStatus();
   
   sekarang = millis();
 //  namaNode1 = "test";
@@ -97,11 +97,11 @@ void loop() {
 //  suhu = 1.1;
 //  pesan = namaNode1 + "|" + detak + "|" + oksigen + "|" + suhu;
 
-  if(isMlxOn || isMaxOn){
-    stat = 1;
-  }
+//  if(isMlxOn || isMaxOn){
+//    stat = 1;
+//  }
   
-  if(sekarang - temp > 6000){
+  if(sekarang - temp > 7000){
       Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
@@ -174,11 +174,27 @@ void nyalakanSensorDetak(){
   pox.resume();
 }
 
-void checkStatus(){
+//check status node apakah online atau tidak
+boolean checkStatus(){
+  boolean isActive = false;
   if(pox.begin()){//node temperatur
     isMaxOn = true;
   }
   if(mlx.begin()){//node detak
     isMlxOn = true;
   }
+
+  if(isMlxOn || isMaxOn){
+    isActive = true;
+  }
+  return isActive;
 }
+
+int enkapStatus(){
+  int res = 0;
+  if(checkStatus()){
+    res = 1;
+  }
+  return res;
+}
+//mengembalikan status node
