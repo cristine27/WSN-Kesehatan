@@ -161,7 +161,7 @@ def getPingNode(x):
     if validateData(x):
         node = potong[0]
         status = potong[4]
-    
+
     if(str(status)=="1"):
         temp = "online"
     else:
@@ -259,6 +259,9 @@ def InsertDb(x):
     node = str(node)
     #print("idNode")
     #idNode = str(Node.get(node,None))
+    
+    idPasien = " ".join(map(str, Pasien.get(node,None)))
+    
     idNode = " ".join(map(str, Node.get(node,None)))
     #idNode = int(idNode[1])
     #print(idNode)
@@ -270,6 +273,8 @@ def InsertDb(x):
     oksigen = str(oksigen)
     suhu = str(suhu)
     print("convert")
+    
+    
 
     queryInsert = (
         "INSERT INTO P (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
@@ -366,9 +371,10 @@ def insertDataNodePasien(x):
 POOL_SIZE = 10
 
 while appRunning:
+    mapNodeName()
     while menuShow:
         print(" ")
-        mapNodeName()
+        #msg = s.readline().decode("ascii").strip()
         if(perintah == "2"):
             s.write(str.encode("a"))
             mapNodeName()
@@ -389,13 +395,15 @@ while appRunning:
                 #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
                 while sensing and counter<20:
                     # ambil data sensing arduino
-                    msg = s.readline().decode("ascii").strip()
+                    #msg = s.readline().decode("ascii").strip()
                     #print("hasil sensing arduino : ")
                     #print(msg)
                     counterStart()
                     counter = counter + 1
                     time.sleep(5)
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                        msg = s.readline().decode("ascii").strip()
+                        time.sleep(1)
                         future = executor.submit(getDataSense, msg)
                         # if(future.done()):
                         #print("future selesai")
@@ -416,13 +424,15 @@ while appRunning:
             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
 
             s.write(str.encode("b"))
-            msg = s.readline().decode("ascii").strip()
+            #msg = s.readline().decode("ascii").strip()
+            #print(msg)
             time.sleep(5)
             respon = 0
             while(counter < 20):
                 #respon = 0
-                with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
                     counterStart()
+                    msg = s.readline().decode("ascii").strip()
                     counter += 1
                     time.sleep(1)
                     future3 = executor.submit(getPingNode, msg)
@@ -430,6 +440,7 @@ while appRunning:
                     if future3.done() and future3.result() != None:
                         respon = 1
                         print("")
+                        time.sleep(1)
                         print("Hasil Check Status Node")
                         future4 = executor.submit(updateNodeStatus, future3.result())
                         global statusNode
