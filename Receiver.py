@@ -73,6 +73,7 @@ def mainMenu():
     print("4. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
+    print("")
     
 def mapNodeName():
     db = mysql.connector.connect(
@@ -86,25 +87,25 @@ def mapNodeName():
     
     cursor = db.cursor(buffered=True)
     
-    cursor.execute("SELECT namaNode,idNode from N")
+    cursor.execute("SELECT namaNode,idN from N")
     
     res = cursor.fetchall()
     
     for x in res:
         nama = x[0]
-        idNode = x[1]
+        temp = x[1]
         if nama not in Pasien.keys() and nama not in Node.keys() and nama not in idNode.keys():
             Pasien[nama] = 0
             Node[nama] = "offline"
-            idNode[nama] = idNode
+            idNode[nama] = temp
 
     cursor.close()
     db.close()
 
     # testing isi dictionary
-    print(Pasien)
-    print(Node)
-    print(idNode)
+    #print(Pasien)
+    #print(Node)
+    #print(idNode)
 
 def validateData(x):
     # print("masuk function validate")
@@ -204,10 +205,10 @@ def matikanNode(namaNode):
         pool_name='mypool',
         pool_size=POOL_SIZE+1
     )
-
+    temp = 0
     cursor = db.cursor(buffered=True)
-    queryUpdate = "UPDATE N SET status = 0 WHERE namaNode = %s"
-    val = (namaNode)
+    queryUpdate = "UPDATE N SET status = %s WHERE namaNode = %s"
+    val = (temp,namaNode)
 
     cursor.execute(queryUpdate, val)
 
@@ -246,17 +247,25 @@ def InsertDb(x):
 
     cursor = db.cursor(buffered=True)
     # hasil get data dari arduino
-    node = x[0]
-    detak = x[1]
-    oksigen = x[2]
-    suhu = x[3]
-    waktu = [4]
-    print("cursor")
+    node = str(x[0])
+    detak = str(x[1])
+    oksigen = str(x[2])
+    suhu = str(x[3])
+    waktu = x[4]
+    #print("cursor")
+     
     
     # convert data sebelum masuk ke db
-    namaNode = str(node)
-    idNode = int(Node.get(namaNode))
-
+    node = str(node)
+    #print("idNode")
+    #idNode = str(Node.get(node,None))
+    idNode = " ".join(map(str, Node.get(node,None)))
+    #idNode = int(idNode[1])
+    #print(idNode)
+    #if(len(iNode)==4):
+        
+    #else:
+        #idNode = int(idNode[1,2])
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
@@ -268,7 +277,7 @@ def InsertDb(x):
     )
 
     values = (idPasien, idNode, waktu, detak, oksigen, suhu)
-
+    print(idPasien,idNode,waktu,detak,oksigen,suhu)
     print("query")
 
     cursor.execute(queryInsert, values)
@@ -289,7 +298,7 @@ def verifyidPasien(idPasien):
         pool_name='mypool',
         pool_size=POOL_SIZE+1
     )
-    isValid = True
+    isValid = False
     cursor = db.cursor(buffered=True)
     
     cursor.execute("Select idPasien FROM pasien")
@@ -297,9 +306,9 @@ def verifyidPasien(idPasien):
     res = cursor.fetchall()
     
     for x in res:
-        if x == 0:
-            print(x)
-            isValid = False
+        temp = " ".join(map(str,x))
+        if temp == idPasien:
+            isValid = True
     
     return isValid
 
@@ -320,11 +329,11 @@ def verifyidNode(namaNode):
     res = cursor.fetchall()
     
     for x in res:
-        print(x.values)
-        if x == 0:
+        temp = " ".join(map(str,x))
+        if temp == 0:
             isValid = False
         else:
-            Node[namaNode] = x
+            Node[namaNode] = temp
     
     return isValid
 
@@ -340,8 +349,9 @@ def insertDataNodePasien(x):
 
                 # masukan idPasien ke dalam dictionary dengan key NamaNode
                 Pasien[Node] = idP
-
-                print("Assign Pasien pada Node Berhasil") 
+                print(Pasien)
+                print("Assign Pasien pada Node Berhasil")
+                print("")
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
@@ -363,39 +373,42 @@ while appRunning:
             s.write(str.encode("a"))
             mapNodeName()
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
+            print("")
             jumlahPasien = int(input())
             
             while(jumlahPasien>0):
                 print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
                 print("Format Penulisan : idPasien1,namaNode")
                 print("Penulisan dilakukan persatu pasien")
-    
-                jumlahPasien = jumlahPasien - 1
+                print("")
                 formatPasien = input()
+                jumlahPasien = jumlahPasien - 1
                 insertDataNodePasien(formatPasien)
             if insertDataPasien:
                 print("Pemeriksaan sedang dilakukan mohon tunggu...")
-                print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
+                #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
                 while sensing and counter<20:
                     # ambil data sensing arduino
                     msg = s.readline().decode("ascii").strip()
-                    print("hasil sensing arduino : ")
-                    print(msg)
+                    #print("hasil sensing arduino : ")
+                    #print(msg)
                     counterStart()
                     counter = counter + 1
                     time.sleep(5)
                     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
                         future = executor.submit(getDataSense, msg)
                         # if(future.done()):
-                        print("future selesai")
+                        #print("future selesai")
                         time.sleep(1)
                         data = future.result()
-                        print(data)
+                        #print(data)
 
                         if future.done() and data != None:
-                            print("masuk submit")
+                            #print("masuk submit")
                             future2 = executor.submit(InsertDb, data)
-                resetCounter()
+                if counter==20:
+                    resetCounter()
+                    mainMenu()
 
         elif perintah == "1":
             #getPasien()
