@@ -6,10 +6,6 @@ class Pages extends BaseController
 {
     public function index()
     {
-        $db = \Config\Database::connect();
-        $test = $db->query("SELECT * FROM N");
-        dd($test);
-
         return view('pages/home');
     }
 
