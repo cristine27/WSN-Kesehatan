@@ -9,8 +9,8 @@ class Pages extends BaseController
         $db = \Config\Database::connect();
         $test = $db->query("SELECT * FROM pasien");
         // dd($test);
-        foreach ($test->getResultArray() as $row){
-            d($row)
+        foreach ($test->getResultArray() as $row) {
+            d($row);
         }
         return view('pages/home');
     }
