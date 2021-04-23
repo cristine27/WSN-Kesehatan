@@ -23,8 +23,8 @@ class Home extends BaseController
 		// cara kedua
 		// $pasien = new pasien();
 
-		$test = $this->pasienModel->findAll();
-		dd($test);
+		// $test = $this->pasienModel->findAll();
+		// dd($test);
 
 
 		return view('welcome_message');

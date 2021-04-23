@@ -12,11 +12,12 @@
     <!-- my css -->
     <link href="stylesheet" href="../css/style.css">
     <title>Hello, world!</title>
+
+    <!-- my js -->
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: url('../img/bg form.jpg')">
         <!-- <div class="container">
             <div class="row">
@@ -34,6 +35,8 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                 <a class="nav-link" href="/pages/signin">sign in</a>
                 <a class="nav-link" href="/pages/profile">profile</a>
+                <a class="nav-link" href="/pages/addPasien">add Pasien</a>
+                <a class="nav-link" href="/pages/listPasien">list Pasien</a>
             </div>
         </div>
 
@@ -58,14 +61,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
     -->
 
-    <footer class=" container-fluid page-footer font-small blue mt-4 bg-dark" style="background-image: url('../img/bg form.jpg')">
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> Words LBW</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <footer class=" container-fluid page-footer font-small blue mt-4 bg-dark" style="background-image: url('../img/bg form.jpg')"> -->
+    <!-- Copyright -->
+    <!-- <div class="footer-copyright text-center py-3">© 2020 Copyright: -->
+    <!-- <a href="https://mdbootstrap.com/"> Words LBW</a> -->
+    <!-- </div> -->
+    <!-- Copyright -->
+    <!-- </footer> -->
+    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 
 </html>

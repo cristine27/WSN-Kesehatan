@@ -13,20 +13,24 @@
                         <img class="rounded-circle .mt-n2" src="../img/unpar.png" alt="Health Care Logo" width="150" height="150">
                         <div class="jumbotron jumbotron-fluid">
                             <div class="container w-50 p-3">
-                                <form method="GET" action="#">
+
+                                <form method="POST" action="#" id="loginForm" onsubmit="checkLogin()">
                                     <?= csrf_field(); ?>
 
                                     <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
-                                    <label for="inputEmail" class="visually-hidden">Email address</label>
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                    <label for="inputPassword" class="visually-hidden">Password</label>
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                    <label for="email" class="visually-hidden">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+
+                                    <label for="password" class="visually-hidden">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+
                                     <div class="checkbox mb-3">
                                         <label>
-                                            <input type="checkbox" value="remember-me"> Remember me
+                                            <input type="checkbox" id="remember"> Remember me
                                         </label>
                                     </div>
-                                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+                                    <input type="submit" value="Submit">
                                 </form>
                             </div>
                         </div>
