@@ -36,7 +36,7 @@
                 <a class="nav-link" href="/pages/signin">sign in</a>
                 <a class="nav-link" href="/pages/profile">profile</a>
                 <a class="nav-link" href="/pages/addPasien">add Pasien</a>
-                <a class="nav-link" href="/pages/listPasien">list Pasien</a>
+                <a class="nav-link" href="/Pasien">list Pasien</a>
             </div>
         </div>
 

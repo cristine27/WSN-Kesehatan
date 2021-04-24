@@ -19,20 +19,22 @@
                         <th scope="col">#</th>
                         <th scope="col">idPasien</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Password</th>
+                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">Umur</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row"><?= $i++; ?></th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>pass</td>
-                        <td><button type="button" class="btn btn-info">Detail</button></td>
-                    </tr>
+                    <?php foreach ($pasien as $p) : ?>
+                        <tr>
+                            <th scope="row"><?= $i++; ?></th>
+                            <td><?= $p['idPasien']; ?></td>
+                            <td><?= $p['nama']; ?></td>
+                            <td><?= $p['jenis kelamin']; ?></td>
+                            <td><?= $p['umur']; ?></td>
+                            <td><button type="button" class="btn btn-info">Detail</button></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

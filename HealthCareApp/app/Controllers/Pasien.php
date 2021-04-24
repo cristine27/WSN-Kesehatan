@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-
+use App\Models\pasienModel;
 
 class Pasien extends BaseController
 {
@@ -10,7 +10,7 @@ class Pasien extends BaseController
 
     public function __construct()
     {
-        $this->pasienModel = new pasien();
+        $this->pasienModel = new pasienModel();
     }
 
     public function index()

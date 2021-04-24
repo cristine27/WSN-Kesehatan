@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 // cara kedua tanpa namespace
-use App\Models\pasien;
+
+use App\Models\pasienModel;
 
 class Home extends BaseController
 {
@@ -11,7 +12,7 @@ class Home extends BaseController
 
 	public function __construct()
 	{
-		$this->pasienModel = new pasien();
+		$this->pasienModel = new pasienModel();
 	}
 
 	public function index()
@@ -23,10 +24,10 @@ class Home extends BaseController
 		// cara kedua
 		// $pasien = new pasien();
 
-		// $test = $this->pasienModel->findAll();
-		// dd($test);
+		$test = $this->pasienModel->findAll();
+		dd($test);
 
 
-		return view('welcome_message');
+		return view('pages/listPasien');
 	}
 }
