@@ -32,7 +32,7 @@
                             <td><?= $p['nama']; ?></td>
                             <td><?= $p['jenis kelamin']; ?></td>
                             <td><?= $p['umur']; ?></td>
-                            <td><button type="button" class="btn btn-info">Detail</button></td>
+                            <td><a href="/Pasien/<?= $p['idPasien']; ?>" class="btn btn-success">Detail</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

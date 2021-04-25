@@ -11,7 +11,7 @@
 
     <!-- my css -->
     <link href="stylesheet" href="../css/style.css">
-    <title>Hello, world!</title>
+    <title><?= $title; ?></title>
 
     <!-- my js -->
     <script src="../js/script.js"></script>
