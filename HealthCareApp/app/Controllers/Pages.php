@@ -2,21 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\pasienModel;
-
 class Pages extends BaseController
 {
-    protected $pasienModel;
-
-    public function __construct()
-    {
-        $this->pasienModel = new pasienModel();
-    }
-
     public function index()
     {
-        // cara konek tanpa model
-        dd($this->pasienModel->getPasien());
         return view('pages/home');
     }
 
@@ -37,10 +26,6 @@ class Pages extends BaseController
 
     public function listPasien()
     {
-        $data = [
-            'title' => 'Daftar Pasien',
-            'pasien' => $this->pasienModel->getPasien()
-        ];
-        return view('pages/listPasien', $data);
+        return view('pages/listPasien');
     }
 }
