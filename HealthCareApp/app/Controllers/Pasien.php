@@ -15,12 +15,10 @@ class Pasien extends BaseController
 
     public function index()
     {
-
         $data = [
             'title' => 'Daftar Pasien',
             'pasien' => $this->pasienModel->getPasien()
         ];
-
         return view('pages/listPasien', $data);
     }
 

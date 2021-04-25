@@ -23,9 +23,4 @@ class Pages extends BaseController
     {
         return view('pages/addPasien');
     }
-
-    public function listPasien()
-    {
-        return view('pages/listPasien');
-    }
 }
