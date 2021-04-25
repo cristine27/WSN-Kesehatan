@@ -28,7 +28,7 @@ class Pasien extends BaseController
     {
         $data = [
             'title' => 'Detail Komik',
-            'pasien' => $this->pasienModel->getPasien($id);
+            'pasien' => $this->pasienModel->getPasien($id)
         ];
         
         return view('pages/detailPasien', $data)
