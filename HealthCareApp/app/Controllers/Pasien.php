@@ -30,7 +30,7 @@ class Pasien extends BaseController
             'title' => 'Detail Komik',
             'pasien' => $this->pasienModel->getPasien($id)
         ];
-        
-        return view('pages/detailPasien', $data)
+
+        return view('pages/detailPasien', $data);
     }
 }
