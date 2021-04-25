@@ -11,7 +11,7 @@ class pasienModel extends Model
     protected $primaryKey = 'idPasien'; //primary key table
     protected $useTimestamps = true;
 
-    public function getPasien($id)
+    public function getPasien($id = false)
     {
         if ($id == false) {
             return $this->findAll();
