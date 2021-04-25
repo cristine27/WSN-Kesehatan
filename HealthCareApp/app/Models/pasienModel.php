@@ -6,9 +6,9 @@ use CodeIgniter\Model;
 
 class pasienModel extends Model
 {
-    protected $DBGroup = 'pasien';
-    protected $primaryKey = 'idPasien';
-
+    protected $table = 'pasien'; //table apa yang digunakan
+    protected $DBGroup = 'coba'; //db apa yang digunakan
+    protected $primaryKey = 'idPasien'; //primary key table
     protected $useTimestamps = true;
 
     public function getPasien($id)
