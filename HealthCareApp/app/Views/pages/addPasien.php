@@ -29,11 +29,11 @@
                         <label class="col-sm-2">Jenis Kelamin </label>
                         <div class="col-5">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jenisKelamin" id="opPria" value="Pria">
+                                <input class="form-check-input" type="radio" name="opPria" id="opPria" value="Pria">
                                 <label class="form-check-label" for="opPria">Pria</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jenisKelamin" id="opWanita" value="Wanita">
+                                <input class="form-check-input" type="radio" name="opWanita" id="opWanita" value="Wanita">
                                 <label class="form-check-label" for="opWanita">Wanita</label>
                             </div>
                         </div>
