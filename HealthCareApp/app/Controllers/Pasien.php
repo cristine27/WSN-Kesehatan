@@ -81,6 +81,7 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
 
+        dd($this->request->getVar('jenis kelamin'));
         $this->pasienModel->save([
             'nama' => $this->request->getVar('nama'),
             'umur' => $this->request->getVar('usia'),
