@@ -73,12 +73,14 @@ class Pasien extends BaseController
             ],
             'gender' => [
                 'rules' => 'required',
-                'errors' => '{field} jenis kelamin harus diisi'
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
             ]
         ])) {
             //pesan error
             $validation = \Config\Services::validation();
-            dd($validation);
+            // dd($validation);
             //mengirimkan validasi dan pesan error ke halaman add pasien
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
