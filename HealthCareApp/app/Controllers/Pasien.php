@@ -76,9 +76,9 @@ class Pasien extends BaseController
             ]
         ])) {
             //pesan error
-            $isValid = \Config\Services::validation();
+            $validation = \Config\Services::validation();
             //mengirimkan validasi dan pesan error ke halaman add pasien
-            return redirect()->to('Pasien/addPasien')->withInput()->with('validation', $isValid);
+            return redirect()->to('Pasien/addPasien')->withInput()->with('validation', $validation);
         }
 
         $this->pasienModel->save([

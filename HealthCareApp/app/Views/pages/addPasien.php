@@ -6,16 +6,16 @@
         <div class="col-8">
             <h1 class="center mb-3">Form Tambah Pasien</h1>
             <!-- tampilin semua error $validation->listErrors();-->
-
+            <?= $validation->listErrors(); ?>
             <div class="container-md">
                 <form action="/Pasien/savePasien" method="POST" class="w-100">
                     <?= csrf_field(); ?>
                     <div class="form-group row mb-2">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-5">
-                            <input type="text" class="form-control <?= ($isValid->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value=<?= old('nama'); ?>>
+                            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value=<?= old('nama'); ?>>
                             <div class="invalid-feedback">
-                                <?= $isValid->getError('nama'); ?>
+                                <?= $validation->getError('nama'); ?>
                             </div>
                         </div>
                     </div>
