@@ -6,7 +6,7 @@
     <div class="row">
 
         <div class="col">
-            <a href="/Pasien/addPasien" class="btn btn-primary mt-3">Tambah Pasien</a>
+            <a href="Pasien/addPasien" class="btn btn-primary mt-3">Tambah Pasien</a>
             <h1>Daftar Pasien</h1>
             <?php if (session()->getFlashdata('pesan')) : ?>
                 <div class="alert alert-success" role="alert">
