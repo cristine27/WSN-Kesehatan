@@ -13,9 +13,9 @@
                     <div class="form-group row mb-2">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-5">
-                            <input type="text" class="form-control" id="nama" name="nama" autofocus value=<?= old('nama'); ?>>
+                            <input type="text" class="form-control <?= ($validation->hasError('judul')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value=<?= old('nama'); ?>>
                             <div class="invalid-feedback">
-
+                                <?= $validation->getError('nama'); ?>
                             </div>
                         </div>
                     </div>
