@@ -81,7 +81,7 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
 
-        d($this->request->getVar('opWanita'));
+        d($this->request->getVar('gender'));
         $opWanita = $this->request->getVar('opWanita');
         $opPria = $this->request->getVar('opPria');
         d($this->request->getVar('opPria'));

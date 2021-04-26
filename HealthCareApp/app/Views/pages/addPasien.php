@@ -19,21 +19,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row mb-2">
+                    <!-- <div class="form-group row mb-2">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-5">
                             <textarea class="form-control" aria-label="Alamat" name="alamat" value=<?= old('alamat'); ?>></textarea>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row mb-2">
-                        <label class="col-sm-2">Jenis Kelamin </label>
+                        <label for="gender" class="col-sm-2">Jenis Kelamin </label>
                         <div class="col-5">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="opPria" id="opPria" value="Pria">
+                                <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria">
                                 <label class="form-check-label" for="opPria">Pria</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="opWanita" id="opWanita" value="Wanita">
+                                <input class="form-check-input" type="radio" name="gender" id="opWanita" value="Wanita">
                                 <label class="form-check-label" for="opWanita">Wanita</label>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             <input type="number" class="form-control" id="usia" name="usia" value=<?= old('usia'); ?>>
                         </div>
                     </div>
-                    <div class="form-group row mb-2">
+                    <!-- <div class="form-group row mb-2">
                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                         <div class="col-5">
                             <input type="email" class="form-control" aria-label="email" name="email" value=<?= old('email'); ?>>
@@ -55,7 +55,7 @@
                         <div class="col-5">
                             <input type="text" class="form-control" name="password" aria-label="password" value=<?= old('password'); ?>>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row d-flex justify-content-end mt-3">
                         <div class="col-5">
                             <button type="submit" class="btn btn-primary">Tambah</button>
