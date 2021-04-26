@@ -32,10 +32,10 @@ class Pasien extends BaseController
         ];
 
         //jika pasien tidak ada
-        if (empty($data['pasien'])) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
-                'tidak ditemukan');
-        }
+        // if (empty($data['pasien'])) {
+        //     throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
+        //         'tidak ditemukan');
+        // }
 
         return view('pages/detailPasien', $data);
     }
