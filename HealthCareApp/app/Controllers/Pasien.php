@@ -53,6 +53,7 @@ class Pasien extends BaseController
 
     public function savePasien()
     {
+        dd($this->request->getVar('gender'));
         //validasi input, ditarget berdasasrkan name form
         if (!$this->validate([
             'nama' => [
