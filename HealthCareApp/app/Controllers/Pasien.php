@@ -55,32 +55,33 @@ class Pasien extends BaseController
     {
 
         //validasi input, ditarget berdasasrkan name form
-        // if (!$this->validate([
-        //     'nama' => [
-        //         'rules' => 'required|alpha_space',
-        //         'errors' => [
-        //             'required' => '{field} pasien harus diisi',
-        //             'alpha_space' => '{field} pasien hanya diisi dapat diisi dengan huruf'
-        //         ]
-        //     ],
-        //     'usia' => [
-        //         'rules' => 'required|is_natural_no_zero|less_than_equal_to[100]|numeric',
-        //         'errors' => [
-        //             'required' => '{field} pasien harus diisi',
-        //             'is_natural_no_zero' => '{field} pasien tidak boleh 0',
-        //             'numeric' => 'harus diisi dengan angka'
-        //         ]
-        //     ],
-        //     'jenisKelamin' => [
-        //         'rules' => 'required',
-        //         'errors' => '{field} jenis kelamin harus diisi'
-        //     ]
-        // ])) {
-        //     //pesan error
-        //     $validation = \Config\Services::validation();
-        //     //mengirimkan validasi dan pesan error ke halaman add pasien
-        //     return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
-        // }
+        if (!$this->validate([
+            'nama' => [
+                'rules' => 'required|alpha_space',
+                'errors' => [
+                    'required' => '{field} pasien harus diisi',
+                    'alpha_space' => '{field} pasien hanya diisi dapat diisi dengan huruf'
+                ]
+            ],
+            'usia' => [
+                'rules' => 'required|is_natural_no_zero|less_than_equal_to[100]|numeric',
+                'errors' => [
+                    'required' => '{field} pasien harus diisi',
+                    'is_natural_no_zero' => '{field} pasien tidak boleh 0',
+                    'numeric' => 'harus diisi dengan angka'
+                ]
+            ],
+            'jenisKelamin' => [
+                'rules' => 'required',
+                'errors' => '{field} jenis kelamin harus diisi'
+            ]
+        ])) {
+            //pesan error
+            $validation = \Config\Services::validation();
+            dd($validation);
+            //mengirimkan validasi dan pesan error ke halaman add pasien
+            return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
+        }
 
         $this->pasienModel->save([
             'nama' => $this->request->getVar('nama'),

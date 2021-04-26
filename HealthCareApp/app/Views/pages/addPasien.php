@@ -19,12 +19,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group row mb-2">
+                    <div class="form-group row mb-2">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-5">
                             <textarea class="form-control" aria-label="Alamat" name="alamat" value=<?= old('alamat'); ?>></textarea>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="form-group row mb-2">
                         <label for="gender" class="col-sm-2">Jenis Kelamin </label>
                         <div class="col-5">
