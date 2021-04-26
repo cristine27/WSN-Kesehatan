@@ -25,7 +25,7 @@
                         <th scope="col">#</th>
                         <th scope="col">idPasien</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">Gender</th>
                         <th scope="col">Umur</th>
                         <th scope="col">Detail</th>
                     </tr>
@@ -36,7 +36,7 @@
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $p['idPasien']; ?></td>
                             <td><?= $p['nama']; ?></td>
-                            <td><?= $p['jenis kelamin']; ?></td>
+                            <td><?= $p['gender']; ?></td>
                             <td><?= $p['umur']; ?></td>
                             <td><a href="/Pasien/<?= $p['idPasien']; ?>" class="btn btn-success">Detail</a></td>
                         </tr>

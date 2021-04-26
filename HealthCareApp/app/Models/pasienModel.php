@@ -10,7 +10,7 @@ class pasienModel extends Model
     // protected $DBGroup = 'coba'; //db apa yang digunakan
     protected $primaryKey = 'idPasien'; //primary key table
     protected $useTimestamps = true;
-    protected $allowedFields = ['nama', 'umur', 'jenis kelamin']; //kolom mana saja yang boleh di isi 
+    protected $allowedFields = ['nama', 'umur', 'gender']; //kolom mana saja yang boleh di isi 
     protected $createdField  = '';
     protected $updatedField  = '';
     protected $deletedField  = '';

@@ -81,17 +81,11 @@ class Pasien extends BaseController
         //     //mengirimkan validasi dan pesan error ke halaman add pasien
         //     return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         // }
-        $temp = "";
-        if ($this->request->getVar('gender') == 'Pria') {
-            $temp = "P";
-        } else {
-            $temp = "W";
-        }
 
         $this->pasienModel->save([
             'nama' => $this->request->getVar('nama'),
             'umur' => $this->request->getVar('usia'),
-            'jenis kelamin' => $temp
+            'jenis-kelamin' => $this->request->getVar('gender')
         ]);
 
         //buat flash data notif save berhasil
