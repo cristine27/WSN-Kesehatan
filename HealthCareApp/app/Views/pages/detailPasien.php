@@ -10,7 +10,7 @@
                     <h5 class="card-title"><b>Nama : </b><?= $pasien['nama']; ?></h5>
                     <h6 class="card-subtitle mb-2 text-muted"><b>Umur : </b><?= $pasien['umur']; ?></h6>
                     <!-- test parse data -->
-                    <p class="card-text"><b>Alamat : </b> <?= $pasien['jenis kelamin']; ?></p>
+                    <p class="card-text"><b>Alamat : </b> <?= $pasien['gender']; ?></p>
                     <a href="#" class="btn btn-warning">Edit</a>
                     <a href="#" class="btn btn-danger">Hapus</a>
                     <br><br>
