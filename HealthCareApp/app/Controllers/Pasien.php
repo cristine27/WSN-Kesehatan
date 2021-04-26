@@ -85,7 +85,7 @@ class Pasien extends BaseController
         $this->pasienModel->save([
             'nama' => $this->request->getVar('nama'),
             'umur' => $this->request->getVar('usia'),
-            'jenis-kelamin' => $this->request->getVar('gender')
+            'gender' => $this->request->getVar('gender')
         ]);
 
         //buat flash data notif save berhasil
