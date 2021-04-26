@@ -6,7 +6,13 @@
     <div class="row">
 
         <div class="col">
-
+            <a href="/Pasien/addPasien" class="btn btn-primary mt-3">Tambah Pasien</a>
+            <h1>Daftar Pasien</h1>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
             <div class="input-group w-25 my-3 float-end">
                 <input type="text" class="form-control" id="search" aria-describedby="searchbtn" aria-label="search">
                 <button class="btn btn-outline-secondary" type="button" id="searchbtn">Cari</button>
