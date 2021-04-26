@@ -43,6 +43,7 @@ class Pasien extends BaseController
     public function addPasien()
     {
         // session(); pindah ke basecontroller
+        session();
         $data = [
             'title' => 'Form Tambah Pasien',
             'validation' => \Config\Services::validation()
