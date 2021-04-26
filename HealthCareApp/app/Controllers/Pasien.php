@@ -53,7 +53,7 @@ class Pasien extends BaseController
 
     public function savePasien()
     {
-        dd($this->request->getVar('gender'));
+
         //validasi input, ditarget berdasasrkan name form
         if (!$this->validate([
             'nama' => [
@@ -82,10 +82,9 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
 
-        dd($this->request->getVar('gender'));
-        $opWanita = $this->request->getVar('opWanita');
-        $opPria = $this->request->getVar('opPria');
-        d($this->request->getVar('opPria'));
+        if ($this->request->getVar('gender') == 'Pria') {
+            dd("masuk");
+        }
 
         $this->pasienModel->save([
             'nama' => $this->request->getVar('nama'),
