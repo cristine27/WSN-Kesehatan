@@ -71,7 +71,7 @@ class Pasien extends BaseController
                     'numeric' => 'harus diisi dengan angka'
                 ]
             ],
-            'jenisKelamin' => [
+            'gender' => [
                 'rules' => 'required',
                 'errors' => '{field} jenis kelamin harus diisi'
             ]
