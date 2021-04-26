@@ -6,21 +6,33 @@ class Pages extends BaseController
 {
     public function index()
     {
-        return view('pages/home');
+        $data = [
+            'title' => 'Home'
+        ];
+        return view('pages/home', $data);
     }
 
     public function signin()
     {
-        return view('pages/signin');
+        $data = [
+            'title' => 'Sign In'
+        ];
+        return view('pages/signin', $data);
     }
 
     public function profile()
     {
-        return view('pages/profile');
+        $data = [
+            'title' => 'Profile'
+        ];
+        return view('pages/profile', $data);
     }
 
     public function addPasien()
     {
-        return view('pages/addPasien');
+        $data = [
+            'title' => 'tambah pasien'
+        ];
+        return view('pages/addPasien', $data);
     }
 }
