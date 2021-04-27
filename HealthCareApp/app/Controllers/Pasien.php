@@ -121,6 +121,17 @@ class Pasien extends BaseController
 
     public function updatePasien($idPasien)
     {
-        dd($this->request->getVar());
+        // dd($this->request->getVar());
+        $this->pasienModel->save([
+            'idPasien' => $idPasien,
+            'nama' => $this->request->getVar('nama'),
+            'umur' => $this->request->getVar('usia'),
+            'gender' => $this->request->getVar('gender')
+        ]);
+
+        //buat flash data notif save berhasil
+        session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
+
+        return redirect()->to('/Pasien');
     }
 }
