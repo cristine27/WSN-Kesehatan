@@ -149,7 +149,7 @@ class Pasien extends BaseController
             $validation = \Config\Services::validation();
             // dd($validation);
             //mengirimkan validasi dan pesan error ke halaman add pasien
-            return redirect()->to('/Pasien/editPasien/'. $idPasien')->withInput()->with('validation', $validation);
+            return redirect()->to('/Pasien/editPasien/' . $idPasien)->withInput()->with('validation', $validation);
         }
 
         // dd($this->request->getVar());
