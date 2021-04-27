@@ -7,7 +7,7 @@
             <h1 class="center mb-3">Form Ubah Data Pasien</h1>
             <!-- tampilin semua error $validation->listErrors();-->
             <div class="container-md">
-                <form action="/Pasien/update/<?= $pasien['idPasien']; ?>" method="POST" class="w-100">
+                <form action="/Pasien/updatePasien/<?= $pasien['idPasien']; ?>" method="POST" class="w-100">
                     <?= csrf_field(); ?>
                     <div class="form-group row mb-2">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group row mb-2">
                         <label for="gender" class="col-sm-2">Jenis Kelamin </label>
-
+                        <?php echo ($pasien['gender']); ?>
                         <div class="col-5 <?= ($validation->hasError('gender')) ? 'is-invalid' : ''; ?>">
                             <div class=" form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria" <?= ($pasien['gender'] == 'Pria') ? '' : 'selected'; ?>>
