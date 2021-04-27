@@ -12,7 +12,7 @@
                     <div class="form-group row mb-2">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-5">
-                            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value=<?= $pasien['nama']; ?>>
+                            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value=<?= (old('nama')) ? old('nama') : $pasien['nama'] ?>>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('nama'); ?>
                             </div>
@@ -21,7 +21,7 @@
                     <div class="form-group row mb-2">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-5">
-                            <textarea class="form-control" aria-label="Alamat" name="alamat" value=<?= old('alamat'); ?>></textarea>
+                            <textarea class="form-control" aria-label="Alamat" name="alamat" value=<?= (old('alamat')) ? old('alamat') : $pasien['nama'] ?>></textarea>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
@@ -43,7 +43,7 @@
                     <div class="form-group row mb-2">
                         <label for="usia" class="col-sm-2 col-form-label">Usia</label>
                         <div class="col-5">
-                            <input type="number" class="form-control  <?= ($validation->hasError('usia')) ? 'is-invalid' : ''; ?>" id="usia" name="usia" value=<?= $pasien['umur']; ?>>
+                            <input type="number" class="form-control  <?= ($validation->hasError('usia')) ? 'is-invalid' : ''; ?>" id="usia" name="usia" value=<?= (old('umur')) ? old('umur') : $pasien['umur'] ?>>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('usia'); ?>
                             </div>
