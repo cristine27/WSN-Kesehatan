@@ -12,7 +12,7 @@
                     <!-- test parse data -->
                     <p class="card-text"><b>Alamat : </b> <?= $pasien['gender']; ?></p>
                     <a href="#" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Hapus</a>
+                    <a href="/Pasien/deletePasien/<?= $pasien['idPasien']; ?>" class="btn btn-danger">Hapus</a>
                     <br><br>
                     <a href="/Pasien">Kembali</a>
                 </div>
