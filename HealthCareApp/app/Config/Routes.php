@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
 //routes untuk hapus pasien
-$routes->delete('.Pasien/(:num)', 'Pasien::detele/$1');
+$routes->delete('/Pasien/(:num)', 'Pasien::detele/$1');
 //mengarahkan ke detail pasien
 $routes->get('/Pasien/detail/(:any)', 'Pasien::detail/$1');
 /*
