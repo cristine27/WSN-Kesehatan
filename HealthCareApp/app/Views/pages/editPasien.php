@@ -44,7 +44,7 @@
                     <div class="form-group row mb-2">
                         <label for="usia" class="col-sm-2 col-form-label">Usia</label>
                         <div class="col-5">
-                            <input type="number" class="form-control  <?= ($validation->hasError('umur')) ? 'is-invalid' : ''; ?>" id="usia" name="usia" value=<?= $pasien['usia']; ?>>
+                            <input type="number" class="form-control  <?= ($validation->hasError('usia')) ? 'is-invalid' : ''; ?>" id="usia" name="usia" value=<?= $pasien['umur']; ?>>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('usia'); ?>
                             </div>
