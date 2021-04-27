@@ -38,7 +38,7 @@
                             <td><?= $p['nama']; ?></td>
                             <td><?= $p['gender']; ?></td>
                             <td><?= $p['umur']; ?></td>
-                            <td><a href="/Pasien/detail/(<?= $p['idPasien']; ?>)" class="btn btn-success">Detail</a></td>
+                            <td><a href="/Pasien/detail/<?= $p['idPasien']; ?>" class="btn btn-success">Detail</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
