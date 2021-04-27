@@ -15,7 +15,7 @@
 
                     <form action="/Pasien/<?= $pasien['idPasien']; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_method" value="delete">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin mau menghapus pasien?');">Hapus</button>
                     </form>
 
