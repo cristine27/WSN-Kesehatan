@@ -43,7 +43,7 @@ class Pasien extends BaseController
     public function addPasien()
     {
         // session(); pindah ke basecontroller
-        session();
+        // session();
         $data = [
             'title' => 'Form Tambah Pasien',
             'validation' => \Config\Services::validation()
@@ -106,5 +106,21 @@ class Pasien extends BaseController
         session()->setFlashdata('pesan', 'Pasien berhasil dihapus.');
 
         return redirect()->to('/Pasien');
+    }
+
+    public function editPasien($idPasien)
+    {
+        $data = [
+            'title' => 'Form Ubah Pasien',
+            'validation' => \Config\Services::validation(),
+            'pasien' => $this->pasienModel->getPasien($idPasien)
+        ];
+
+        return view('pages/editPasien', $data);
+    }
+
+    public function updatePasien($idPasien)
+    {
+        dd($this->request->getVar());
     }
 }
