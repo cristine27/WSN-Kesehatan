@@ -101,6 +101,6 @@ class Pasien extends BaseController
     public function deletePasien($idPasien)
     {
         $this->pasienModel->delete($idPasien);
-        return redirect()->to('/Pasien')
+        return redirect()->to('/Pasien');
     }
 }
