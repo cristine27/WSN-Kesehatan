@@ -29,11 +29,11 @@
                         <?php echo ($pasien['gender']); ?>
                         <div class="col-5 <?= ($validation->hasError('gender')) ? 'is-invalid' : ''; ?>">
                             <div class=" form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria" <?= ($pasien['gender'] == 'Pria') ? 'selected' : 'checked'; ?>>
+                                <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria" <?= (strcmp($pasien['gender'], 'Pria')) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="opPria">Pria</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="opWanita" value="Wanita" <?= ($pasien['gender'] == 'Wanita') ? '' : 'selected'; ?>>
+                                <input class="form-check-input" type="radio" name="gender" id="opWanita" value="Wanita" <?= (strcmp($pasien['gender'], 'Wanita')) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="opWanita">Wanita</label>
                             </div>
                         </div>
