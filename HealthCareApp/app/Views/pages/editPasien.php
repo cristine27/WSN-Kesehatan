@@ -29,7 +29,7 @@
                         <?php echo ($pasien['gender']); ?>
                         <div class="col-5 <?= ($validation->hasError('gender')) ? 'is-invalid' : ''; ?>">
                             <div class=" form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria" <?= ($pasien['gender'] == 'Pria') ? '' : 'selected'; ?>>
+                                <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria" <?= ($pasien['gender'] == 'Pria') ? 'selected' : ''; ?>>
                                 <label class="form-check-label" for="opPria">Pria</label>
                             </div>
                             <div class="form-check form-check-inline">
