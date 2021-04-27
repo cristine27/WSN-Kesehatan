@@ -25,7 +25,11 @@
                         </div>
                     </div>
                     <div class="form-group row mb-2">
-                        <label for="gender" class="col-sm-2">Jenis Kelamin </label>
+                        <label for="gender" class="col-sm-2 <?= ($validation->hasError('gender')) ? 'is-invalid' : ''; ?>">Jenis Kelamin </label>
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('gender'); ?>
+                        </div>
+
                         <div class="col-5">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="opPria" value="Pria">
@@ -40,7 +44,10 @@
                     <div class="form-group row mb-2">
                         <label for="usia" class="col-sm-2 col-form-label">Usia</label>
                         <div class="col-5">
-                            <input type="number" class="form-control" id="usia" name="usia" value=<?= old('usia'); ?>>
+                            <input type="number" class="form-control  <?= ($validation->hasError('usia')) ? 'is-invalid' : ''; ?>" id="usia" name="usia" value=<?= old('usia'); ?>>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('usia'); ?>
+                            </div>
                         </div>
                     </div>
                     <!-- <div class="form-group row mb-2">
