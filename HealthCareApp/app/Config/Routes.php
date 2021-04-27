@@ -35,7 +35,7 @@ $routes->get('/', 'Pages::index');
 //routes untuk hapus pasien
 $routes->delete('.Pasien/(:num)', 'Pasien::detele/$1');
 //mengarahkan ke detail pasien
-$routes->get('/Pasien/(:any)', 'Pasien::detail/$1');
+$routes->get('/Pasien/detail/(:any)', 'Pasien::detail/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
