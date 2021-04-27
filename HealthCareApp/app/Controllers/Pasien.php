@@ -93,14 +93,18 @@ class Pasien extends BaseController
         ]);
 
         //buat flash data notif save berhasil
-        session()->setFlashdata('pesan', 'Pasien berhasil ditambahkan');
+        session()->setFlashdata('pesan', 'Pasien berhasil ditambahkan.');
 
         return redirect()->to('/Pasien');
     }
 
     public function deletePasien($idPasien)
     {
+        //cara konvenstional bahaya karena bisa delete lewat url method->get 
+        // harus di tambahkan http method spoofing
         $this->pasienModel->delete($idPasien);
+        session()->setFlashdata('pesan', 'Pasien berhasil dihapus.');
+
         return redirect()->to('/Pasien');
     }
 }

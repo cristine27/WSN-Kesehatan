@@ -12,7 +12,13 @@
                     <!-- test parse data -->
                     <p class="card-text"><b>Alamat : </b> <?= $pasien['gender']; ?></p>
                     <a href="#" class="btn btn-warning">Edit</a>
-                    <a href="/Pasien/deletePasien/<?= $pasien['idPasien']; ?>" class="btn btn-danger">Hapus</a>
+
+                    <form action="/Pasien/<?= $pasien['idPasien']; ?>" method="POST" class="d-inline">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin mau menghapus pasien?');">Hapus</button>
+                    </form>
+
                     <br><br>
                     <a href="/Pasien">Kembali</a>
                 </div>

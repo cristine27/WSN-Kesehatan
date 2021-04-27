@@ -32,7 +32,10 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
-$routes->get('/Pasien/(:segment)', 'Pasien::detail/$1');
+//routes untuk hapus pasien
+$routes->delete('.Pasien/(:num)', 'Pasien::detele/$1');
+//mengarahkan ke detail pasien
+$routes->get('/Pasien/(:any)', 'Pasien::detail/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
