@@ -21,11 +21,14 @@
                     <div class="form-group row mb-2">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-5">
-                            <textarea class="form-control" aria-label="Alamat" name="alamat" value=<?= old('alamat'); ?>></textarea>
+                            <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" aria-label="Alamat" name="alamat" value=<?= old('alamat'); ?>></textarea>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('nama'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
-                        <label for="gender" class="col-sm-2">Jenis Kelamin </label>
+                        <label for="gender" class="col-sm-2">Gender</label>
 
                         <div class="col-5 <?= ($validation->hasError('gender')) ? 'is-invalid' : ''; ?>">
                             <div class=" form-check form-check-inline">
@@ -50,18 +53,15 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group row mb-2">
+                    <div class="form-group row mb-2">
                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                         <div class="col-5">
-                            <input type="email" class="form-control" aria-label="email" name="email" value=<?= old('email'); ?>>
+                            <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" aria-label="email" name="email" value=<?= old('email'); ?>>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('email'); ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row mb-2">
-                        <label for="password" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-5">
-                            <input type="text" class="form-control" name="password" aria-label="password" value=<?= old('password'); ?>>
-                        </div>
-                    </div> -->
                     <div class="form-group row d-flex justify-content-end mt-3">
                         <div class="col-5">
                             <button type="submit" class="btn btn-primary">Tambah</button>

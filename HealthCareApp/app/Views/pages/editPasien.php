@@ -21,7 +21,10 @@
                     <div class="form-group row mb-2">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-5">
-                            <textarea class="form-control" aria-label="Alamat" name="alamat" value=<?= (old('alamat')) ? old('alamat') : $pasien['nama'] ?>></textarea>
+                            <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" aria-label="Alamat" name="alamat" value=<?= (old('alamat')) ? old('alamat') : $pasien['nama'] ?>></textarea>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('alamat'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
@@ -49,18 +52,24 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group row mb-2">
+                    <div class="form-group row mb-2">
                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                         <div class="col-5">
-                            <input type="email" class="form-control" aria-label="email" name="email" value=<?= old('email'); ?>>
+                            <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" aria-label="email" name="email" value=<?= (old('email')) ? old('email') : $pasien['email'] ?>>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('email'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-5">
-                            <input type="text" class="form-control" name="password" aria-label="password" value=<?= old('password'); ?>>
+                            <input type="text" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" name="password" aria-label="password" value=<?= (old('password')) ? old('password') : $pasien['password'] ?>>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('email'); ?>
+                            </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="form-group row d-flex justify-content-end mt-3">
                         <div class="col-5">
                             <button type="submit" class="btn btn-primary">Ubah</button>

@@ -71,22 +71,34 @@ class Pasien extends BaseController
             'nama' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} pasien harus diisi',
-                    'alpha_space' => '{field} pasien hanya diisi dapat diisi dengan huruf'
+                    'required' => '{field} pasien harus diisi.',
+                    'alpha_space' => '{field} pasien hanya diisi dapat diisi dengan huruf.'
                 ]
             ],
             'usia' => [
                 'rules' => 'required|is_natural_no_zero|less_than_equal_to[100]|numeric',
                 'errors' => [
-                    'required' => '{field} pasien harus diisi',
-                    'is_natural_no_zero' => '{field} pasien tidak boleh 0',
-                    'numeric' => 'harus diisi dengan angka'
+                    'required' => '{field} pasien harus diisi.',
+                    'is_natural_no_zero' => '{field} pasien tidak boleh 0.',
+                    'numeric' => 'harus diisi dengan angka.'
                 ]
             ],
             'gender' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi.'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi.'
+                ]
+            ],
+            'email' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi.'
                 ]
             ]
         ])) {
@@ -97,10 +109,15 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
 
+        $password = $this->request->getVar('email');
+
         $this->pasienModel->save([
-            'nama' => $this->request->getVar('nama'),
-            'umur' => $this->request->getVar('usia'),
-            'gender' => $this->request->getVar('gender')
+            'nama'      => $this->request->getVar('nama'),
+            'alamat'    => $this->request->getVar('alamat'),
+            'umur'      => $this->request->getVar('usia'),
+            'gender'    => $this->request->getVar('gender'),
+            'email'     => $this->request->getVar('email'),
+            'password'  => $password
         ]);
 
         //buat flash data notif save berhasil
