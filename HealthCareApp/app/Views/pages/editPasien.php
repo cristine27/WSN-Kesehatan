@@ -21,7 +21,7 @@
                     <div class="form-group row mb-2">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-5">
-                            <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" aria-label="Alamat" name="alamat" value=<?= (old('alamat')) ? old('alamat') : $pasien['nama'] ?>></textarea>
+                            <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" aria-label="Alamat" name="alamat" value=<?= (old('alamat')) ? old('alamat') : $pasien['alamat'] ?>></textarea>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('alamat'); ?>
                             </div>
