@@ -6,13 +6,13 @@
     <div class="row">
         <div class="col-6">
             <h1>Daftar Pasien</h1>
-            <form action="">
-                <div class="input-group  my-3 float-end">
+            <form action="" method="POST">
+                <div class="input-group w-75 my-3 float-end">
                     <input type="text" name="pencarian" class="form-control" aria-describedby="searchbtn" aria-label="search" placeholder="Masukkan nama pasien..">
-                    <button name="btnCari" class="btn btn-outline-secondary" type="submit">Cari</button>
-                </div>
-            </form>
 
+                </div>
+                <button name="btnCari" class="btn btn-outline-secondary" type="submit">Cari</button>
+            </form>
         </div>
     </div>
     <div class="row">
