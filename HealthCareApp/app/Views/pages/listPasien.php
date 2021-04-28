@@ -9,7 +9,7 @@
             <form action="" method="POST">
                 <div class="input-group mb-3">
                     <input type="text" name="pencarian" class="form-control" aria-describedby="searchbtn" aria-label="search" placeholder="Masukkan nama pasien..">
-                    <button name="btnCari" class="btn btn-outline-secondary" type="submit">Cari</button>
+                    <button name="Submit" class="btn btn-outline-secondary" type="submit">Cari</button>
                 </div>
             </form>
         </div>
@@ -32,8 +32,9 @@
                         <th scope="col">#</th>
                         <th scope="col">idPasien</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Umur</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
 
                         <th scope="col">Detail</th>
                     </tr>
@@ -44,8 +45,9 @@
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $p['idPasien']; ?></td>
                             <td><?= $p['nama']; ?></td>
-                            <td><?= $p['gender']; ?></td>
-                            <td><?= $p['umur']; ?></td>
+                            <td><?= $p['alamat']; ?></td>
+                            <td><?= $p['email']; ?></td>
+                            <td><?= $p['password']; ?></td>
                             <td><a href="/Pasien/detail/<?= $p['idPasien']; ?>" class="btn btn-success">Detail</a></td>
                         </tr>
                     <?php endforeach; ?>
