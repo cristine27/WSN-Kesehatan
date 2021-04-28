@@ -87,6 +87,7 @@ class pasienSeeder extends Seeder
         // $this->db->query("INSERT INTO users (username, email) VALUES(:username:, :email:)", $data);
 
         // Using Query Builder
-        $this->db->table('pasien')->insert($data);
+        // $this->db->table('pasien')->insert($data);
+        $this->db->table('pasien')->insertBatch($data);
     }
 }
