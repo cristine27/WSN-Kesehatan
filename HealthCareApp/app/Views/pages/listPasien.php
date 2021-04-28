@@ -5,13 +5,14 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <h1>Daftar Pasien</h1>
+            <h1 class="mt-2">Daftar Pasien</h1>
             <form action="" method="POST">
-                <div class="input-group w-75 my-3 float-end">
+                <div class="input-group w-75 my-3">
                     <input type="text" name="pencarian" class="form-control" aria-describedby="searchbtn" aria-label="search" placeholder="Masukkan nama pasien..">
-
                 </div>
-                <button name="btnCari" class="btn btn-outline-secondary" type="submit">Cari</button>
+                <div class="input-group-append">
+                    <button name="btnCari" class="btn btn-outline-secondary" type="submit">Cari</button>
+                </div>
             </form>
         </div>
     </div>
