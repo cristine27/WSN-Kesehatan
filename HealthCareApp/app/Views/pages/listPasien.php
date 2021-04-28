@@ -27,6 +27,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Umur</th>
+
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
@@ -43,6 +44,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?= $pager->links('pasien', 'pasien_pagination'); ?>
         </div>
     </div>
 </div>

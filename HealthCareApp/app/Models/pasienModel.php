@@ -10,6 +10,7 @@ class pasienModel extends Model
     // protected $DBGroup = 'coba'; //db apa yang digunakan
     protected $primaryKey = 'idPasien'; //primary key table
     protected $useTimestamps = true;
+    // untuk crud field yang dapat di isi manual
     protected $allowedFields = ['nama', 'alamat', 'umur', 'gender', 'email', 'password']; //kolom mana saja yang boleh di isi 
     protected $createdField  = '';
     protected $updatedField  = '';
@@ -22,5 +23,19 @@ class pasienModel extends Model
         }
 
         return $this->where(['idPasien' => $id])->first();
+    }
+
+    public function getPaginate($x = false)
+    {
+        if ($x == false) {
+            return $this->paginate(5);
+        }
+
+        return $this->paginate($x);
+    }
+
+    public function getPager()
+    {
+        return $this->pager;
     }
 }
