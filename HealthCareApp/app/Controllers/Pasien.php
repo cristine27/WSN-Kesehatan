@@ -19,7 +19,7 @@ class Pasien extends BaseController
     {
         $data = [
             'title' => 'Daftar Pasien',
-            'pasien' => $this->pasienModel->getPaginate(6),
+            'pasien' => $this->pasienModel->getPaginate(6, 'pasien'),
             'pager' => $this->pasienModel->getPager()
         ];
         return view('pages/listPasien', $data);
