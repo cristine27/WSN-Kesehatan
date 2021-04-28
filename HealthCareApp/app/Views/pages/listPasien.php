@@ -7,7 +7,7 @@
         <div class="col-6">
             <h1 class="mt-2">Daftar Pasien</h1>
             <form action="" method="POST">
-                <div class="input-group w-75 my-3">
+                <div class="input-group mt-3">
                     <input type="text" name="pencarian" class="form-control" aria-describedby="searchbtn" aria-label="search" placeholder="Masukkan nama pasien..">
                 </div>
                 <div class="input-group-append">
@@ -17,7 +17,6 @@
         </div>
     </div>
     <div class="row">
-
         <div class="col">
             <a href="/Pasien/addPasien" class="btn btn-primary mt-3">Tambah Pasien</a>
 
