@@ -25,13 +25,9 @@ class pasienModel extends Model
         return $this->where(['idPasien' => $id])->first();
     }
 
-    public function getPaginate($x = false)
+    public function getPaginate()
     {
-        if ($x == false) {
-            return $this->paginate(5, 'pasien');
-        }
-
-        return $this->paginate($x, 'pasien');
+        return $this->paginate(6, 'pasien');
     }
 
     public function getPager()
