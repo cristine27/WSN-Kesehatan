@@ -109,7 +109,7 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
 
-        $password = $this->request->getVar('email');
+        $password = 'password';
 
         $this->pasienModel->save([
             'nama'      => $this->request->getVar('nama'),
@@ -171,6 +171,18 @@ class Pasien extends BaseController
                 'errors' => [
                     'required' => '{field} harus diisi'
                 ]
+            ],
+            'alamat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi.'
+                ]
+            ],
+            'email' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi.'
+                ]
             ]
         ])) {
             //pesan error
@@ -180,12 +192,16 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/editPasien/' . $idPasien)->withInput()->with('validation', $validation);
         }
 
+        $password = 'password';
         // dd($this->request->getVar());
         $this->pasienModel->save([
             'idPasien' => $idPasien,
             'nama' => $this->request->getVar('nama'),
+            'alamat'    => $this->request->getVar('alamat'),
             'umur' => $this->request->getVar('usia'),
-            'gender' => $this->request->getVar('gender')
+            'gender' => $this->request->getVar('gender'),
+            'email'     => $this->request->getVar('email'),
+            'password'  => $password
         ]);
 
         //buat flash data notif save berhasil
