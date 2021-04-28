@@ -34,4 +34,9 @@ class pasienModel extends Model
     {
         return $this->pager;
     }
+
+    public function searchPasien($keyword)
+    {
+        return $this->table('pasien')->like('nama', $keyword);
+    }
 }

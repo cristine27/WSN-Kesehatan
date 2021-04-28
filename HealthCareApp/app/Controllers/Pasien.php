@@ -18,11 +18,18 @@ class Pasien extends BaseController
     public function index()
     {
         $currentPage = $this->request->getVar('page_pasien') ? $this->request->getVar('page_pasien') : 1;
-        d($this->request->getVar('pencarian'));
+
+        $pencarian = $this->request->getVar('pencarian');
+        if ($pencarian) {
+            $pasien = $this->pasienModel->searchPasien($pencarian);
+        } else {
+            $pasien = $this->pasienModel;
+        }
+
         $data = [
             'title' => 'Daftar Pasien',
-            'pasien' => $this->pasienModel->getPaginate(6),
-            'pager' => $this->pasienModel->getPager(),
+            'pasien' => $pasien->getPaginate(6),
+            'pager' => $pasien->getPager(),
             'currentPage' => $currentPage
         ];
         return view('pages/listPasien', $data);
