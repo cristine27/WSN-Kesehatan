@@ -28,10 +28,10 @@ class pasienModel extends Model
     public function getPaginate($x = false)
     {
         if ($x == false) {
-            return $this->paginate(5);
+            return $this->paginate(5, 'pasien');
         }
 
-        return $this->paginate($x);
+        return $this->paginate($x, 'pasien');
     }
 
     public function getPager()
