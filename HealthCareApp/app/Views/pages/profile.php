@@ -9,10 +9,24 @@
                 <table>
                     <tbody>
                         <tr>
-                            <?= dd($dataPasien); ?>
                             <td>Nama</td>
                             <td>:</td>
-                            <td>Cristine</td>
+                            <td><?= $dataPasien['nama']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>:</td>
+                            <td><?= $dataPasien['alamat']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Umur</td>
+                            <td>:</td>
+                            <td><?= $dataPasien['umur']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td><?= $dataPasien['email']; ?></td>
                         </tr>
                     </tbody>
                 </table>
