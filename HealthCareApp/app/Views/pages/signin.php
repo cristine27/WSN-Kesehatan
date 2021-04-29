@@ -45,9 +45,11 @@
                                                 <input type="checkbox" id="remember"> Remember me
                                             </label>
                                         </div>
+                                        <br>
                                         <div class="invalid-feedback">
-                                            <?= $pesan; ?>
+                                            <b><?= $pesan; ?></b>
                                         </div>
+                                        <br>
                                         <button class="btn btn-info" value="Submit">Sign In</button>
                                     </form>
                                 </div>
@@ -57,9 +59,9 @@
                 </div>
             </div>
         </div>
-        <div class="row d-flex">
+        <!-- <div class="row d-flex">
             <img src="../img/bg.png" alt="">
-        </div>
+        </div> -->
     </div>
 </body>
 
