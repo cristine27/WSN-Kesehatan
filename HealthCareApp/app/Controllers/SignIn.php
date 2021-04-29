@@ -22,7 +22,7 @@ class SignIn extends BaseController
             'validate' => 'true'
         ];
 
-        return view('pages/signin');
+        return view('pages/signin', $data);
     }
 
     public function validateLogin()
