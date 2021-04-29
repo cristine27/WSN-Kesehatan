@@ -18,7 +18,8 @@ class SignIn extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Sign In Pasien'
+            'title' => 'Sign In Pasien',
+            'validation' => 'true'
         ];
 
         return view('pages/signin');
