@@ -32,7 +32,7 @@
 
                                     <form method="POST" action="/SignIn/validateLogin">
                                         <?= csrf_field(); ?>
-                                        <?= dd($data); ?>
+
                                         <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
                                         <label for="email" class="visually-hidden">Email</label>
                                         <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
