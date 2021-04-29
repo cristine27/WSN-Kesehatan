@@ -41,20 +41,15 @@ class pasienModel extends Model
         return $this->table('pasien')->like('nama', $keyword);
     }
 
-    public function getPasienEmail($email)
+    public function getPasienbyEmail($email)
     {
         $data = $this->where(['email' => $email])->first();
         if ($data) {
-            dd($data);
+            // dd($data);
             return $data;
         } else {
             return 0;
         }
-    }
-
-    public function getPasienId($email)
-    {
-        return $this->where(['email' => $email])->first();
     }
 
     public function getPasienPassword($pass)
