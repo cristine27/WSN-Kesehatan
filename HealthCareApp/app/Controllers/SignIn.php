@@ -34,7 +34,7 @@ class SignIn extends BaseController
         if ($email == 'admin@email.com' and $pass == 'admin') {
             return view('pages/listPasien');
         } else {
-            $temp = $this->pasienModel->getPasienEmail($email);
+            $temp = $this->pasienModel->getPasienbyEmail($email);
             if (($temp['email'] == $email) and ($temp['password'] == $pass)) {
                 $data = [
                     'title' => 'Profile Pasien',
