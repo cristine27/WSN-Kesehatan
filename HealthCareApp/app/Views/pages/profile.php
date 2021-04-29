@@ -10,7 +10,7 @@
                     <h1 class="display-4">Profile Pasien</h1>
                     <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
                     <br><br>
-                    <p class="display-4">Nama : <?= $dataPasien['nama']; ?></p>
+                    <p>Nama : <?= $dataPasien['nama']; ?></p>
                     <br>
                     <P>Alamat : <?= $dataPasien['alamat']; ?></P>
                     <br>
