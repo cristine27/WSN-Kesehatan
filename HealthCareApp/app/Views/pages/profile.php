@@ -9,7 +9,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <?= $dd($dataPasien); ?>
+                            <?= dd($dataPasien); ?>
                             <td>Nama</td>
                             <td>:</td>
                             <td>Cristine</td>
