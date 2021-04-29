@@ -35,10 +35,10 @@
 
                                         <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
                                         <label for="email" class="visually-hidden">Email</label>
-                                        <input type="email" id="email" name="email" class="form-control <?= ($validation == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
+                                        <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
 
                                         <label for="password" class="visually-hidden">Password</label>
-                                        <input type="password" id="password" name="password" class="form-control <?= ($validation == 'false') ? 'is-invalid' : ''; ?>" placeholder="Password" required>
+                                        <input type="password" id="password" name="password" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Password" required>
 
                                         <div class="checkbox mb-3">
                                             <label>
