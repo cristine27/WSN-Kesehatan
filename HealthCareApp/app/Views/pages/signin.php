@@ -30,7 +30,7 @@
                             <div class="jumbotron jumbotron-fluid">
                                 <div class="container w-50 p-3">
 
-                                    <form method="POST" action="#" id="loginForm" onsubmit="checkLogin()">
+                                    <form method="POST" action="/SignIn/validateLogin">
                                         <?= csrf_field(); ?>
 
                                         <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
@@ -46,7 +46,7 @@
                                             </label>
                                         </div>
 
-                                        <input type="submit" value="Submit">
+                                        <button class="btn btn-info" value="Submit">Sign In</button>
                                     </form>
                                 </div>
                             </div>
