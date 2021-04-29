@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse mt-3" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/pages/signin">sign in</a>
+                <a class="nav-link" href="/SignIn">sign in</a>
                 <a class="nav-link" href="/pages/profile">profile</a>
                 <a class="nav-link" href="/pages/addPasien">add Pasien</a>
                 <a class="nav-link" href="/Pasien">list Pasien</a>
