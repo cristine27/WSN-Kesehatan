@@ -9,7 +9,14 @@
                 <div class="container">
                     <h1 class="display-4">Profile Pasien</h1>
                     <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
-                    <p>Nama </p><span>: </span>
+                    <br><br>
+                    <p>Nama : <?= $dataPasien['nama']; ?></p>
+                    <br><br>
+                    <P>Alamat : <?= $dataPasien['alamat']; ?></P>
+                    <br><br>
+                    <P>Jenis Kelamin : <?= $dataPasien['gender']; ?></P>
+                    <br><br>
+                    <P>Umur : <?= $dataPasien['umur']; ?></P>
                 </div>
             </div>
         </div>
