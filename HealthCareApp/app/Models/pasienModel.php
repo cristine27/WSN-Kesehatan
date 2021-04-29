@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use phpDocumentor\Reflection\Types\Null_;
 
 class pasienModel extends Model
 {
@@ -38,5 +39,25 @@ class pasienModel extends Model
     public function searchPasien($keyword)
     {
         return $this->table('pasien')->like('nama', $keyword);
+    }
+
+    public function getPasienEmail($email)
+    {
+        $data = $this->where(['email' => $email])->first();
+        if ($data) {
+            return $data;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getPasienPassword($pass)
+    {
+        $data = $this->where(['password' => $pass])->first();
+        if ($data) {
+            return $data;
+        } else {
+            return 0;
+        }
     }
 }

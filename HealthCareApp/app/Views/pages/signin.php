@@ -45,7 +45,7 @@
                                                 <input type="checkbox" id="remember"> Remember me
                                             </label>
                                         </div>
-
+                                        <p display="<?= ($validate == 'false') ? 'block' : 'none'; ?>"><?= $pesan; ?></p>
                                         <button class="btn btn-info" value="Submit">Sign In</button>
                                     </form>
                                 </div>
