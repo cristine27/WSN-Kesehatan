@@ -62,7 +62,7 @@ class SignIn extends BaseController
                 // dd($idParam);
                 $index = 0;
                 foreach ($idParam as $id) {
-                    d("masuk");
+                    // d("masuk");
                     $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
                     $index++;
                 }
