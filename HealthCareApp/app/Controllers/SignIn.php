@@ -67,7 +67,8 @@ class SignIn extends BaseController
                     'title' => 'Profile Pasien',
                     'dataPasien' => $dataPasien,
                     'hasilPeriksa' => $dataPeriksaArr,
-                    'parameter' => $kumpulanparam
+                    'parameter' => $kumpulanparam,
+                    'idParam' => $idParam
                 ];
 
                 return view('pages/homePasien', $data);
