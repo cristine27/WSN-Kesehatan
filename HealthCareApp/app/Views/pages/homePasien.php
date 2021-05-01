@@ -7,8 +7,7 @@
         <div class="col">
             <div class="container">
                 <div class="row">
-                    <h5 class="mt-5">coba</h5>
-                    <?php dd($hasilPeriksa); ?>
+                    <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa['waktu']; ?></h5>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
                             <table class="table table-striped text-center">
@@ -23,17 +22,17 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">Detak Jantung</th>
-                                        <td>67 bpm</td>
+                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
                                         <td>normal</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Saturasi Oksigen</th>
-                                        <td>98%</td>
+                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
                                         <td>normal</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Suhu Tubuh</th>
-                                        <td>39</td>
+                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
                                         <td class="table-danger">abnormal</td>
                                     </tr>
                                 </tbody>

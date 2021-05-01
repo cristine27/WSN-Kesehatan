@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 // cara kedua tanpa namespace
 
+use App\Models\memilikiModel;
+use App\Models\nodeModel;
+use App\Models\parameterModel;
 use App\Models\pasienModel;
 use App\Models\periksaModel;
 
@@ -11,11 +14,17 @@ class SignIn extends BaseController
 {
     protected $pasienModel;
     protected $periksaModel;
+    protected $nodeModel;
+    protected $memilikiModel;
+    protected $parameterModel;
 
     public function __construct()
     {
         $this->pasienModel = new pasienModel();
         $this->periksaModel = new periksaModel();
+        $this->nodeModel = new nodeModel();
+        $this->memilikiModel = new memilikiModel();
+        $this->parameterModel = new parameterModel();
     }
 
     public function index()
@@ -46,10 +55,19 @@ class SignIn extends BaseController
                 foreach ($dataPeriksa->getResultArray() as $res) {
                     $dataPeriksaArr = $res;
                 }
+
+                $idNode = $dataPeriksaArr['idNode'];
+                $idParam = $this->memilikiModel->getParamid($idNode);
+                $kumpulanparam = 0;
+                foreach ($idParam as $id) {
+                    $kumpulanparam = $this->parameterModel->getNamaParam($id);
+                }
+
                 $data = [
                     'title' => 'Profile Pasien',
                     'dataPasien' => $dataPasien,
-                    'hasilPeriksa' => $dataPeriksaArr
+                    'hasilPeriksa' => $dataPeriksaArr,
+                    'parameter' => $kumpulanparam
                 ];
 
                 return view('pages/homePasien', $data);
