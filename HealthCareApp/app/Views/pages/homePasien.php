@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa['waktu']; ?></h5>
-
+                    <?php d($parameter); ?>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
                             <table class="table table-striped text-center">
@@ -19,16 +19,27 @@
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
-                                <?php for ($i = 0; $i < 3; $i++) { ?>
-                                    <?php d("masuk"); ?>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"><?= $parameter['idParameter']; ?></th>
-                                            <td><?= $hasilPeriksa['hasil1']; ?></td>
-                                            <td>normal</td>
-                                        </tr>
-                                    </tbody>
-                                <?php } ?>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
+                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
+                                        <td>normal</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
+                                        <td><?= $hasilPeriksa['hasil2']; ?></td>
+                                        <td>normal</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
+                                        <td><?= $hasilPeriksa['hasil3']; ?></td>
+                                        <td>normal</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
