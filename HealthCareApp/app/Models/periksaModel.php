@@ -23,7 +23,7 @@ class periksaModel extends Model
             "SELECT hasil1,hasil2,hasil3,waktu
             From periksa
                 WHERE waktu=(
-                    SELECT MAX(waktu) FROM periksa WHERE idPaseien = $id
+                    SELECT MAX(waktu) FROM periksa WHERE idPasien = $id
                 )";
 
         return $this->db->query($sql);
