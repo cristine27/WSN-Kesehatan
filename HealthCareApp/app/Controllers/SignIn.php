@@ -59,6 +59,7 @@ class SignIn extends BaseController
                 $idNode = $dataPeriksaArr['idNode'];
                 $idParam = $this->memilikiModel->getParamid($idNode);
                 $kumpulanparam = 0;
+                dd($idParam);
                 foreach ($idParam as $id) {
                     d($this->parameterModel->getNamaParam($id));
                 }
