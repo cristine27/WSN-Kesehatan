@@ -22,7 +22,7 @@
                                 <?php for ($i = 0; $i < 3; $i++) { ?>
                                     <tbody>
                                         <tr>
-                                            <th scope="row"><?= $parameter['namaParameter']; ?></th>
+                                            <th scope="row"><?= $parameter['idParameter']; ?></th>
                                             <td><?= $hasilPeriksa['hasil1']; ?></td>
                                             <td>normal</td>
                                         </tr>
