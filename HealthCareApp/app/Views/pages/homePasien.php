@@ -7,8 +7,6 @@
         <div class="col">
             <div class="container">
                 <div class="row">
-                    <?php d($parameter); ?>
-                    <?php d($idParam); ?>
                     <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa['waktu']; ?></h5>
 
                     <div class="col d-flex justify-content-start">
