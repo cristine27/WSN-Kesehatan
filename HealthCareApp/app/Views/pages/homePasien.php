@@ -19,29 +19,15 @@
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <?php dd($parameter['0']['namaParameter']); ?>
-                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
-                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
-                                        <td>normal</td>
-                                    </tr>
-                                </tbody>
-
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
-                                        <td><?= $hasilPeriksa['hasil2']; ?></td>
-                                        <td>normal</td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
-                                        <td><?= $hasilPeriksa['hasil3']; ?></td>
-                                        <td>normal</td>
-                                    </tr>
-                                </tbody>
+                                <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
+                                            <td><?= $hasilPeriksa['hasil1']; ?></td>
+                                            <td>normal</td>
+                                        </tr>
+                                    </tbody>
+                                <?php } ?>
                             </table>
                         </div>
                     </div>
