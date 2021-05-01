@@ -7,7 +7,8 @@
         <div class="col">
             <div class="container">
                 <div class="row">
-                    <h5 class="mt-5">Hasil : 8 Febuari 2021, 08 : 27 pm</h5>
+                    <h5 class="mt-5"><?= $hasilPeriksa['waktu']; ?></h5>
+                    <?php dd($hasilPeriksa); ?>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
                             <table class="table table-striped text-center">

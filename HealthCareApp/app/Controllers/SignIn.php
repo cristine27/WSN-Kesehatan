@@ -5,14 +5,17 @@ namespace App\Controllers;
 // cara kedua tanpa namespace
 
 use App\Models\pasienModel;
+use App\Models\periksaModel;
 
 class SignIn extends BaseController
 {
     protected $pasienModel;
+    protected $periksaModel;
 
     public function __construct()
     {
         $this->pasienModel = new pasienModel();
+        $this->periksaModel = new periksaModel();
     }
 
     public function index()
@@ -34,14 +37,17 @@ class SignIn extends BaseController
         if ($email == 'admin@email.com' and $pass == 'admin') {
             return view('pages/listPasien');
         } else {
-            $temp = $this->pasienModel->getPasienbyEmail($email);
+            $dataPasien = $this->pasienModel->getPasienbyEmail($email);
+            $idPasien = $dataPasien['idPasien'];
+            $dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
             if (($temp['email'] == $email) and ($temp['password'] == $pass)) {
                 $data = [
                     'title' => 'Profile Pasien',
-                    'dataPasien' => $temp
+                    'dataPasien' => $dataPasien,
+                    'hasilPeriksa' => $dataPeriksa
                 ];
 
-                return view('pages/profile', $data);
+                return view('pages/homePasien', $data);
             } else {
                 $data = [
                     'title' => 'Sign In Pasien',
