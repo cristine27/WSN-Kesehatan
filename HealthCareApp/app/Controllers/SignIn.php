@@ -39,7 +39,7 @@ class SignIn extends BaseController
         } else {
             $dataPasien = $this->pasienModel->getPasienbyEmail($email);
 
-            if (($temp['email'] == $email) and ($temp['password'] == $pass)) {
+            if (($dataPasien['email'] == $email) and ($dataPasien['password'] == $pass)) {
                 $idPasien = $dataPasien['idPasien'];
                 $dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
                 $data = [
