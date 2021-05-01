@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa['waktu']; ?></h5>
-                    <?php dd($parameter); ?>
+                    <?php dd($parameter['0']['namaParameter']); ?>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
                             <table class="table table-striped text-center">
@@ -21,11 +21,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"><?= $parameter['namaParameter']; ?></th>
+                                        <th scope="row"><?= $p[]; ?></th>
                                         <td><?= $hasilPeriksa['hasil1']; ?></td>
                                         <td>normal</td>
                                     </tr>
                                 </tbody>
+
                                 <tbody>
                                     <tr>
                                         <th scope="row"><?= $parameter['namaParameter']; ?></th>
