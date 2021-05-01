@@ -61,16 +61,16 @@ class SignIn extends BaseController
                 $kumpulanparam = 0;
                 // dd($idParam);
                 foreach ($idParam as $id) {
-                    d("masuk");
-                    d($this->parameterModel->getNamaParam($id['idParameter']));
+                    // d("masuk");
+                    $kumpulanparam = $this->parameterModel->getNamaParam($id['idParameter']);
                 }
 
                 $data = [
                     'title' => 'Profile Pasien',
                     'dataPasien' => $dataPasien,
                     'hasilPeriksa' => $dataPeriksaArr,
-                    'parameter' => $kumpulanparam,
-                    'idParam' => $idParam
+                    'parameter' => $kumpulanparam
+                    // 'idParam' => $idParam
                 ];
 
                 return view('pages/homePasien', $data);

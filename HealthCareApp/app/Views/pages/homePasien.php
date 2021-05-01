@@ -21,24 +21,15 @@
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Detak Jantung</th>
-                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
-                                        <td>normal</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Saturasi Oksigen</th>
-                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
-                                        <td>normal</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Suhu Tubuh</th>
-                                        <td><?= $hasilPeriksa['hasil1']; ?></td>
-                                        <td class="table-danger">abnormal</td>
-                                    </tr>
-                                </tbody>
+                                <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"><?= $parameter['namaParameter']; ?></th>
+                                            <td><?= $hasilPeriksa['hasil1']; ?></td>
+                                            <td>normal</td>
+                                        </tr>
+                                    </tbody>
+                                <?php } ?>
                             </table>
                         </div>
                     </div>
