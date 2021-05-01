@@ -13,6 +13,6 @@ class memilikiModel extends Model
 
     public function getParamid($id)
     {
-        return $this->WHERE(['idNode' => $id]);
+        return $this->WHERE(['idNode' => $id])->findAll();
     }
 }
