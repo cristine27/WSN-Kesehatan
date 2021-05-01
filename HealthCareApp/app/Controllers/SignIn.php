@@ -42,10 +42,14 @@ class SignIn extends BaseController
             if (($dataPasien['email'] == $email) and ($dataPasien['password'] == $pass)) {
                 $idPasien = $dataPasien['idPasien'];
                 $dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
+                $dataPeriksaArr = [];
+                foreach ($dataPeriksa->result() as $res) {
+                    $dataPeriksaArr = $res;
+                }
                 $data = [
                     'title' => 'Profile Pasien',
                     'dataPasien' => $dataPasien,
-                    'hasilPeriksa' => $dataPeriksa
+                    'hasilPeriksa' => $dataPeriksaArr
                 ];
 
                 return view('pages/homePasien', $data);
