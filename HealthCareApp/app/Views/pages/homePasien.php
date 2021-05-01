@@ -20,6 +20,7 @@
                                     </tr>
                                 </thead>
                                 <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <?php d("masuk"); ?>
                                     <tbody>
                                         <tr>
                                             <th scope="row"><?= $parameter['idParameter']; ?></th>
