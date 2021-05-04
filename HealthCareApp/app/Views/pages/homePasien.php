@@ -8,10 +8,12 @@
         <div class="row">
             <h1 class="display-4">Health Care</h1>
             <div class="col">
-                <div class="jumbotron jumbotron-fluid d-flex justify-content-center" style="background-color: beige;">
-                    <p class="lead">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></p>
-                    <hr class="my-4">
-                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <div class="container">
+                    <div class="jumbotron jumbotron-fluid" style="background-color: beige;">
+                        <p class="lead">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></p>
+                        <hr class="my-4">
+                        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                    </div>
                 </div>
             </div>
         </div>

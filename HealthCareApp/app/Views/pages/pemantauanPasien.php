@@ -22,7 +22,6 @@
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
-                                    <?php d($parameter); ?>
                                     <?php for ($i = 0; $i < 3; $i++) { ?>
                                         <tbody>
                                             <tr>
