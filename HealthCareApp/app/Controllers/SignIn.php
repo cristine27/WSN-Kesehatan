@@ -71,13 +71,11 @@ class SignIn extends BaseController
 
                 $data = [
                     'title' => 'Profile Pasien',
-                    'dataPasien' => $dataPasien,
-                    'hasilPeriksa' => $dataPeriksaArr,
-                    'parameter' => $kumpulanparam
+                    'dataPasien' => $dataPasien
                     // 'idParam' => $idParam
                 ];
-
                 return view('pages/homePasien', $data);
+                return redirect()->to('../Home')->withInput()->with('data', $data);
             } else {
                 $data = [
                     'title' => 'Sign In Pasien',
