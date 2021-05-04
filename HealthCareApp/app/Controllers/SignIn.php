@@ -115,6 +115,6 @@ class SignIn extends BaseController
             // 'idParam' => $idParam
         ];
 
-        return view('pages/homePasien', $data);
+        return view('pages/pemantauanPasien', $data);
     }
 }
