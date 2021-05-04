@@ -117,4 +117,14 @@ class SignIn extends BaseController
 
         return view('pages/pemantauanPasien', $data);
     }
+
+    public function getPasienProfile($idPasien)
+    {
+        $data = [
+            'title' => 'Profile Pasien',
+            'dataPasien' => $this->pasienModel->getPasien($idPasien)
+        ];
+
+        return view('pages/profile', $data);
+    }
 }

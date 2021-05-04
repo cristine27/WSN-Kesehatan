@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="jumbotron">
+                <div class="jumbotron jumbotron-fluid mx-auto">
 
                     <h1 class="display-4">Health Care</h1>
                     <p class="lead">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></p>
@@ -29,6 +29,9 @@
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                     <p class="lead">
                         <a class="btn btn-primary btn-lg" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
+                    </p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
                     </p>
                 </div>
             </div>
