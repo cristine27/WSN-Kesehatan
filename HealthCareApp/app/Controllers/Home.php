@@ -39,7 +39,7 @@ class Home extends BaseController
 			'hasilPeriksa' => $this->hasilPeriksa,
 			'parameter' => $this->parameter
 		];
-
+		d($this->dataPasien);
 		return view('pages/homePasien', $data);
 	}
 
@@ -75,11 +75,11 @@ class Home extends BaseController
 		return view('pages/pemantauanPasien', $data);
 	}
 
-	public function getPasienProfile($idPasien)
+	public function getPasienProfile()
 	{
 		$data = [
 			'title' => 'Profile Pasien',
-			'dataPasien' => $this->pasienModel->getPasien($idPasien)
+			'dataPasien' => $this->dataPasien;
 		];
 
 		return view('pages/profile', $data);
