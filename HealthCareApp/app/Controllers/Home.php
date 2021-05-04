@@ -29,13 +29,14 @@ class Home extends BaseController
 		$this->nodeModel = new nodeModel();
 		$this->memilikiModel = new memilikiModel();
 		$this->parameterModel = new parameterModel();
-		$this->dataPasien = session()->getFlashData('pasien');
+		// $this->dataPasien = session()->getFlashData('pasien');
 	}
 
 	public function index()
 	{
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		// dd($this->dataPasien);
+		dd($_SESSION('pasien'));
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,

@@ -74,7 +74,7 @@ class SignIn extends BaseController
                     'dataPasien' => $dataPasien
                     // 'idParam' => $idParam
                 ];
-                session()->setFlashdata('pasien', $dataPasien);
+                session()->set('pasien', $dataPasien);
                 return redirect()->to('../Home');
             } else {
                 $data = [
