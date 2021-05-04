@@ -31,7 +31,7 @@ class Home extends BaseController
 		$this->parameterModel = new parameterModel();
 	}
 
-	public function index($idPasien)
+	public function index()
 	{
 		$this->dataPasien = session()->getFlashData('pasien');
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
