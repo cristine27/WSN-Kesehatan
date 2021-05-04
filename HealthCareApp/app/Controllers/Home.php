@@ -39,7 +39,7 @@ class Home extends BaseController
 			'hasilPeriksa' => $this->hasilPeriksa,
 			'parameter' => $this->parameter
 		];
-		d($this->dataPasien);
+		// d($this->dataPasien);
 		return view('pages/homePasien', $data);
 	}
 
@@ -47,6 +47,7 @@ class Home extends BaseController
 	{
 		// $idPasien = $dataPasien['idPasien'];
 		$this->dataPasien = $this->pasienModel->getPasien($idPasien);
+		d($this->dataPasien);
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
 		// d($dataPeriksa);
 		$dataPeriksaArr = 0;
@@ -67,8 +68,8 @@ class Home extends BaseController
 		$this->paramter = $kumpulanparam;
 		$data = [
 			'title' => 'Pemeriksaan Pasien',
-			'hasilPeriksa' => $dataPeriksaArr,
-			'parameter' => $kumpulanparam
+			'hasilPeriksa' => $this->hasilPeriksa,
+			'parameter' => $this->parameter
 			// 'idParam' => $idParam
 		];
 
