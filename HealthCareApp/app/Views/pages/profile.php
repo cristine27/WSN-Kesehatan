@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container h-100">
     <div class="row">
         <div class="col">
             <div class="jumbotron jumbotron-fluid" style="background-color: blanchedalmond;">

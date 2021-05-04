@@ -71,12 +71,12 @@ class Home extends BaseController
 			$kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
 			$index++;
 		}
+		dd($kumpulanparam);
 		$this->paramter = $kumpulanparam;
 		$data = [
 			'title' => 'Pemeriksaan Pasien',
 			'hasilPeriksa' => $this->hasilPeriksa,
 			'parameter' => $this->parameter
-			// 'idParam' => $idParam
 		];
 
 		return view('pages/pemantauanPasien', $data);
