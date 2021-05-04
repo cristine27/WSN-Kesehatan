@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+        <a class="float-lg-right" href="/Home"></a>
     </div>
 </div>
 
