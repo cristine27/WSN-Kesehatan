@@ -21,7 +21,7 @@
 
 <body>
 
-    <div class="container-fluid" style="background-color: #edffec;">
+    <div class="container-fluid h-100" style="background-color: #edffec;">
         <div class=" row">
             <div class="col">
                 <div class="container">

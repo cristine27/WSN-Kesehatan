@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="background-color: #edffec;">
+    <div class="container-fluid h-100" style="background-color: #edffec;">
         <div class="row">
             <div class="col">
                 <h1 class="display-4">WELCOME !</h1>

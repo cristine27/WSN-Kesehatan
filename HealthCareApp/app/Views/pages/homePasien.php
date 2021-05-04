@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid h-100">
         <div class="row">
             <div class="col">
                 <div class="jumbotron jumbotron-fluid justify-content-center" style="background-color: beige;">

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron jumbotron-fluid" style="background-color: blanchedalmond;">
-                <div class="container-fluid">
+                <div class="container-fluid h-75">
                     <?php d($dataPasien); ?>
                     <h1 class="display-4">Profile Pasien</h1>
                     <br><br>
