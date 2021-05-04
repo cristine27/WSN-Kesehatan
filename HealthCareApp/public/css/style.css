@@ -16,3 +16,8 @@ body {
   width: 100%;
   background-color: violet;
 }
+
+#judul {
+  font-size: xx-large;
+  background-color: aqua;
+}
