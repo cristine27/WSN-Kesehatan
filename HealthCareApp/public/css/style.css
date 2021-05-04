@@ -11,7 +11,7 @@ table th {
   width: 50% !important;
 }
 
-body {
+.body {
   height: 100%;
   width: 100%;
   background-color: beige;
