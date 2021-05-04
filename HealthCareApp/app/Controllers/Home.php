@@ -52,7 +52,7 @@ class Home extends BaseController
 	{
 		// $idPasien = $dataPasien['idPasien'];
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
-		d($this->dataPasien);
+		d(session()->get('pasien'));
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
 		// d($dataPeriksa);
 		$dataPeriksaArr = 0;
@@ -86,7 +86,7 @@ class Home extends BaseController
 		d($this->dataPasien);
 		$data = [
 			'title' => 'Profile Pasien',
-			'dataPasien' => $this->dataPasien
+			'dataPasien' => session()->get('pasien')
 		];
 
 		return view('pages/profile', $data);
