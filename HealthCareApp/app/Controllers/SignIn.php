@@ -17,6 +17,8 @@ class SignIn extends BaseController
     protected $nodeModel;
     protected $memilikiModel;
     protected $parameterModel;
+    protected $hasilPeriksa;
+    protected $paramter;
 
     public function __construct()
     {
@@ -32,7 +34,7 @@ class SignIn extends BaseController
         $data = [
             'title' => 'Sign In Pasien',
             'validate' => 'true',
-            'pesan' => ''
+            'pesan' => '',
         ];
 
         return view('pages/signin', $data);
@@ -96,7 +98,7 @@ class SignIn extends BaseController
         foreach ($dataPeriksa->getResultArray() as $res) {
             $dataPeriksaArr = $res;
         }
-
+        $this->hasilPeriksa = $dataPeriksaArr;
         $idNode = $dataPeriksaArr['idNode'];
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
@@ -107,7 +109,7 @@ class SignIn extends BaseController
             $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
             $index++;
         }
-
+        $this->paramter = $kumpulanparam;
         $data = [
             'title' => 'Pemeriksaan Pasien',
             'hasilPeriksa' => $dataPeriksaArr,

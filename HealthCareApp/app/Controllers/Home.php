@@ -9,25 +9,72 @@ use App\Models\pasienModel;
 class Home extends BaseController
 {
 	protected $pasienModel;
+	protected $periksaModel;
+	protected $nodeModel;
+	protected $memilikiModel;
+	protected $parameterModel;
+	protected $hasilPeriksa;
+	protected $paramter;
 
 	public function __construct()
 	{
 		$this->pasienModel = new pasienModel();
+		$this->periksaModel = new periksaModel();
+		$this->nodeModel = new nodeModel();
+		$this->memilikiModel = new memilikiModel();
+		$this->parameterModel = new parameterModel();
 	}
 
 	public function index()
 	{
+		$data = [
+			'title' => 'Home Pasien',
+			'dataPasien' => $dataPasien,
+			'hasilPeriksa' => $dataPeriksaArr,
+			'parameter' => $kumpulanparam
+		];
 
-		// cara pertama dengan namespace
-		// $pasien = new \App\Models\pasien();
+		return view('pages/homePasien', $data);
+	}
 
-		// cara kedua
-		// $pasien = new pasien();
+	public function getHasilPantau($idPasien)
+	{
+		// $idPasien = $dataPasien['idPasien'];
+		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
+		// d($dataPeriksa);
+		$dataPeriksaArr = 0;
+		foreach ($dataPeriksa->getResultArray() as $res) {
+			$dataPeriksaArr = $res;
+		}
+		$this->hasilPeriksa = $dataPeriksaArr;
+		$idNode = $dataPeriksaArr['idNode'];
+		$idParam = $this->memilikiModel->getParamid($idNode);
+		$kumpulanparam = [];
+		// dd($idParam);
+		$index = 0;
+		foreach ($idParam as $id) {
+			// d("masuk");
+			$kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
+			$index++;
+		}
+		$this->paramter = $kumpulanparam;
+		$data = [
+			'title' => 'Pemeriksaan Pasien',
+			'hasilPeriksa' => $dataPeriksaArr,
+			'parameter' => $kumpulanparam
+			// 'idParam' => $idParam
+		];
 
-		// $test = $this->pasienModel->findAll();
-		// dd($test);
+		return view('pages/pemantauanPasien', $data);
+	}
 
+	public function getPasienProfile($idPasien)
+	{
+		$data = [
+			'title' => 'Profile Pasien',
+			'dataPasien' => $this->pasienModel->getPasien($idPasien)
+		];
 
-		return view('pages/listPasien');
+		return view('pages/profile', $data);
 	}
 }

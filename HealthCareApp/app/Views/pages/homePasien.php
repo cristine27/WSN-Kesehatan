@@ -28,10 +28,10 @@
                     <hr class="my-4">
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                     <div class="container">
-                        <div class="row">
-                            <a class="btn btn-primary btn-lg d-inline p-2" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
-                            <a class="btn btn-primary btn-lg d-inline p-2" href="getPasienProfile/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
-                        </div>
+                        <!-- <div class="col"> -->
+                        <a class="btn btn-primary btn-lg d-inline p-2" href="../Home/getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
+                        <a class="btn btn-primary btn-lg d-inline p-2" href="../Home/getPasienProfile/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
+
                     </div>
                     <p class="lead">
 
