@@ -1,22 +1,7 @@
-<!doctype html>
-<html lang="en">
+<?= $this->extend('layout/template'); ?>
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="10">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-    <!-- my css -->
-    <link href="stylesheet" href="../css/style.css">
-    <title>Hello, world!</title>
-
-    <!-- my js -->
-    <script src="../js/script.js"></script>
-
+<?= $this->section('content'); ?>
+<meta http-equiv="refresh" content="10">
 </head>
 
 <body>
@@ -84,6 +69,4 @@
             </div>
         </div>
 
-</body>
-
-</html>
+        <?= $this->endsection(); ?>

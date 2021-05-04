@@ -1,8 +1,9 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+</head>
 
-<body style="background-color: #edffec;">
+<body>
     <div class="container">
         <div class="row">
             <div class="col">
