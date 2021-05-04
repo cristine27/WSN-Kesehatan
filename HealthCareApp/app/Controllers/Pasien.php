@@ -9,10 +9,18 @@ use function PHPSTORM_META\map;
 class Pasien extends BaseController
 {
     protected $pasienModel;
+    protected $periksaModel;
+    protected $nodeModel;
+    protected $memilikiModel;
+    protected $parameterModel;
 
     public function __construct()
     {
         $this->pasienModel = new pasienModel();
+        $this->periksaModel = new periksaModel();
+        $this->nodeModel = new nodeModel();
+        $this->memilikiModel = new memilikiModel();
+        $this->parameterModel = new parameterModel();
     }
 
     public function index()
@@ -208,5 +216,36 @@ class Pasien extends BaseController
         session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
 
         return redirect()->to('/Pasien');
+    }
+
+    public function getHasilPantau($idPasien)
+    {
+        // $idPasien = $dataPasien['idPasien'];
+        $dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
+        d($dataPeriksa);
+        $dataPeriksaArr = 0;
+        foreach ($dataPeriksa->getResultArray() as $res) {
+            $dataPeriksaArr = $res;
+        }
+
+        $idNode = $dataPeriksaArr['idNode'];
+        $idParam = $this->memilikiModel->getParamid($idNode);
+        $kumpulanparam = [];
+        // dd($idParam);
+        $index = 0;
+        foreach ($idParam as $id) {
+            // d("masuk");
+            $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
+            $index++;
+        }
+
+        $data = [
+            'title' => 'Pemeriksaan Pasien',
+            'hasilPeriksa' => $dataPeriksaArr,
+            'parameter' => $kumpulanparam
+            // 'idParam' => $idParam
+        ];
+
+        return view('pages/homePasien', $data);
     }
 }
