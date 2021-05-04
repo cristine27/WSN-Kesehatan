@@ -29,11 +29,11 @@ class Home extends BaseController
 		$this->nodeModel = new nodeModel();
 		$this->memilikiModel = new memilikiModel();
 		$this->parameterModel = new parameterModel();
+		$this->dataPasien = session()->getFlashData('pasien');
 	}
 
 	public function index()
 	{
-		$this->dataPasien = session()->getFlashData('pasien');
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		// dd($this->dataPasien);
 		$data = [
@@ -42,7 +42,7 @@ class Home extends BaseController
 			'hasilPeriksa' => $this->hasilPeriksa,
 			'parameter' => $this->parameter
 		];
-		// d($this->dataPasien);
+		d($this->dataPasien);
 		return view('pages/homePasien', $data);
 	}
 
@@ -50,7 +50,7 @@ class Home extends BaseController
 	{
 		// $idPasien = $dataPasien['idPasien'];
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
-		// d($this->dataPasien);
+		d($this->dataPasien);
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
 		// d($dataPeriksa);
 		$dataPeriksaArr = 0;
