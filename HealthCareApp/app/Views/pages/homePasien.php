@@ -21,16 +21,16 @@
     <div class="container">
         <div class="row">
             <div class="col mx-auto">
-                <div class="jumbotron jumbotron-fluid">
+                <div class="jumbotron jumbotron-fluid" style="background-color: beige;">
 
                     <h1 class="display-4">Health Care</h1>
                     <p class="lead">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></p>
                     <hr class="my-4">
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                     <div class="container">
-                        <div class="row d-inline">
-                            <a class="btn btn-primary btn-lg" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
-                            <a class="btn btn-primary btn-lg" href="getPasienProfile/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
+                        <div class="row">
+                            <a class="btn btn-primary btn-lg d-inline p-2" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
+                            <a class="btn btn-primary btn-lg d-inline p-2" href="getPasienProfile/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
                         </div>
                     </div>
                     <p class="lead">
