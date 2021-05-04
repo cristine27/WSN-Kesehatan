@@ -35,7 +35,7 @@ class Home extends BaseController
 	{
 		$this->dataPasien = session()->getFlashData('pasien');
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
-		dd($this->dataPasien);
+		// dd($this->dataPasien);
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,
@@ -50,7 +50,7 @@ class Home extends BaseController
 	{
 		// $idPasien = $dataPasien['idPasien'];
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
-		d($this->dataPasien);
+		// d($this->dataPasien);
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
 		// d($dataPeriksa);
 		$dataPeriksaArr = 0;
@@ -81,7 +81,7 @@ class Home extends BaseController
 
 	public function getPasienProfile()
 	{
-		d($this->dataPasien);
+		// d($this->dataPasien);
 		$data = [
 			'title' => 'Profile Pasien',
 			'dataPasien' => $this->dataPasien
