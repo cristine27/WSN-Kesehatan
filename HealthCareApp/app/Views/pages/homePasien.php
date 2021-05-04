@@ -30,7 +30,7 @@
                     <div class="container">
                         <!-- <div class="col"> -->
                         <a class="btn btn-primary btn-lg d-inline p-2" href="../Home/getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
-                        <a class="btn btn-primary btn-lg d-inline p-2" href="../Home/getPasienProfile/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
+                        <a class="btn btn-primary btn-lg d-inline p-2" href="../Home/getPasienProfile" role="button">Profile</a>
 
                     </div>
                     <p class="lead">
