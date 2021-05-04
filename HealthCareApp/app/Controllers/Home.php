@@ -36,7 +36,8 @@ class Home extends BaseController
 	{
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		// dd($this->dataPasien);
-		dd(isset($_SESSION['pasien']));
+		// dd(isset($_SESSION['pasien']));
+		$this->dataPasien = session()->get('pasien');
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,
