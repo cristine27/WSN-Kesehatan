@@ -7,6 +7,7 @@
         <div class="col">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
+                    <?php d($datapasien); ?>
                     <h1 class="display-4">Profile Pasien</h1>
                     <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
                     <br><br>

@@ -81,7 +81,7 @@ class Home extends BaseController
 
 	public function getPasienProfile()
 	{
-		// d($this->dataPasien);
+		d($this->dataPasien);
 		$data = [
 			'title' => 'Profile Pasien',
 			'dataPasien' => $this->dataPasien
