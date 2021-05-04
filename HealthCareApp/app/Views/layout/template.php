@@ -15,38 +15,6 @@
 
     <!-- my js -->
     <script src="../js/script.js"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: url('../img/bg form.jpg')">
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col"> -->
-        <a class="navbar-brand mx-2" href="#">Health Care</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-
-
-        <!-- <img src="../img/unpar.png" alt="logo" width="50" height="38"> -->
-        <div class="collapse navbar-collapse mt-3" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/SignIn">sign in</a>
-                <a class="nav-link" href="/pages/profile">profile</a>
-                <a class="nav-link" href="/pages/addPasien">add Pasien</a>
-                <a class="nav-link" href="/Pasien">list Pasien</a>
-            </div>
-        </div>
-
-        <div class="row mx-2">
-            <div class="col">
-                <img src="../img/profile.png" alt="profile icon" width="50" height="50">
-            </div>
-
-        </div>
-    </nav>
 
     <?= $this->renderSection('content'); ?>
 
@@ -69,6 +37,6 @@
     <!-- Copyright -->
     <!-- </footer> -->
     <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
-</body>
+    </body>
 
 </html>
