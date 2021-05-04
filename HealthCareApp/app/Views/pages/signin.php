@@ -17,13 +17,13 @@
     <script src="../js/script.js"></script>
 </head>
 
-<body>
-    <div class="container-fluid h-100" style="background-color: #edffec;">
+<body style="background-color: #edffec;">
+    <div class="container">
         <div class="row">
             <div class="col">
                 <h1 class="display-4">WELCOME !</h1>
                 <hr class="my-4">
-                <div class="container-fluid w-50 p-3">
+                <div class="container-fluid w-75 h-50 p-3">
                     <div class="row  d-flex justify-content-center text-center" style="background-image: url('../img/bg form.jpg')">
                         <div class="col">
                             <img class="rounded-circle .mt-n2" src="../img/unpar.png" alt="Health Care Logo" width="150" height="150">
@@ -36,10 +36,10 @@
                                         <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
                                         <label for="email" class="visually-hidden">Email</label>
                                         <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
-
+                                        <br>
                                         <label for="password" class="visually-hidden">Password</label>
                                         <input type="password" id="password" name="password" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Password" required>
-
+                                        <br>
                                         <div class="checkbox mb-3">
                                             <label>
                                                 <input type="checkbox" id="remember"> Remember me
