@@ -33,7 +33,7 @@ class Home extends BaseController
 
 	public function index($idPasien)
 	{
-		$this->dataPasien = $this->session->getFlashData('pasien');
+		$this->dataPasien = session()->getFlashData('pasien');
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		dd($this->dataPasien);
 		$data = [
