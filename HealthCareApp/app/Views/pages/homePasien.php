@@ -31,7 +31,7 @@
                         <a class="btn btn-primary btn-lg" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Hasil Pemantuan</a>
                     </p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="getHasilPantau/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
+                        <a class="btn btn-primary btn-lg" href="getPasienProfile/<?= $dataPasien['idPasien']; ?>" role="button">Profile</a>
                     </p>
                 </div>
             </div>
