@@ -79,7 +79,7 @@ class Home extends BaseController
 	{
 		$data = [
 			'title' => 'Profile Pasien',
-			'dataPasien' => $this->dataPasien;
+			'dataPasien' => $this->dataPasien
 		];
 
 		return view('pages/profile', $data);
