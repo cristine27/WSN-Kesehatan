@@ -4,7 +4,11 @@ namespace App\Controllers;
 
 // cara kedua tanpa namespace
 
+use App\Models\memilikiModel;
+use App\Models\nodeModel;
+use App\Models\parameterModel;
 use App\Models\pasienModel;
+use App\Models\periksaModel;
 
 class Home extends BaseController
 {
@@ -13,8 +17,10 @@ class Home extends BaseController
 	protected $nodeModel;
 	protected $memilikiModel;
 	protected $parameterModel;
+
+	protected $dataPasien;
 	protected $hasilPeriksa;
-	protected $paramter;
+	protected $parameter;
 
 	public function __construct()
 	{
@@ -29,9 +35,9 @@ class Home extends BaseController
 	{
 		$data = [
 			'title' => 'Home Pasien',
-			'dataPasien' => $dataPasien,
-			'hasilPeriksa' => $dataPeriksaArr,
-			'parameter' => $kumpulanparam
+			'dataPasien' => $this->dataPasien,
+			'hasilPeriksa' => $this->hasilPeriksa,
+			'parameter' => $this->parameter
 		];
 
 		return view('pages/homePasien', $data);
@@ -40,6 +46,7 @@ class Home extends BaseController
 	public function getHasilPantau($idPasien)
 	{
 		// $idPasien = $dataPasien['idPasien'];
+		$this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
 		// d($dataPeriksa);
 		$dataPeriksaArr = 0;
