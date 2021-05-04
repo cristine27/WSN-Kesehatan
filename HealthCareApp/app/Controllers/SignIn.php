@@ -74,8 +74,8 @@ class SignIn extends BaseController
                     'dataPasien' => $dataPasien
                     // 'idParam' => $idParam
                 ];
-                return view('pages/homePasien', $data);
-                return redirect()->to('../Home')->withInput()->with('data', $data);
+                $this->session->setFlashdata('pasien', $dataPasien);
+                return redirect()->to('../Home');
             } else {
                 $data = [
                     'title' => 'Sign In Pasien',
