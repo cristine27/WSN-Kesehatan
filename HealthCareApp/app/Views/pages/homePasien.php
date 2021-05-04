@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <div class="jumbotron">
-                    <?php dd($dataPasien); ?>
+
                     <h1 class="display-4">Health Care</h1>
                     <p class="lead">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></p>
                     <hr class="my-4">
