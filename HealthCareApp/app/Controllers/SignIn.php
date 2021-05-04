@@ -91,7 +91,7 @@ class SignIn extends BaseController
     {
         // $idPasien = $dataPasien['idPasien'];
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
-        d($dataPeriksa);
+        // d($dataPeriksa);
         $dataPeriksaArr = 0;
         foreach ($dataPeriksa->getResultArray() as $res) {
             $dataPeriksaArr = $res;
