@@ -31,8 +31,10 @@ class Home extends BaseController
 		$this->parameterModel = new parameterModel();
 	}
 
-	public function index()
+	public function index($idPasien)
 	{
+		$this->dataPasien = $this->pasienModel->getPasien($idPasien);
+
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,
@@ -46,7 +48,7 @@ class Home extends BaseController
 	public function getHasilPantau($idPasien)
 	{
 		// $idPasien = $dataPasien['idPasien'];
-		$this->dataPasien = $this->pasienModel->getPasien($idPasien);
+		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		d($this->dataPasien);
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
 		// d($dataPeriksa);
@@ -78,6 +80,7 @@ class Home extends BaseController
 
 	public function getPasienProfile()
 	{
+		d($this->dataPasien);
 		$data = [
 			'title' => 'Profile Pasien',
 			'dataPasien' => $this->dataPasien
