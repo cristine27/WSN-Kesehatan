@@ -38,6 +38,7 @@ class Home extends BaseController
 		// dd($this->dataPasien);
 		// dd(isset($_SESSION['pasien']));
 		$this->dataPasien = session()->get('pasien');
+
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,
@@ -48,12 +49,12 @@ class Home extends BaseController
 		return view('pages/homePasien', $data);
 	}
 
-	public function getHasilPantau($idPasien)
+	public function getHasilPantau()
 	{
 		// $idPasien = $dataPasien['idPasien'];
 		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
-		d(session()->get('pasien'));
-		$dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
+		$this->dataPasien = session()->get('pasien');
+		$dataPeriksa = $this->periksaModel->getHasilPeriksa($this->dataPasien['idPasien']);
 		// d($dataPeriksa);
 		$dataPeriksaArr = 0;
 		foreach ($dataPeriksa->getResultArray() as $res) {
@@ -83,10 +84,11 @@ class Home extends BaseController
 
 	public function getPasienProfile()
 	{
-		d($this->dataPasien);
+		// d($this->dataPasien);
+		$this->dataPasien = session()->get('pasien');
 		$data = [
 			'title' => 'Profile Pasien',
-			'dataPasien' => session()->get('pasien')
+			'dataPasien' => $this->dataPasien
 		];
 
 		return view('pages/profile', $data);

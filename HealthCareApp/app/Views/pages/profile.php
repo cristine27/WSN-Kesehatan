@@ -5,19 +5,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="jumbotron jumbotron-fluid">
+            <div class="jumbotron jumbotron-fluid" style="background-color: blanchedalmond;">
                 <div class="container-fluid">
                     <?php d($dataPasien); ?>
                     <h1 class="display-4">Profile Pasien</h1>
-                    <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
                     <br><br>
-                    <p>Nama : <?= $dataPasien['nama']; ?></p>
-                    <br>
-                    <P>Alamat : <?= $dataPasien['alamat']; ?></P>
-                    <br>
-                    <P>Jenis Kelamin : <?= $dataPasien['gender']; ?></P>
-                    <br>
-                    <P>Umur : <?= $dataPasien['umur']; ?></P>
+
                     <div class="col-md-8">
                         <div class="card mb-3">
                             <div class="card-body">
