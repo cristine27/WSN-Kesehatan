@@ -40,11 +40,12 @@
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
-                                    <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <?php
+                                    for ($i = 0; $i < 3; $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa[$i]['hasil' . $i + 1]; ?></td>
+                                                <td><?= $hasilPeriksa[$i]['hasil' . strval($i + 1)]; ?></td>
                                                 <td>normal</td>
                                             </tr>
                                         </tbody>
