@@ -31,7 +31,11 @@ class SignIn extends BaseController
 
     public function index()
     {
-        unset(session()->remove('pasien'));
+        if (session()->has('pasien')) {
+            d("masuk");
+        } else {
+            d("tidak masuk");
+        }
         $data = [
             'title' => 'Sign In Pasien',
             'validate' => 'true',
