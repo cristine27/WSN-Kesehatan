@@ -46,7 +46,7 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa[$i]['hasil1']; ?></td>
+                                                <td><?= $hasilPeriksa['hasil1']; ?></td>
                                                 <td>normal</td>
                                             </tr>
                                         </tbody>
