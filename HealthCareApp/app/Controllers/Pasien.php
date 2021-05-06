@@ -50,7 +50,8 @@ class Pasien extends BaseController
 
     public function detail($id)
     {
-        d($id);
+        $dataPasien = $this->pasienModel->getPasien($id);
+        d($dataPasien);
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $arr = 0;
         $i = 0;
@@ -74,7 +75,7 @@ class Pasien extends BaseController
 
         $data = [
             'title' => 'Detail Komik',
-            'pasien' => $this->pasienModel->getPasien($id),
+            'pasien' => $dataPasien,
             'hasilPeriksa' => $arr,
             'parameter' => $kumpulanparam
         ];
