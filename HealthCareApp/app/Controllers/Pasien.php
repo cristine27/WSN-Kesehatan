@@ -59,7 +59,7 @@ class Pasien extends BaseController
         foreach ($dataPeriksa->getResultArray() as $res) {
             $arr = $res;
             // d($res);
-            if ($res == "hasil1" or $res == "hasil2" or $res == "hasil3") {
+            if ($res['hasil1']) {
                 $kumpulanhasil[$i] = $res;
             }
         }
