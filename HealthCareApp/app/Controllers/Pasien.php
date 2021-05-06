@@ -51,20 +51,20 @@ class Pasien extends BaseController
     public function detail($id)
     {
         $dataPasien = $this->pasienModel->getPasien($id);
-        d($dataPasien);
+        // d($dataPasien);
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $arr = 0;
         $i = 0;
         $kumpulanhasil = [];
         foreach ($dataPeriksa->getResultArray() as $res) {
             $arr = $res;
-            d($res);
+            // d($res);
             if ($res == "hasil1" or $res == "hasil2" or $res == "hasil3") {
                 $kumpulanhasil[$i] = $res;
             }
         }
         $idNode = $arr['idNode'];
-        d($idNode);
+        // d($idNode);
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
         $index = 0;
