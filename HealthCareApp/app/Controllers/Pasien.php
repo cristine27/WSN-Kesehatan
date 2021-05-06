@@ -56,6 +56,7 @@ class Pasien extends BaseController
         $arr = 0;
         $i = 0;
         $kumpulanhasil = [];
+        $kumpulanparam = [];
         foreach ($dataPeriksa->getResultArray() as $res) {
             $arr = $res;
             // d($res);
@@ -66,15 +67,15 @@ class Pasien extends BaseController
 
         foreach ($kumpulanhasil as $hasil) {
             d($hasil);
-        }
-        $idNode = $arr['idNode'];
-        // d($idNode);
-        $idParam = $this->memilikiModel->getParamid($idNode);
-        $kumpulanparam = [];
-        $index = 0;
-        foreach ($idParam as $id) {
-            $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
-            $index++;
+            $idNode = $hasil['idNode'];
+            // d($idNode);
+            $idParam = $this->memilikiModel->getParamid($idNode);
+
+            $index = 0;
+            foreach ($idParam as $id) {
+                $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
+                $index++;
+            }
         }
 
         $data = [
