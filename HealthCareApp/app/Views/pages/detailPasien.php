@@ -41,11 +41,12 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                    for ($i = 0; $i < 3; $i++) { ?>
+                                    for ($i = 0; $i < 3; $i++) {
+                                        $hasil = "hasil"; ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa[$i]['hasil' . strval($i + 1)]; ?></td>
+                                                <td><?= $hasilPeriksa[$i][$hasil . strval($i + 1)]; ?></td>
                                                 <td>normal</td>
                                             </tr>
                                         </tbody>
