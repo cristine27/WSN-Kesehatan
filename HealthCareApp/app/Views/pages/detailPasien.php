@@ -41,12 +41,12 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                    // dd($hasilPeriksa);
+                                    $index = 0;
                                     for ($i = 0; $i < 3; $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa[0]['hasil1']; ?></td>
+                                                <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
                                                 <td>normal</td>
                                             </tr>
                                         </tbody>
