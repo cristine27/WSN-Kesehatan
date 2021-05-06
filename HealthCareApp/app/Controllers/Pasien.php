@@ -109,6 +109,7 @@ class Pasien extends BaseController
             'pasien' => $dataPasien,
             'hasilPeriksa' => $kumpulanhasil,
             'parameter' => $kumpulanparam,
+            'status' => $kumpulanStatus,
             'flag' => $check
         ];
 
