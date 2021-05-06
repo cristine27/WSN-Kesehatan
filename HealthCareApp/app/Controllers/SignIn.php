@@ -51,7 +51,7 @@ class SignIn extends BaseController
         $pass = $this->request->getvar('password');
 
         if ($email == 'admin@email.com' and $pass == 'admin') {
-            return view('pages/listPasien');
+            return redirect()->to('../Pasien');
         } else {
             $dataPasien = $this->pasienModel->getPasienbyEmail($email);
 
