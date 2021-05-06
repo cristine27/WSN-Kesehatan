@@ -55,7 +55,7 @@ class Pasien extends BaseController
         foreach ($dataPeriksa->getResultArray() as $res) {
             $arr = $res;
         }
-        $idNode = $dataPeriksa['idNode'];
+        $idNode = $arr['idNode'];
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
         $index = 0;
