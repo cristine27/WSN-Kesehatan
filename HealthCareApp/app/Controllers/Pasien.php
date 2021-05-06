@@ -99,9 +99,7 @@ class Pasien extends BaseController
             ];
 
             $kumpulanStatus = [
-                0 => [
-                    "-"
-                ]
+                0 => "-"
             ];
         }
         // dd($kumpulanStatus);
