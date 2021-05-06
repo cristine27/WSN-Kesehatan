@@ -95,6 +95,12 @@ class Pasien extends BaseController
                     'namaParameter' => ''
                 ]
             ];
+
+            $kumpulanStatus = [
+                0 => [
+                    "-"
+                ]
+            ];
         }
 
         $data = [
@@ -291,5 +297,6 @@ class Pasien extends BaseController
         } else {
             $res = "-";
         }
+        return $res;
     }
 }
