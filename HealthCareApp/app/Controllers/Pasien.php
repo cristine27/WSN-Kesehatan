@@ -59,11 +59,14 @@ class Pasien extends BaseController
         foreach ($dataPeriksa->getResultArray() as $res) {
             $arr = $res;
             // d($res);
-            if ($res['hasil1']) {
+            if ($res['idNode']) {
                 $kumpulanhasil[$i] = $res;
             }
         }
-        d($kumpulanhasil);
+
+        foreach ($kumpulanhasil as $hasil) {
+            d($hasil);
+        }
         $idNode = $arr['idNode'];
         // d($idNode);
         $idParam = $this->memilikiModel->getParamid($idNode);
@@ -77,7 +80,7 @@ class Pasien extends BaseController
         $data = [
             'title' => 'Detail Komik',
             'pasien' => $dataPasien,
-            'hasilPeriksa' => $arr,
+            'hasilPeriksa' => $kumpulanhasil,
             'parameter' => $kumpulanparam
         ];
 
