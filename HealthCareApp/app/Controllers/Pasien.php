@@ -67,7 +67,7 @@ class Pasien extends BaseController
         }
 
         foreach ($kumpulanhasil as $hasil) {
-            d($hasil);
+            // d($hasil);
             $idNode = $hasil['idNode'];
             // d($idNode);
             $idParam = $this->memilikiModel->getParamid($idNode);
@@ -77,10 +77,11 @@ class Pasien extends BaseController
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$index] = $namaParam;
                 $kumpulanStatus[$index] = $this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]);
+                d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
                 $index++;
             }
         }
-        dd($kumpulanStatus);
+
         if ($check == false) {
             $kumpulanhasil = [
                 0 => [
@@ -102,7 +103,7 @@ class Pasien extends BaseController
                 ]
             ];
         }
-
+        // dd($kumpulanStatus);
         $data = [
             'title' => 'Detail Komik',
             'pasien' => $dataPasien,
