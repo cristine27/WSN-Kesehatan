@@ -29,6 +29,7 @@
                 <div class="card w-75 mt-5">
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
+                        <p class="<?= ($hasilPeriksa == 0) ? 'hidden' : ''; ?>">Test</p>
                         <div class="col d-flex justify-content-start">
                             <div class="w-75 table-responsive">
                                 <table class="table table-striped text-center">
