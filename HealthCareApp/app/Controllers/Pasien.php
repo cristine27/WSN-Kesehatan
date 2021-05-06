@@ -56,6 +56,7 @@ class Pasien extends BaseController
         $i = 0;
         $kumpulanhasil = [];
         $kumpulanparam = [];
+        $kumpulanStatus = [];
         $check = false;
         foreach ($dataPeriksa->getResultArray() as $res) {
             // d($res);
@@ -73,11 +74,13 @@ class Pasien extends BaseController
 
             $index = 0;
             foreach ($idParam as $id) {
-                $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
+                $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
+                $kumpulanparam[$index] = $namaParam;
+                $kumpulanStatus[$index] = $this->setStatus($namaParam, $hasil['hasil' . $index + 1]);
                 $index++;
             }
         }
-
+        dd($kumpulanStatus);
         if ($check == false) {
             $kumpulanhasil = [
                 0 => [
@@ -268,5 +271,25 @@ class Pasien extends BaseController
         session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
 
         return redirect()->to('/Pasien');
+    }
+
+    public function setStatus($param, $value)
+    {
+        $res = "normal";
+        if ($param == "detak jantung") {
+            if ($value > 100) {
+                $res = "tidak normal";
+            }
+        } else if ($param == "oksigen") {
+            if ($value < 90) {
+                $res = "tidak normal";
+            }
+        } else if ($param == "temperatur") {
+            if ($value < 30 && $value >= 39) {
+                $res = "tidak normal";
+            }
+        } else {
+            $res = "-";
+        }
     }
 }
