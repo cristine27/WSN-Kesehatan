@@ -8,12 +8,12 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card w-50 mt-5">
+                <div class="card w-75 mt-5">
                     <h4 class="card-header">Detail Pasien</h4>
                     <div class="card-body">
                         <h5 class="card-title"><b>Nama : </b><?= $pasien['nama']; ?></h5>
                         <h6 class="card-subtitle mb-2 text-muted"><b>Umur : </b><?= $pasien['umur']; ?></h6>
-                        <br><br>
+                        <br>
                         <p class="card-text"><b>Alamat : </b> <?= $pasien['alamat']; ?></p>
                         <p class="card-text"><b>Email : </b> <?= $pasien['email']; ?></p>
                         <p class="card-text"><b>Password : </b> <?= $pasien['password']; ?></p>
@@ -26,7 +26,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="card w-50 mt-5">
+                <div class="card w-75 mt-5">
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
                         <div class="col d-flex justify-content-start">
