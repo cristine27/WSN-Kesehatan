@@ -48,7 +48,7 @@
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
                                                 <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                <td><?= $status[$i][0]; ?></td>
+                                                <td><?= $status[$i]; ?></td>
                                             </tr>
                                         </tbody>
                                     <?php } ?>
