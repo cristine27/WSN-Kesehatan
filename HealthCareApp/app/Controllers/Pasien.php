@@ -52,15 +52,20 @@ class Pasien extends BaseController
     {
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $arr = 0;
+        $i = 0;
+        $kumpulanhasil = [];
         foreach ($dataPeriksa->getResultArray() as $res) {
             $arr = $res;
+            d($res);
+            if ($res == "hasil1" or $res == "hasil2" or $res == "hasil3") {
+                $kumpulanhasil[$i] = $res;
+            }
         }
         $idNode = $arr['idNode'];
+
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
         $index = 0;
-        d($arr);
-        d($idParam);
         foreach ($idParam as $id) {
             $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
             $index++;
