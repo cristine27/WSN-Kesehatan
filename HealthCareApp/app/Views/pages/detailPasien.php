@@ -42,13 +42,13 @@
                                     </thead>
                                     <?php
                                     $index = 0;
-                                    dd($status);
+                                    // d($status);
                                     for ($i = 0; $i < count($parameter); $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
                                                 <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                <td><?= $status[$i]; ?></td>
+                                                <td><?= $status[$i][0]; ?></td>
                                             </tr>
                                         </tbody>
                                     <?php } ?>
