@@ -43,7 +43,7 @@
                                     <?php
                                     $index = 0;
                                     d($parameter);
-                                    for ($i = 0; $i < count($parameter[0]) + 1; $i++) { ?>
+                                    for ($i = 0; $i < count($parameter); $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
