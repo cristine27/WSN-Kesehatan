@@ -78,7 +78,7 @@ class Pasien extends BaseController
             }
         }
 
-        if (!$check) {
+        if ($check == false) {
             $kumpulanhasil = [
                 0 => [
                     'hasil1' => 0,
