@@ -29,7 +29,7 @@
                 <div class="card w-75 mt-5">
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
-                        <p class="<?= ($flag == true) ? 'hidden' : ''; ?>">Pasien Belum Melakukan Pemeriksaan</p>
+                        <p class="<?= ($flag == true) ? 'visible' : 'invisible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
                         <div class="col d-flex justify-content-start">
                             <div class="w-75 table-responsive">
                                 <table class="table table-striped text-center">
@@ -42,7 +42,7 @@
                                     </thead>
                                     <?php
                                     $index = 0;
-                                    for ($i = 0; $i < 3; $i++) { ?>
+                                    for ($i = 0; $i < count($parameter[0]); $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
