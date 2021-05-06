@@ -284,6 +284,7 @@ class Pasien extends BaseController
 
     public function setStatus($param, $value)
     {
+        $value = intval($value);
         $res = "normal";
         if ($param == "detak jantung") {
             if ($value > 100) {
@@ -293,12 +294,10 @@ class Pasien extends BaseController
             if ($value < 90) {
                 $res = "tidak normal";
             }
-        } else if ($param == "temperatur") {
+        } else {
             if ($value < 30 && $value >= 39) {
                 $res = "tidak normal";
             }
-        } else {
-            $res = "-";
         }
         return $res;
     }
