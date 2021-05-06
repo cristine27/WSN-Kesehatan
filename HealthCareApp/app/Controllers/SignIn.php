@@ -17,6 +17,7 @@ class SignIn extends BaseController
     protected $nodeModel;
     protected $memilikiModel;
     protected $parameterModel;
+
     protected $hasilPeriksa;
     protected $paramter;
 

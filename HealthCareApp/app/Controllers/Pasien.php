@@ -2,7 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\memilikiModel;
+use App\Models\nodeModel;
+use App\Models\parameterModel;
 use App\Models\pasienModel;
+use App\Models\periksaModel;
 
 use function PHPSTORM_META\map;
 
