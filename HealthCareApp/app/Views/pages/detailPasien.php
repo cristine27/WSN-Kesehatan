@@ -41,8 +41,8 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                    for ($i = 0; $i < 3; $i++) {
-                                        $hasil = "hasil"; ?>
+                                    dd($hasilPeriksa);
+                                    for ($i = 0; $i < 3; $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
