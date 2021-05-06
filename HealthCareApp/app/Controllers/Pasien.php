@@ -63,6 +63,7 @@ class Pasien extends BaseController
                 $kumpulanhasil[$i] = $res;
             }
         }
+        d($kumpulanhasil);
         $idNode = $arr['idNode'];
         // d($idNode);
         $idParam = $this->memilikiModel->getParamid($idNode);
