@@ -50,6 +50,7 @@ class Pasien extends BaseController
 
     public function detail($id)
     {
+        d($id);
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $arr = 0;
         $i = 0;
@@ -62,7 +63,7 @@ class Pasien extends BaseController
             }
         }
         $idNode = $arr['idNode'];
-
+        d($idNode);
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
         $index = 0;
