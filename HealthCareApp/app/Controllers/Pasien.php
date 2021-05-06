@@ -53,14 +53,14 @@ class Pasien extends BaseController
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
-        $arr = 0;
         $i = 0;
         $kumpulanhasil = [];
         $kumpulanparam = [];
+        $check = false;
         foreach ($dataPeriksa->getResultArray() as $res) {
-            $arr = $res;
             // d($res);
             if ($res['idNode']) {
+                $check = true;
                 $kumpulanhasil[$i] = $res;
             }
         }
@@ -78,11 +78,28 @@ class Pasien extends BaseController
             }
         }
 
+        if (!$check) {
+            $kumpulanhasil = [
+                0 => [
+                    'hasil1' => 0,
+                    'hasil2' => 0,
+                    'hasil3' => 0,
+                ]
+            ];
+
+            $kumpulanparam = [
+                0 => [
+                    'namaParameter' => ''
+                ]
+            ];
+        }
+
         $data = [
             'title' => 'Detail Komik',
             'pasien' => $dataPasien,
             'hasilPeriksa' => $kumpulanhasil,
-            'parameter' => $kumpulanparam
+            'parameter' => $kumpulanparam,
+            'flag' => $check
         ];
 
         //jika pasien tidak ada
