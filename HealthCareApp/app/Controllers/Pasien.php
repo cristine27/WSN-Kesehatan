@@ -25,7 +25,8 @@ class Pasien extends BaseController
 
     public function index()
     {
-        $currentPage = ($this->request->getVar('page_pasien')) ? $this->request->getVar('page_pasien') : 1;
+        dd($this->request->getVar('page_pasien'));
+        $currentPage = $this->request->getVar('page_pasien') ? $this->request->getVar('page_pasien') : 1;
 
         $pencarian = $this->request->getVar('pencarian');
         if ($pencarian) {
