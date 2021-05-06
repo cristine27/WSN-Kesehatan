@@ -59,7 +59,8 @@ class Pasien extends BaseController
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
         $index = 0;
-
+        d($arr);
+        d($idParam);
         foreach ($idParam as $id) {
             $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
             $index++;
