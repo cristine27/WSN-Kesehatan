@@ -50,9 +50,26 @@ class Pasien extends BaseController
 
     public function detail($id)
     {
+        $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
+        $arr = 0;
+        foreach ($dataPeriksa->getResultArray() as $res) {
+            $arr = $res;
+        }
+        $idNode = $dataPeriksa['idNode'];
+        $idParam = $this->memilikiModel->getParamid($idNode);
+        $kumpulanparam = [];
+        $index = 0;
+
+        foreach ($idParam as $id) {
+            $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
+            $index++;
+        }
+
         $data = [
             'title' => 'Detail Komik',
-            'pasien' => $this->pasienModel->getPasien($id)
+            'pasien' => $this->pasienModel->getPasien($id),
+            'hasilPeriksa' => $arr,
+            'parameter' => $kumpulanparam
         ];
 
         //jika pasien tidak ada

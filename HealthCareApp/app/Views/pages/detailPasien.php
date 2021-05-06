@@ -8,7 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card mt-5" style="width: 18rem;">
+                <div class="card w-50 mt-5">
+                    <h4 class="card-header">Detail Pasien</h4>
                     <div class="card-body">
                         <h5 class="card-title"><b>Nama : </b><?= $pasien['nama']; ?></h5>
                         <h6 class="card-subtitle mb-2 text-muted"><b>Umur : </b><?= $pasien['umur']; ?></h6>
@@ -23,12 +24,39 @@
                             <input type="hidden" name="_method" value="delete">
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin mau menghapus pasien?');">Hapus</button>
                         </form>
-
-                        <br><br>
-                        <a href="/Pasien">Kembali</a>
+                    </div>
+                </div>
+                <div class="card w-50 mt-5">
+                    <h4 class="card-header">Riwayat Pemeriksaan</h4>
+                    <div class="card-body">
+                        <div class="col d-flex justify-content-start">
+                            <div class="w-75 table-responsive">
+                                <table class="table table-striped text-center">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Parameter</th>
+                                            <th scope="col">Hasil</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <?php for ($i = 0; $i < 3; $i++) { ?>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
+                                                <td><?= $hasilPeriksa['hasil1']; ?></td>
+                                                <td>normal</td>
+                                            </tr>
+                                        </tbody>
+                                    <?php } ?>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <a href="/Pasien">Kembali</a>
         </div>
     </div>
 
