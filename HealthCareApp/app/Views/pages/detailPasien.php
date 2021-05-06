@@ -42,7 +42,7 @@
                                     </thead>
                                     <?php
                                     $index = 0;
-                                    // d($status);
+                                    d($status);
                                     for ($i = 0; $i < count($parameter); $i++) { ?>
                                         <tbody>
                                             <tr>
