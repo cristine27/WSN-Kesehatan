@@ -7,9 +7,9 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <div class="container">
+                <div class="container-fluid">
                     <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
-                    <a class="float-end d-inline" href="/SignIn">Log Out</a>
+                    <button type="button" class="float-end d-inline" href="/SignIn">Log Out</a>
                 </div>
 
                 <form action="" method="POST">
