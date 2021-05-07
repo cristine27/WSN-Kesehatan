@@ -64,7 +64,10 @@
                     </div>
                 </div>
             </div>
-            <a class="float-lg-right" href="/Home">Kembali</a>
+            <div class="col">
+                <a class="float-end" href="/Home">Kembali</a>
+            </div>
+
         </div>
     </div>
 
