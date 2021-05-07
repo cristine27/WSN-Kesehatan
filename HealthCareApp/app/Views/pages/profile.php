@@ -64,24 +64,27 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="button">Ubah Password ? </button>
 
-                <div class="card">
-                    <div class="card-header">
-                        Ganti Password
-                    </div>
-                    <div class="card-body">
-                        <form action="/Home/gantiPass" method="POST">
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="text" name="newPass" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." aria-label="newPass" required autofocus>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('password'); ?>
+            <div class="row">
+                <div id="passwordCard">
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#changePass" aria-expanded="false" aria-controls="changePass">Ubah Password ? </button>
+
+                    <div class="card" id="cardH">
+                        <div class="card-header">
+                            Ganti Password
+                        </div>
+                        <div id="changePass" class="card-body collapse" aria-labelledby="cardH" data-parent="#passwordCard">
+                            <form action="/Home/gantiPass" method="POST">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="text" name="newPass" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." aria-label="newPass" required autofocus>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('password'); ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan</a>
-                        </form>
+                                <button type="submit" class="btn btn-primary">Simpan</a>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

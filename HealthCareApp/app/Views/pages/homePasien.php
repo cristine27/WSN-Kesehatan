@@ -45,7 +45,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden=<?= ($flag == true) ? "true" : "false" ?>>
+                <div class="modal fade <?= ($flag == true) ? "visible" : "invisible" ?>" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

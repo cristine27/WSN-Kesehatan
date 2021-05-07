@@ -176,9 +176,8 @@ class Home extends BaseController
 		$passBaru = $this->request->getVar('newPass');
 		if (!$this->validate([
 			'password' => [
-				'rules' => 'required|min_length[10]',
+				'rules' => 'min_length[8]',
 				'errors' => [
-					'required' => '{field} harus diisi.',
 					'min_length[10]' => 'panjang {field} minimal 8 karakter.'
 				]
 			]
