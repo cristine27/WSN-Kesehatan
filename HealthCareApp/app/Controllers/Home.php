@@ -168,4 +168,11 @@ class Home extends BaseController
 		}
 		return $res;
 	}
+
+	public function gantiPass()
+	{
+		$this->dataPasien = session()->get('pasien');
+		$passBaru = $this->request->getVar('newPass');
+		d($passBaru);
+	}
 }
