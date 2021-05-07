@@ -173,6 +173,29 @@ class Home extends BaseController
 	{
 		$this->dataPasien = session()->get('pasien');
 		$passBaru = $this->request->getVar('newPass');
-		d($passBaru);
+		if (!$this->validate([
+			'password' => [
+				'rules' => 'required|min_length[10]',
+				'errors' => [
+					'required' => '{field} harus diisi.',
+					'min_length[10]' => 'panjang {field} minimal 8 karakter.'
+				]
+			]
+		])) {
+			$validation = \Config\Services::validation();
+			return redirect()->to('/Home/getPasienProfile')->withInput()->with('validation', $validation);
+		}
+
+		$this->pasienModel->save([
+			'idPasien' => $this->dataPasien['idPasien'],
+			'nama' =>  $this->dataPasien['nama'],
+			'alamat'    =>  $this->dataPasien['alamat'],
+			'umur' =>  $this->dataPasien['umur'],
+			'gender' =>  $this->dataPasien['gender'],
+			'email'     =>  $this->dataPasien['email'],
+			'password'  => $passBaru
+		]);
+		session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
+		return redirect()->to('/Home');
 	}
 }

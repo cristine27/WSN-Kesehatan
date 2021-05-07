@@ -75,7 +75,10 @@
                         <form action="/Home/gantiPass" method="POST">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="text" name="newPass" class="form-control" placeholder="Masukkan password baru anda." aria-label="newPass">
+                                <input type="text" name="newPass" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." aria-label="newPass" required autofocus>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('password'); ?>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</a>
                         </form>

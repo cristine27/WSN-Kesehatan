@@ -51,14 +51,4 @@ class pasienModel extends Model
             return 0;
         }
     }
-
-    public function getPasienPassword($pass)
-    {
-        $data = $this->where(['password' => $pass])->first();
-        if ($data) {
-            return $data;
-        } else {
-            return 0;
-        }
-    }
 }

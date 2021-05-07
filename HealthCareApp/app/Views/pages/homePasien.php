@@ -8,8 +8,12 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-
                     <div class="row">
+                        <?php if (session()->getFlashdata('pesan')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->getFlashdata('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="card w-90 mb-3 text-center">
                             <h4 class="card-header" style="background-color: ffd3b4;">Health Care App</h4>
                             <div class="card-body">
@@ -41,7 +45,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="<?= ($flag == true) ? "true" : "false" ?>">
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="<?= ($flag == true) ? "false" : "true" ?>">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
