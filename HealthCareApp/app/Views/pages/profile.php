@@ -73,21 +73,22 @@
                             Ganti Password
                         </div>
                         <div class="card-body">
-                            <form action="/Home/gantiPass" method="POST">
-                                <div class="form-group">
-                                    <label for="newPass">Password</label>
-                                    <input type="text" name="newPass" class="form-control <?= ($validation->hasError('pass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('pass'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
+
                         </div>
                     </div>
                 </details>
+                <form action="/Home/gantiPass" method="POST">
+                    <div class="form-group">
+                        <label for="newPass">Password</label>
+                        <input type="text" name="newPass" class="form-control <?= ($validation->hasError('pass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('pass'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
 
