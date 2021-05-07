@@ -52,8 +52,8 @@
                                             </tr>
                                         </tbody>
                                     <?php
-                                        $index++;
-                                    } ?>
+                                    }
+                                    $index++; ?>
                                 </table>
                             </div>
                         </div>
