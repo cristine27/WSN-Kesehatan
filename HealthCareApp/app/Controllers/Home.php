@@ -174,10 +174,12 @@ class Home extends BaseController
 	{
 		$this->dataPasien = session()->get('pasien');
 		$passBaru = $this->request->getVar('newPass');
+		d($passBaru);
 		if (!$this->validate([
-			'password' => [
-				'rules' => 'min_length[8]',
+			'pass' => [
+				'rules' => 'required|min_length[8]',
 				'errors' => [
+					'required' => '{field} pasien harus diisi.',
 					'min_length[10]' => 'panjang {field} minimal 8 karakter.'
 				]
 			]
@@ -195,6 +197,7 @@ class Home extends BaseController
 			'email'     =>  $this->dataPasien['email'],
 			'password'  => $passBaru
 		]);
+
 		session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
 		return redirect()->to('/Home');
 	}
