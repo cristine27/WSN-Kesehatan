@@ -68,7 +68,7 @@
 
         </div>
         <div class="row">
-            <a class="float-end" href="/Home">Kembali</a>
+            <a class="btn btn-info w-25" href="/Home">Kembali</a>
         </div>
     </div>
 
