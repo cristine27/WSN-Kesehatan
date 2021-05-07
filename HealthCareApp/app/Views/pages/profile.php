@@ -11,7 +11,11 @@
                     <?php d($dataPasien); ?>
                     <h1 class="display-4">Profile Pasien</h1>
                     <br><br>
-
+                    <?php if (session()->getFlashdata('pesan')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('pesan'); ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="col-md-8">
                         <div class="card mb-3" style="background-color: bdd2b6;">
                             <div class="card-body">
@@ -73,22 +77,22 @@
                             Ganti Password
                         </div>
                         <div class="card-body">
-
+                            <form action="/Home/gantiPass" method="POST">
+                                <div class="form-group">
+                                    <label for="newPass">Password</label>
+                                    <input type="text" name="newPass" class="form-control <?= ($validation->hasError('pass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('pass'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </details>
-                <form action="/Home/gantiPass" method="POST">
-                    <div class="form-group">
-                        <label for="newPass">Password</label>
-                        <input type="text" name="newPass" class="form-control <?= ($validation->hasError('pass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
-                        <div class="invalid-feedback">
-                            <?= $validation->getError('pass'); ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
+
             </div>
         </div>
 

@@ -9,11 +9,6 @@
             <div class="col">
                 <div class="container">
                     <div class="row">
-                        <?php if (session()->getFlashdata('pesan')) : ?>
-                            <div class="alert alert-success" role="alert">
-                                <?= session()->getFlashdata('pesan'); ?>
-                            </div>
-                        <?php endif; ?>
                         <div class="card w-90 mb-3 text-center">
                             <h4 class="card-header" style="background-color: ffd3b4;">Health Care App</h4>
                             <div class="card-body">
