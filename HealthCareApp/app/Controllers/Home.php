@@ -172,7 +172,6 @@ class Home extends BaseController
 
 	public function gantiPass()
 	{
-		$this->dataPasien = session()->get('pasien');
 		if (!$this->validate([
 			'pass' => [
 				'rules' => 'required|min_length[8]',
@@ -187,6 +186,7 @@ class Home extends BaseController
 			return redirect()->to('/Home/getPasienProfile')->withInput()->with('validation', $validation);
 		}
 		$passBaru = $this->request->getVar('newPass');
+		$this->dataPasien = session()->get('pasien');
 		dd($passBaru);
 		$this->pasienModel->save([
 			'idPasien' => $this->dataPasien['idPasien'],
