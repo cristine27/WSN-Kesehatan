@@ -66,14 +66,13 @@
             </div>
 
             <div class="row">
-                <div id="passwordCard">
-                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#changePass" aria-expanded="false" aria-controls="changePass">Ubah Password ? </button>
-
-                    <div class="card" id="cardH">
+                <details>
+                    <summary>Ubah Password ?</summary>
+                    <div class="card">
                         <div class="card-header">
                             Ganti Password
                         </div>
-                        <div id="changePass" class="card-body collapse" aria-labelledby="cardH" data-parent="#passwordCard">
+                        <div id="changePass" class="card-body collapse">
                             <form action="/Home/gantiPass" method="POST">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
@@ -86,7 +85,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </details>
             </div>
         </div>
 
