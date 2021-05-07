@@ -72,7 +72,7 @@
                         <div class="card-header">
                             Ganti Password
                         </div>
-                        <div id="changePass" class="card-body collapse">
+                        <div class="card-body">
                             <form action="/Home/gantiPass" method="POST">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
