@@ -23,7 +23,7 @@
                                     </thead>
                                     <?php
                                     $index = 0;
-                                    for ($i = 0; $i < count($hasilPeriksa); $i++) { ?>
+                                    for ($i = 0; $i < count($parameter); $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
@@ -32,7 +32,6 @@
                                             </tr>
                                         </tbody>
                                     <?php
-                                        $index++;
                                     } ?>
                                 </table>
                             </div>
