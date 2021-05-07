@@ -23,10 +23,10 @@
                     </div>
                     <div class="row">
                         <div class="card w-90 text-center">
-                            <h3 class="card-header">Header</h3>
+                            <h3 class="card-header">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></h3>
                             <div class="card-body">
                                 <p class="card-text">
-                                    Silahkan Pilih Opsi
+                                    Silahkan Memilih Fitur :
                                 </p>
                                 <div class="container">
                                     <!-- <div class="col"> -->
@@ -36,19 +36,6 @@
                                         <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="/SignIn" role="button">Log out</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="jumbotron jumbotron-fluid h-75" style="background-color: beige;">
-                        <p class="lead">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></p>
-                        <hr class="my-4">
-                        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                        <div class="container">
-                            <!-- <div class="col"> -->
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getHasilPantau" role="button">Hasil Pemantuan</a>
-                                <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getPasienProfile" role="button">Profile</a>
-                                <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="/SignIn" role="button">Log out</a>
                             </div>
                         </div>
                     </div>
