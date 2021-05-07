@@ -33,6 +33,7 @@ class SignIn extends BaseController
     public function index()
     {
         if (session()->has('pasien')) {
+            session()->remove('pasien');
             d("masuk");
         } else {
             d("tidak masuk");
