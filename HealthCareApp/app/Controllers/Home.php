@@ -143,7 +143,8 @@ class Home extends BaseController
 		$this->dataPasien = session()->get('pasien');
 		$data = [
 			'title' => 'Profile Pasien',
-			'dataPasien' => $this->dataPasien
+			'dataPasien' => $this->dataPasien,
+			'validation' => \Config\Services::validation()
 		];
 
 		return view('pages/profile', $data);
