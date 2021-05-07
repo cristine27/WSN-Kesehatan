@@ -77,7 +77,7 @@
                             Ganti Password
                         </div>
                         <div class="card-body">
-                            <form action="Home/gantiPass" method="GET">
+                            <form action="/Home/gantiPass" method="GET">
                                 <div class="form-group">
                                     <input type="text" name="newPass" class="form-control" placeholder="Masukkan password baru anda." required autofocus>
                                     <div class="invalid-feedback">
