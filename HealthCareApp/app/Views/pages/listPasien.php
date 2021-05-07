@@ -6,11 +6,12 @@
 <body>
     <div class="container">
         <div class="row">
+            <div class="row">
+                <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
+                <button type="button" class="float-end d-inline" href="/SignIn">Log Out</a>
+            </div>
             <div class="col-6">
-                <div class="container-fluid">
-                    <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
-                    <button type="button" class="float-end d-inline" href="/SignIn">Log Out</a>
-                </div>
+
 
                 <form action="" method="POST">
                     <div class="input-group mb-3">
