@@ -21,15 +21,19 @@
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
-                                    <?php for ($i = 0; $i < 3; $i++) { ?>
+                                    <?php
+                                    $index = 0;
+                                    for ($i = 0; $i < count($parameter); $i++) { ?>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa['hasil1']; ?></td>
-                                                <td>normal</td>
+                                                <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
+                                                <td><?= $status[$i]; ?></td>
                                             </tr>
                                         </tbody>
-                                    <?php } ?>
+                                    <?php
+                                        $index++;
+                                    } ?>
                                 </table>
                             </div>
                         </div>

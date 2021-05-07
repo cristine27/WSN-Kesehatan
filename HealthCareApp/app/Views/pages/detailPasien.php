@@ -51,7 +51,9 @@
                                                 <td><?= $status[$i]; ?></td>
                                             </tr>
                                         </tbody>
-                                    <?php } ?>
+                                    <?php
+                                        $index++;
+                                    } ?>
                                 </table>
                             </div>
                         </div>

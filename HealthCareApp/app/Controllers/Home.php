@@ -56,27 +56,78 @@ class Home extends BaseController
 		$this->dataPasien = session()->get('pasien');
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($this->dataPasien['idPasien']);
 		// d($dataPeriksa);
+		$i = 0;
+		$kumpulanhasil = [];
+		$kumpulanparam = [];
+		$kumpulanStatus = [];
+		$check = false;
+
+
 		$dataPeriksaArr = 0;
 		foreach ($dataPeriksa->getResultArray() as $res) {
-			$dataPeriksaArr = $res;
+			if ($res['idNode']) {
+				$check = true;
+				$kumpulanhasil[$i] = $res;
+			}
+			$i++;
 		}
-		$this->hasilPeriksa = $dataPeriksaArr;
-		$idNode = $dataPeriksaArr['idNode'];
-		$idParam = $this->memilikiModel->getParamid($idNode);
-		$kumpulanparam = [];
-		// dd($idParam);
-		$index = 0;
-		foreach ($idParam as $id) {
-			// d("masuk");
-			$kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
-			$index++;
+
+		foreach ($kumpulanhasil as $hasil) {
+			// d($hasil);
+			$idNode = $hasil['idNode'];
+			// d($idNode);
+			$idParam = $this->memilikiModel->getParamid($idNode);
+
+			$index = 0;
+			foreach ($idParam as $id) {
+				$namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
+				$kumpulanparam[$index] = $namaParam;
+				$kumpulanStatus[$index] = $this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]);
+				// d($hasil['hasil' . strval($index + 1)]);
+				// d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
+				$index++;
+			}
 		}
+		// $this->hasilPeriksa = $dataPeriksaArr;
+		// $idNode = $dataPeriksaArr['idNode'];
+		// $idParam = $this->memilikiModel->getParamid($idNode);
+		// $kumpulanparam = [];
+		// // dd($idParam);
+		// $index = 0;
+		// foreach ($idParam as $id) {
+		// 	// d("masuk");
+		// 	$kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
+		// 	$index++;
+		// }
 		// dd($kumpulanparam);
+
+		if ($check == false) {
+			$kumpulanhasil = [
+				0 => [
+					'hasil1' => 0,
+					'hasil2' => 0,
+					'hasil3' => 0,
+				]
+			];
+
+			$kumpulanparam = [
+				0 => [
+					'namaParameter' => ''
+				]
+			];
+
+			$kumpulanStatus = [
+				0 => "-"
+			];
+		}
 		$this->parameter = $kumpulanparam;
+		$this->hasilPeriksa = $kumpulanhasil;
 		$data = [
 			'title' => 'Pemeriksaan Pasien',
-			'hasilPeriksa' => $this->hasilPeriksa,
-			'parameter' => $this->parameter
+			'hasilPeriksa' => $kumpulanhasil,
+			'parameter' => $kumpulanparam,
+			'status' => $kumpulanStatus,
+			'flag' => $check
 		];
 
 		return view('pages/pemantauanPasien', $data);
@@ -92,5 +143,25 @@ class Home extends BaseController
 		];
 
 		return view('pages/profile', $data);
+	}
+
+	public function setStatus($param, $value)
+	{
+		$value = intval($value);
+		$res = "normal";
+		if ($param == "detak jantung") {
+			if ($value > 100) {
+				$res = "tidak normal";
+			}
+		} else if ($param == "oksigen") {
+			if ($value < 90) {
+				$res = "tidak normal";
+			}
+		} else {
+			if ($value < 30 && $value >= 39) {
+				$res = "tidak normal";
+			}
+		}
+		return $res;
 	}
 }

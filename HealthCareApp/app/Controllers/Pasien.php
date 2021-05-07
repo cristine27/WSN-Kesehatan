@@ -64,6 +64,7 @@ class Pasien extends BaseController
                 $check = true;
                 $kumpulanhasil[$i] = $res;
             }
+            $i++;
         }
 
         foreach ($kumpulanhasil as $hasil) {
