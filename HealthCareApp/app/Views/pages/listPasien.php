@@ -9,7 +9,6 @@
 
             <div class="col-6">
                 <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
-                <button type="button" class="float-end d-inline" href="/SignIn">Log Out</a>
             </div>
             <div class="col-6">
                 <form action="" method="POST">
@@ -22,8 +21,8 @@
         </div>
         <div class="row">
             <div class="col">
-                <a href="/Pasien/addPasien" class="btn btn-primary mt-3">Tambah Pasien</a>
-
+                <a href="/Pasien/addPasien" class="btn btn-primary mt-3 d-inline">Tambah Pasien</a>
+                <button type="button" class="btn btn-danger float-end d-inline" href="/SignIn">Log Out</button>
                 <?php if (session()->getFlashdata('pesan')) : ?>
                     <div class="alert alert-success" role="alert">
                         <?= session()->getFlashdata('pesan'); ?>
