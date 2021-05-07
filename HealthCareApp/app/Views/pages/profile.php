@@ -13,7 +13,7 @@
                     <br><br>
 
                     <div class="col-md-8">
-                        <div class="card mb-3">
+                        <div class="card mb-3" style="background-color: bdd2b6;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
