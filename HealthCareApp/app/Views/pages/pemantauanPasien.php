@@ -10,33 +10,33 @@
             <div class="col">
                 <div class="container">
                     <div class="row">
-                        <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa['waktu']; ?></h5>
-                        <div class="col d-flex justify-content-start">
-                            <div class="w-75 table-responsive">
-                                <table class="table table-striped text-center">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th scope="col">Parameter</th>
-                                            <th scope="col">Hasil</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    $index = 0;
-                                    for ($i = 0; $i < count($parameter); $i++) { ?>
-                                        <tbody>
+                        <?php for ($index = 0; $index < count($hasilPeriksa); $index++) { ?>
+                            <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa[$index]['waktu']; ?></h5>
+                            <div class="col d-flex justify-content-start">
+                                <div class="w-75 table-responsive">
+                                    <table class="table table-striped text-center">
+                                        <thead class="table-dark">
                                             <tr>
-                                                <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                <td><?= $status[$i]; ?></td>
+                                                <th scope="col">Parameter</th>
+                                                <th scope="col">Hasil</th>
+                                                <th scope="col">Status</th>
                                             </tr>
-                                        </tbody>
-                                    <?php
-                                    }
-                                    $index++; ?>
-                                </table>
+                                        </thead>
+                                        <?php
+                                        $index = 0;
+                                        for ($i = 0; $i < count($parameter); $i++) { ?>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
+                                                    <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
+                                                    <td><?= $status[$i]; ?></td>
+                                                </tr>
+                                            </tbody>
+                                        <?php } ?>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="container">
