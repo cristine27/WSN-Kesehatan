@@ -38,12 +38,16 @@ class Home extends BaseController
 		// dd($this->dataPasien);
 		// dd(isset($_SESSION['pasien']));
 		$this->dataPasien = session()->get('pasien');
-
+		$check = false;
+		if ($this->dataPasien['password'] == "password") {
+			$check = true;
+		}
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,
 			'hasilPeriksa' => $this->hasilPeriksa,
-			'parameter' => $this->parameter
+			'parameter' => $this->parameter,
+			'flag' => $check
 		];
 		d($this->dataPasien);
 		return view('pages/homePasien', $data);
