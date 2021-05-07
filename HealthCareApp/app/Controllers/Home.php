@@ -172,6 +172,7 @@ class Home extends BaseController
 
 	public function gantiPass()
 	{
+		d("masuk fungsi ganti Pass");
 		if (!$this->validate([
 			'pass' => [
 				'rules' => 'required|min_length[8]',
