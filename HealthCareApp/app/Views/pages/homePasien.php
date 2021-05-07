@@ -41,7 +41,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="<?= ($flag == true) ? "tanda tanya" : "titik dua"; ?>">
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" <?= ($flag == true) ? d("ty") : d("tt"); ?>>
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
