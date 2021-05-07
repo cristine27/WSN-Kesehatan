@@ -7,7 +7,11 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h1 class="mt-2">Daftar Pasien</h1>
+                <div class="container">
+                    <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
+                    <a class="float-end d-inline" href="/SignIn">Log Out</a>
+                </div>
+
                 <form action="" method="POST">
                     <div class="input-group mb-3">
                         <input type="text" name="pencarian" class="form-control" aria-describedby="searchbtn" aria-label="search" placeholder="Masukkan nama pasien..">

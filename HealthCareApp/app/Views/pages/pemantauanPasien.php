@@ -32,7 +32,8 @@
                                             </tr>
                                         </tbody>
                                     <?php
-                                    } ?>
+                                    }
+                                    $index++; ?>
                                 </table>
                             </div>
                         </div>
