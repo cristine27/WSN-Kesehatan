@@ -11,22 +11,21 @@
 
                     <div class="row">
                         <div class="card w-90 mb-3 text-center">
-                            <h4 class="card-header">Health Care App</h4>
+                            <h4 class="card-header" style="background-color: ffd3b4;">Health Care App</h4>
                             <div class="card-body">
                                 <p class="card-text">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur optio quae numquam,
-                                    ipsam nulla accusamus ullam cumque quibusdam illum voluptates nostrum doloremque rerum
-                                    tempora? Maxime pariatur provident vitae dolorem non.
+                                    Health Care App adalah sebuah aplikasi yang digunakan untuk melihat hasil Pemeriksaan kesehatan yang telah dilakukan oleh pasien.
+                                    Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="card w-90 text-center">
-                            <h3 class="card-header">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></h3>
+                            <h3 class="card-header" style="background-color: ffd3b4;">Selamat datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></h3>
                             <div class="card-body">
                                 <p class="card-text">
-                                    Silahkan Memilih Fitur :
+                                    Silahkan Memilih Fitur yang Ingin di Jalankan :
                                 </p>
                                 <div class="container">
                                     <!-- <div class="col"> -->
