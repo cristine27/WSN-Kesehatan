@@ -11,7 +11,7 @@
                 <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
             </div>
             <div class="col-6">
-                <form action="" method="POST">
+                <form action="" method="POST" class="mt-2">
                     <div class="input-group mb-3">
                         <input type="text" name="pencarian" class="form-control" aria-describedby="searchbtn" aria-label="search" placeholder="Masukkan nama pasien..">
                         <button name="Submit" class="btn btn-outline-secondary" type="submit">Cari</button>
