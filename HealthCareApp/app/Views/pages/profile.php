@@ -81,7 +81,9 @@
                                         <?= $validation->getError('password'); ?>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Simpan</a>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <br>
                             </form>
                         </div>
                     </div>
