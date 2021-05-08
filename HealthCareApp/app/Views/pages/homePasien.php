@@ -1,18 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<script>
-    function showModal(x) {
-        print("masuk showModal");
-        print(x);
-        x == true;
-        if (x) {
-            $('#myModal').modal('show');
-            // } else {
-            //     $('#myModal').modal('hide');
-            // }
-        }
-</script>
+
 </head>
 
 <body onload="showModal($flag)">
@@ -77,5 +66,16 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function showModal(x) {
+            print("masuk showModal");
+            print(x);
+            x == true;
+            if (x) {
+                $('#myModal').modal('show');
+                // } else {
+                //     $('#myModal').modal('hide');
+                // }
+            }
+    </script>
     <?= $this->endsection(); ?>
