@@ -34,9 +34,6 @@ class SignIn extends BaseController
     {
         if (session()->has('pasien')) {
             session()->remove('pasien');
-            d("masuk");
-        } else {
-            d("tidak masuk");
         }
         $data = [
             'title' => 'Sign In Pasien',

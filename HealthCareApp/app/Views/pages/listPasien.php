@@ -6,7 +6,6 @@
 <body>
     <div class="container">
         <div class="row">
-
             <div class="col-6">
                 <h1 class="mt-2 d-inline float-start">Daftar Pasien</h1>
             </div>

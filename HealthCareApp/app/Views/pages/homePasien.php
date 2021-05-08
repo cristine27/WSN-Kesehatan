@@ -5,7 +5,6 @@
 </head>
 
 <body onload="showModal(<?php echo $flag ?>)">
-    <?php d($flag); ?>
     <div class="container">
         <div class="row">
             <div class="col">
