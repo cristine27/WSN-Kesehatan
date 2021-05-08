@@ -11,11 +11,6 @@
                     <?php d($dataPasien); ?>
                     <h1 class="display-4">Profile Pasien</h1>
                     <br><br>
-                    <?php if (session()->getFlashdata('pesan')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->getFlashdata('pesan'); ?>
-                        </div>
-                    <?php endif; ?>
                     <div class="col-md-8">
                         <div class="card mb-3" style="background-color: bdd2b6;">
                             <div class="card-body">
@@ -71,20 +66,22 @@
 
             <div class="row">
                 <details>
-                    <summary>Ubah Password ?</summary>
+                    <summary><b>Ubah Password ?</b></summary>
                     <div class="card">
                         <div class="card-header">
-                            Ganti Password
+                            <b>Ganti Password</b>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: bisque;">
                             <form action="/Home/gantiPass" method="POST">
                                 <div class="form-group">
                                     <input type="text" name="newPass" class="form-control <?= ($validation->hasError('newPass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('pass'); ?>
+                                        <?= $validation->getError('newPass'); ?>
                                     </div>
                                 </div>
+                                <br>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
+                                <br>
                             </form>
                         </div>
                     </div>
