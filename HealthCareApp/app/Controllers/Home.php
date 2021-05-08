@@ -174,7 +174,7 @@ class Home extends BaseController
 	{
 		d("masuk fungsi ganti Pass");
 		if (!$this->validate([
-			'pass' => [
+			'newPass' => [
 				'rules' => 'required|min_length[8]',
 				'errors' => [
 					'required' => '{field} pasien harus diisi.',
