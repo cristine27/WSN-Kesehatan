@@ -4,7 +4,7 @@
 
 </head>
 
-<body onload="showModal($flag)">
+<body onload="coba()">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -76,6 +76,10 @@
                 // } else {
                 //     $('#myModal').modal('hide');
                 // }
+            }
+
+            function coba() {
+                alert("page is loaded");
             }
     </script>
     <?= $this->endsection(); ?>
