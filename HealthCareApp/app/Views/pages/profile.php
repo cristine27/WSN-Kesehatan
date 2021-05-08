@@ -79,7 +79,7 @@
                         <div class="card-body">
                             <form action="/Home/gantiPass" method="POST">
                                 <div class="form-group">
-                                    <input type="text" name="newPass" class="form-control <?= ($validation->hasError('pass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
+                                    <input type="text" name="newPass" class="form-control <?= ($validation->hasError('newPass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('pass'); ?>
                                     </div>
