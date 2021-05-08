@@ -39,8 +39,6 @@ class Home extends BaseController
 		// dd(isset($_SESSION['pasien']));
 		$this->dataPasien = session()->get('pasien');
 		$check = false;
-
-		d($this->dataPasien);
 		if ($this->dataPasien['password'] == "password") {
 			$check = true;
 		}
@@ -51,10 +49,6 @@ class Home extends BaseController
 			'parameter' => $this->parameter,
 			'flag' => $check
 		];
-
-		if ($data['flag'] == true) {
-			d("flag true");
-		}
 		return view('pages/homePasien', $data);
 	}
 

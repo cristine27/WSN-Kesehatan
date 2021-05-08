@@ -4,7 +4,8 @@
 
 </head>
 
-<body>
+<body onload="showModal($flag)">
+    <?php d($flag); ?>
     <div class="container">
         <div class="row">
             <div class="col">
