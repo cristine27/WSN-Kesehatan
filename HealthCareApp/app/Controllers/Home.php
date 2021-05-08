@@ -49,7 +49,9 @@ class Home extends BaseController
 			'parameter' => $this->parameter,
 			'flag' => $check
 		];
-		d($this->dataPasien);
+		if ($data['flag'] == true) {
+			d("flag true");
+		}
 		return view('pages/homePasien', $data);
 	}
 
