@@ -4,7 +4,7 @@
 
 </head>
 
-<body onload="showModal($flag)">
+<body>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal" id="myModal" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+                <div onload="showModal($flag)" class="modal" id="myModal" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
