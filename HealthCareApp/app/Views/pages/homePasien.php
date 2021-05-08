@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script type="text/javascript">
         function showModal() {
             print("masuk showModal");
             // print(x);
