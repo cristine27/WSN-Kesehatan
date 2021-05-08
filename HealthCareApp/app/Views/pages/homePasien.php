@@ -5,12 +5,13 @@
     function showModal(x) {
         print("masuk showModal");
         print(x);
+        x == true;
         if (x) {
             $('#myModal').modal('show');
-        } else {
-            $('#myModal').modal('hide');
+            // } else {
+            //     $('#myModal').modal('hide');
+            // }
         }
-    }
 </script>
 </head>
 
