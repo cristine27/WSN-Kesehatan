@@ -76,10 +76,10 @@
             // } else {
             //     $('#myModal').modal('hide');
             // }
+        }
 
-
-            function coba() {
-                alert("page is loaded");
-            }
+        function coba() {
+            alert("page is loaded");
+        }
     </script>
     <?= $this->endsection(); ?>
