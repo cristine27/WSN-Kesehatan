@@ -146,7 +146,7 @@ class Home extends BaseController
 			'dataPasien' => $this->dataPasien,
 			'validation' => \Config\Services::validation()
 		];
-		d($data['validation']);
+
 		return view('pages/profile', $data);
 	}
 
@@ -182,13 +182,13 @@ class Home extends BaseController
 				]
 			]
 		])) {
-			d("masuk");
+
 			$validation = \Config\Services::validation();
 			return redirect()->to('/Home/getPasienProfile')->withInput()->with('validation', $validation);
 		}
 		$passBaru = $this->request->getVar('newPass');
 		$this->dataPasien = session()->get('pasien');
-		dd($passBaru);
+		// dd($passBaru);
 		$this->pasienModel->save([
 			'idPasien' => $this->dataPasien['idPasien'],
 			'nama' =>  $this->dataPasien['nama'],
