@@ -172,23 +172,22 @@ class Home extends BaseController
 
 	public function gantiPass()
 	{
-		d("masuk fungsi ganti Pass");
+		// d("masuk fungsi ganti Pass");
 		if (!$this->validate([
 			'newPass' => [
 				'rules' => 'required|min_length[8]',
 				'errors' => [
-					'required' => '{field} pasien harus diisi.',
-					'min_length[8]' => 'panjang {field} minimal 8 karakter.'
+					'required' => 'password harus diisi.',
+					'min_length[8]' => 'panjang password minimal 8 karakter.'
 				]
 			]
 		])) {
-
 			$validation = \Config\Services::validation();
 			return redirect()->to('/Home/getPasienProfile')->withInput()->with('validation', $validation);
 		}
 		$passBaru = $this->request->getVar('newPass');
 		$this->dataPasien = session()->get('pasien');
-		// dd($passBaru);
+
 		$this->pasienModel->save([
 			'idPasien' => $this->dataPasien['idPasien'],
 			'nama' =>  $this->dataPasien['nama'],
@@ -199,7 +198,7 @@ class Home extends BaseController
 			'password'  => $passBaru
 		]);
 
-		session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
+		session()->setFlashdata('pesan', 'Password berhasil diubah.');
 		return redirect()->to('/Home');
 	}
 }
