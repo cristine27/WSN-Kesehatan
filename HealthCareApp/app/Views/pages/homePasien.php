@@ -4,7 +4,7 @@
 
 </head>
 
-<body>
+<body onload="console.log('loaded!')">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -46,9 +46,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" <?= (($flag == true)) ?  '<script type="text/javascript">
-alert("Execute Javascript Code");
-</script>' : " "; ?>>
+                <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
