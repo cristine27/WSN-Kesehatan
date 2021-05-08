@@ -3,6 +3,8 @@
 <?= $this->section('content'); ?>
 <script>
     function showModal(x) {
+        print("masuk showModal");
+        print(x);
         if (x) {
             $('#myModal').modal('show');
         } else {

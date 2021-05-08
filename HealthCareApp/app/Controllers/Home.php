@@ -39,7 +39,7 @@ class Home extends BaseController
 		// dd(isset($_SESSION['pasien']));
 		$this->dataPasien = session()->get('pasien');
 		$check = false;
-		d("home index");
+
 		d($this->dataPasien);
 		if ($this->dataPasien['password'] == "password") {
 			$check = true;
