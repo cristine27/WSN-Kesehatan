@@ -4,7 +4,7 @@
 
 </head>
 
-<body onload="console.log('loaded!')">
+<body onload="showModal()">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -46,11 +46,11 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+                <div class="modal fade" id="myModal" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"><b>Perhatian!!</b></h5>
+                                <h5 class="modal-title" id="staticBackdropLabel"><b>Perhatian!!</b></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -67,16 +67,16 @@
         </div>
     </div>
     <script>
-        function showModal(x) {
+        function showModal() {
             print("masuk showModal");
-            print(x);
-            x == true;
-            if (x) {
-                $('#myModal').modal('show');
-                // } else {
-                //     $('#myModal').modal('hide');
-                // }
-            }
+            // print(x);
+
+
+            $('#myModal').modal('show');
+            // } else {
+            //     $('#myModal').modal('hide');
+            // }
+
 
             function coba() {
                 alert("page is loaded");
