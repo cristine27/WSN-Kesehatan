@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+                <div class="modal" id="myModal" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -68,14 +68,7 @@
     </div>
     <script type="text/javascript">
         function showModal() {
-            print("masuk showModal");
-            // print(x);
-
-
             $('#myModal').modal('show');
-            // } else {
-            //     $('#myModal').modal('hide');
-            // }
         }
 
         function coba() {
