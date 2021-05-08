@@ -1,9 +1,18 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+<script>
+    function showModal(x) {
+        if (x) {
+            $('#myModal').modal('show');
+        } else {
+            $('#myModal').modal('hide');
+        }
+    }
+</script>
 </head>
 
-<body>
+<body onload="showModal($flag)">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -45,11 +54,11 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade <?= ($flag == true) ? "visible" : "invisible" ?>" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+                <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel"><b>Perhatian!!</b></h5>
+                                <h5 class="modal-title"><b>Perhatian!!</b></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
