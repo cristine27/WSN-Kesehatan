@@ -42,6 +42,11 @@ class Home extends BaseController
 		if ($this->dataPasien['password'] == "password") {
 			$check = true;
 		}
+		$newData = $this->pasienModel->getPasien($this->dataPasien['idPasien']);
+		if ($this->dataPasien['password'] != $newData['password']) {
+			$this->dataPasien = $newData;
+			session()->set('pasien', $newData);
+		}
 		$data = [
 			'title' => 'Home Pasien',
 			'dataPasien' => $this->dataPasien,
