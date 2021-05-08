@@ -146,7 +146,7 @@ class Home extends BaseController
 			'dataPasien' => $this->dataPasien,
 			'validation' => \Config\Services::validation()
 		];
-
+		d($data['validation']);
 		return view('pages/profile', $data);
 	}
 
@@ -173,19 +173,19 @@ class Home extends BaseController
 	public function gantiPass()
 	{
 		d("masuk fungsi ganti Pass");
-		if (!$this->validate([
-			'pass' => [
-				'rules' => 'required|min_length[8]',
-				'errors' => [
-					'required' => '{field} pasien harus diisi.',
-					'min_length[8]' => 'panjang {field} minimal 8 karakter.'
-				]
-			]
-		])) {
-			d("masuk");
-			$validation = \Config\Services::validation();
-			return redirect()->to('/Home/getPasienProfile')->withInput()->with('validation', $validation);
-		}
+		// if (!$this->validate([
+		// 	'pass' => [
+		// 		'rules' => 'required|min_length[8]',
+		// 		'errors' => [
+		// 			'required' => '{field} pasien harus diisi.',
+		// 			'min_length[8]' => 'panjang {field} minimal 8 karakter.'
+		// 		]
+		// 	]
+		// ])) {
+		// 	d("masuk");
+		// 	$validation = \Config\Services::validation();
+		// 	return redirect()->to('/Home/getPasienProfile')->withInput()->with('validation', $validation);
+		// }
 		$passBaru = $this->request->getVar('newPass');
 		$this->dataPasien = session()->get('pasien');
 		dd($passBaru);
