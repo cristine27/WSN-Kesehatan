@@ -78,7 +78,7 @@ def mainMenu():
 def mapNodeName():
     db = mysql.connector.connect(
             host='localhost',
-            database='coba',
+            database='WSN',
             user='phpmyadmin',
             password='raspberry',
             pool_name='mypool',
@@ -87,7 +87,7 @@ def mapNodeName():
     
     cursor = db.cursor(buffered=True)
     
-    cursor.execute("SELECT namaNode,idN from N")
+    cursor.execute("SELECT namaNode,idNode from node")
     
     res = cursor.fetchall()
     
@@ -142,7 +142,7 @@ def konekDb():
     try:
         db = mysql.connector.connect(
             host='localhost',
-            database='coba',
+            database='WSN',
             user='phpmyadmin',
             password='raspberry',
             pool_name='mypool',
@@ -177,7 +177,7 @@ def getPingNode(x):
 def updateNodeStatus(x):
     db = mysql.connector.connect(
         host='localhost',
-        database='coba',
+        database='WSN',
         user='phpmyadmin',
         password='raspberry',
         pool_name='mypool',
@@ -187,7 +187,7 @@ def updateNodeStatus(x):
     cursor = db.cursor(buffered=True)
     nama = x[0]
     status = x[1]
-    queryUpdate = "UPDATE N SET status = %s WHERE namaNode = %s"
+    queryUpdate = "UPDATE node SET status = %s WHERE namaNode = %s"
     val = (status,nama)
 
     cursor.execute(queryUpdate, val)
@@ -199,7 +199,7 @@ def updateNodeStatus(x):
 def matikanNode(namaNode):
     db = mysql.connector.connect(
         host='localhost',
-        database='coba',
+        database='WSN',
         user='phpmyadmin',
         password='raspberry',
         pool_name='mypool',
@@ -207,7 +207,7 @@ def matikanNode(namaNode):
     )
     temp = 0
     cursor = db.cursor(buffered=True)
-    queryUpdate = "UPDATE N SET status = %s WHERE namaNode = %s"
+    queryUpdate = "UPDATE node SET status = %s WHERE namaNode = %s"
     val = (temp,namaNode)
 
     cursor.execute(queryUpdate, val)
@@ -238,7 +238,7 @@ def InsertDb(x):
     # konekDb()
     db = mysql.connector.connect(
         host='localhost',
-        database='coba',
+        database='WSN',
         user='phpmyadmin',
         password='raspberry',
         pool_name='mypool',
@@ -277,7 +277,7 @@ def InsertDb(x):
     
 
     queryInsert = (
-        "INSERT INTO P (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
+        "INSERT INTO periksa (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
         "VALUES (%s, %s, %s, %s, %s, %s)"
     )
 
@@ -297,7 +297,7 @@ def InsertDb(x):
 def verifyidPasien(idPasien):
     db = mysql.connector.connect(
         host='localhost',
-        database='coba',
+        database='WSN',
         user='phpmyadmin',
         password='raspberry',
         pool_name='mypool',
@@ -320,7 +320,7 @@ def verifyidPasien(idPasien):
 def verifyidNode(namaNode):
     db = mysql.connector.connect(
         host='localhost',
-        database='coba',
+        database='WSN',
         user='phpmyadmin',
         password='raspberry',
         pool_name='mypool',
@@ -329,7 +329,7 @@ def verifyidNode(namaNode):
     isValid = True
     cursor = db.cursor(buffered=True)
     
-    cursor.execute("Select idN FROM N WHERE namaNode=namaNode")
+    cursor.execute("Select idNode FROM node WHERE namaNode=namaNode")
     
     res = cursor.fetchall()
     
@@ -503,7 +503,7 @@ while appRunning:
 # def updateStatusSensing(dataSensing):
 #     db = mysql.connector.connect(
 #         host='localhost',
-#         database='coba',
+#         database='WSN',
 #         user='phpmyadmin',
 #         password='raspberry',
 #         pool_name='mypool',
@@ -521,7 +521,7 @@ while appRunning:
 # def goingOffline(namaNode):
 #     db = mysql.connector.connect(
 #         host='localhost',
-#         database='coba',
+#         database='WSN',
 #         user='phpmyadmin',
 #         password='raspberry',
 #         pool_name='mypool',
