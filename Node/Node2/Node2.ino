@@ -7,8 +7,8 @@
 #include <SoftwareSerial.h>
 
 /*initialization sensor*/
-PulseOximeter pox;
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+PulseOximeter pox;
 
 /*xbee transmisi*/
 #define rxPin 19
@@ -18,6 +18,9 @@ SoftwareSerial xbee = SoftwareSerial(rxPin, txPin);
 const long interval_temperatur = 10000;
 unsigned long prev_temperatur = 0;
 
+#define REPORTING_PERIOD_MS     1000
+uint32_t tsLastReport = 0;
+
 /*variabel*/
 bool isMlxOn = false; //check apakah sensor max30100 nyala 
 bool isMaxOn = false; //check apakah sensor mlx90164 nyala
@@ -26,7 +29,7 @@ float suhu = 0.0; //suhu tubuh
 int detak = 0; //detak jantung
 int oksigen = 0; //oksigen dalam darah
 
-int temp = 0; //temp
+int temp = 0; //temp waktu
 int sekarang = 0;//waktu sekarang
 
 String pesan = "";
@@ -35,8 +38,8 @@ String namaNode = "node2";
 // dipanggil jika terdapat detak yang terdeteksi
 bool onBeatDetected()
 {
-    return true;
     Serial.println("Beat!");
+    return true;
 }
 
 void setup() {
@@ -49,49 +52,49 @@ void setup() {
   Serial.println("Pulse oxymeter test!");
   Serial.println("Adafruit MLX90164 test!");
   pox.begin();//pox harus di letakkan sebelum mlx
+
   mlx.begin();  
-  
-  pox.setOnBeatDetectedCallback(onBeatDetected);
-  checkStatus();
+ 
+  pox.setOnBeatDetectedCallback(onBeatDetected); 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:  
-  if(xbee.available()){
-    byte temp = xbee.read();
-    if(temp=='a' || temp=='b'){
-      Serial.println(temp);
-    }
+
+  pox.update();
+  /*tanpa menggunakan trigger serial*/
+  if(millis() - tsLastReport > REPORTING_PERIOD_MS){
+    tsLastReport = millis();
+    bacaSensorDetak();
   }
-  
-  bacaSensorDetak();
+ 
   bacaSensorSuhu();
-  int stat = enkapStatus();
   
   sekarang = millis();
-  
+
+  int stat;
   if(sekarang - temp > 5000){
       Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
       Serial.print("Sa02 : " + String(oksigen) + "% | ");
-      Serial.print("Suhu : " + String(suhu) + "*c");
+      Serial.print("Suhu : " + String(suhu) + "*c ");
+      if(detak!=0 && suhu !=1037 && oksigen !=0){
+        stat = 1;
+      }else{
+        stat = 0;
+      }
       Serial.print("Status : " + String(stat));
-      Serial.println("");
+      Serial.println();
       pesan = namaNode + "|" + detak + "|" + oksigen + "|" + suhu + "|" + stat + '\n';
       xbee.print(pesan);
-      temp = sekarang;   
+      temp = sekarang;
   }
 }
-
+  
 void bacaSensorDetak(){
-//  Serial.println("masuk detak");
-  pox.update();
-  if (onBeatDetected()) {
-    detak = pox.getHeartRate();
-    oksigen = pox.getSpO2();
-  }
-  delay(10);
+  detak = pox.getHeartRate();
+  oksigen = pox.getSpO2();
 }
 
 void bacaSensorSuhu(){
@@ -99,20 +102,10 @@ void bacaSensorSuhu(){
 
   if(curr_temperatur - prev_temperatur >= interval_temperatur){
       prev_temperatur = curr_temperatur;
-//      Serial.println("masuk suhu");
       suhu = mlx.readObjectTempC();
   }
 }
 
-//turn off max
-void matikanSensorDetak(){
-  pox.shutdown();
-}
-
-void nyalakanSensorDetak(){
-  pox.resume();
-}
-//turn on max
 
 //check status node apakah online atau tidak
 boolean checkStatus(){
@@ -129,12 +122,3 @@ boolean checkStatus(){
   }
   return isActive;
 }
-
-int enkapStatus(){
-  int res = 0;
-  if(checkStatus()){
-    res = 1;
-  }
-  return res;
-}
-//mengembalikan status node

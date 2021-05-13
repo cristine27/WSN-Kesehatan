@@ -42,6 +42,24 @@ bool onBeatDetected()
     return true;
 }
 
+//void checkStatus(){
+//    if(!pox.begin()) {
+//      Serial.println("FAILED");
+//      for(;;);
+//    } else {
+//      isDetakNyala = true;
+//      Serial.println("SUCCESS");
+//    }
+//        
+//    if(!mlx.begin()){
+//      Serial.println("MLX90164 FAILED");
+//      for(;;);
+//    } else {
+//      isTempNyala = true;
+//      Serial.println("SUCCESS");
+//    }
+//}
+
 void setup() {
   // put your setup code here, to run once:
   Wire.begin();
@@ -54,13 +72,16 @@ void setup() {
   pox.begin();//pox harus di letakkan sebelum mlx
 
   mlx.begin();  
- 
-  pox.setOnBeatDetectedCallback(onBeatDetected); 
+  
+//  checkStatus();
+
+  pox.setOnBeatDetectedCallback(onBeatDetected);
+  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:  
-
+//  Serial.println(checkStatus());
   pox.update();
   /*tanpa menggunakan trigger serial*/
   if(millis() - tsLastReport > REPORTING_PERIOD_MS){
@@ -69,6 +90,7 @@ void loop() {
   }
  
   bacaSensorSuhu();
+//  int stat = enkapStatus();
   
   sekarang = millis();
 
@@ -90,8 +112,37 @@ void loop() {
       xbee.print(pesan);
       temp = sekarang;
   }
-}
   
+  }
+
+  /*menggunakan trigger serial
+  bacaSensorDetak();
+  
+  if(Serial.available()>0){
+    bacaSensorSuhu();
+    
+    if(Serial.read()=='1'){
+      if(temp>0 && temp >10){
+        Serial.println("Hasil Pemantauan :");
+        Serial.print(namaNode1+" ");
+        Serial.print("BPM : " + String(detakTo) + "bpm | ");
+        Serial.print("Sa02 : " + String(oksigenTo) + "% | ");
+        Serial.print("Suhu : " + String(suhu) + "*c");
+        Serial.println();
+
+        detakTo = 0;
+        oksigenTo = 0;
+        temp = 0;
+      } else{
+        Serial.println("Mohon Tunggu Sebentar.."); 
+      }
+    }else{
+      Serial.println("error~");
+    }
+  }*/
+
+
+
 void bacaSensorDetak(){
   detak = pox.getHeartRate();
   oksigen = pox.getSpO2();
@@ -102,10 +153,19 @@ void bacaSensorSuhu(){
 
   if(curr_temperatur - prev_temperatur >= interval_temperatur){
       prev_temperatur = curr_temperatur;
+//      Serial.println("masuk suhu");
       suhu = mlx.readObjectTempC();
+//      Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
   }
 }
-
+//
+//void matikanSensorDetak(){
+//  pox.shutdown();
+//}
+//
+//void nyalakanSensorDetak(){
+//  pox.resume();
+//}
 
 //check status node apakah online atau tidak
 boolean checkStatus(){
@@ -122,3 +182,12 @@ boolean checkStatus(){
   }
   return isActive;
 }
+
+//int enkapStatus(){
+//  int res = 0;
+//  if(checkStatus()){
+//    res = 1;
+//  }
+//  return res;
+//}
+//mengembalikan status node
