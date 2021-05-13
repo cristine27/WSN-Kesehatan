@@ -51,10 +51,10 @@ s = serial.Serial(
 print("Aplikasi Base Station Berjalan")
 print("----------------------")
 print("Daftar Menu Perintah : ")
-print("1. Check status Node")
-print("2. Mulai Pemeriksaan")
-print("3. Stop Pemeriksaan")
-print("4. Keluar dari Aplikasi")
+#print("1. Check status Node")
+print("1. Mulai Pemeriksaan")
+print("2. Stop Pemeriksaan")
+print("3. Keluar dari Aplikasi")
 print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
 
@@ -67,10 +67,10 @@ def mainMenu():
     print("Aplikasi Base Station Berjalan")
     print("----------------------")
     print("Daftar Menu Perintah : ")
-    print("1. Check status Node")
-    print("2. Mulai Pemeriksaan")
-    print("3. Stop Pemeriksaan")
-    print("4. Keluar dari Aplikasi")
+    #print("1. Check status Node")
+    print("1. Mulai Pemeriksaan")
+    print("2. Stop Pemeriksaan")
+    print("3. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
     print("")
@@ -375,7 +375,7 @@ while appRunning:
     while menuShow:
         print(" ")
         #msg = s.readline().decode("ascii").strip()
-        if(perintah == "2"):
+        if(perintah == "1"):
             s.write(str.encode("a"))
             mapNodeName()
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
@@ -418,7 +418,7 @@ while appRunning:
                     resetCounter()
                     mainMenu()
 
-        elif perintah == "1":
+        elif perintah == "0":
             #getPasien()
             print("Mengirim perintah check status")
             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
@@ -462,7 +462,7 @@ while appRunning:
             mainMenu()
 
         # turn off sensing dan base station
-        elif perintah == "3":
+        elif perintah == "2":
             s.write(str.encode("c").strip())
             finding = False
             
@@ -483,7 +483,7 @@ while appRunning:
             mainMenu()
             
         # turn off basestation
-        elif perintah == "4":
+        elif perintah == "3":
              s.write(str.encode("c").strip())
              print("Mematikan Program Base Statsion")
              # os.system("Receiver.py")
