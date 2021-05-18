@@ -30,7 +30,7 @@
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
                         <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
-                        <?php for ($index = 0; $index < count($hasilPeriksa); $index++) { ?>
+                        <?php for ($index = 0; $index < $jumlahHasil; $index++) { ?>
                             <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa[$index]['waktu']; ?></h5>
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">

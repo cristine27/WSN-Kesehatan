@@ -54,9 +54,9 @@ class Pasien extends BaseController
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
-        foreach ($dataPeriksa->getResultArray() as $a) {
-            d($a);
-        }
+        // foreach ($dataPeriksa->getResultArray() as $a) {
+        //     d($a);
+        // }
         // $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $i = 0;
         $kumpulanhasil = [];
@@ -72,7 +72,7 @@ class Pasien extends BaseController
             }
             $i++;
         }
-        dd($i);
+        $jumlahHasil = $i;
         foreach ($kumpulanhasil as $hasil) {
             // d($hasil);
             $idNode = $hasil['idNode'];
@@ -91,6 +91,8 @@ class Pasien extends BaseController
         }
 
         if ($check == false) {
+            $jumlahHasil = 0;
+
             $kumpulanhasil = [
                 0 => [
                     'waktu' => "",
@@ -117,7 +119,8 @@ class Pasien extends BaseController
             'hasilPeriksa' => $kumpulanhasil,
             'parameter' => $kumpulanparam,
             'status' => $kumpulanStatus,
-            'flag' => $check
+            'flag' => $check,
+            'jumlahHasil' => $jumlahHasil
         ];
 
         //jika pasien tidak ada
