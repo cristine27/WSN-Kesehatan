@@ -48,7 +48,7 @@
                                         for ($i = 0; $i < count($parameter); $i++) { ?>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row"><?= $paramete[$index][$i]['namaParameter']; ?></th>
+                                                    <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
                                                     <td><?= $status[$index][$i]; ?></td>
                                                 </tr>
