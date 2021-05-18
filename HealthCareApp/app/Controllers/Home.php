@@ -112,6 +112,7 @@ class Home extends BaseController
 		if ($check == false) {
 			$kumpulanhasil = [
 				0 => [
+					'waktu' => "",
 					'hasil1' => 0,
 					'hasil2' => 0,
 					'hasil3' => 0,
