@@ -43,8 +43,6 @@
                                             </tr>
                                         </thead>
                                         <?php
-                                        $index = 0;
-                                        dd($parameter[$index][0]['namaParameter']);
                                         for ($i = 0; $i < 3; $i++) { ?>
                                             <tbody>
                                                 <tr>
