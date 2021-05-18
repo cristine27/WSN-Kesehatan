@@ -44,7 +44,7 @@
                                         </thead>
                                         <?php
                                         $index = 0;
-                                        // d($status);
+                                        dd($status[$index][0]);
                                         for ($i = 0; $i < 3; $i++) { ?>
                                             <tbody>
                                                 <tr>
