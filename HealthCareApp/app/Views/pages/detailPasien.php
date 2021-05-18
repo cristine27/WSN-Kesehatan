@@ -45,7 +45,7 @@
                                         <?php
                                         $index = 0;
                                         // d($status);
-                                        for ($i = 0; $i < count($parameter); $i++) { ?>
+                                        for ($i = 0; $i < count($parameter[$index]); $i++) { ?>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
