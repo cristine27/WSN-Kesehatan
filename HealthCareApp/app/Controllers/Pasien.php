@@ -73,11 +73,11 @@ class Pasien extends BaseController
             $i++;
         }
         $jumlahHasil = $i;
-        dd($kumpulanhasil);
-        foreach ($kumpulanhasil as $hasil) {
+
+        for ($j = 0; $j < $jumlahHasil; $j++) {
             // d($hasil);
-            $idNode = $hasil['idNode'];
-            // d($idNode);
+            $idNode = $kumpulanhasil[$j]['idNode'];
+            dd($idNode);
             $idParam = $this->memilikiModel->getParamid($idNode);
 
             $index = 0;
