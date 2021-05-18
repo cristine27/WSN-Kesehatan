@@ -89,7 +89,7 @@ class Pasien extends BaseController
                 // d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
                 $index++;
             }
-            dd($kumpulanparam);
+            // dd($kumpulanparam);
         }
 
         if ($check == false) {
