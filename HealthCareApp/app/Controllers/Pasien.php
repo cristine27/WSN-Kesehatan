@@ -53,11 +53,11 @@ class Pasien extends BaseController
 
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
-        $data = ($this->periksaModel->getAllHasil($id));
-        foreach ($data->getResultArray() as $a) {
+        $dataPeriksa = ($this->periksaModel->getAllHasil($id));
+        foreach ($dataPeriksa->getResultArray() as $a) {
             d($a);
         }
-        $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
+        // $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $i = 0;
         $kumpulanhasil = [];
         $kumpulanparam = [];
