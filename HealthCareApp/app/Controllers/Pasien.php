@@ -54,7 +54,7 @@ class Pasien extends BaseController
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $data = ($this->periksaModel->getAllHasil($id));
-        foreach ($data as $a) {
+        foreach ($data->getResultArray() as $a) {
             dd($a);
         }
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
