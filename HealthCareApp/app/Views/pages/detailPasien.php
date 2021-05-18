@@ -27,11 +27,6 @@
                     </div>
                 </div>
                 <div class="card w-75 mt-5">
-                    <?php
-                    d($hasilPeriksa[0]);
-                    d($parameter[0]);
-                    d($status[0]);
-                    dd("hasil") ?>
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
                         <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
@@ -53,9 +48,9 @@
                                         for ($i = 0; $i < count($parameter); $i++) { ?>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
+                                                    <th scope="row"><?= $paramete[$index][$i]['namaParameter']; ?></th>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                    <td><?= $status[$i]; ?></td>
+                                                    <td><?= $status[$index][$i]; ?></td>
                                                 </tr>
                                             </tbody>
                                         <?php } ?>
