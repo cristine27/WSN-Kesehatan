@@ -27,6 +27,11 @@
                     </div>
                 </div>
                 <div class="card w-75 mt-5">
+                    <?php
+                    d($hasilPeriksa);
+                    d($paramter);
+                    d($status);
+                    dd("hasil") ?>
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
                         <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
