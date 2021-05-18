@@ -8,7 +8,6 @@
         <div class="row">
             <div class="col">
                 <div class="container-fluid h-75">
-                    <?php d($dataPasien); ?>
                     <h1 class="display-4">Profile Pasien</h1>
                     <br><br>
                     <div class="col-md-8">

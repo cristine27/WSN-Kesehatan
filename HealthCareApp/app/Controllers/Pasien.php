@@ -50,8 +50,10 @@ class Pasien extends BaseController
 
     public function detail($id)
     {
+
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
+        dd($this->periksaModel->getAllHasil($id));
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $i = 0;
         $kumpulanhasil = [];
@@ -119,7 +121,6 @@ class Pasien extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
                 'tidak ditemukan');
         }
-
         return view('pages/detailPasien', $data);
     }
 

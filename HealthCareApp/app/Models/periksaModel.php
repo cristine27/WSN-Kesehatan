@@ -25,4 +25,12 @@ class periksaModel extends Model
         return $this->db->query($sql);
         // return $this->table('periksa')->like('idPasien', $id);
     }
+
+    public function getAllHasil($id)
+    {
+        $sql = "SELECT idNode, hasil1, hasil2, hasil3, waktu
+                    FROM periksa
+                        WHERE idPasien = $id";
+        return $this->db->query($sql);
+    }
 }
