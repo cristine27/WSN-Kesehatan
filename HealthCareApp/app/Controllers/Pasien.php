@@ -63,6 +63,7 @@ class Pasien extends BaseController
         $kumpulanparam = [];
         $kumpulanStatus = [];
         $check = false;
+
         foreach ($dataPeriksa->getResultArray() as $res) {
             // d($res);
             if ($res['idNode']) {
@@ -71,7 +72,7 @@ class Pasien extends BaseController
             }
             $i++;
         }
-
+        dd($i);
         foreach ($kumpulanhasil as $hasil) {
             // d($hasil);
             $idNode = $hasil['idNode'];
