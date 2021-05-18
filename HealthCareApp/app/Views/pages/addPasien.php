@@ -74,6 +74,9 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <a href="/Pasien">Kembali</a>
+        </div>
     </div>
 
     <?= $this->endsection(); ?>

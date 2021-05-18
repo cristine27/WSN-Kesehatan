@@ -82,6 +82,9 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <a class="btn btn-info w-25" href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
+        </div>
     </div>
 
     <?= $this->endsection(); ?>
