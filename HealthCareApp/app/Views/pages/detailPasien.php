@@ -28,9 +28,9 @@
                 </div>
                 <div class="card w-75 mt-5">
                     <?php
-                    d($hasilPeriksa);
-                    d($parameter);
-                    d($status);
+                    d($hasilPeriksa[0]);
+                    d($parameter[0]);
+                    d($status[0]);
                     dd("hasil") ?>
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
                     <div class="card-body">
