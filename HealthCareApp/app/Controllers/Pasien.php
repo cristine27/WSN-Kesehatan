@@ -77,9 +77,9 @@ class Pasien extends BaseController
         for ($j = 0; $j < $jumlahHasil; $j++) {
             // d($hasil);
             $idNode = $kumpulanhasil[$j]['idNode'];
-            dd($idNode);
-            $idParam = $this->memilikiModel->getParamid($idNode);
 
+            $idParam = $this->memilikiModel->getParamid($idNode);
+            dd($idParam);
             $index = 0;
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
