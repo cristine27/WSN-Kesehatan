@@ -344,11 +344,13 @@ class Pasien extends BaseController
             $idParam = $this->memilikiModel->getParamid($idNode);
             // dd($idParam);
             $index = 0;
-            d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
                 d($namaParam);
+                d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+                d($this->setStatus($kumpulanparam[$j][$index], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $kumpulanStatus[$j][$index] = $this->setStatus($kumpulanparam[$j][$index], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
