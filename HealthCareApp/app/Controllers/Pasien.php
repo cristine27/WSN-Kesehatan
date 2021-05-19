@@ -393,6 +393,6 @@ class Pasien extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
                 'tidak ditemukan');
         }
-        return view('pages/detailPasien', $data);
+        return view('pages/riwayatPasien', $data);
     }
 }

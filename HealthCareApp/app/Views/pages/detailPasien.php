@@ -18,7 +18,7 @@
                         <p class="card-text"><b>Email : </b> <?= $pasien['email']; ?></p>
                         <p class="card-text"><b>Password : </b> <?= $pasien['password']; ?></p>
 
-                        <a href="/Pasien/editPasien/<?= $pasien['idPasien']; ?>" class="btn btn-info">Riwayat Periksa</a>
+                        <a href="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>" class="btn btn-info">Riwayat Periksa</a>
                         <a href="/Pasien/editPasien/<?= $pasien['idPasien']; ?>" class="btn btn-warning">Edit</a>
                         <form action="/Pasien/<?= $pasien['idPasien']; ?>" method="POST" class="d-inline">
                             <?= csrf_field(); ?>
