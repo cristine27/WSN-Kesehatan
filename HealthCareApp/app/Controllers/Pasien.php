@@ -348,7 +348,8 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
-                $kumpulanStatus[$j][$index] = $this->setStatus($namaParam, $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+                d($namaParam);
+                $kumpulanStatus[$j][$index] = $this->setStatus($kumpulanparam[$j][$index], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
                 $index++;
