@@ -26,7 +26,6 @@
                                                 <th scope="col">Parameter</th>
                                                 <th scope="col">Hasil</th>
                                                 <th scope="col">Status</th>
-                                                <th><span class="badge badge-success">Success</span></th>
                                             </tr>
                                         </thead>
                                         <?php
@@ -35,7 +34,9 @@
                                                 <tr>
                                                     <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                    <td><span class="badge badge-<?= $status[$index][$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$index][$i]; ?></span></td>
+                                                    <td>
+                                                        <p class="badge badge-<?= $status[$index][$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$index][$i]; ?></p>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         <?php } ?>
