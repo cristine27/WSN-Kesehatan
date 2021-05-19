@@ -160,18 +160,20 @@ class Home extends BaseController
 		$value = intval($value);
 		$res = "normal";
 		if ($param == "detak jantung") {
-			if ($value > 100) {
+			if ($value >= 150) {
 				$res = "tidak normal";
 			}
 		} else if ($param == "oksigen") {
-			if ($value < 90) {
+			if ($value < 95) {
 				$res = "tidak normal";
 			}
 		} else {
-			if ($value < 30 && $value >= 39) {
+			if ($value <= 35 || $value >= 38) {
 				$res = "tidak normal";
 			}
 		}
+		d($value);
+		d($res);
 		return $res;
 	}
 

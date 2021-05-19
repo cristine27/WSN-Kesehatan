@@ -26,12 +26,6 @@
                                         <label for="password" class="visually-hidden">Password</label>
                                         <input type="password" id="password" name="password" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Password" required>
                                         <br>
-                                        <div class="checkbox mb-3">
-                                            <label>
-                                                <input type="checkbox" id="remember"> Remember me
-                                            </label>
-                                        </div>
-                                        <br>
                                         <div class="invalid-feedback">
                                             <b><?= $pesan; ?></b>
                                         </div>
