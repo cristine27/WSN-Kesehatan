@@ -29,7 +29,9 @@
                                                 <tr>
                                                     <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                    <td><?= $status[$i]; ?></td>
+                                                    <td>
+                                                        <p class="text-<?= $status[$index][$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$i]; ?></p>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         <?php } ?>
