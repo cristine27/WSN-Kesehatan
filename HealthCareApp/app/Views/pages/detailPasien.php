@@ -18,6 +18,7 @@
                         <p class="card-text"><b>Email : </b> <?= $pasien['email']; ?></p>
                         <p class="card-text"><b>Password : </b> <?= $pasien['password']; ?></p>
 
+                        <a href="/Pasien/editPasien/<?= $pasien['idPasien']; ?>" class="btn btn-info">Riwayat Periksa</a>
                         <a href="/Pasien/editPasien/<?= $pasien['idPasien']; ?>" class="btn btn-warning">Edit</a>
                         <form action="/Pasien/<?= $pasien['idPasien']; ?>" method="POST" class="d-inline">
                             <?= csrf_field(); ?>
@@ -26,66 +27,11 @@
                         </form>
                     </div>
                 </div>
-                <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Link with href
-                    </a>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Button with data-target
-                    </button>
-                </p>
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                    </div>
-                </div>
-                <!-- <div class="card w-75 mt-5"> -->
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Riwayat Pemeriksaan
-                </button>
-                <div class="container">
-
-                    <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <h2>Test</h2>
-                        </div>
-                    </div>
-                    <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
-                    <?php for ($index = 0; $index < $jumlahHasil; $index++) { ?>
-                        <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa[$index]['waktu']; ?></h5>
-                        <div class="col d-flex justify-content-start">
-                            <div class="w-75 table-responsive">
-                                <table class="table table-striped text-center">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th scope="col">Parameter</th>
-                                            <th scope="col">Hasil</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    for ($i = 0; $i < 3; $i++) { ?>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
-                                                <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                <td><?= $status[$index][$i]; ?></td>
-                                            </tr>
-                                        </tbody>
-                                    <?php } ?>
-                                </table>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="row">
-        <a href="/Pasien">Kembali</a>
-    </div>
+        <div class="row">
+            <a href="/Pasien">Kembali</a>
+        </div>
     </div>
 
     <?= $this->endsection(); ?>
