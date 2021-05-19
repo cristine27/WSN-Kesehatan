@@ -26,13 +26,14 @@
                         </form>
                     </div>
                 </div>
-                <div class="card w-75 mt-5">
+                <!-- <div class="card w-75 mt-5"> -->
+                <div class="container">
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Riwayat Pemeriksaan
                     </button>
                     <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
                     <div class="collapse" id="collapseExample">
-                        <div class="card-body">
+                        <div class="card card-body">
                             <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
                             <?php for ($index = 0; $index < $jumlahHasil; $index++) { ?>
                                 <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa[$index]['waktu']; ?></h5>
