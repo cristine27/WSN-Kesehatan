@@ -26,6 +26,7 @@
                                                 <th scope="col">Parameter</th>
                                                 <th scope="col">Hasil</th>
                                                 <th scope="col">Status</th>
+                                                <th><span class="badge badge-success">Success</span></th>
                                             </tr>
                                         </thead>
                                         <?php
