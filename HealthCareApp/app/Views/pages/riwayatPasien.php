@@ -35,7 +35,7 @@
                                                     <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
                                                     <td>
-                                                        <p class="badge badge-<?= $status[$index][$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$index][$i]; ?></p>
+                                                        <p class="text-<?= $status[$index][$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$index][$i]; ?></p>
                                                     </td>
                                                 </tr>
                                             </tbody>
