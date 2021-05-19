@@ -34,7 +34,7 @@
                                                 <tr>
                                                     <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
-                                                    <td><?= $status[$index][$i]; ?></td>
+                                                    <td><span class="badge badge-<?= $status[$index][$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$index][$i]; ?></span></td>
                                                 </tr>
                                             </tbody>
                                         <?php } ?>
