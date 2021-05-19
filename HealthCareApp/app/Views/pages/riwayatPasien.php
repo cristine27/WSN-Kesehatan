@@ -6,7 +6,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <a href="/Pasien/detail/<?= $dataPasien['idPasien']; ?>">Kembali</a>
+            <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
         </div>
         <div class="row">
             <div class="col">
