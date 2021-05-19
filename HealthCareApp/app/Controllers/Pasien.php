@@ -297,15 +297,15 @@ class Pasien extends BaseController
         $value = intval($value);
         $res = "normal";
         if ($param == "detak jantung") {
-            if ($value > 100) {
+            if ($value >= 150) {
                 $res = "tidak normal";
             }
         } else if ($param == "oksigen") {
-            if ($value < 90) {
+            if ($value < 95) {
                 $res = "tidak normal";
             }
         } else {
-            if ($value < 30 && $value >= 39) {
+            if ($value <= 30 || $value >= 38) {
                 $res = "tidak normal";
             }
         }
@@ -348,8 +348,7 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
-                d($namaParam);
-                d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+
                 d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
