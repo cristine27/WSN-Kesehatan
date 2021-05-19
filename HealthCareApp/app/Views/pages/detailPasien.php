@@ -27,10 +27,11 @@
                     </div>
                 </div>
                 <!-- <div class="card w-75 mt-5"> -->
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Riwayat Pemeriksaan
+                </button>
                 <div class="container">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Riwayat Pemeriksaan
-                    </button>
+
                     <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
