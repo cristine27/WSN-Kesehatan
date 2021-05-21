@@ -11,10 +11,14 @@
         });
     });
 
-    function getDate() {
-        $var = $("tgl_awal").getStartDate();
-        window.print($var);
-    }
+    $("#tgl_mulai").on('changeDate', function(selected) {
+        var startDate = new Date(selected.date.valueOf());
+        window.print(startDate);
+        $("#tgl_akhir").datepicker('setStartDate', startDate);
+        if ($("#tgl_mulai").val() > $("#tgl_akhir").val()) {
+            $("#tgl_akhir").val($("#tgl_mulai").val());
+        }
+    });
 </script>
 
 <body>
@@ -43,7 +47,6 @@
                         <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" name="tgl_akhir">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="getDate()">Submit</button>
             </div>
         </div>
         <div class="row">
