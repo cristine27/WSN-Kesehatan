@@ -295,7 +295,7 @@ class Pasien extends BaseController
     public function setStatus($param, $value)
     {
         $value = intval($value);
-        $res = "detak normal";
+        $res = "normal";
         if ($param == "detak jantung") {
             if ($value >= 150) {
                 print($value);
@@ -350,7 +350,8 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
-
+                d($namaParam['namaParameter']);
+                d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
