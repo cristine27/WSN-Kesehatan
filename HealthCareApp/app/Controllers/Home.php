@@ -92,9 +92,9 @@ class Home extends BaseController
 				$kumpulanparam[$index] = $namaParam;
 				$kumpulanStatus[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)]);
 				// d($hasil['hasil' . strval($index + 1)]);
-				d($namaParam['namaParameter']);
-				d($hasil['hasil' . strval($index + 1)]);
-				d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
+				// d($namaParam['namaParameter']);
+				// d($hasil['hasil' . strval($index + 1)]);
+				// d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
 				$index++;
 			}
 		}
@@ -163,17 +163,15 @@ class Home extends BaseController
 		$res = "normal";
 		if ($param == "Detak jantung") {
 			if ($value >= 150) {
-				print($value);
-				print($param);
-				$res = "detak";
+				$res = "detak cepat";
 			}
 		} else if ($param == "Saturasi Oksigen") {
-			if ($value <= 90) {
-				$res = "oksigen";
+			if ($value <= 94) {
+				$res = "warning";
 			}
 		} else if ($param == "Temperatur") {
 			if ($value >= 38) {
-				$res = "temperatur";
+				$res = "warning";
 			}
 		}
 		return $res;

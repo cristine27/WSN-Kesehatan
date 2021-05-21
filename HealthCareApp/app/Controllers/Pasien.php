@@ -298,17 +298,15 @@ class Pasien extends BaseController
         $res = "normal";
         if ($param == "Detak jantung") {
             if ($value >= 150) {
-                print($value);
-                print($param);
-                $res = "detak";
+                $res = "detak cepat";
             }
         } else if ($param == "Saturasi Oksigen") {
-            if ($value <= 90) {
-                $res = "oksigen";
+            if ($value <= 94) {
+                $res = "warning";
             }
         } else if ($param == "Temperatur") {
             if ($value >= 38) {
-                $res = "temperatur";
+                $res = "warning";
             }
         }
         return $res;
@@ -350,12 +348,12 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
-                d($namaParam['namaParameter']);
-                d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+                // d($namaParam['namaParameter']);
+                // d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
-                d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
+                // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $index++;
             }
             // dd($kumpulanparam);
