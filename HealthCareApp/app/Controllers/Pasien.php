@@ -314,6 +314,7 @@ class Pasien extends BaseController
 
     public function riwayatPasien($id)
     {
+        $currentPage = $this->request->getVar('page_pasien') ? $this->request->getVar('page_pasien') : 1;
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
@@ -381,15 +382,18 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-
+        $periksa = $this->periksaModel;
         $data = [
-            'title' => 'Detail Komik',
+            'title' => 'Riwayat Pasien',
             'pasien' => $dataPasien,
             'hasilPeriksa' => $kumpulanhasil,
             'parameter' => $kumpulanparam,
             'status' => $kumpulanStatus,
             'flag' => $check,
-            'jumlahHasil' => $jumlahHasil
+            'jumlahHasil' => $jumlahHasil,
+            'pasien' => $periksa->getPaginate(6),
+            'pager' => $periksa->getPager(),
+            'currentPage' => $currentPage
         ];
 
         //jika pasien tidak ada

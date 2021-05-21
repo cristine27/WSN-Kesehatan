@@ -33,4 +33,19 @@ class periksaModel extends Model
                         WHERE idPasien = $id";
         return $this->db->query($sql);
     }
+
+    public function getPager()
+    {
+        return $this->pager;
+    }
+
+    public function getPaginate()
+    {
+        return $this->paginate(6, 'periksa');
+    }
+
+    public function searchHasilByTime($time)
+    {
+        return $this->table('periksa')->like('waktu', $time);
+    }
 }

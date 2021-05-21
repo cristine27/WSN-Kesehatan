@@ -21,6 +21,7 @@
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">
                                     <table class="table table-striped text-center">
+                                        <?php $i = 1 + (6 * ($currentPage - 1)) ?>
                                         <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">Parameter</th>
@@ -41,6 +42,7 @@
                                             </tbody>
                                         <?php } ?>
                                     </table>
+                                    <?= $pager->links('periksa', 'pasien_pagination'); ?>
                                 </div>
                             </div>
                         <?php } ?>
