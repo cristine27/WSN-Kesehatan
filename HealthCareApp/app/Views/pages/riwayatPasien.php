@@ -10,6 +10,11 @@
             todayHighlight: true,
         });
     });
+
+    function getDate() {
+        $var = $("tgl_awal").getStartDate();
+        window.print($var);
+    }
 </script>
 
 <body>
@@ -18,7 +23,8 @@
             <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col w-50">
+                <h3>Filter</h3>
                 <div class="form-group">
                     <label>Tgl Awal</label>
                     <div class="input-group date">
@@ -37,6 +43,7 @@
                         <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" name="tgl_akhir">
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary" onclick="getDate()">Submit</button>
             </div>
         </div>
         <div class="row">
