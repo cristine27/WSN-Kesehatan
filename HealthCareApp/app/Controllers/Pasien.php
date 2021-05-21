@@ -314,7 +314,6 @@ class Pasien extends BaseController
 
     public function riwayatPasien($id)
     {
-        $currentPage = $this->request->getVar('page_pasien') ? $this->request->getVar('page_pasien') : 1;
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
@@ -385,17 +384,14 @@ class Pasien extends BaseController
         $periksa = $this->periksaModel;
         $data = [
             'title' => 'Riwayat Pasien',
-            'pasien' => $dataPasien,
+            'pasien' => $dataPasien['idPasien'],
             'hasilPeriksa' => $kumpulanhasil,
             'parameter' => $kumpulanparam,
             'status' => $kumpulanStatus,
             'flag' => $check,
-            'jumlahHasil' => $jumlahHasil,
-            'pasien' => $periksa->getPaginate(6),
-            'pager' => $periksa->getPager(),
-            'currentPage' => $currentPage
+            'jumlahHasil' => $jumlahHasil
         ];
-        d($dataPasien);
+
         //jika pasien tidak ada
         if (empty($data['pasien'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .

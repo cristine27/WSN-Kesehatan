@@ -2,11 +2,42 @@
 
 <?= $this->section('content'); ?>
 </head>
+<script type="text/javascript">
+    $(function() {
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
+</script>
 
 <body>
     <div class="container">
         <div class="row">
             <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Tgl Awal</label>
+                    <div class="input-group date">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                        <input placeholder="masukkan tanggal Awal" type="text" class="form-control datepicker" name="tgl_awal">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tgl Akhir</label>
+                    <div class="input-group date">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                        <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" name="tgl_akhir">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col">
@@ -21,7 +52,6 @@
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">
                                     <table class="table table-striped text-center">
-                                        <?php $i = 1 + (6 * ($currentPage - 1)) ?>
                                         <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">Parameter</th>
@@ -42,7 +72,6 @@
                                             </tbody>
                                         <?php } ?>
                                     </table>
-                                    <?= $pager->links('periksa', 'pasien_pagination'); ?>
                                 </div>
                             </div>
                         <?php } ?>
