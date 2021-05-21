@@ -261,13 +261,14 @@ def InsertDb(x):
     #print("idNode")
     #idNode = str(Node.get(node,None))
     
-    idPasien = " ".join(map(str, Pasien.get(node,None)))
+    idPasien = "".join(map(str, Pasien.get(node,None)))
     
-    idNode = " ".join(map(str, Node.get(node,None)))
+    idNode = "".join(map(str, Node.get(node,None)))
     #idNode = int(idNode[1])
     #print(idNode)
     #if(len(iNode)==4):
-        
+    print("idPasien="+idPasien)
+    print("idNode="+idNode)
     #else:
         #idNode = int(idNode[1,2])
     detak = str(detak)
@@ -367,9 +368,10 @@ def insertDataNodePasien(x):
 
 def checkIfAttached(x):
     check = False
-    potong = x.split(",")
+    potong = x.split("|")
+    print(potong)
     if(len(potong)>0):
-        if(potong[4]==0):
+        if(potong[4]=='0'):
             check = True
     return check
                 
@@ -377,7 +379,7 @@ def checkIfAttached(x):
     
 
 # jumlah threads(jumlah max req dari dari app)
-POOL_SIZE = 10
+POOL_SIZE = 20
 
 while appRunning:
     mapNodeName()
@@ -413,6 +415,7 @@ while appRunning:
                     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                         msg = s.readline().decode("ascii").strip()
                         #check apakah alat terpasang dengan benar
+                        time.sleep(5)
                         status = checkIfAttached(msg)
                         if status:
                             break
