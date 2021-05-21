@@ -18,6 +18,16 @@
             }
         });
     });
+
+    $(document).ready(function() {
+        var tglAwal = $('input[name="tgl_awal"]'); //our date input has the name "tgl_awal"
+        var tglAkhir = $('input[name="tgl_akhir"]'); //our date input has the name "tgl_akhir"
+
+        tglAwal.getStartDate();
+        tglAkhir.getEndDate();
+        console.log(tglAwal);
+        console.log(tglAkhir);
+    })
 </script>
 
 <body>
@@ -28,24 +38,30 @@
         <div class="row">
             <div class="col w-50">
                 <h3>Filter</h3>
-                <div class="form-group">
-                    <label>Tgl Awal</label>
-                    <div class="input-group date">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Tgl Awal</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                            <input placeholder="masukkan tanggal Awal" type="text" class="form-control datepicker" name="tgl_awal">
                         </div>
-                        <input placeholder="masukkan tanggal Awal" type="text" class="form-control datepicker" name="tgl_awal">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Tgl Akhir</label>
-                    <div class="input-group date">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
+                    <div class="form-group">
+                        <label>Tgl Akhir</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                            <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" name="tgl_akhir">
                         </div>
-                        <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" name="tgl_akhir">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <!-- Submit button -->
+                        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row">
