@@ -296,17 +296,17 @@ class Pasien extends BaseController
     {
         $value = intval($value);
         $res = "normal";
-        if ($param == "detak jantung") {
+        if ($param == "Detak jantung") {
             if ($value >= 150) {
                 print($value);
                 print($param);
                 $res = "detak";
             }
-        } else if ($param == "oksigen") {
+        } else if ($param == "Saturasi Oksigen") {
             if ($value <= 90) {
                 $res = "oksigen";
             }
-        } else {
+        } else if ($param == "Temperatur") {
             if ($value >= 38) {
                 $res = "temperatur";
             }
