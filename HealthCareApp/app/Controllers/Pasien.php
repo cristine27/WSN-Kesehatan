@@ -355,7 +355,7 @@ class Pasien extends BaseController
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
-                // d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
+                d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $index++;
             }
             // dd($kumpulanparam);
@@ -383,7 +383,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-        // dd($kumpulanStatus);
+        dd($kumpulanStatus);
         $data = [
             'title' => 'Detail Komik',
             'pasien' => $dataPasien,
