@@ -381,7 +381,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-        dd($kumpulanStatus);
+
         $data = [
             'title' => 'Detail Komik',
             'pasien' => $dataPasien,

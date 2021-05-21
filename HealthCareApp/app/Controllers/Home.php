@@ -140,7 +140,7 @@ class Home extends BaseController
 			'status' => $kumpulanStatus,
 			'flag' => $check
 		];
-		d($kumpulanStatus);
+
 		return view('pages/pemantauanPasien', $data);
 	}
 
