@@ -300,15 +300,15 @@ class Pasien extends BaseController
             if ($value >= 150) {
                 print($value);
                 print($param);
-                $res = "detak cepat";
+                $res = "detak";
             }
         } else if ($param == "oksigen") {
             if ($value <= 90) {
-                $res = "tidak normal";
+                $res = "oksigen";
             }
         } else {
             if ($value >= 38) {
-                $res = "tidak normal";
+                $res = "temperatur";
             }
         }
         return $res;
