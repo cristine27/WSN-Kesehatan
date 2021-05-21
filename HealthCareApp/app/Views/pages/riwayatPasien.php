@@ -23,8 +23,6 @@
         var tglAwal = $('input[name="tgl_awal"]'); //our date input has the name "tgl_awal"
         var tglAkhir = $('input[name="tgl_akhir"]'); //our date input has the name "tgl_akhir"
 
-        tglAwal.getStartDate();
-        tglAkhir.getEndDate();
         console.log(tglAwal);
         console.log(tglAkhir);
     })
