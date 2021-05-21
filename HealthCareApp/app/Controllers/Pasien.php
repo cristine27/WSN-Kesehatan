@@ -395,7 +395,7 @@ class Pasien extends BaseController
             'pager' => $periksa->getPager(),
             'currentPage' => $currentPage
         ];
-
+        d($dataPasien);
         //jika pasien tidak ada
         if (empty($data['pasien'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
