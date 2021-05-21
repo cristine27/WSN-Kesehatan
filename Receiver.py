@@ -111,6 +111,7 @@ def validateData(x):
     # print("masuk function validate")
     res = False
     potong = x.split("|")
+    #isi data = namaNode | detak | oksigen | temperatur | status
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0 and potong[4] != -1):
             print("masuk function validate")
@@ -363,6 +364,14 @@ def insertDataNodePasien(x):
                 global insertDataPasien
                 insertDataPasien = False
                 mainMenu()
+
+def checkIfAttached(x):
+    check = False
+    potong = x.split(",")
+    if(len(potong)>0):
+        if(potong[4]==0):
+            check = True
+    return check
                 
             
     
@@ -403,17 +412,26 @@ while appRunning:
                     time.sleep(5)
                     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                         msg = s.readline().decode("ascii").strip()
-                        time.sleep(1)
-                        future = executor.submit(getDataSense, msg)
-                        # if(future.done()):
-                        #print("future selesai")
-                        time.sleep(1)
-                        data = future.result()
-                        #print(data)
+                        #check apakah alat terpasang dengan benar
+                        status = checkIfAttached(msg)
+                        if status:
+                            break
+                        else:
+                            time.sleep(1)
+                            future = executor.submit(getDataSense, msg)
+                            # if(future.done()):
+                            #print("future selesai")
+                            time.sleep(1)
+                            data = future.result()
+                            #print(data)
 
-                        if future.done() and data != None:
-                            #print("masuk submit")
-                            future2 = executor.submit(InsertDb, data)
+                            if future.done() and data != None:
+                                #print("masuk submit")
+                                future2 = executor.submit(InsertDb, data)
+                
+                if status:
+                    print("Perangkat Tidak Tersambung, Silahkan Periksa Kembali Perangkat..")
+                    mainMenu()
                 if counter==20:
                     resetCounter()
                     mainMenu()
