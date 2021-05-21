@@ -381,10 +381,10 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-        $periksa = $this->periksaModel;
+
         $data = [
             'title' => 'Riwayat Pasien',
-            'pasien' => $dataPasien['idPasien'],
+            'pasien' => $dataPasien,
             'hasilPeriksa' => $kumpulanhasil,
             'parameter' => $kumpulanparam,
             'status' => $kumpulanStatus,
