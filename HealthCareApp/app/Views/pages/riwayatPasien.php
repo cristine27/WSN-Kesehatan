@@ -8,9 +8,10 @@
             pageLength: 2,
             ordering: false,
             lengthMenu: [
-                [2, 4],
-                [2, 4]
-            ]
+                [10, 25, 50, -1],
+                [10, 25, 50, "ALL"]
+            ],
+            pagingType: "full_numbers",
         })
     });
 </script>
