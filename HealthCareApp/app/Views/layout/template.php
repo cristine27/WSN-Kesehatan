@@ -24,7 +24,8 @@
     <script src="../dataTables/jquery.dataTables.min.js"></script>
     <script src="../dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="../dataTables/dataTables.responsive.min.js"></script>
-    <script src="../dataTables/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+    <!-- <script src="../dataTables/responsive.bootstrap4.min.js"></script> -->
     <link rel='stylesheet' type='text/css' href='../dataTables/dataTables.bootstrap4.min.css' />
     <link rel='stylesheet' type='text/css' href='../dataTables/responsive.bootstrap4.min.css' />
 
