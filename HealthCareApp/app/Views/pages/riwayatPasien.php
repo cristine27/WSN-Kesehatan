@@ -19,7 +19,7 @@
         });
     });
 
-    document.getElementById("dateForm").onsubmit = function() {
+    $(document).getElementById("dateForm").onsubmit = function() {
         filterDate()
     };
 
