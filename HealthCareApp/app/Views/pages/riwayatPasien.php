@@ -6,17 +6,11 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="text-center">
+            <div class="text-center my-3">
                 <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
             </div>
         </div>
-        <?php
-        foreach ($parameter as $key => $value) {
-            foreach ($value as $key => $x) {
-                d($x);
-            }
-        }
-        ?>
+
         <!-- <div class="row">
             <div class="col w-50">
                 <h3>Filter</h3>
