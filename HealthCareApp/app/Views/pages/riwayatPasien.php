@@ -19,12 +19,16 @@
         });
     });
 
-    $(document).ready(function() {
+    document.getElementById("dateForm").onsubmit = function() {
+        filterDate()
+    };
+
+    function filterDate() {
         var tglAwal = $('input[name="tgl_awal"]'); //our date input has the name "tgl_awal"
         var tglAkhir = $('input[name="tgl_akhir"]'); //our date input has the name "tgl_akhir"
 
         alert("ini tanggal awal ", tglAwal);
-    })
+    }
 </script>
 
 <body>
@@ -35,7 +39,7 @@
         <div class="row">
             <div class="col w-50">
                 <h3>Filter</h3>
-                <form method="POST">
+                <form method="POST" id="dateForm">
                     <div class="form-group">
                         <label>Tgl Awal</label>
                         <div class="input-group date">
