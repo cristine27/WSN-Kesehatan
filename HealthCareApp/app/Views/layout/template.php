@@ -21,6 +21,14 @@
     <!--jquery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
+    <!-- Data Table -->
+    <script src="../dataTables/jquery.dataTables.min.js"></script>
+    <script src="../dataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="../dataTables/dataTables.responsive.min.js"></script>
+    <script src="../dataTables/responsive.bootstrap4.min.js"></script>
+    <link rel='stylesheet' type='text/css' href='../dataTables/dataTables.bootstrap4.min.css' />
+    <link rel='stylesheet' type='text/css' href='../dataTables/responsive.bootstrap4.min.css' />
+
     <title><?= $title; ?></title>
 
     <!-- my js -->

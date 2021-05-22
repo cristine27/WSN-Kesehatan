@@ -3,38 +3,24 @@
 <?= $this->section('content'); ?>
 </head>
 <script type="text/javascript">
-    $(function() {
-        $(".datepicker").datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            todayHighlight: true,
-        });
-
-        $("#tgl_mulai").on('changeDate', function(selected) {
-            var startDate = new Date(selected.date.valueOf());
-            $("#tgl_akhir").datepicker('setStartDate', startDate);
-            if ($("#tgl_mulai").val() > $("#tgl_akhir").val()) {
-                $("#tgl_akhir").val($("#tgl_mulai").val());
-            }
-        });
+    $(document).ready(function() {
+        $('#table_riwayat').DataTable({
+            pageLength: 5,
+            ordering: false,
+            lengthMenu: [
+                [5, 10],
+                [5, 10]
+            ]
+        })
     });
-
-    $(document).getElementById("dateForm").onsubmit = function() {
-        filterDate()
-    };
-
-    function filterDate() {
-        var tglAwal = $('input[name="tgl_awal"]'); //our date input has the name "tgl_awal"
-        var tglAkhir = $('input[name="tgl_akhir"]'); //our date input has the name "tgl_akhir"
-
-        alert("ini tanggal awal ", tglAwal);
-    }
 </script>
 
 <body>
     <div class="container">
         <div class="row">
-            <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
+            <div class="text-center">
+                <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
+            </div>
         </div>
         <!-- <div class="row">
             <div class="col w-50">
@@ -75,7 +61,7 @@
                             <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa[$index]['waktu']; ?></h5>
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">
-                                    <table class="table table-striped text-center">
+                                    <table class="table table-striped text-center" id="table_riwayat">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">Parameter</th>
