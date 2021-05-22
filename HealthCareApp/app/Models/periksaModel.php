@@ -30,7 +30,8 @@ class periksaModel extends Model
     {
         $sql = "SELECT idNode, hasil1, hasil2, hasil3, waktu
                     FROM periksa
-                        WHERE idPasien = $id";
+                        WHERE idPasien = $id
+                            ORDER BY waktu desc";
         return $this->db->query($sql);
     }
 
