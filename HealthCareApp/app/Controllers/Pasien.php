@@ -320,7 +320,7 @@ class Pasien extends BaseController
         $coba = 0;
         if ($tanggal != "") {
             // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
-            $coba = $this->periksaModel->getWaktu($tanggal);
+            $coba = $this->periksaModel->getWaktu($id, $tanggal);
         }
         d($coba);
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));

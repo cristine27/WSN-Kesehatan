@@ -45,9 +45,9 @@ class periksaModel extends Model
         return $this->db->query($sql);
     }
 
-    public function getWaktu($waktu)
+    public function getWaktu($id, $waktu)
     {
-        $sql = "SELECT CAST(waktu as date) FROM periksa WHERE waktu=$waktu";
+        $sql = "SELECT CAST(waktu as date) FROM periksa WHERE waktu=$waktu and idPasien=$id";
 
         return $this->db->query($sql);
     }
