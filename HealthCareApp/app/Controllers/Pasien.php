@@ -318,7 +318,6 @@ class Pasien extends BaseController
         $dataPasien = $this->pasienModel->getPasien($id);
         if ($tanggal != "") {
             $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
-            dd($dataPeriksa);
         } else {
             $dataPeriksa = ($this->periksaModel->getAllHasil($id));
         }
@@ -336,6 +335,7 @@ class Pasien extends BaseController
 
         foreach ($dataPeriksa->getResultArray() as $res) {
             // d($res);
+            d($res);
             if ($res['idNode']) {
                 $check = true;
                 $kumpulanhasil[$i] = $res;
