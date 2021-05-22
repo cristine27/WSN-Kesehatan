@@ -318,10 +318,11 @@ class Pasien extends BaseController
         d($tanggal);
         $dataPasien = $this->pasienModel->getPasien($id);
         if ($tanggal != "") {
-            $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
-        } else {
-            $dataPeriksa = ($this->periksaModel->getAllHasil($id));
+            // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
+            $coba = $this->periksaModel->getWaktu($tanggal);
         }
+        d($coba);
+        $dataPeriksa = ($this->periksaModel->getAllHasil($id));
         // d($dataPasien);
 
         // foreach ($dataPeriksa->getResultArray() as $a) {

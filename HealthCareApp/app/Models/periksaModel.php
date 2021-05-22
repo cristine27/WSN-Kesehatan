@@ -44,4 +44,11 @@ class periksaModel extends Model
 
         return $this->db->query($sql);
     }
+
+    public function getWaktu($waktu)
+    {
+        $sql = "SELECT CAST(waktu as date) FROM periksa WHERE waktu=$waktu";
+
+        return $this->db->query($sql);
+    }
 }

@@ -21,13 +21,13 @@
     <script src="../Bootstrap 4/bootstrap.min.js"></script>
 
     <!-- Data Table -->
-    <script src="../dataTables/jquery.dataTables.min.js"></script>
-    <script src="../dataTables/dataTables.bootstrap4.min.js"></script>
-    <script src="../dataTables/dataTables.responsive.min.js"></script>
+    <script src="../public/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../public/dataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="../public/dataTables/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
     <!-- <script src="../dataTables/responsive.bootstrap4.min.js"></script> -->
-    <link rel='stylesheet' type='text/css' href='../dataTables/dataTables.bootstrap4.min.css' />
-    <link rel='stylesheet' type='text/css' href='../dataTables/responsive.bootstrap4.min.css' />
+    <link rel='stylesheet' type='text/css' href='../public/dataTables/dataTables.bootstrap4.min.css' />
+    <link rel='stylesheet' type='text/css' href='../public/dataTables/responsive.bootstrap4.min.css' />
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
