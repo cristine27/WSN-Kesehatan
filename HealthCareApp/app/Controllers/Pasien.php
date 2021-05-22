@@ -314,6 +314,10 @@ class Pasien extends BaseController
 
     public function riwayatPasien($id)
     {
+        $tanggal = $this->request->getVar('tanggal');
+        if ($tanggal != 0) {
+            d($tanggal);
+        }
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));

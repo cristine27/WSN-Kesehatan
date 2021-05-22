@@ -44,8 +44,14 @@
             <div class="col">
                 <h1>Riwayat Pemeriksaan</h1>
                 <div class="container">
-                    <label for="filter">Filter Tanggal : </label>
-                    <input type="date" id="filter" name="tanggal">
+                    <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>">
+                        <div class="form-group">
+                            <label for="filter">Filter Tanggal : </label>
+                            <input type="date" id="filter" name="tanggal">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
                 </div>
                 <!-- <div class="card w-75 mt-5"> -->
                 <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
