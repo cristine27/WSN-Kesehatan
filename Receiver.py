@@ -53,7 +53,8 @@ print("----------------------")
 print("Daftar Menu Perintah : ")
 #print("1. Check status Node")
 print("1. Mulai Pemeriksaan")
-print("2. Stop Pemeriksaan")
+print("2. Mematikan Node")
+print("3. Menghidupkan Node")
 print("3. Keluar dari Aplikasi")
 print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
@@ -69,7 +70,8 @@ def mainMenu():
     print("Daftar Menu Perintah : ")
     #print("1. Check status Node")
     print("1. Mulai Pemeriksaan")
-    print("2. Stop Pemeriksaan")
+    print("2. Mematikan Node")
+    print("3. Menghidupkan Node")
     print("3. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
@@ -156,26 +158,7 @@ def konekDb():
     except Error as e:
         print(e)
 
-def getPingNode(x):
-    potong = x.split("|")
-    temp = ""
-    if validateData(x):
-        node = potong[0]
-        status = potong[4]
-
-    if(str(status)=="1"):
-        temp = "online"
-    else:
-        temp = "offline"
-        
-    if(str(node)=="node1"):
-        Node["node1"] = temp
-    else:
-        Node["node2"] = temp
-    
-    return node, status
-
-def updateNodeStatus(x):
+def hidupkanNode(namaNode):
     db = mysql.connector.connect(
         host='localhost',
         database='WSN',
@@ -186,10 +169,8 @@ def updateNodeStatus(x):
     )
 
     cursor = db.cursor(buffered=True)
-    nama = x[0]
-    status = x[1]
-    queryUpdate = "UPDATE node SET status = %s WHERE namaNode = %s"
-    val = (status,nama)
+    queryUpdate = "UPDATE node SET status = 1 WHERE namaNode = %s"
+    val = (namaNode)
 
     cursor.execute(queryUpdate, val)
 
@@ -208,8 +189,8 @@ def matikanNode(namaNode):
     )
     temp = 0
     cursor = db.cursor(buffered=True)
-    queryUpdate = "UPDATE node SET status = %s WHERE namaNode = %s"
-    val = (temp,namaNode)
+    queryUpdate = "UPDATE node SET status = 0 WHERE namaNode = %s"
+    val = (namaNode)
 
     cursor.execute(queryUpdate, val)
 
@@ -222,9 +203,7 @@ def counterStart():
     global statusNode
     enter = "try : "
 
-    if counter > 20:
-        print("Node Offline")
-        print("")
+    if counter > 15:
         statusNode = False
 
     return enter
@@ -233,7 +212,6 @@ def counterStart():
 def resetCounter():
     global counter
     counter = 0
-
 
 def InsertDb(x):
     # konekDb()
@@ -253,31 +231,18 @@ def InsertDb(x):
     oksigen = str(x[2])
     suhu = str(x[3])
     waktu = x[4]
-    #print("cursor")
-     
     
     # convert data sebelum masuk ke db
     node = str(node)
-    #print("idNode")
-    #idNode = str(Node.get(node,None))
     
     idPasien = "".join(map(str, Pasien.get(node,None)))
-    
     idNode = "".join(map(str, Node.get(node,None)))
-    #idNode = int(idNode[1])
-    #print(idNode)
-    #if(len(iNode)==4):
-    print("idPasien="+idPasien)
-    print("idNode="+idNode)
-    #else:
-        #idNode = int(idNode[1,2])
+
+    #convert data
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
-    print("convert")
     
-    
-
     queryInsert = (
         "INSERT INTO periksa (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
         "VALUES (%s, %s, %s, %s, %s, %s)"
@@ -285,12 +250,10 @@ def InsertDb(x):
 
     values = (idPasien, idNode, waktu, detak, oksigen, suhu)
     print(idPasien,idNode,waktu,detak,oksigen,suhu)
-    print("query")
-
+    
+    #commit query sql
     cursor.execute(queryInsert, values)
-
-    print("execute query")
-    # commit data ke database
+    # print("execute query")
     db.commit()
 
     cursor.close()
@@ -313,7 +276,7 @@ def verifyidPasien(idPasien):
     res = cursor.fetchall()
     
     for x in res:
-        temp = " ".join(map(str,x))
+        temp = "".join(map(str,x))
         if temp == idPasien:
             isValid = True
     
@@ -336,7 +299,7 @@ def verifyidNode(namaNode):
     res = cursor.fetchall()
     
     for x in res:
-        temp = " ".join(map(str,x))
+        temp = "".join(map(str,x))
         if temp == 0:
             isValid = False
         else:
@@ -354,11 +317,16 @@ def insertDataNodePasien(x):
                 global idPasien 
                 idPasien = idP
 
-                # masukan idPasien ke dalam dictionary dengan key NamaNode
-                Pasien[Node] = idP
-                print(Pasien)
-                print("Assign Pasien pada Node Berhasil")
-                print("")
+                if checkStatusNode(Node):
+                    # masukan idPasien ke dalam dictionary dengan key NamaNode
+                    Pasien[Node] = idP
+                    print(Pasien)
+                    print("Assign Pasien pada Node Berhasil")
+                    print("")
+                else:
+                    print("Maaf saat ini node sedang offline")
+                    print("")
+                    print("Silahkan menghidupkan node terlebih dahulu")
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
@@ -375,6 +343,28 @@ def checkIfAttached(x):
             check = True
     return check
                 
+def checkStatusNode(namaNode):
+    db = mysql.connector.connect(
+        host='localhost',
+        database='WSN',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
+
+    cursor = db.cursor(buffered=True)
+    
+    cursor.execute("Select status FROM node WHERE namaNode=namaNode")
+    isValid = True
+    res = cursor.fetchall()
+    
+    for x in res:
+        temp = "".join(map(str,x))
+        if temp == 0:
+            isValid = False
+
+    return isValid
             
     
 
@@ -385,7 +375,6 @@ while appRunning:
     mapNodeName()
     while menuShow:
         print(" ")
-        #msg = s.readline().decode("ascii").strip()
         if(perintah == "1"):
             s.write(str.encode("a"))
             mapNodeName()
@@ -407,12 +396,10 @@ while appRunning:
                 while sensing and counter<20:
                     # ambil data sensing arduino
                     #msg = s.readline().decode("ascii").strip()
-                    #print("hasil sensing arduino : ")
-                    #print(msg)
                     counterStart()
                     counter = counter + 1
                     time.sleep(5)
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                         msg = s.readline().decode("ascii").strip()
                         #check apakah alat terpasang dengan benar
                         time.sleep(5)
@@ -422,14 +409,10 @@ while appRunning:
                         else:
                             time.sleep(1)
                             future = executor.submit(getDataSense, msg)
-                            # if(future.done()):
-                            #print("future selesai")
                             time.sleep(1)
                             data = future.result()
-                            #print(data)
 
                             if future.done() and data != None:
-                                #print("masuk submit")
                                 future2 = executor.submit(InsertDb, data)
                 
                 if status:
@@ -439,53 +422,10 @@ while appRunning:
                     resetCounter()
                     mainMenu()
 
-        elif perintah == "0":
-            #getPasien()
-            print("Mengirim perintah check status")
-            print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
-
-            s.write(str.encode("b"))
-            #msg = s.readline().decode("ascii").strip()
-            #print(msg)
-            time.sleep(5)
-            respon = 0
-            while(counter < 20):
-                #respon = 0
-                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-                    counterStart()
-                    msg = s.readline().decode("ascii").strip()
-                    counter += 1
-                    time.sleep(1)
-                    future3 = executor.submit(getPingNode, msg)
-                    time.sleep(1)
-                    if future3.done() and future3.result() != None:
-                        respon = 1
-                        print("")
-                        time.sleep(1)
-                        print("Hasil Check Status Node")
-                        future4 = executor.submit(updateNodeStatus, future3.result())
-                        global statusNode
-                        statusNode = True
-                        print(future3.result())
-            if respon == 1:
-                print(" ")
-                print(Node)
-                print("Check Node Selesai")
-                print(" ")
-            elif(respon==0 and bool(statusNode)==False):
-                print(" ")
-                print(Node)
-                print("Node Tidak Merespon")
-                print("Silahkan Cek Perangkat")
-                print(" ")
-            resetCounter()
-            respon = 0
-            mainMenu()
-
-        # turn off sensing dan base station
+        # turn off status node
         elif perintah == "2":
             s.write(str.encode("c").strip())
-            finding = False
+            flag = False
             
             print("Silahkan masukkan jumlah node yang akan dimatikan :")
             jumlahNode = int(input())
@@ -496,15 +436,50 @@ while appRunning:
 
             potong = namaNode.split(",")
             while jumlahNode>0:
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    future = executor.submit(matikanNode(potong[jumlahNode-1]))
-                    jumlahNode = jumlahNode - 1
-            print(Node)
-            print("Node berhasil dimatikan")
+                if(verifyidNode(potong[jumlahNode-1])):
+                    flag = True
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        future = executor.submit(matikanNode(potong[jumlahNode-1]))
+                        jumlahNode = jumlahNode - 1
+                else:
+                    break
+            if flag:
+                print("Node berhasil dimatikan")
+            else:
+                print("Nama node tidak terdaftar")
+                print("Silahkan cek kembali nama node masukan")
             mainMenu()
             
-        # turn off basestation
+        # turn on status node
         elif perintah == "3":
+            s.write(str.encode("c").strip())
+            flag = False
+            
+            print("Silahkan masukkan jumlah node yang akan dinyalakan :")
+            jumlahNode = int(input())
+            
+            print("Silahkan masukkan nama node yang akan dinyalakan : ")
+            print("format penulisan : namaNode1,namaNode2")
+            namaNode = input()
+
+            potong = namaNode.split(",")
+            while jumlahNode>0:
+                if(verifyidNode(potong[jumlahNode-1])):
+                    flag = True
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        future = executor.submit(hidupkanNode(potong[jumlahNode-1]))
+                        jumlahNode = jumlahNode - 1
+                else:
+                    break
+            if flag:
+                print("Node berhasil dinyalakan")
+            else:
+                print("Nama node tidak terdaftar")
+                print("Silahkan cek kembali nama node masukan")
+            mainMenu()
+
+        # turn off basestation
+        elif perintah == "4":
              s.write(str.encode("c").strip())
              print("Mematikan Program Base Statsion")
              # os.system("Receiver.py")
@@ -563,3 +538,64 @@ while appRunning:
 #     db.commit()
 #     cursor.close()
 #     db.close()
+
+# def getPingNode(x):
+#     potong = x.split("|")
+#     temp = ""
+#     if validateData(x):
+#         node = potong[0]
+#         status = potong[4]
+
+#     if(str(status)=="1"):
+#         temp = "online"
+#     else:
+#         temp = "offline"
+        
+#     if(str(node)=="node1"):
+#         Node["node1"] = temp
+#     else:
+#         Node["node2"] = temp
+    
+#     return node, status
+
+# elif perintah == "0":
+#             print("Mengirim perintah check status")
+#             print("Respon akan diberikan dalam beberapa saat, mohon menunggu.")
+
+#             s.write(str.encode("b"))
+#             #msg = s.readline().decode("ascii").strip()
+#             #print(msg)
+#             time.sleep(5)
+#             respon = 0
+#             while(counter < 20):
+#                 #respon = 0
+#                 with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+#                     counterStart()
+#                     msg = s.readline().decode("ascii").strip()
+#                     counter += 1
+#                     time.sleep(1)
+#                     future3 = executor.submit(getPingNode, msg)
+#                     time.sleep(1)
+#                     if future3.done() and future3.result() != None:
+#                         respon = 1
+#                         print("")
+#                         time.sleep(1)
+#                         print("Hasil Check Status Node")
+#                         future4 = executor.submit(updateNodeStatus, future3.result())
+#                         global statusNode
+#                         statusNode = True
+#                         print(future3.result())
+#             if respon == 1:
+#                 print(" ")
+#                 print(Node)
+#                 print("Check Node Selesai")
+#                 print(" ")
+#             elif(respon==0 and bool(statusNode)==False):
+#                 print(" ")
+#                 print(Node)
+#                 print("Node Tidak Merespon")
+#                 print("Silahkan Cek Perangkat")
+#                 print(" ")
+#             resetCounter()
+#             respon = 0
+#             mainMenu()
