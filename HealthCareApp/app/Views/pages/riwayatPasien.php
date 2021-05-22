@@ -43,6 +43,10 @@
         <div class="row">
             <div class="col">
                 <h1>Riwayat Pemeriksaan</h1>
+                <div class="container">
+                    <label for="filter">Filter Tanggal : </label>
+                    <input type="date" id="filter" name="tanggal">
+                </div>
                 <!-- <div class="card w-75 mt-5"> -->
                 <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
                 <!-- <div class="card-body"> -->
