@@ -40,7 +40,7 @@ class periksaModel extends Model
         $sql =
             "SELECT idNode,hasil1,hasil2,hasil3,waktu
                 From periksa
-                    WHERE waktu=(SELECT CAST(waktu) as date) and idPasien=$id";
+                    WHERE waktu=(SELECT CAST(waktu as date)) and idPasien=$id";
 
         return $this->db->query($sql);
     }
