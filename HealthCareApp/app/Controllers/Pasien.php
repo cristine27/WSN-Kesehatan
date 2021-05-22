@@ -322,7 +322,9 @@ class Pasien extends BaseController
             // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
             $coba = $this->periksaModel->getWaktu($id, $tanggal);
         }
-        d($coba);
+        foreach ($coba->getResultArray() as $res) {
+            d($res);
+        }
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
         // d($dataPasien);
 
