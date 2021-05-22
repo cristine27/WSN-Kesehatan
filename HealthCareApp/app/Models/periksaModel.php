@@ -40,7 +40,7 @@ class periksaModel extends Model
         $sql =
             "SELECT idNode,hasil1,hasil2,hasil3,waktu
                 From periksa
-                    WHERE waktu=$waktu and idPasien=$id";
+                    WHERE waktu=(SELECT CONVERT(VARCHAR(10), waktu, 111))) and idPasien=$id";
 
         return $this->db->query($sql);
     }

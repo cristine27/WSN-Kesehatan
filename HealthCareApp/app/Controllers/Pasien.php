@@ -315,6 +315,7 @@ class Pasien extends BaseController
     public function riwayatPasien($id)
     {
         $tanggal = $this->request->getVar('tanggal');
+        d($tanggal);
         $dataPasien = $this->pasienModel->getPasien($id);
         if ($tanggal != "") {
             $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
@@ -335,7 +336,6 @@ class Pasien extends BaseController
 
         foreach ($dataPeriksa->getResultArray() as $res) {
             // d($res);
-            d($res);
             if ($res['idNode']) {
                 $check = true;
                 $kumpulanhasil[$i] = $res;
