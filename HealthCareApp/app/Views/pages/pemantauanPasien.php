@@ -48,9 +48,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Keterangan : </h5>
                                     <p class="card-text">
-                                        Detak jantung = 70 bpm<br>
-                                        Saturasi oksigen = 90%<br>
-                                        Suhu = 37<span>&#8451;</span><br>
+                                        Saturasi oksigen = 95% - 100%<br>
+                                        Suhu = 36<span>&#8451;</span> - 37<span>&#8451;</span><br>
                                         Tekanan darah = 120/70<br>
                                     </p>
                                 </div>
