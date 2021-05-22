@@ -25,7 +25,7 @@
         </div>
         <?php
         foreach ($hasilPeriksa as $key => $value) {
-            d($value['waktu']);
+            // d($value['waktu']);
         }
         ?>
         <!-- <div class="row">
