@@ -2,19 +2,6 @@
 
 <?= $this->section('content'); ?>
 </head>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#table_riwayat').DataTable({
-            pageLength: 5,
-            ordering: false,
-            lengthMenu: [
-                [10, 25, 50, -1],
-                [10, 25, 50, "ALL"]
-            ],
-            pagingType: "full_numbers",
-        })
-    });
-</script>
 
 <body>
     <div class="container">
@@ -67,7 +54,7 @@
                             <h5 class="mt-5">Hasil Pemeriksaan : <?= $hasilPeriksa[$index]['waktu']; ?></h5>
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">
-                                    <table class="table table-striped text-center" id="table_riwayat">
+                                    <table id="table_riwayat" class="table table-striped text-center">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">Parameter</th>
@@ -96,5 +83,17 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table_riwayat').DataTable({
+                pageLength: 5,
+                ordering: false,
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "ALL"]
+                ],
+                pagingType: "full_numbers",
+            })
+        });
+    </script>
     <?= $this->endsection(); ?>
