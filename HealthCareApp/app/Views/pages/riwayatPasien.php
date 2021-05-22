@@ -5,11 +5,11 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_riwayat').DataTable({
-            pageLength: 5,
+            pageLength: 2,
             ordering: false,
             lengthMenu: [
-                [5, 10],
-                [5, 10]
+                [2, 4],
+                [2, 4]
             ]
         })
     });
