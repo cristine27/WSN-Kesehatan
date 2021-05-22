@@ -93,5 +93,5 @@
             <a class="btn btn-info w-25" href="/Home">Kembali</a>
         </div>
     </div>
-
-    <?= $this->endsection(); ?>
+</body>
+<?= $this->endsection(); ?>

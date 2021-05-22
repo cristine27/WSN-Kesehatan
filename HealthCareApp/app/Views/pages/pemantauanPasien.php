@@ -71,5 +71,5 @@
                 </div>
             </div>
         </div>
-
-        <?= $this->endsection(); ?>
+</body>
+<?= $this->endsection(); ?>

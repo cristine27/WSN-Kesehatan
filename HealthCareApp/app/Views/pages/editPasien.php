@@ -86,5 +86,5 @@
             <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
         </div>
     </div>
-
-    <?= $this->endsection(); ?>
+</body>
+<?= $this->endsection(); ?>

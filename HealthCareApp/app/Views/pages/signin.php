@@ -43,5 +43,5 @@
             <img src="../img/bg.png" alt="">
         </div> -->
     </div>
-
-    <?= $this->endsection(); ?>
+</body>
+<?= $this->endsection(); ?>

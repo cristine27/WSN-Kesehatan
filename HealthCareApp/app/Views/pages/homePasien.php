@@ -66,13 +66,14 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function showModal(x) {
-            if (x) {
-                $('#myModal').modal('show');
-            } else {
-                $('#myModal').modal('hide');
-            }
+</body>
+<script type="text/javascript">
+    function showModal(x) {
+        if (x) {
+            $('#myModal').modal('show');
+        } else {
+            $('#myModal').modal('hide');
         }
-    </script>
-    <?= $this->endsection(); ?>
+    }
+</script>
+<?= $this->endsection(); ?>

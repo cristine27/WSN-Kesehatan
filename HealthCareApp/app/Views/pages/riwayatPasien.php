@@ -13,7 +13,7 @@
         <?php
         foreach ($parameter as $key => $value) {
             foreach ($value as $key => $x) {
-                // d($x);
+                d($x);
             }
         }
         ?>
@@ -89,4 +89,18 @@
         </div>
     </div>
 
-    <?= $this->endsection(); ?>
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table_riwayat').DataTable({
+            pageLength: 5,
+            ordering: false,
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, "ALL"]
+            ],
+            pagingType: "full_numbers",
+        })
+    });
+</script>
+<?= $this->endsection(); ?>

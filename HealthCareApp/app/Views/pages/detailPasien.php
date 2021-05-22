@@ -33,5 +33,5 @@
             <a href="/Pasien">Kembali</a>
         </div>
     </div>
-
-    <?= $this->endsection(); ?>
+</body>
+<?= $this->endsection(); ?>
