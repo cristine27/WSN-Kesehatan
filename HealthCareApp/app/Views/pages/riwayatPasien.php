@@ -12,7 +12,9 @@
         </div>
         <?php
         foreach ($parameter as $key => $value) {
-            d($value['namaParameter']);
+            foreach ($value as $key => $x) {
+                d($x);
+            }
         }
         ?>
         <!-- <div class="row">
