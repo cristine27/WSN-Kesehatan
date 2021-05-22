@@ -335,7 +335,6 @@ class Pasien extends BaseController
         $check = false;
 
         foreach ($dataPeriksa->getResultArray() as $res) {
-            // d($res);
             if ($res['idNode']) {
                 $check = true;
                 $kumpulanhasil[$i] = $res;
@@ -343,7 +342,7 @@ class Pasien extends BaseController
             $i++;
         }
         $jumlahHasil = $i;
-
+        d($kumpulanhasil);
         for ($j = 0; $j < $jumlahHasil; $j++) {
             // d($hasil);
             $idNode = $kumpulanhasil[$j]['idNode'];
