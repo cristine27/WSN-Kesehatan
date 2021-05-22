@@ -36,7 +36,7 @@
         <div class="row">
             <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col w-50">
                 <h3>Filter</h3>
                 <form method="POST" id="dateForm">
@@ -59,18 +59,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <!-- Submit button -->
+                        Submit button
                         <button class="btn btn-primary " name="submit" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col">
                 <div class="card w-75 mt-5">
-
                     <h4 class="card-header">Riwayat Pemeriksaan</h4>
-
                     <div class="card-body">
                         <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
                         <?php for ($index = 0; $index < $jumlahHasil; $index++) { ?>
