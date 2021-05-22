@@ -22,6 +22,11 @@
                 <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
             </div>
         </div>
+        <?php
+        foreach ($hasilPeriksa as $key => $value) {
+            d($value['waktu']);
+        }
+        ?>
         <!-- <div class="row">
             <div class="col w-50">
                 <h3>Filter</h3>
