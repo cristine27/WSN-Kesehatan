@@ -28,7 +28,8 @@
     <link rel='stylesheet' type='text/css' href='../dataTables/dataTables.bootstrap4.min.css' />
     <link rel='stylesheet' type='text/css' href='../dataTables/responsive.bootstrap4.min.css' />
 
-    <!-- datapicker bootstrap -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
     <!--jquery  -->

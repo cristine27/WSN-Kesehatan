@@ -5,7 +5,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_riwayat').DataTable({
-            pageLength: 2,
+            pageLength: 5,
             ordering: false,
             lengthMenu: [
                 [10, 25, 50, -1],
