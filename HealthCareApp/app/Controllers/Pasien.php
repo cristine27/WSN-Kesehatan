@@ -317,6 +317,7 @@ class Pasien extends BaseController
         $tanggal = $this->request->getVar('tanggal');
         d($tanggal);
         $dataPasien = $this->pasienModel->getPasien($id);
+        $coba = 0;
         if ($tanggal != "") {
             // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
             $coba = $this->periksaModel->getWaktu($tanggal);
