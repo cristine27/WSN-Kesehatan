@@ -34,18 +34,13 @@ class periksaModel extends Model
         return $this->db->query($sql);
     }
 
-    public function getPager()
+    public function getHasilPeriksaByTime($id, $waktu)
     {
-        return $this->pager;
-    }
+        $sql =
+            "SELECT idNode,hasil1,hasil2,hasil3,waktu
+                From periksa
+                    WHERE waktu=$waktu and idPasien=$id";
 
-    public function getPaginate()
-    {
-        return $this->paginate(6, 'periksa');
-    }
-
-    public function searchHasilByTime($time)
-    {
-        return $this->table('periksa')->like('waktu', $time);
+        return $this->db->query($sql);
     }
 }

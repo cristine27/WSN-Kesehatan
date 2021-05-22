@@ -43,8 +43,8 @@
         <div class="row">
             <div class="col">
                 <h1>Riwayat Pemeriksaan</h1>
-                <div class="container">
-                    <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>">
+                <div class="container my-2">
+                    <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>" class="form-inline">
                         <div class="form-group">
                             <label for="filter">Filter Tanggal : </label>
                             <input type="date" id="filter" name="tanggal">
