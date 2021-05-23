@@ -362,7 +362,7 @@ class Pasien extends BaseController
             $kumpulanhasil = $hasilSementara;
         }
         $jumlahHasil = count($kumpulanhasil);
-        d($jumlahHasil);
+        d($kumpulanhasil);
         for ($j = 0; $j < $jumlahHasil; $j++) {
             // d($hasil);
             $idNode = $kumpulanhasil[$j]['idNode'];
