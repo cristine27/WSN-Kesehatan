@@ -60,6 +60,9 @@
                 <?php foreach ($hasilPeriksa as $key => $value) {
                     $index = 0; ?>
                     <h5 class="mt-5">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
+                    <div class="alert alert-info <?= ($flagFilter) ? 'fade' : 'show'; ?>" role="alert">
+                        Tidak ada pemeriksaan pada tanggal tersebut.
+                    </div>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
                             <table id="table_riwayat" class="table table-striped text-center">

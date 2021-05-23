@@ -7,6 +7,7 @@ use App\Models\nodeModel;
 use App\Models\parameterModel;
 use App\Models\pasienModel;
 use App\Models\periksaModel;
+use CodeIgniter\Exceptions\AlertError;
 use phpDocumentor\Reflection\Types\Null_;
 
 use function PHPSTORM_META\map;
@@ -361,6 +362,7 @@ class Pasien extends BaseController
         if ($flagFilter) {
             $kumpulanhasil = $hasilSementara;
         }
+
         $jumlahHasil = count($kumpulanhasil);
         d($kumpulanhasil);
         $j = 0;
@@ -378,7 +380,7 @@ class Pasien extends BaseController
                 // d($namaParam['namaParameter']);
                 // d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
-                $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+                $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)]);
                 // d($hasil['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $index++;
@@ -417,7 +419,8 @@ class Pasien extends BaseController
             'parameter' => $kumpulanparam,
             'status' => $kumpulanStatus,
             'flag' => $check,
-            'jumlahHasil' => $jumlahHasil
+            'jumlahHasil' => $jumlahHasil,
+            'flagFilter' => $flagFilter
         ];
 
         //jika pasien tidak ada
