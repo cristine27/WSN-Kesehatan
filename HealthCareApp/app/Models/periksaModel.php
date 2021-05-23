@@ -47,9 +47,10 @@ class periksaModel extends Model
 
     public function getWaktu($id, $waktu)
     {
+        $waktu = "SELECT str_to_date($waktu, '%m/%d/%y'";
         $sql = "SELECT idNode,waktu 
                 FROM periksa 
-                WHERE (CAST(waktu as date) = CONVERT(date, $waktu, 110)) and idPasien=$id";
+                WHERE (CAST(waktu as date) = $waktu) and idPasien=$id";
         d($sql);
         return $this->db->query($sql);
     }
