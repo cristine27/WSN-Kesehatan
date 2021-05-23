@@ -56,7 +56,7 @@
                 <!-- <div class="card w-75 mt-5"> -->
                 <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
                 <!-- <div class="card-body"> -->
-                <div class="alert alert-info <?= ($flagFilter == true) ? 'show' : 'fade'; ?>" role="alert">
+                <div class="alert alert-info <?= ($flagFilter == false) ? 'show' : 'fade'; ?>" role="alert">
                     Tidak ada pemeriksaan pada tanggal tersebut.
                 </div>
                 <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>

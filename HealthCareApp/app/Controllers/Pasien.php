@@ -363,6 +363,9 @@ class Pasien extends BaseController
             $kumpulanhasil = $hasilSementara;
         }
 
+        if (count($hasilSementara) == 0) {
+            $flagFilter = false;
+        }
         $jumlahHasil = count($kumpulanhasil);
         d($kumpulanhasil);
         $j = 0;
