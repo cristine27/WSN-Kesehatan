@@ -11,17 +11,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8">
+            <div class="col-6">
                 <h1>Riwayat Pemeriksaan</h1>
             </div>
             <div class="col-4">
-                <div class="container my-2">
+                <div class="container mt-5">
                     <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>">
                         <div class="form-group">
                             <label for="filter">Filter Tanggal : </label>
                             <input type="date" id="filter" name="tanggal">
+                            <button type="submit" class="btn btn-primary my-1">Cari</button>
                         </div>
-                        <button type="submit" class="btn btn-primary my-1">Cari</button>
                     </form>
                 </div>
             </div>
