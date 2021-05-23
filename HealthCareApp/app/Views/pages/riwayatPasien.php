@@ -10,55 +10,28 @@
                 <a href="/Pasien/detail/<?= $pasien['idPasien']; ?>">Kembali</a>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <div class="col w-50">
-                <h3>Filter</h3>
-                <form method="POST" id="dateForm">
-                    <div class="form-group">
-                        <label>Tgl Awal</label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                            <input placeholder="masukkan tanggal Awal" type="text" class="form-control datepicker" name="tgl_awal">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Tgl Akhir</label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                            <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" name="tgl_akhir">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        Submit button
-                        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div> -->
         <div class="row">
-            <div class="col">
+            <div class="col-8">
                 <h1>Riwayat Pemeriksaan</h1>
+            </div>
+            <div class="col-4">
                 <div class="container my-2">
-                    <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>" class="form-inline">
+                    <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>">
                         <div class="form-group">
                             <label for="filter">Filter Tanggal : </label>
                             <input type="date" id="filter" name="tanggal">
                         </div>
                         <button type="submit" class="btn btn-primary my-1">Cari</button>
                     </form>
+                </div>
+            </div>
 
-                </div>
-                <!-- <div class="card w-75 mt-5"> -->
-                <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
-                <!-- <div class="card-body"> -->
-                <div class="alert alert-info <?= ($flagFilter == false) ? 'show' : 'fade'; ?>" role="alert">
-                    Tidak ada pemeriksaan pada tanggal tersebut.
-                </div>
+            <div class="alert alert-info <?= ($flagFilter == false) ? 'show' : 'fade'; ?>" role="alert">
+                Tidak ada pemeriksaan pada tanggal tersebut.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
                 <?php foreach ($hasilPeriksa as $key => $value) {
                     $index = 0; ?>
@@ -90,24 +63,9 @@
                         </div>
                     </div>
                 <?php } ?>
-                <!-- </div> -->
-                <!-- </div> -->
             </div>
         </div>
     </div>
-
 </body>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#table_riwayat').DataTable({
-            pageLength: 5,
-            ordering: false,
-            lengthMenu: [
-                [10, 25, 50, -1],
-                [10, 25, 50, "ALL"]
-            ],
-            pagingType: "full_numbers",
-        })
-    });
-</script>
+
 <?= $this->endsection(); ?>
