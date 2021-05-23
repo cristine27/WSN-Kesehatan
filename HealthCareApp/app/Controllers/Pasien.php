@@ -317,7 +317,7 @@ class Pasien extends BaseController
     public function riwayatPasien($id)
     {
         $tanggal = $this->request->getVar('tanggal');
-        d($tanggal);
+        // d($tanggal);
         $dataPasien = $this->pasienModel->getPasien($id);
 
         // if ($tanggal != "") {
@@ -370,7 +370,7 @@ class Pasien extends BaseController
         }
 
         $jumlahHasil = count($kumpulanhasil);
-        d($kumpulanhasil);
+        // d($kumpulanhasil);
         $j = 0;
         foreach ($kumpulanhasil as $key => $res) {
             // d($hasil);
