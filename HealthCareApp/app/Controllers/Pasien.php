@@ -337,11 +337,12 @@ class Pasien extends BaseController
         // }
         // $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $i = 0;
+        $hasilSementara = [];
         $kumpulanhasil = [];
         $kumpulanparam = [];
         $kumpulanStatus = [];
         $check = false;
-
+        $flagFilter = false;
         foreach ($dataPeriksa->getResultArray() as $res) {
             if ($res['idNode']) {
                 $check = true;
@@ -349,16 +350,19 @@ class Pasien extends BaseController
                     $temp = strtotime($res['waktu']);
                     $date = date('Y-m-d', $temp);
                     if ($date == $tanggal) {
-                        $kumpulanhasil[$i] = $res;
+                        $flagFilter = true;
+                        $hasilSementara[$i] = $res;
                     }
-                } else {
-                    $kumpulanhasil[$i] = $res;
                 }
+                $kumpulanhasil[$i] = $res;
             }
             $i++;
         }
+        if ($flagFilter) {
+            $kumpulanhasil = $hasilSementara;
+        }
         $jumlahHasil = count($kumpulanhasil);
-        d($kumpulanhasil);
+        d($jumlahHasil);
         for ($j = 0; $j < $jumlahHasil; $j++) {
             // d($hasil);
             $idNode = $kumpulanhasil[$j]['idNode'];
