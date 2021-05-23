@@ -351,6 +351,8 @@ class Pasien extends BaseController
                     if ($date == $tanggal) {
                         $kumpulanhasil[$i] = $res;
                     }
+                } else {
+                    $kumpulanhasil[$i] = $res;
                 }
             }
             $i++;
