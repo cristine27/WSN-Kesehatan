@@ -15,7 +15,7 @@
                 <h1>Riwayat Pemeriksaan</h1>
             </div>
             <div class="col-4">
-                <div class="container my-6">
+                <div class="container mt-6">
                     <form method="POST" action="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>">
                         <div class="form-group">
                             <label for="filter">Filter Tanggal : </label>
