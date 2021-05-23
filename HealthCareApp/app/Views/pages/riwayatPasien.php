@@ -56,13 +56,13 @@
                 <!-- <div class="card w-75 mt-5"> -->
                 <!-- <h4 class="card-header">Riwayat Pemeriksaan</h4> -->
                 <!-- <div class="card-body"> -->
+                <div class="alert alert-info <?= ($flagFilter == true) ? 'show' : 'fade'; ?>" role="alert">
+                    Tidak ada pemeriksaan pada tanggal tersebut.
+                </div>
                 <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
                 <?php foreach ($hasilPeriksa as $key => $value) {
                     $index = 0; ?>
                     <h5 class="mt-3">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
-                    <div class="alert alert-info <?= ($flagFilter == true) ? 'fade' : 'show'; ?>" role="alert">
-                        Tidak ada pemeriksaan pada tanggal tersebut.
-                    </div>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
                             <table id="table_riwayat" class="table table-striped text-center">
