@@ -348,9 +348,10 @@ class Pasien extends BaseController
                 if ($tanggal != "") {
                     $temp = strtotime($res['waktu']);
                     $date = date('Y-m-d', $temp);
-                    d($date);
+                    if ($date == $tanggal) {
+                        $kumpulanhasil[$i] = $res;
+                    }
                 }
-                $kumpulanhasil[$i] = $res;
             }
             $i++;
         }
