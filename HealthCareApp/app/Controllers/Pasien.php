@@ -363,9 +363,10 @@ class Pasien extends BaseController
         }
         $jumlahHasil = count($kumpulanhasil);
         d($kumpulanhasil);
-        for ($j = 0; $j < $jumlahHasil; $j++) {
+        $j = 0;
+        foreach ($kumpulanhasil as $key => $res) {
             // d($hasil);
-            $idNode = $kumpulanhasil[$j]['idNode'];
+            $idNode = $res['idNode'];
 
             $idParam = $this->memilikiModel->getParamid($idNode);
             // dd($idParam);
@@ -382,6 +383,7 @@ class Pasien extends BaseController
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $index++;
             }
+            $j++;
             // dd($kumpulanparam);
         }
 
