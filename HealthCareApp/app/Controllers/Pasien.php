@@ -7,6 +7,7 @@ use App\Models\nodeModel;
 use App\Models\parameterModel;
 use App\Models\pasienModel;
 use App\Models\periksaModel;
+use phpDocumentor\Reflection\Types\Null_;
 
 use function PHPSTORM_META\map;
 
@@ -344,6 +345,11 @@ class Pasien extends BaseController
         foreach ($dataPeriksa->getResultArray() as $res) {
             if ($res['idNode']) {
                 $check = true;
+                if ($tanggal != "") {
+                    $temp = strtotime($res['waktu']);
+                    $date = date('m/d/Y', $temp);
+                    d($date);
+                }
                 $kumpulanhasil[$i] = $res;
             }
             $i++;
