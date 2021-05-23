@@ -59,8 +59,8 @@
                 <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
                 <?php foreach ($hasilPeriksa as $key => $value) {
                     $index = 0; ?>
-                    <h5 class="mt-5">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
-                    <div class="alert alert-info <?= (!$flagFilter) ? 'fade' : 'show'; ?>" role="alert">
+                    <h5 class="mt-3">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
+                    <div class="alert alert-info <?= ($flagFilter == true) ? 'fade' : 'show'; ?>" role="alert">
                         Tidak ada pemeriksaan pada tanggal tersebut.
                     </div>
                     <div class="col d-flex justify-content-start">
