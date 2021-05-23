@@ -357,7 +357,7 @@ class Pasien extends BaseController
             }
             $i++;
         }
-        $jumlahHasil = $i;
+        $jumlahHasil = count($kumpulanhasil);
         d($kumpulanhasil);
         for ($j = 0; $j < $jumlahHasil; $j++) {
             // d($hasil);
