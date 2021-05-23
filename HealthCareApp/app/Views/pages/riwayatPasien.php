@@ -49,7 +49,7 @@
                             <label for="filter">Filter Tanggal : </label>
                             <input type="date" id="filter" name="tanggal">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary my-1">Cari</button>
                     </form>
 
                 </div>
@@ -60,7 +60,7 @@
                 <?php foreach ($hasilPeriksa as $key => $value) {
                     $index = 0; ?>
                     <h5 class="mt-5">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
-                    <div class="alert alert-info <?= ($flagFilter) ? 'fade' : 'show'; ?>" role="alert">
+                    <div class="alert alert-info <?= (!$flagFilter) ? 'fade' : 'show'; ?>" role="alert">
                         Tidak ada pemeriksaan pada tanggal tersebut.
                     </div>
                     <div class="col d-flex justify-content-start">

@@ -34,24 +34,4 @@ class periksaModel extends Model
                             ORDER BY waktu desc";
         return $this->db->query($sql);
     }
-
-    public function getHasilPeriksaByTime($id, $waktu)
-    {
-        $sql =
-            "SELECT idNode,hasil1,hasil2,hasil3,waktu
-                From periksa
-                    WHERE waktu=(SELECT CAST(waktu as date) FROM periksa WHERE waktu=$waktu) and idPasien=$id";
-
-        return $this->db->query($sql);
-    }
-
-    public function getWaktu($id, $waktu)
-    {
-        // $waktu = "SELECT str_to_date($waktu, '%m/%d/%y')";
-        $sql = "SELECT idNode,waktu 
-                FROM periksa 
-                WHERE (CAST(waktu as date) = CAST($waktu as date)) and idPasien=$id";
-        d($sql);
-        return $this->db->query($sql);
-    }
 }
