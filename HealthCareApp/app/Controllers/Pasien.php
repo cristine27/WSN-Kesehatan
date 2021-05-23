@@ -321,7 +321,9 @@ class Pasien extends BaseController
         if ($tanggal != "") {
             // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
             $coba = $this->periksaModel->getWaktu($id, $tanggal);
+            d($coba);
             foreach ($coba->getResultArray() as $res) {
+                d("hasil foreach");
                 d($res);
             }
         }
