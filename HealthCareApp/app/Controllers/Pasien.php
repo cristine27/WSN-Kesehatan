@@ -319,15 +319,15 @@ class Pasien extends BaseController
         d($tanggal);
         $dataPasien = $this->pasienModel->getPasien($id);
 
-        if ($tanggal != "") {
-            // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
-            $coba = $this->periksaModel->getWaktu($id, $tanggal);
-            d($coba);
-            foreach ($coba->getResultArray() as $res) {
-                d("hasil foreach");
-                d($res);
-            }
-        }
+        // if ($tanggal != "") {
+        //     // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
+        //     $coba = $this->periksaModel->getWaktu($id, $tanggal);
+        //     d($coba);
+        //     foreach ($coba->getResultArray() as $res) {
+        //         d("hasil foreach");
+        //         d($res);
+        //     }
+        // }
 
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
         // d($dataPasien);
@@ -345,7 +345,7 @@ class Pasien extends BaseController
         foreach ($dataPeriksa->getResultArray() as $res) {
             if ($res['idNode']) {
                 $check = true;
-                if ($tanggal != "") {
+                if ($tanggal != null) {
                     $temp = strtotime($res['waktu']);
                     $date = date('Y-m-d', $temp);
                     if ($date == $tanggal) {
