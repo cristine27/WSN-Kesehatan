@@ -435,13 +435,12 @@ while appRunning:
             namaNode = input()
 
             potong = namaNode.split(",")
-            index = 0
             while jumlahNode>0:
                 if(verifyidNode(potong[jumlahNode-1])):
                     flag = True
                     with concurrent.futures.ThreadPoolExecutor() as executor:
-                        future = executor.submit(matikanNode(potong[index]))
-                        index = index + 1
+                        future = executor.submit(matikanNode(potong[jumlahNode-1]))
+                        jumlahNode = jumlahNode - 1
                 else:
                     break
             if flag:
@@ -464,13 +463,13 @@ while appRunning:
             namaNode = input()
 
             potong = namaNode.split(",")
-            index = 0
+        
             while jumlahNode>0:
                 if(verifyidNode(potong[jumlahNode-1])):
                     flag = True
                     with concurrent.futures.ThreadPoolExecutor() as executor:
-                        future = executor.submit(hidupkanNode(potong[index]))
-                        index = index + 1
+                        future = executor.submit(hidupkanNode(potong[jumlahNode-1]))
+                        jumlahNode = jumlahNode - 1
                 else:
                     break
             if flag:
