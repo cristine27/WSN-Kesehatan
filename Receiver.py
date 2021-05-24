@@ -270,7 +270,9 @@ def verifyidPasien(idPasien):
     isValid = False
     cursor = db.cursor(buffered=True)
     
-    cursor.execute("Select idPasien FROM pasien")
+    query = "Select idPasien FROM pasien where idPasien=%s"
+    value = (idPasien,)
+    cursor.execute(query,value)
     
     res = cursor.fetchall()
     
@@ -292,8 +294,9 @@ def verifyidNode(namaNode):
     )
     isValid = True
     cursor = db.cursor(buffered=True)
-    
-    cursor.execute("Select idNode FROM node WHERE namaNode=namaNode")
+    query = "Select idNode FROM node WHERE namaNode=%s"
+    value = (namaNode,)
+    cursor.execute(query, value)
     
     res = cursor.fetchall()
     
@@ -354,8 +357,9 @@ def checkStatusNode(namaNode):
     )
 
     cursor = db.cursor(buffered=True)
-    
-    cursor.execute("Select status FROM node WHERE namaNode=namaNode")
+    query = "Select status FROM node WHERE namaNode=%s"
+    value = (namaNode,)
+    cursor.execute(query,value)
     isValid = True
     res = cursor.fetchall()
     
