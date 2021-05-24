@@ -308,7 +308,6 @@ def verifyidNode(namaNode):
     return isValid
 
 def insertDataNodePasien(x):
-    check = True
     potong = x.split(",")
     if(len(potong)>0):
         idP = potong[0]
@@ -325,17 +324,19 @@ def insertDataNodePasien(x):
                     print("Assign Pasien pada Node Berhasil")
                     print("")
                 else:
-                    check = False
+                    global insertDataPasien
+                    insertDataPasien = False
                     print("Maaf saat ini node sedang offline")
                     print("")
                     print("Silahkan menghidupkan node terlebih dahulu")
+                    mainMenu()
             else:
                 check = False
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
                 global insertDataPasien
                 insertDataPasien = False
-    return check
+                mainMenu()
 
 def checkIfAttached(x):
     check = False
@@ -392,7 +393,7 @@ while appRunning:
                 print("")
                 formatPasien = input()
                 jumlahPasien = jumlahPasien - 1
-                check = insertDataNodePasien(formatPasien)
+                insertDataNodePasien(formatPasien)
             if insertDataPasien:
                 print("Pemeriksaan sedang dilakukan mohon tunggu...")
                 #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
@@ -423,8 +424,6 @@ while appRunning:
                     mainMenu()
                 if counter==20:
                     resetCounter()
-                    mainMenu()
-                if check==False:
                     mainMenu()
 
         # turn off status node
