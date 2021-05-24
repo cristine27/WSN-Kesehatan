@@ -316,7 +316,7 @@ def insertDataNodePasien(x):
             if(verifyidPasien(idP) and verifyidNode(Node)):
                 global idPasien 
                 idPasien = idP
-
+                global insertDataPasien
                 if checkStatusNode(Node):
                     # masukan idPasien ke dalam dictionary dengan key NamaNode
                     Pasien[Node] = idP
@@ -324,17 +324,14 @@ def insertDataNodePasien(x):
                     print("Assign Pasien pada Node Berhasil")
                     print("")
                 else:
-                    global insertDataPasien
                     insertDataPasien = False
                     print("Maaf saat ini node sedang offline")
                     print("")
                     print("Silahkan menghidupkan node terlebih dahulu")
                     mainMenu()
             else:
-                check = False
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
-                global insertDataPasien
                 insertDataPasien = False
                 mainMenu()
 
