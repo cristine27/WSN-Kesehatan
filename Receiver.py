@@ -207,7 +207,7 @@ def checkStatusNode():
         pool_size=POOL_SIZE+1
     )
 
-    cursor.execute("SELECT idNode, status FROM node")
+    cursor.execute("SELECT namaNode, status FROM node")
 
     res = cursor.fetchall()
 
