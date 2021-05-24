@@ -53,9 +53,10 @@ print("----------------------")
 print("Daftar Menu Perintah : ")
 #print("1. Check status Node")
 print("1. Mulai Pemeriksaan")
-print("2. Mematikan Node")
-print("3. Menghidupkan Node")
-print("4. Keluar dari Aplikasi")
+print("2. Check status Node")
+print("3. Mematikan Node")
+print("4. Menghidupkan Node")
+print("5. Keluar dari Aplikasi")
 print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
 
@@ -69,9 +70,10 @@ def mainMenu():
     print("Daftar Menu Perintah : ")
     #print("1. Check status Node")
     print("1. Mulai Pemeriksaan")
-    print("2. Mematikan Node")
-    print("3. Menghidupkan Node")
-    print("4. Keluar dari Aplikasi")
+    print("2. Check status Node")
+    print("3. Mematikan Node")
+    print("4. Menghidupkan Node")
+    print("5. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
     print("")
@@ -197,7 +199,7 @@ def matikanNode(namaNode):
     cursor.close()
     db.close()
 
-def checkStatusNode():
+def getStatusNode():
     db = mysql.connector.connect(
         host='localhost',
         database='WSN',
@@ -206,16 +208,14 @@ def checkStatusNode():
         pool_name='mypool',
         pool_size=POOL_SIZE+1
     )
-
-    cursor.execute("SELECT namaNode, status FROM node")
+    cursor = db.cursor(buffered=True)
+    cursor.execute("SELECT namaNode,status FROM node")
 
     res = cursor.fetchall()
 
     for x in res:
-        temp = "".join(map(str,x))
-        print(temp)
+        print(x)
     
-
 
 def counterStart():
     global statusNode
@@ -398,7 +398,7 @@ while appRunning:
     mapNodeName()
     while menuShow:
         print(" ")
-        if(perintah == "2"):
+        if(perintah == "1"):
             s.write(str.encode("a"))
             mapNodeName()
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
@@ -445,13 +445,17 @@ while appRunning:
                     resetCounter()
                     mainMenu()
 
-        elif perintah == "7":
+        elif perintah == "2":
             print("Mohon menunggu..")
-            checkStatusNode()
+            print("Keterangan : ")
+            print("0 = offline")
+            print("1 = online")
+            getStatusNode()
+            print("Hasil status node")
             mainMenu()
 
         # turn off status node
-        elif perintah == "2":
+        elif perintah == "3":
             s.write(str.encode("c").strip())
             flag = False
             
@@ -479,7 +483,7 @@ while appRunning:
             mainMenu()
             
         # turn on status node
-        elif perintah == "3":
+        elif perintah == "4":
             s.write(str.encode("c").strip())
             flag = False
             
@@ -508,7 +512,7 @@ while appRunning:
             mainMenu()
 
         # turn off basestation
-        elif perintah == "4":
+        elif perintah == "5":
              s.write(str.encode("c").strip())
              print("Mematikan Program Base Statsion")
              # os.system("Receiver.py")
