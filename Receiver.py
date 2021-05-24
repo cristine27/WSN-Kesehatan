@@ -64,7 +64,6 @@ perintah = input()
 
 
 def mainMenu():
-    print("masuk function mainMenu")
     print("Aplikasi Base Station Berjalan")
     print("----------------------")
     print("Daftar Menu Perintah : ")
@@ -116,7 +115,7 @@ def validateData(x):
     #isi data = namaNode | detak | oksigen | temperatur | status
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0 and potong[4] != -1):
-            print("masuk function validate")
+            # print("masuk function validate")
             res = True
     return res
 
@@ -203,7 +202,7 @@ def counterStart():
     global statusNode
     enter = "try : "
 
-    if counter > 15:
+    if counter > 10:
         statusNode = False
 
     return enter
@@ -249,7 +248,7 @@ def InsertDb(x):
     )
 
     values = (idPasien, idNode, waktu, detak, oksigen, suhu)
-    print(idPasien,idNode,waktu,detak,oksigen,suhu)
+    # print(idPasien,idNode,waktu,detak,oksigen,suhu)
     
     #commit query sql
     cursor.execute(queryInsert, values)
