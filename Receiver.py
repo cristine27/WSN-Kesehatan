@@ -327,6 +327,7 @@ def insertDataNodePasien(x):
                     print("Maaf saat ini node sedang offline")
                     print("")
                     print("Silahkan menghidupkan node terlebih dahulu")
+                    mainMenu()
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
@@ -360,7 +361,6 @@ def checkStatusNode(namaNode):
     res = cursor.fetchall()
     
     for x in res:
-        print(x)
         temp = "".join(map(str,x))
         if temp == '0':
             isValid = False
