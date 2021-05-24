@@ -186,7 +186,7 @@ def matikanNode(namaNode):
         pool_name='mypool',
         pool_size=POOL_SIZE+1
     )
-    temp = 0
+    
     cursor = db.cursor(buffered=True)
     queryUpdate = "UPDATE node SET status = 0 WHERE namaNode = %s"
     val = (namaNode,)
@@ -196,6 +196,25 @@ def matikanNode(namaNode):
     db.commit()
     cursor.close()
     db.close()
+
+def checkStatusNode():
+    db = mysql.connector.connect(
+        host='localhost',
+        database='WSN',
+        user='phpmyadmin',
+        password='raspberry',
+        pool_name='mypool',
+        pool_size=POOL_SIZE+1
+    )
+
+    cursor.execute("SELECT idNode, status FROM node")
+
+    res = cursor.fetchall()
+
+    for x in res:
+        temp = "".join(map(str,x))
+        print(temp)
+    
 
 
 def counterStart():
@@ -379,7 +398,7 @@ while appRunning:
     mapNodeName()
     while menuShow:
         print(" ")
-        if(perintah == "1"):
+        if(perintah == "2"):
             s.write(str.encode("a"))
             mapNodeName()
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
@@ -425,6 +444,11 @@ while appRunning:
                 if counter==20:
                     resetCounter()
                     mainMenu()
+
+        elif perintah == "7":
+            print("Mohon menunggu..")
+            checkStatusNode()
+            mainMenu()
 
         # turn off status node
         elif perintah == "2":
