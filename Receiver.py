@@ -360,8 +360,9 @@ def checkStatusNode(namaNode):
     res = cursor.fetchall()
     
     for x in res:
+        print(x)
         temp = "".join(map(str,x))
-        if temp == 0:
+        if temp == '0':
             isValid = False
 
     return isValid
