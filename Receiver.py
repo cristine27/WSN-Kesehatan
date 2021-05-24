@@ -170,7 +170,7 @@ def hidupkanNode(namaNode):
 
     cursor = db.cursor(buffered=True)
     queryUpdate = "UPDATE node SET status = 1 WHERE namaNode = %s"
-    val = (namaNode)
+    val = (namaNode,)
 
     cursor.execute(queryUpdate, val)
 
@@ -190,7 +190,7 @@ def matikanNode(namaNode):
     temp = 0
     cursor = db.cursor(buffered=True)
     queryUpdate = "UPDATE node SET status = 0 WHERE namaNode = %s"
-    val = (namaNode)
+    val = (namaNode,)
 
     cursor.execute(queryUpdate, val)
 
