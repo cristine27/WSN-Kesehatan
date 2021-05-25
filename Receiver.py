@@ -197,18 +197,13 @@ def matikanNode(namaNode):
     db.close()
 
 def getStatusNode(data):  
-    selfCounter = 0
     status = False
-    while True:
-        selfCounter = selfCounter + 1
-        if selfCounter == 15:
-            break
-        if validateData(data):
-            potong = data.split("|")
-            if(verifyidNode(potong[0])):
-                Node[potong[0]] = "online"
-                hidupkanNode(potong[0])
-                status = True
+    if validateData(data):
+        potong = data.split("|")
+        if(verifyidNode(potong[0])):
+            Node[potong[0]] = "online"
+            hidupkanNode(potong[0])
+            status = True
     return status
 
 def counterStart():
