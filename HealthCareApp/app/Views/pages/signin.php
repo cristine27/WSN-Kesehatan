@@ -34,10 +34,10 @@
                                         <input type="password" id="password" name="password" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Password" required>
                                     </div>
 
-                                    <div class="invalid-feedback">
+                                    <div class="invalid-feedback my-1">
                                         <b><?= $pesan; ?></b>
                                     </div>
-                                    <button class="btn btn-info mt-1" value="Submit">Sign In</button>
+                                    <button class="btn btn-info my-2" value="Submit">Sign In</button>
                                 </form>
                             </div>
                         </div>
