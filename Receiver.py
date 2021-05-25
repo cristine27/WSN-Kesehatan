@@ -401,34 +401,29 @@ while appRunning:
                     print(Pasien)
             #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
             while sensing and counter<15:
-                if insertDataPasien:
-                    # ambil data sensing arduino
-                    msg = s.readline().decode("ascii").strip()
-                    counter = counter + 1
+                # ambil data sensing arduino
+                msg = s.readline().decode("ascii").strip()
+                counter = counter + 1
+                time.sleep(5)
+                with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+                    #check apakah alat terpasang dengan benar
                     time.sleep(5)
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-                        #check apakah alat terpasang dengan benar
-                        time.sleep(5)
-                        status = checkIfAttached(msg)
-                        if status==False:
-                            time.sleep(1)
-                            future1 = executor.submit(getDataSense, msg)
-                            # future2 = executor.submit(getDataSense, msg)
-                            time.sleep(1)
-                            data1 = future1.result()
-                            # data2 = future2.result()
+                    status = checkIfAttached(msg)
+                    if status==False:
+                        time.sleep(1)
+                        future1 = executor.submit(getDataSense, msg)
+                        # future2 = executor.submit(getDataSense, msg)
+                        time.sleep(1)
+                        data1 = future1.result()
+                        # data2 = future2.result()
 
-                            if future1.done() and data1 != None:
-                                future3 = executor.submit(InsertDb, data1)
-                            # if future2.done() and data2 != None:
-                            #     future4 = executor.submit(InsertDb, data2)
-                            
-                        elif status==True:
-                            print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                else:
-                    mainMenu()
-                if status:
-                    mainMenu()
+                        if future1.done() and data1 != None:
+                            future3 = executor.submit(InsertDb, data1)
+                        # if future2.done() and data2 != None:
+                        #     future4 = executor.submit(InsertDb, data2)
+                        
+                    elif status==True:
+                        print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
                 if counter==15:
                     counter = 0
                     mainMenu()
