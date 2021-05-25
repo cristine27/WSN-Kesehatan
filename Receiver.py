@@ -348,6 +348,8 @@ def insertDataNodePasien(x):
                 mainMenu()
 
 def checkStatusNode(namaNode):
+    for key,value in Node.items():
+        print(key, ' : ', value)
     if Node[namaNode]=="online":
         return True
     else:
