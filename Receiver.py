@@ -366,13 +366,17 @@ def checkIfAttached(x):
 POOL_SIZE = 20
 
 while appRunning:
-    while menuShow:
-        msg = s.readline().decode("ascii").strip()   
-        mapNodeName(msg)
+    selfCounter = 0
+    while True:
+        selfCounter = selfCounter + 1
+        msg = s.readline().decode("ascii").strip()
+        getStatusNode(msg)
+        if selfCounter == 15:
+            break
+    while menuShow: 
+        mapNodeName()
         print(" ")
         if(perintah == "1"):
-            s.write(str.encode("a"))
-            getStatusNode(msg)
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
@@ -417,15 +421,7 @@ while appRunning:
 
         elif perintah == "2":
             print("Mohon menunggu..")
-            selfCounter = 0
-            # while True:
-                # s.write(str.encode("c").strip())
-            while True:
-                selfCounter = selfCounter + 1
-                msg = s.readline().decode("ascii").strip()
-                getStatusNode(msg)
-                if selfCounter == 15:
-                    break
+            
 
             for key,value in Node.items():
                 print(key, ' : ', value)
