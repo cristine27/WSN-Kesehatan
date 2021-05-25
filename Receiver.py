@@ -329,6 +329,7 @@ def insertDataNodePasien(x):
                 global idPasien 
                 idPasien = idP
                 global insertDataPasien
+                print(Node.get(namaNode))
                 if Node.get(namaNode,"")=="online":
                     # masukan idPasien ke dalam dictionary dengan key NamaNode
                     Pasien[namaNode] = idP
@@ -368,7 +369,7 @@ while appRunning:
             temp = temp + 1
             msg = s.readline().decode("ascii").strip()
             getStatusNode(msg)
-            if temp == 15:
+            if temp == 8:
                 break
         print(" ")
         if(perintah == "1"):
