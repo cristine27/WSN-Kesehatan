@@ -54,9 +54,7 @@ print("Daftar Menu Perintah : ")
 #print("1. Check status Node")
 print("1. Mulai Pemeriksaan")
 print("2. Check status Node")
-print("3. Mematikan Node")
-print("4. Menghidupkan Node")
-print("5. Keluar dari Aplikasi")
+print("3. Keluar dari Aplikasi")
 print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
 
@@ -71,9 +69,7 @@ def mainMenu():
     #print("1. Check status Node")
     print("1. Mulai Pemeriksaan")
     print("2. Check status Node")
-    print("3. Mematikan Node")
-    print("4. Menghidupkan Node")
-    print("5. Keluar dari Aplikasi")
+    print("3. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
     print("")
@@ -199,23 +195,14 @@ def matikanNode(namaNode):
     cursor.close()
     db.close()
 
-def getStatusNode():
-    db = mysql.connector.connect(
-        host='localhost',
-        database='WSN',
-        user='phpmyadmin',
-        password='raspberry',
-        pool_name='mypool',
-        pool_size=POOL_SIZE+1
-    )
-    cursor = db.cursor(buffered=True)
-    cursor.execute("SELECT namaNode,status FROM node")
-
-    res = cursor.fetchall()
-
-    for x in res:
-        print(x)
+def getStatusNode(data):
+    if validateData(data):
+        potong = data.split("|")
+        Node[potong[0]] = "Online"
+        hidupkanNode(potong[0])
     
+    for key,value in Node.items():
+        print(key, ' : ', value)
 
 def counterStart():
     global statusNode
@@ -455,7 +442,7 @@ while appRunning:
             mainMenu()
 
         # turn off status node
-        elif perintah == "3":
+        elif perintah == "8":
             s.write(str.encode("c").strip())
             flag = False
             
@@ -483,7 +470,7 @@ while appRunning:
             mainMenu()
             
         # turn on status node
-        elif perintah == "4":
+        elif perintah == "7":
             s.write(str.encode("c").strip())
             flag = False
             
@@ -512,7 +499,7 @@ while appRunning:
             mainMenu()
 
         # turn off basestation
-        elif perintah == "5":
+        elif perintah == "3":
              s.write(str.encode("c").strip())
              print("Mematikan Program Base Statsion")
              # os.system("Receiver.py")
