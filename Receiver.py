@@ -391,7 +391,7 @@ while appRunning:
                 #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
                 while sensing and counter<15:
                     # ambil data sensing arduino
-                    #msg = s.readline().decode("ascii").strip()
+                    msg = s.readline().decode("ascii").strip()
                     counter = counter + 1
                     time.sleep(5)
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
