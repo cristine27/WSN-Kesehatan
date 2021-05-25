@@ -204,6 +204,8 @@ def getStatusNode(data):
             Node[potong[0]] = "online"
             hidupkanNode(potong[0])
             status = True
+    for key,value in Node.items():
+        print(key, ' : ', value)
     return status
 
 def counterStart():
