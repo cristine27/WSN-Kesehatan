@@ -380,7 +380,7 @@ while appRunning:
             print(StatusInput)
             print("Pemeriksaan sedang dilakukan mohon tunggu...")
             i = 0
-            for key,value in Node.items():
+            for key,value in StatusInput.items():
                 if value == 2:
                     print("Maaf saat ini ", key, " sedang offline")
                     print("")
