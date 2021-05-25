@@ -329,7 +329,7 @@ def insertDataNodePasien(x):
                 global idPasien 
                 idPasien = idP
                 global insertDataPasien
-                if checkStatusNode(Node):
+                if Node.get(Node,"")=="online":
                     # masukan idPasien ke dalam dictionary dengan key NamaNode
                     Pasien[Node] = idP
                     print(Pasien)
@@ -346,14 +346,6 @@ def insertDataNodePasien(x):
                 print("Silahkan ulangi atau check data kembali)")
                 insertDataPasien = False
                 mainMenu()
-
-def checkStatusNode(namaNode):
-    for key,value in Node.items():
-        print(key, ' : ', value)
-    if Node[namaNode]=="online":
-        return True
-    else:
-        return False
 
 def checkIfAttached(x):
     check = False
