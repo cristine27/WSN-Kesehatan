@@ -330,23 +330,15 @@ def insertDataNodePasien(data,jumlahPasien):
             namaNode = potong[1]
             if(idP!=0 and Node!=""):
                 if(verifyidPasien(idP) and verifyidNode(namaNode)):
-                    global idPasien 
-                    idPasien = idP
-                    global insertDataPasien
                     temp = Node.get(namaNode)
                     if temp =="online" or temp == "1":
                         # masukan idPasien ke dalam dictionary dengan key NamaNode
                         Pasien[namaNode] = idP
-                        print(Pasien)
-                        print("Assign Pasien pada Node Berhasil")
-                        print("")
                         StatusInput[i] = 1
                     else:
                         StatusInput[namaNode] = 2
-                        insertDataPasien = False
                 else:
-                    StatusInput[i] = 3 
-                    insertDataPasien = False
+                    StatusInput[i] = 3
         i = i + 1
 
 def checkIfAttached(x):
@@ -385,6 +377,7 @@ while appRunning:
             formatPasien = input()
             # jumlahPasien = jumlahPasien - 1
             insertDataNodePasien(formatPasien,jumlahPasien)
+            print(StatusInput)
             print("Pemeriksaan sedang dilakukan mohon tunggu...")
             i = 0
             for key,value in Node.items():
