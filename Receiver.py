@@ -434,16 +434,17 @@ while appRunning:
 
         elif perintah == "2":
             print("Mohon menunggu..")
-            while True:
-                with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                        msg = s.readline().decode("ascii").strip()
-                        counterStart()
-                        future = executor.submit(getStatusNode, msg)
-                        time.sleep(1)
-                        data = future.result()
-                        if counter==15:
-                            break
-                        
+            # while True:
+                # s.write(str.encode("c").strip())
+            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                msg = s.readline().decode("ascii").strip()
+                counterStart()
+                future = executor.submit(getStatusNode, msg)
+                time.sleep(1)
+                data = future.result()
+                if counter==15:
+                    break
+
             for key,value in Node.items():
                 print(key, ' : ', value)
             mainMenu()
