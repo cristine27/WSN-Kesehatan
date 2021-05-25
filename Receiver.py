@@ -22,9 +22,11 @@ Pasien = {
     
 }
 
-# dictionary untuk mapping nama node dengan id node
-# misal node1 : 1
-idNode = {
+# dictionary untuk mapping status pasien,node apakah valid
+# 1 = valid, 2 = node offline, 3 = id tidak ditemukan
+# misal 
+# [0] = 1
+StatusInput = {
 
 }
 
@@ -93,10 +95,9 @@ def mapNodeName():
     for x in res:
         nama = x[0]
         temp = x[1]
-        if nama not in Pasien.keys() and nama not in Node.keys() and nama not in idNode.keys():
+        if nama not in Pasien.keys() and nama not in Node.keys():
             Pasien[nama] = 0
             Node[nama] = "offline"
-            idNode[nama] = temp
 
     cursor.close()
     db.close()
@@ -318,34 +319,35 @@ def verifyidNode(namaNode):
     
     return isValid
 
-def insertDataNodePasien(x):
-    temp = True
-    potong = x.split(",")
-    if(len(potong)>0):
-        idP = potong[0]
-        namaNode = potong[1]
-        if(idP!=0 and Node!=""):
-            if(verifyidPasien(idP) and verifyidNode(namaNode)):
-                global idPasien 
-                idPasien = idP
-                global insertDataPasien
-                temp = Node.get(namaNode)
-                
-                if temp =="online" or temp == "1":
-                    # masukan idPasien ke dalam dictionary dengan key NamaNode
-                    Pasien[namaNode] = idP
-                    print(Pasien)
-                    print("Assign Pasien pada Node Berhasil")
-                    print("")
+def insertDataNodePasien(data,jumlahPasien):
+    pisah = data.split("|")
+    i = 0
+    while(i<jumlahPasien):
+        temp = True
+        potong = pisah[i].split(",")
+        if(len(potong)>0):
+            idP = potong[0]
+            namaNode = potong[1]
+            if(idP!=0 and Node!=""):
+                if(verifyidPasien(idP) and verifyidNode(namaNode)):
+                    global idPasien 
+                    idPasien = idP
+                    global insertDataPasien
+                    temp = Node.get(namaNode)
+                    if temp =="online" or temp == "1":
+                        # masukan idPasien ke dalam dictionary dengan key NamaNode
+                        Pasien[namaNode] = idP
+                        print(Pasien)
+                        print("Assign Pasien pada Node Berhasil")
+                        print("")
+                        StatusInput[i] = 1
+                    else:
+                        StatusInput[namaNode] = 2
+                        insertDataPasien = False
                 else:
+                    StatusInput[i] = 3 
                     insertDataPasien = False
-                    print("Maaf saat ini ", namaNode, " sedang offline")
-                    print("")
-                    print("Silahkan menghidupkan ", namaNode," terlebih dahulu")
-            else:
-                print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
-                print("Silahkan ulangi atau check data kembali)")
-                insertDataPasien = False
+        i = i + 1
 
 def checkIfAttached(x):
     check = False
@@ -376,16 +378,27 @@ while appRunning:
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
             jumlahPasien = int(input())
-            while(jumlahPasien>0):
-                print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
-                print("Format Penulisan : idPasien1,namaNode")
-                print("Penulisan dilakukan persatu pasien")
-                print("")
-                formatPasien = input()
-                jumlahPasien = jumlahPasien - 1
-                insertDataNodePasien(formatPasien)
-            
+            # while(jumlahPasien>0):
+            print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
+            print("Format Penulisan : idPasien1,namaNode|idPasien2,namaNode|idPasien3,namaNode|")
+            print("")
+            formatPasien = input()
+            # jumlahPasien = jumlahPasien - 1
+            insertDataNodePasien(formatPasien,jumlahPasien)
             print("Pemeriksaan sedang dilakukan mohon tunggu...")
+            i = 0
+            for key,value in Node.items():
+                if value == 2:
+                    print("Maaf saat ini ", key, " sedang offline")
+                    print("")
+                elif value == 3:
+                    print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
+                    print("Silahkan ulangi atau check data kembali)")
+                else:
+                    i = i + 1
+            if(i==jumlahPasien):
+                    print("Assign Pasien pada Node Berhasil")
+                    print(Pasien)
             #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
             while sensing and counter<15:
                 if insertDataPasien:
@@ -393,18 +406,23 @@ while appRunning:
                     msg = s.readline().decode("ascii").strip()
                     counter = counter + 1
                     time.sleep(5)
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
                         #check apakah alat terpasang dengan benar
                         time.sleep(5)
                         status = checkIfAttached(msg)
                         if status==False:
                             time.sleep(1)
-                            future = executor.submit(getDataSense, msg)
+                            future1 = executor.submit(getDataSense, msg)
+                            # future2 = executor.submit(getDataSense, msg)
                             time.sleep(1)
-                            data = future.result()
+                            data1 = future1.result()
+                            # data2 = future2.result()
 
-                            if future.done() and data != None:
-                                future2 = executor.submit(InsertDb, data)
+                            if future1.done() and data1 != None:
+                                future3 = executor.submit(InsertDb, data1)
+                            # if future2.done() and data2 != None:
+                            #     future4 = executor.submit(InsertDb, data2)
+                            
                         elif status==True:
                             print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
                 else:
