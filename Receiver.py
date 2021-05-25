@@ -196,13 +196,14 @@ def matikanNode(namaNode):
     db.close()
 
 def getStatusNode(data):
+    status = False
     if validateData(data):
         potong = data.split("|")
-        Node[potong[0]] = "Online"
-        hidupkanNode(potong[0])
-    
-    for key,value in Node.items():
-        print(key, ' : ', value)
+        if(verifyidNode(potong[0])):
+            Node[potong[0]] = "Online"
+            hidupkanNode(potong[0])
+            status = True
+    return status
 
 def counterStart():
     global statusNode
@@ -436,9 +437,15 @@ while appRunning:
             while True:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                         msg = s.readline().decode("ascii").strip()
-                        future = executor.submit(checkStatusNode, msg)
+                        counterStart()
+                        future = executor.submit(getStatusNode, msg)
                         time.sleep(1)
                         data = future.result()
+                        if counter==15:
+                            break
+                        
+            for key,value in Node.items():
+                print(key, ' : ', value)
             mainMenu()
 
         # turn off status node
