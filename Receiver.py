@@ -200,7 +200,7 @@ def getStatusNode(data):
     if validateData(data):
         potong = data.split("|")
         if(verifyidNode(potong[0])):
-            Node[potong[0]] = "Online"
+            Node[potong[0]] = "online"
             hidupkanNode(potong[0])
             status = True
     return status
@@ -334,15 +334,21 @@ def insertDataNodePasien(x):
                     print("")
                 else:
                     insertDataPasien = False
-                    print("Maaf saat ini node sedang offline")
+                    print("Maaf saat ini ", Node, " sedang offline")
                     print("")
-                    print("Silahkan menghidupkan node terlebih dahulu")
+                    print("Silahkan menghidupkan ", Node," terlebih dahulu")
                     mainMenu()
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
                 insertDataPasien = False
                 mainMenu()
+
+def checkStatusNode(namaNode):
+    if Node[namaNode]=="online":
+        return True
+    else:
+        return False
 
 def checkIfAttached(x):
     check = False
@@ -352,40 +358,14 @@ def checkIfAttached(x):
         if(potong[4]=='0'):
             check = True
     return check
-                
-def checkStatusNode(namaNode):
-    db = mysql.connector.connect(
-        host='localhost',
-        database='WSN',
-        user='phpmyadmin',
-        password='raspberry',
-        pool_name='mypool',
-        pool_size=POOL_SIZE+1
-    )
-
-    cursor = db.cursor(buffered=True)
-    query = "Select status FROM node WHERE namaNode=%s"
-    value = (namaNode,)
-    cursor.execute(query,value)
-    isValid = True
-    res = cursor.fetchall()
-    
-    for x in res:
-        temp = "".join(map(str,x))
-        if temp == '0':
-            isValid = False
-
-    return isValid
-            
-    
 
 # jumlah threads(jumlah max req dari dari app)
 POOL_SIZE = 20
 
 while appRunning:
-    # msg = s.readline().decode("ascii").strip()
+    msg = s.readline().decode("ascii").strip()
     mapNodeName()
-    # getStatusNode(msg)
+    getStatusNode(msg)
     while menuShow:
         print(" ")
         if(perintah == "1"):
