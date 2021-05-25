@@ -35,9 +35,8 @@ StatusInput = {
 Node = {
 
 }
-global statusNode
 
-
+global hasilError
 
 # initial serial
 s = serial.Serial(
@@ -320,6 +319,7 @@ def verifyidNode(namaNode):
     return isValid
 
 def insertDataNodePasien(data,jumlahPasien):
+    global hasilError
     pisah = data.split("|")
     i = 0
     while(i<jumlahPasien):
@@ -339,6 +339,8 @@ def insertDataNodePasien(data,jumlahPasien):
                         StatusInput[namaNode] = 2
                 else:
                     StatusInput[i] = 3
+                    hasilError = idP + "," + namaNode
+
         i = i + 1
 
 def checkIfAttached(x):
@@ -379,17 +381,18 @@ while appRunning:
             insertDataNodePasien(formatPasien,jumlahPasien)
             print(StatusInput)
             print("Pemeriksaan sedang dilakukan mohon tunggu...")
-            i = 0
+            flag = False
             for key,value in StatusInput.items():
                 if value == 2:
                     print("Maaf saat ini ", key, " sedang offline")
                     print("")
                 elif value == 3:
-                    print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
+                    hasilError = hasilError.split(',')
+                    print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
                     print("Silahkan ulangi atau check data kembali)")
                 else:
-                    i = i + 1
-            if(i==jumlahPasien):
+                    flag = True
+            if flag:
                     print("Assign Pasien pada Node Berhasil")
                     print(Pasien)
             #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
