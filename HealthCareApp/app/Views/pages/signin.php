@@ -23,9 +23,9 @@
 
                                     <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
                                     <div class="md-form">
-                                        <i class="fa fa-envelope prefix grey-text"></i>
-                                        <input type="text" id="defaultForm-email" class="form-control">
-                                        <label for="defaultForm-email">Your email</label>
+                                        <i class="bi bi-envelope"></i>
+                                        <label for="email" class="fa fa-envelope prefix grey-text">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
                                     </div>
                                     <label for="email" class="fa fa-envelope prefix grey-text">Email</label>
                                     <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
