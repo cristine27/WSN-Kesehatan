@@ -383,16 +383,16 @@ def checkStatusNode(namaNode):
 POOL_SIZE = 20
 
 while appRunning:
+    msg = s.readline().decode("ascii").strip()
     mapNodeName()
+    getStatusNode(msg)
     while menuShow:
         print(" ")
         if(perintah == "1"):
             s.write(str.encode("a"))
-            mapNodeName()
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
             jumlahPasien = int(input())
-            
             while(jumlahPasien>0):
                 print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
                 print("Format Penulisan : idPasien1,namaNode")
