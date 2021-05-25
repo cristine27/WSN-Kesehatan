@@ -364,8 +364,10 @@ POOL_SIZE = 20
 
 while appRunning:
     mapNodeName()
+    global counter
     msg = s.readline().decode("ascii").strip()
-    while counterStart():
+    if counter==15:
+        counterStart()
         getStatusNode(msg)
     while menuShow:
         print(" ")
