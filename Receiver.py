@@ -74,7 +74,7 @@ def mainMenu():
     print("Silahkan Input Nomor Perintah : ")
     print("")
     
-def mapNodeName():
+def mapNodeName(x):
     db = mysql.connector.connect(
             host='localhost',
             database='WSN',
@@ -97,9 +97,12 @@ def mapNodeName():
             Pasien[nama] = 0
             Node[nama] = "offline"
             idNode[nama] = temp
+    
+    getStatusNode(x)
 
     cursor.close()
     db.close()
+    
 
     # testing isi dictionary
     #print(Pasien)
@@ -363,16 +366,9 @@ def checkIfAttached(x):
 POOL_SIZE = 20
 
 while appRunning:
-    mapNodeName()
-    temp = 0
-    msg = s.readline().decode("ascii").strip()
-    while (temp<15):
-        temp = temp+1
-        getStatusNode(msg)
-        for key,value in Node.items():
-            print(key, ' : ', value) 
-    temp = 0       
     while menuShow:
+        msg = s.readline().decode("ascii").strip()   
+        mapNodeName(msg)
         print(" ")
         if(perintah == "1"):
             s.write(str.encode("a"))
