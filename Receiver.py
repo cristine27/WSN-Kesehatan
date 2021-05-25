@@ -417,13 +417,13 @@ while appRunning:
 
         elif perintah == "2":
             print("Mohon menunggu..")
-            temp = 0
-            while True:
-                temp = temp + 1
-                msg = s.readline().decode("ascii").strip()
-                getDataSense(msg)
-                if temp == 15:
-                    break
+            # temp = 0
+            # while True:
+            #     temp = temp + 1
+            #     msg = s.readline().decode("ascii").strip()
+            #     getDataSense(msg)
+            #     if temp == 15:
+            #         break
 
             for key,value in Node.items():
                 print(key, ' : ', value)
