@@ -197,13 +197,18 @@ def matikanNode(namaNode):
     db.close()
 
 def getStatusNode(data):  
+    selfCounter = 0
     status = False
-    if validateData(data):
-        potong = data.split("|")
-        if(verifyidNode(potong[0])):
-            Node[potong[0]] = "online"
-            hidupkanNode(potong[0])
-            status = True
+    while True:
+        selfCounter = selfCounter + 1
+        if selfCounter == 15:
+            break
+        if validateData(data):
+            potong = data.split("|")
+            if(verifyidNode(potong[0])):
+                Node[potong[0]] = "online"
+                hidupkanNode(potong[0])
+                status = True
     return status
 
 def counterStart():
@@ -366,16 +371,17 @@ POOL_SIZE = 20
 while appRunning:
     while menuShow: 
         mapNodeName()
+        
+        temp = 0
+        while True:
+            temp = temp + 1
+            msg = s.readline().decode("ascii").strip()
+            getStatusNode(msg)
+            if temp == 15:
+                break
         print(" ")
         if(perintah == "1"):
             msg = s.readline().decode("ascii").strip()
-            selfCounter = 0
-            while True:
-                selfCounter = selfCounter + 1
-                msg = s.readline().decode("ascii").strip()
-                getStatusNode(msg)
-                if selfCounter == 15:
-                    break
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
@@ -419,7 +425,13 @@ while appRunning:
 
         elif perintah == "2":
             print("Mohon menunggu..")
-            
+            temp = 0
+            while True:
+                temp = temp + 1
+                msg = s.readline().decode("ascii").strip()
+                getDataSense(msg)
+                if temp == 15:
+                    break
 
             for key,value in Node.items():
                 print(key, ' : ', value)
