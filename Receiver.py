@@ -383,9 +383,9 @@ def checkStatusNode(namaNode):
 POOL_SIZE = 20
 
 while appRunning:
-    msg = s.readline().decode("ascii").strip()
+    # msg = s.readline().decode("ascii").strip()
     mapNodeName()
-    getStatusNode(msg)
+    # getStatusNode(msg)
     while menuShow:
         print(" ")
         if(perintah == "1"):
@@ -436,12 +436,10 @@ while appRunning:
             print("Mohon menunggu..")
             # while True:
                 # s.write(str.encode("c").strip())
-            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            while True:
                 msg = s.readline().decode("ascii").strip()
+                getStatusNode(msg)
                 counterStart()
-                future = executor.submit(getStatusNode, msg)
-                time.sleep(1)
-                data = future.result()
                 if counter==15:
                     break
 
