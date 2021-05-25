@@ -323,23 +323,23 @@ def insertDataNodePasien(x):
     potong = x.split(",")
     if(len(potong)>0):
         idP = potong[0]
-        Node = potong[1]
+        namaNode = potong[1]
         if(idP!=0 and Node!=""):
-            if(verifyidPasien(idP) and verifyidNode(Node)):
+            if(verifyidPasien(idP) and verifyidNode(namaNode)):
                 global idPasien 
                 idPasien = idP
                 global insertDataPasien
-                if Node.get(Node,"")=="online":
+                if Node.get(namaNode,"")=="online":
                     # masukan idPasien ke dalam dictionary dengan key NamaNode
-                    Pasien[Node] = idP
+                    Pasien[namaNode] = idP
                     print(Pasien)
                     print("Assign Pasien pada Node Berhasil")
                     print("")
                 else:
                     insertDataPasien = False
-                    print("Maaf saat ini ", Node, " sedang offline")
+                    print("Maaf saat ini ", namaNode, " sedang offline")
                     print("")
-                    print("Silahkan menghidupkan ", Node," terlebih dahulu")
+                    print("Silahkan menghidupkan ", namaNode," terlebih dahulu")
                     mainMenu()
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
