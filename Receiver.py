@@ -319,6 +319,7 @@ def verifyidNode(namaNode):
     return isValid
 
 def insertDataNodePasien(x):
+    temp = True
     potong = x.split(",")
     if(len(potong)>0):
         idP = potong[0]
@@ -341,17 +342,14 @@ def insertDataNodePasien(x):
                     print("Maaf saat ini ", namaNode, " sedang offline")
                     print("")
                     print("Silahkan menghidupkan ", namaNode," terlebih dahulu")
-                    mainMenu()
             else:
                 print("Maaf idNode dan idPasien yang dimasukkan tidak ditemukan")
                 print("Silahkan ulangi atau check data kembali)")
                 insertDataPasien = False
-                mainMenu()
 
 def checkIfAttached(x):
     check = False
     potong = x.split("|")
-    print(potong)
     if(len(potong)>0):
         if(potong[4]=='0'):
             check = True
@@ -386,29 +384,31 @@ while appRunning:
                 formatPasien = input()
                 jumlahPasien = jumlahPasien - 1
                 insertDataNodePasien(formatPasien)
-            if insertDataPasien:
+            
                 print("Pemeriksaan sedang dilakukan mohon tunggu...")
                 #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
                 while sensing and counter<15:
-                    # ambil data sensing arduino
-                    msg = s.readline().decode("ascii").strip()
-                    counter = counter + 1
-                    time.sleep(5)
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                        #check apakah alat terpasang dengan benar
+                    if insertDataPasien:
+                        # ambil data sensing arduino
+                        msg = s.readline().decode("ascii").strip()
+                        counter = counter + 1
                         time.sleep(5)
-                        status = checkIfAttached(msg)
-                        if status==False:
-                            time.sleep(1)
-                            future = executor.submit(getDataSense, msg)
-                            time.sleep(1)
-                            data = future.result()
+                        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                            #check apakah alat terpasang dengan benar
+                            time.sleep(5)
+                            status = checkIfAttached(msg)
+                            if status==False:
+                                time.sleep(1)
+                                future = executor.submit(getDataSense, msg)
+                                time.sleep(1)
+                                data = future.result()
 
-                            if future.done() and data != None:
-                                future2 = executor.submit(InsertDb, data)
-                        elif status==True:
-                            print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                
+                                if future.done() and data != None:
+                                    future2 = executor.submit(InsertDb, data)
+                            elif status==True:
+                                print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
+                    else:
+                        mainMenu()
                 if status:
                     mainMenu()
                 if counter==15:
