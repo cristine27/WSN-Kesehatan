@@ -328,10 +328,9 @@ def insertDataNodePasien(x):
                 global idPasien 
                 idPasien = idP
                 global insertDataPasien
-                print(namaNode)
-                print(Node.get(namaNode))
-                print(Node)
-                if Node.get(namaNode,"")=="online":
+                temp = Node.get(namaNode)
+                
+                if temp =="online" or temp == "1":
                     # masukan idPasien ke dalam dictionary dengan key NamaNode
                     Pasien[namaNode] = idP
                     print(Pasien)
