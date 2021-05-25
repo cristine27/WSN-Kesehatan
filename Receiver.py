@@ -74,7 +74,7 @@ def mainMenu():
     print("Silahkan Input Nomor Perintah : ")
     print("")
     
-def mapNodeName(x):
+def mapNodeName():
     db = mysql.connector.connect(
             host='localhost',
             database='WSN',
@@ -97,8 +97,6 @@ def mapNodeName(x):
             Pasien[nama] = 0
             Node[nama] = "offline"
             idNode[nama] = temp
-    
-    getStatusNode(x)
 
     cursor.close()
     db.close()
