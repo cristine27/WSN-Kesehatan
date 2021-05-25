@@ -355,15 +355,15 @@ def checkIfAttached(x):
 POOL_SIZE = 20
 
 while appRunning:
-    mapNodeName()
-    temp = 0
-    while True:
-        temp = temp + 1
-        msg = s.readline().decode("ascii").strip()
-        getStatusNode(msg)
-        if temp == 8:
-            break
     while menuShow: 
+        mapNodeName()
+        temp = 0
+        while True:
+            temp = temp + 1
+            msg = s.readline().decode("ascii").strip()
+            getStatusNode(msg)
+            if temp == 8:
+                break
         print(" ")
         if(perintah == "1"):
             msg = s.readline().decode("ascii").strip()
