@@ -163,15 +163,15 @@ class Home extends BaseController
 		$res = "normal";
 		if ($param == "Detak jantung") {
 			if ($value >= 150) {
-				$res = "detak cepat";
+				$res = "tidak normal";
 			}
 		} else if ($param == "Saturasi Oksigen") {
 			if ($value <= 94) {
-				$res = "warning";
+				$res = "tidak normal";
 			}
 		} else if ($param == "Temperatur") {
 			if ($value >= 38) {
-				$res = "warning";
+				$res = "tidak normal";
 			}
 		}
 		return $res;
@@ -207,5 +207,128 @@ class Home extends BaseController
 
 		session()->setFlashdata('pesan', 'Password berhasil diubah.');
 		return redirect()->to('/Home');
+	}
+
+	public function getRiwayat()
+	{
+		$tanggal = $this->request->getVar('tanggal');
+		// d($tanggal);
+		$this->dataPasien = session()->get('pasien');
+
+		// if ($tanggal != "") {
+		//     // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
+		//     $coba = $this->periksaModel->getWaktu($id, $tanggal);
+		//     d($coba);
+		//     foreach ($coba->getResultArray() as $res) {
+		//         d("hasil foreach");
+		//         d($res);
+		//     }
+		// }
+
+		$dataPeriksa = ($this->periksaModel->getAllHasil($this->dataPasien['idPasien']));
+		// d($dataPasien);
+
+		// foreach ($dataPeriksa->getResultArray() as $a) {
+		//     d($a);
+		// }
+		// $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
+		$i = 0;
+		$hasilSementara = [];
+		$kumpulanhasil = [];
+		$kumpulanparam = [];
+		$kumpulanStatus = [];
+		$check = false;
+		$flagFilter = false;
+		foreach ($dataPeriksa->getResultArray() as $res) {
+			if ($res['idNode']) {
+				$check = true;
+				if ($tanggal != null) {
+					$temp = strtotime($res['waktu']);
+					$date = date('Y-m-d', $temp);
+					if ($date == $tanggal) {
+						$flagFilter = true;
+						$hasilSementara[$i] = $res;
+					}
+				}
+				$kumpulanhasil[$i] = $res;
+			}
+			$i++;
+		}
+		if ($flagFilter) {
+			$kumpulanhasil = $hasilSementara;
+		}
+
+		if ($tanggal != "" and count($hasilSementara) == 0) {
+			$flagFilter = false;
+		} else {
+			$flagFilter = true;
+		}
+
+		$jumlahHasil = count($kumpulanhasil);
+		// d($kumpulanhasil);
+		$j = 0;
+		foreach ($kumpulanhasil as $key => $res) {
+			// d($hasil);
+			$idNode = $res['idNode'];
+
+			$idParam = $this->memilikiModel->getParamid($idNode);
+			// dd($idParam);
+			$index = 0;
+
+			foreach ($idParam as $id) {
+				$namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
+				$kumpulanparam[$j][$index] = $namaParam;
+				// d($namaParam['namaParameter']);
+				// d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+				// d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
+				$kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)]);
+				// d($hasil['hasil' . strval($index + 1)]);
+				// d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
+				$index++;
+			}
+			$j++;
+			// dd($kumpulanparam);
+		}
+
+		if ($check == false) {
+			$jumlahHasil = 0;
+
+			$kumpulanhasil = [
+				0 => [
+					'waktu' => "",
+					'hasil1' => 0,
+					'hasil2' => 0,
+					'hasil3' => 0,
+				]
+			];
+
+			$kumpulanparam = [
+				0 => [
+					'namaParameter' => ''
+				]
+			];
+
+			$kumpulanStatus = [
+				0 => "-"
+			];
+		}
+
+		$data = [
+			'title' => 'Riwayat Pasien',
+			'pasien' => $this->dataPasien,
+			'hasilPeriksa' => $kumpulanhasil,
+			'parameter' => $kumpulanparam,
+			'status' => $kumpulanStatus,
+			'flag' => $check,
+			'jumlahHasil' => $jumlahHasil,
+			'flagFilter' => $flagFilter
+		];
+
+		//jika pasien tidak ada
+		if (empty($data['pasien'])) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
+				'tidak ditemukan');
+		}
+		return view('pages/riwayatPasien', $data);
 	}
 }

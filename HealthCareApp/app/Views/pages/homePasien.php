@@ -35,7 +35,8 @@
                                 <div class="container">
                                     <!-- <div class="col"> -->
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getHasilPantau" role="button">Hasil Pemantuan</a>
+                                        <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getHasilPantau" role="button">Hasil Pemantauan</a>
+                                        <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getRiwayat" role="button">Riwayat Pemantauan</a>
                                         <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getPasienProfile" role="button">Profile</a>
                                         <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="/SignIn" role="button">Log out</a>
                                     </div>
