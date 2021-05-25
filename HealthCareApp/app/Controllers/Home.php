@@ -329,6 +329,6 @@ class Home extends BaseController
 			throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
 				'tidak ditemukan');
 		}
-		return view('pages/riwayatPasien', $data);
+		return view('pages/riwayat', $data);
 	}
 }
