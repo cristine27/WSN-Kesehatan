@@ -207,13 +207,7 @@ def checkStatusNode():
         pool_size=POOL_SIZE+1
     )
 
-    cursor.execute("SELECT namaNode, status FROM node")
-
-    res = cursor.fetchall()
-
-    for x in res:
-        temp = "".join(map(str,x))
-        print(temp)
+    
     
 
 
@@ -427,9 +421,7 @@ while appRunning:
                         #check apakah alat terpasang dengan benar
                         time.sleep(5)
                         status = checkIfAttached(msg)
-                        if status:
-                            break
-                        else:
+                        if status==False:
                             time.sleep(1)
                             future = executor.submit(getDataSense, msg)
                             time.sleep(1)
@@ -437,9 +429,10 @@ while appRunning:
 
                             if future.done() and data != None:
                                 future2 = executor.submit(InsertDb, data)
+                        elif status==True:
+                            print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
                 
                 if status:
-                    print("Perangkat Tidak Tersambung, Silahkan Periksa Kembali Perangkat..")
                     mainMenu()
                 if counter==20:
                     resetCounter()
@@ -447,7 +440,12 @@ while appRunning:
 
         elif perintah == "7":
             print("Mohon menunggu..")
-            checkStatusNode()
+            while True:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                        msg = s.readline().decode("ascii").strip()
+                        future = executor.submit(checkStatusNode, msg)
+                        time.sleep(1)
+                        data = future.result()
             mainMenu()
 
         # turn off status node
