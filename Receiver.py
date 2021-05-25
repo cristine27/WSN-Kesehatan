@@ -11,7 +11,7 @@ import threading
 appRunning = True
 menuShow = True
 sensing = True
-counter = 0
+counter = 15
 insertDataPasien = True
 idPasien = 0
 
@@ -195,7 +195,7 @@ def matikanNode(namaNode):
     cursor.close()
     db.close()
 
-def getStatusNode(data):
+def getStatusNode(data):  
     status = False
     if validateData(data):
         potong = data.split("|")
@@ -206,18 +206,18 @@ def getStatusNode(data):
     return status
 
 def counterStart():
-    global statusNode
-    enter = "try : "
+    global counter
 
-    if counter > 10:
-        statusNode = False
+    while True:
+        counter = counter - 1
 
-    return enter
-
+        if counter == 0:
+            resetCounter()
+            break
 
 def resetCounter():
     global counter
-    counter = 0
+    counter = 15
 
 def InsertDb(x):
     # konekDb()
@@ -363,13 +363,15 @@ def checkIfAttached(x):
 POOL_SIZE = 20
 
 while appRunning:
-    msg = s.readline().decode("ascii").strip()
     mapNodeName()
-    getStatusNode(msg)
+    msg = s.readline().decode("ascii").strip()
+    while counterStart():
+        getStatusNode(msg)
     while menuShow:
         print(" ")
         if(perintah == "1"):
             s.write(str.encode("a"))
+            counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
             jumlahPasien = int(input())
@@ -384,10 +386,9 @@ while appRunning:
             if insertDataPasien:
                 print("Pemeriksaan sedang dilakukan mohon tunggu...")
                 #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
-                while sensing and counter<20:
+                while sensing and counter<15:
                     # ambil data sensing arduino
                     #msg = s.readline().decode("ascii").strip()
-                    counterStart()
                     counter = counter + 1
                     time.sleep(5)
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
@@ -408,20 +409,20 @@ while appRunning:
                 
                 if status:
                     mainMenu()
-                if counter==20:
-                    resetCounter()
+                if counter==15:
+                    counter = 0
                     mainMenu()
 
         elif perintah == "2":
             print("Mohon menunggu..")
+            selfCounter = 0
             # while True:
                 # s.write(str.encode("c").strip())
             while True:
+                selfCounter = selfCounter + 1
                 msg = s.readline().decode("ascii").strip()
                 getStatusNode(msg)
-                counterStart()
-                counter = counter + 1
-                if counter==15:
+                if selfCounter == 15:
                     break
 
             for key,value in Node.items():
