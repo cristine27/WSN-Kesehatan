@@ -364,17 +364,18 @@ def checkIfAttached(x):
 POOL_SIZE = 20
 
 while appRunning:
-    selfCounter = 0
-    while True:
-        selfCounter = selfCounter + 1
-        msg = s.readline().decode("ascii").strip()
-        getStatusNode(msg)
-        if selfCounter == 15:
-            break
     while menuShow: 
         mapNodeName()
         print(" ")
         if(perintah == "1"):
+            msg = s.readline().decode("ascii").strip()
+            selfCounter = 0
+            while True:
+                selfCounter = selfCounter + 1
+                msg = s.readline().decode("ascii").strip()
+                getStatusNode(msg)
+                if selfCounter == 15:
+                    break
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
@@ -396,7 +397,6 @@ while appRunning:
                     counter = counter + 1
                     time.sleep(5)
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                        msg = s.readline().decode("ascii").strip()
                         #check apakah alat terpasang dengan benar
                         time.sleep(5)
                         status = checkIfAttached(msg)
