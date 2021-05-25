@@ -368,12 +368,15 @@ while appRunning:
     msg = s.readline().decode("ascii").strip()
     while (temp<15):
         temp = temp+1
-        getStatusNode(msg) 
+        getStatusNode(msg)
+        for key,value in Node.items():
+            print(key, ' : ', value) 
     temp = 0       
     while menuShow:
         print(" ")
         if(perintah == "1"):
             s.write(str.encode("a"))
+            getStatusNode(msg)
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
