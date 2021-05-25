@@ -440,6 +440,7 @@ while appRunning:
                 msg = s.readline().decode("ascii").strip()
                 getStatusNode(msg)
                 counterStart()
+                counter = counter + 1
                 if counter==15:
                     break
 
