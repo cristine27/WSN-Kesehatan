@@ -16,16 +16,16 @@
                             <!-- <div class="jumbotron jumbotron-fluid">
 
                             </div>  w-50 p-3-->
-                            <div class="container">
+                            <div class="container w-50">
 
                                 <form method="POST" action="/SignIn/validateLogin">
                                     <?= csrf_field(); ?>
 
                                     <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
-                                    <label for="email" class="visually-hidden">Email</label>
+                                    <label for="email" class="fa fa-envelope prefix grey-text">Email</label>
                                     <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
                                     <br>
-                                    <label for="password" class="visually-hidden">Password</label>
+                                    <label for="password" class="fa fa-lock prefix grey-text">Password</label>
                                     <input type="password" id="password" name="password" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Password" required>
                                     <br>
                                     <div class="invalid-feedback">
