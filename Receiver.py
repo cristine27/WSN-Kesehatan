@@ -134,8 +134,8 @@ def mapNodeName():
     res = cursor.fetchall()
 
     for x in res:
-        namaNode = x[0]
-        namaParam = x[1]
+        namaNode = x[0].lower()
+        namaParam = x[1].lower()
         if namaNode not in MapNodeParam.keys():
             MapNodeParam[namaNode] = namaParam
     cursor.close()
@@ -484,12 +484,12 @@ def assignNodeParam(namaNode,param):
     cursor = db.cursor(buffered=True)
 
     if verifyidNode(namaNode):
-        idNode = Node.get(namaNode)
+        idNode = idN.get(namaNode)
         print(Parameter.get(param))#ini untuk dapatin idParameternya
         for key,value in MapNodeParam.items():
             if key == namaNode and value == param:
                 isParamEx = True
-        if ((Parameter.get(param)!="None") and (not isParamEx)):
+        if ((Parameter.get(param)!=None) and (not isParamEx)):
             idParam = Parameter.get(param)
 
             queryInsert = (
