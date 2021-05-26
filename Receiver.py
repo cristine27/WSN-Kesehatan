@@ -565,12 +565,13 @@ while appRunning:
             #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
             while sensing and counter<15:
                 # ambil data sensing arduino
-                msg = s.readline().decode("ascii").strip()
+                
                 counter = counter + 1
                 time.sleep(1)
                 with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+                    msg = s.readline().decode("ascii").strip()
                     #check apakah alat terpasang dengan benar
-                    time.sleep(5)
+                    time.sleep(1)
                     status = checkIfAttached(msg)
                     if status==False:
                         time.sleep(1)
