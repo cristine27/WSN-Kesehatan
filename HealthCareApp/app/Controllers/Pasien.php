@@ -235,10 +235,10 @@ class Pasien extends BaseController
         if ($param == "Detak jantung") {
             // d("Masuk detak jantung");
             if ($value >= 60 and $value <= 100) {
-                d("masuk batas if pertama");
+                // d("masuk batas if pertama");
                 $res = "normal";
             } else if ($value < 60) {
-                d("masuk batas if kedua");
+                // d("masuk batas if kedua");
                 $res = "tidak normal";
             } else if ($value > 100) {
                 $res = "tidak normal";
@@ -362,7 +362,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-
+        dd($kumpulanStatus);
         $data = [
             'title' => 'Riwayat Pasien',
             'pasien' => $dataPasien,
