@@ -47,7 +47,9 @@
                                     </tr>
                                 </thead>
                                 <?php
-                                for ($i = 0; $i < 3; $i++) { ?>
+                                d($status);
+                                for ($i = 0; $i < 3; $i++) {
+                                ?>
                                     <tbody>
                                         <tr>
                                             <th scope="row"><?= $parameter[$index][$i]['namaParameter']; ?></th>
