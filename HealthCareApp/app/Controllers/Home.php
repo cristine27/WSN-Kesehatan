@@ -90,7 +90,7 @@ class Home extends BaseController
 			foreach ($idParam as $id) {
 				$namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
 				$kumpulanparam[$index] = $namaParam;
-				$kumpulanStatus[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)]);
+				$kumpulanStatus[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $this->dataPasien['umur']);
 				// d($hasil['hasil' . strval($index + 1)]);
 				// d($namaParam['namaParameter']);
 				// d($hasil['hasil' . strval($index + 1)]);
@@ -157,16 +157,18 @@ class Home extends BaseController
 		return view('pages/profile', $data);
 	}
 
-	public function setStatus($param, $value)
+	public function setStatus($param, $value, $age)
 	{
 		$value = intval($value);
 		$res = "normal";
+		$age = intval($age);
+		$max = 220 - $age;
 		if ($param == "Detak jantung") {
-			if ($value >= 150) {
+			if ($value < 60 || $value > 100 || $value > $max) {
 				$res = "tidak normal";
 			}
 		} else if ($param == "Saturasi Oksigen") {
-			if ($value <= 94) {
+			if ($value <= 94 || $value > 100) {
 				$res = "tidak normal";
 			}
 		} else if ($param == "Temperatur") {

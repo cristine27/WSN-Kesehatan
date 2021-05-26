@@ -294,21 +294,23 @@ class Pasien extends BaseController
         return redirect()->to('/Pasien');
     }
 
-    public function setStatus($param, $value)
+    public function setStatus($param, $value, $age)
     {
         $value = intval($value);
         $res = "normal";
+        $age = intval($age);
+        $max = 220 - $age;
         if ($param == "Detak jantung") {
-            if ($value >= 150) {
-                $res = "detak cepat";
+            if ($value < 60 || $value > 100 || $value > $max) {
+                $res = "tidak normal";
             }
         } else if ($param == "Saturasi Oksigen") {
-            if ($value <= 94) {
-                $res = "warning";
+            if ($value <= 94 || $value > 100) {
+                $res = "tidak normal";
             }
         } else if ($param == "Temperatur") {
             if ($value >= 38) {
-                $res = "warning";
+                $res = "tidak normal";
             }
         }
         return $res;

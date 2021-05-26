@@ -36,6 +36,10 @@ Node = {
 
 }
 
+Parameter = {
+
+}
+
 global hasilError
 
 # initial serial
@@ -55,7 +59,10 @@ print("Daftar Menu Perintah : ")
 #print("1. Check status Node")
 print("1. Mulai Pemeriksaan")
 print("2. Check status Node")
-print("3. Keluar dari Aplikasi")
+print("3. Daftar Node baru")
+print("4. Daftar Parameter pemantauan baru")
+print("5. Assign Parameter ke Node")
+print("6. Keluar dari Aplikasi")
 print("----------------------")
 print("Silahkan Input Nomor Perintah : ")
 
@@ -70,7 +77,10 @@ def mainMenu():
     #print("1. Check status Node")
     print("1. Mulai Pemeriksaan")
     print("2. Check status Node")
-    print("3. Keluar dari Aplikasi")
+    print("3. Daftar Node baru")
+    print("4. Daftar Parameter pemantauan baru")
+    print("5. Assign Parameter ke Node")
+    print("6. Keluar dari Aplikasi")
     print("----------------------")
     print("Silahkan Input Nomor Perintah : ")
     print("")
@@ -97,6 +107,17 @@ def mapNodeName():
         if nama not in Pasien.keys() and nama not in Node.keys():
             Pasien[nama] = 0
             Node[nama] = "offline"
+
+    cursor.execute("SELECT idParameter,namaParameter from parameter")
+
+    res = cursor.fetchall()
+
+    for x in res: 
+        idParameter = x[0]
+        namaParameter = x[1]
+        namaParameter.lower()
+        if namaParameter not in Parameter.keys():
+            Parameter[namaParameter] = idParameter
 
     cursor.close()
     db.close()
@@ -351,6 +372,124 @@ def checkIfAttached(x):
             check = True
     return check
 
+def insertNode(namaNode):
+    flag = True
+    if verifyidNode(namaNode):
+        flag = False
+        print("Maaf silahkan input nama node lain")
+        print("Nama node tidak boleh duplikat")
+    else:
+        db = mysql.connector.connect(
+            host='localhost',
+            database='WSN',
+            user='phpmyadmin',
+            password='raspberry',
+            pool_name='mypool',
+            pool_size=POOL_SIZE+1
+        )
+
+        cursor = db.cursor(buffered=True)
+
+        #convert data
+        
+        queryInsert = (
+            "INSERT INTO node (namaNode, status)"
+            "VALUES (%s, 1)"
+        )
+
+        values = (namaNode)
+        
+        #commit query sql
+        cursor.execute(queryInsert, values)
+        # print("execute query")
+        db.commit()
+
+        cursor.close()
+        db.close()
+        print("Selamat Node baru berhasil ditambahkan..")
+    return flag
+
+def insertParameter(namaParameter):
+    namaParameter.lower()
+    flag = True
+    
+    if Parameter.get(namaParameter)!="":
+        db = mysql.connector.connect(
+            host='localhost',
+            database='WSN',
+            user='phpmyadmin',
+            password='raspberry',
+            pool_name='mypool',
+            pool_size=POOL_SIZE+1
+        )
+
+        cursor = db.cursor(buffered=True)
+
+        #convert data
+        
+        queryInsert = (
+            "INSERT INTO parameter (namaParameter)"
+            "VALUES (%s)"
+        )
+
+        values = (namaParameter)
+        
+        #commit query sql
+        cursor.execute(queryInsert, values)
+        # print("execute query")
+        db.commit()
+
+        cursor.close()
+        db.close()
+        print("Selamat parameter baru berhasil ditambahkan..")
+    else:  
+        flag = False
+        print("Maaf parameter telah tersedia")
+    return flag
+
+def assignNodeParam(namaNode,param):
+    flag = True
+    db = mysql.connector.connect(
+            host='localhost',
+            database='WSN',
+            user='phpmyadmin',
+            password='raspberry',
+            pool_name='mypool',
+            pool_size=POOL_SIZE+1
+        )
+
+    cursor = db.cursor(buffered=True)
+
+    if verifyidNode(namaNode):
+        idNode = Node.get(namaNode)
+        
+        if Parameter.get(param)!="":
+            idParam = Parameter.get(param)
+
+            queryInsert = (
+            "INSERT INTO memiliki (idNode, idParameter)"
+            "VALUES (%s, %s)"
+            )
+
+            values = (idNode,idParam)
+        
+            #commit query sql
+            cursor.execute(queryInsert, values)
+            
+            db.commit()
+            cursor.close()
+            db.close()
+            print("Selamat assign parameter ke node berhasil..")
+        else:
+            flag = False
+            print("Maaf parameter belum terdaftar mohon daftar terlebih dahulu")
+            mainMenu()
+    else:
+        flag = False
+        print("Maaf nama node yang dimasukkan tidak terdaftar")
+    return flag
+        
+
 # jumlah threads(jumlah max req dari dari app)
 POOL_SIZE = 20
 
@@ -494,8 +633,61 @@ while appRunning:
                 print("Silahkan cek kembali nama node masukan")
             mainMenu()
 
-        # turn off basestation
         elif perintah == "3":
+            print("Silahkan input namaNode : ")
+            namaNode = input()
+            namaNode.lower()
+            flag = insertNode(namaNode)
+            if flag:
+                print("Apakah node ingin diassign ke parameter pemantauan ?")
+                print("Ketik 1 jika ingin melanjutkan dan 0 jika tidak")
+                masukkan = int(input())
+                if masukkan == 1:
+                    print("Satu node hanya dapat memiliki 3 parameter")
+                    print("Berapa parameter yang ingin anda assign ? ")
+                    jumlahParam = int(input)
+                    if jumlahParam<3:
+                        print("Maaf parameter hanya dapat 3")
+                        mainMenu()
+                    elif jumlahParam>0 and jumlahParam<=3:
+                        while(jumlahParam>0):
+                            print("Silahkan input nama parameter : ")
+                            namaParameter = input()
+                            namaParameter.lower()
+                            assignNodeParam(namaNode,namaParameter)
+                            jumlahParam = jumlahParam - 1
+            else:
+                mainMenu()
+
+        elif perintah == "4":
+            print("Silahkan input nama parameter : ")
+            namaParameter = input()
+
+            insertParameter(namaParameter)
+            mainMenu()
+
+        elif perintah == "5":
+            print("Silahkan input nama node : ")
+            namaNode = input()
+            namaNode.lower()
+
+            print("Satu node hanya dapat memiliki 3 parameter")
+            print("Berapa parameter yang ingin anda assign ? ")
+            jumlahParam = int(input)
+            if jumlahParam<3:
+                print("Maaf parameter hanya dapat 3")
+                mainMenu()
+            elif jumlahParam>0 and jumlahParam<=3:
+                while(jumlahParam>0):
+                    print("Silahkan input nama parameter : ")
+                    namaParameter = input()
+                    namaParameter.lower()
+                    assignNodeParam(namaNode,namaParameter)
+                    jumlahParam = jumlahParam - 1
+            mainMenu()
+
+        # turn off basestation
+        elif perintah == "6":
              s.write(str.encode("c").strip())
              print("Mematikan Program Base Statsion")
              # os.system("Receiver.py")
