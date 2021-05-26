@@ -301,7 +301,7 @@ def InsertDb(x):
     
     #commit query sql
     cursor.execute(queryInsert, values)
-    # print("execute query")
+    print("execute query")
     db.commit()
 
     cursor.close()
