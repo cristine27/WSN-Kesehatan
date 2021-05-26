@@ -40,6 +40,14 @@ Parameter = {
 
 }
 
+idN = {
+
+}
+
+MapNodeParam = {
+
+}
+
 global hasilError
 
 # initial serial
@@ -104,9 +112,10 @@ def mapNodeName():
     for x in res:
         nama = x[0]
         temp = x[1]
-        if nama not in Pasien.keys() and nama not in Node.keys():
+        if nama not in Pasien.keys() and nama not in Node.keys() and nama not in idN.keys():
             Pasien[nama] = 0
             Node[nama] = "offline"
+            idN[nama] = temp
 
     cursor.execute("SELECT idParameter,namaParameter from parameter")
 
@@ -118,6 +127,17 @@ def mapNodeName():
         namaParameter.lower()
         if namaParameter not in Parameter.keys():
             Parameter[namaParameter] = idParameter
+
+    sql = "SELECT node.namaNode as nama,parameter.namaParameter from memiliki JOIN node ON memiliki.idNode = node.idNode Join parameter ON memiliki.idParameter = parameter.idParameter"
+    cursor.execute(sql)
+
+    res = cursor.fetchall()
+
+    for x in res:
+        idNode = x[0]
+        idParam = x[1]
+        print(idNode + " " + idParam)
+
 
     cursor.close()
     db.close()
@@ -314,28 +334,31 @@ def verifyidPasien(idPasien):
     return isValid
 
 def verifyidNode(namaNode):
-    db = mysql.connector.connect(
-        host='localhost',
-        database='WSN',
-        user='phpmyadmin',
-        password='raspberry',
-        pool_name='mypool',
-        pool_size=POOL_SIZE+1
-    )
+    # db = mysql.connector.connect(
+    #     host='localhost',
+    #     database='WSN',
+    #     user='phpmyadmin',
+    #     password='raspberry',
+    #     pool_name='mypool',
+    #     pool_size=POOL_SIZE+1
+    # )
     isValid = True
-    cursor = db.cursor(buffered=True)
-    query = "Select idNode FROM node WHERE namaNode=%s"
-    value = (namaNode,)
-    cursor.execute(query, value)
+    # cursor = db.cursor(buffered=True)
+    # query = "Select idNode FROM node WHERE namaNode=%s"
+    # value = (namaNode,)
+    # cursor.execute(query, value)
     
-    res = cursor.fetchall()
+    # res = cursor.fetchall()
     
-    for x in res:
-        temp = "".join(map(str,x))
-        if temp == 0:
-            isValid = False
-        else:
-            Node[namaNode] = temp
+    # for x in res:
+    #     temp = "".join(map(str,x))
+    #     if temp == 0 or temp == "0":
+    #         isValid = False
+    #     else:
+    #         Node[namaNode] = temp
+
+    if idN.get(namaNode)==None:
+        isValid = False
     
     return isValid
 
@@ -463,7 +486,7 @@ def assignNodeParam(namaNode,param):
     if verifyidNode(namaNode):
         idNode = Node.get(namaNode)
         print(Parameter.get(param))
-        if Parameter.get(param)!="0":
+        if Parameter.get(param)!="None":
             idParam = Parameter.get(param)
 
             queryInsert = (
