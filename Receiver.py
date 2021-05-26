@@ -583,9 +583,9 @@ while appRunning:
                         data = future.result()
                         print(data)
                         # data2 = future2.result()
-                        
-                        if data != None:
-                            future2 = executor.submit(InsertDb, data)
+                        future2 = executor.submit(InsertDb, data)
+                        # if data != None:
+                            
                         # if future2.done() and data2 != None:
                         #     future4 = executor.submit(InsertDb, data2)
                         
