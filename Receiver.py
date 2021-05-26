@@ -291,14 +291,14 @@ def InsertDb(x):
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
-    
+    print(idPasien,idNode,waktu,detak,oksigen,suhu)
     queryInsert = (
         "INSERT INTO periksa (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
         "VALUES (%s, %s, %s, %s, %s, %s)"
     )
 
     values = (idPasien, idNode, waktu, detak, oksigen, suhu)
-    print(idPasien,idNode,waktu,detak,oksigen,suhu)
+    
     
     #commit query sql
     cursor.execute(queryInsert, values)
@@ -567,7 +567,7 @@ while appRunning:
                 # ambil data sensing arduino
                 
                 counter = counter + 1
-                time.sleep(1)
+                # time.sleep(1)
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     msg = s.readline().decode("ascii").strip()
                     print(msg)
@@ -575,17 +575,17 @@ while appRunning:
                     # time.sleep(1)
                     status = checkIfAttached(msg)
                     if status==False:
-                        print("masuk if status=false")
-                        time.sleep(5)
+                        # print("masuk if status=false")
+                        time.sleep(1)
                         future = executor.submit(getDataSense, msg)
                         # future2 = executor.submit(getDataSense, msg)
                         time.sleep(1)
                         data = future.result()
                         print(data)
                         # data2 = future2.result()
-                        future2 = executor.submit(InsertDb, data)
-                        # if data != None:
-                            
+                        
+                        if data != None:
+                            future2 = executor.submit(InsertDb, data)
                         # if future2.done() and data2 != None:
                         #     future4 = executor.submit(InsertDb, data2)
                         
@@ -594,7 +594,7 @@ while appRunning:
                 if counter==15:
                     counter = 0
                     break
-                    mainMenu()
+            mainMenu()
 
         elif perintah == "2":
             print("Mohon menunggu..")
