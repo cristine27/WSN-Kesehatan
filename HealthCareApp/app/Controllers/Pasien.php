@@ -54,8 +54,6 @@ class Pasien extends BaseController
     {
 
         $dataPasien = $this->pasienModel->getPasien($id);
-        // d($dataPasien);
-        $dataPeriksa = ($this->periksaModel->getAllHasil($id));
 
         $data = [
             'title' => 'Detail Pasien',
