@@ -52,7 +52,6 @@ class Pasien extends BaseController
 
     public function detail($id)
     {
-
         $dataPasien = $this->pasienModel->getPasien($id);
 
         $data = [
@@ -318,8 +317,8 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
-                // d($namaParam['namaParameter']);
-                // d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
+                d($namaParam['namaParameter']);
+                d($res['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)], $dataPasien['umur']);
                 // d($hasil['hasil' . strval($index + 1)]);
