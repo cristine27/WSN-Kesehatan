@@ -388,7 +388,7 @@ class Pasien extends BaseController
                 // d($namaParam['namaParameter']);
                 // d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
-                $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)]);
+                $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)], $dataPasien['umur']);
                 // d($hasil['hasil' . strval($index + 1)]);
                 // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $index++;
