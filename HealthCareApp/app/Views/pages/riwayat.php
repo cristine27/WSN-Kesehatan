@@ -33,8 +33,9 @@
         <div class="row">
             <div class="col">
                 <p class="<?= ($flag == true) ? 'invisible' : 'visible'; ?>">Pasien Belum Melakukan Pemeriksaan</p>
-                <?php foreach ($hasilPeriksa as $key => $value) {
-                    $index = 0; ?>
+                <?php
+                $index = 0;
+                foreach ($hasilPeriksa as $key => $value) { ?>
                     <h5 class="mt-3">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
                     <div class="col d-flex justify-content-start">
                         <div class="w-75 table-responsive">
