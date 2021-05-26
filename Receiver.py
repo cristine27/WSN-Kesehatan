@@ -570,8 +570,9 @@ while appRunning:
                 time.sleep(1)
                 with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
                     msg = s.readline().decode("ascii").strip()
+                    print(msg)
                     #check apakah alat terpasang dengan benar
-                    time.sleep(1)
+                    # time.sleep(1)
                     status = checkIfAttached(msg)
                     if status==False:
                         time.sleep(1)
