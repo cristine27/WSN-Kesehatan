@@ -285,7 +285,7 @@ def InsertDb(x):
     node = str(node)
     
     idPasien = "".join(map(str, Pasien.get(node,None)))
-    idNode = "".join(map(str, Node.get(node,None)))
+    idNode = "".join(map(str, idN.get(node,None)))
 
     # convert data
     detak = str(detak)
