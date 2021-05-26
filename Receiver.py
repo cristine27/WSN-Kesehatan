@@ -482,11 +482,10 @@ def assignNodeParam(namaNode,param):
         )
 
     cursor = db.cursor(buffered=True)
-    print(verifyidNode(namaNode))
-    print(Node.get(namaNode))
+
     if verifyidNode(namaNode):
         idNode = Node.get(namaNode)
-        print(Parameter.get(param))
+        print(Parameter.get(param))#ini untuk dapatin idParameternya
         for key,value in MapNodeParam.items():
             if key == namaNode and value == param:
                 isParamEx = True
@@ -513,7 +512,7 @@ def assignNodeParam(namaNode,param):
                 print("Maaf parameter sudah terdaftar pada node")
             else:
                 print("Maaf parameter belum terdaftar mohon daftar terlebih dahulu")
-            mainMenu()
+            # mainMenu()
     else:
         flag = False
         print("Maaf nama node yang dimasukkan tidak terdaftar")
@@ -700,20 +699,22 @@ while appRunning:
             print("Silahkan input nama node : ")
             namaNode = input()
             namaNode.lower()
-
-            print("Satu node hanya dapat memiliki 3 parameter")
-            print("Berapa parameter yang ingin anda assign ? ")
-            jumlahParam = int(input())
-            if jumlahParam>3:
-                print("Maaf parameter hanya dapat 3")
-                mainMenu()
-            elif jumlahParam>0 and jumlahParam<=3:
-                while(jumlahParam>0):
-                    print("Silahkan input nama parameter : ")
-                    namaParameter = input()
-                    namaParameter.lower()
-                    assignNodeParam(namaNode,namaParameter)
-                    jumlahParam = jumlahParam - 1
+            if(verifyidNode(namaNode)):
+                print("Satu node hanya dapat memiliki 3 parameter")
+                print("Berapa parameter yang ingin anda assign ? ")
+                jumlahParam = int(input())
+                if jumlahParam>3:
+                    print("Maaf parameter hanya dapat 3")
+                    mainMenu()
+                elif jumlahParam>0 and jumlahParam<=3:
+                    while(jumlahParam>0):
+                        print("Silahkan input nama parameter : ")
+                        namaParameter = input()
+                        namaParameter.lower()
+                        assignNodeParam(namaNode,namaParameter)
+                        jumlahParam = jumlahParam - 1
+            else:
+                print("Maaf node tidak terdaftar silahkan periksa kembali")
             mainMenu()
 
         # turn off basestation
