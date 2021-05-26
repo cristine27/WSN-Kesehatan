@@ -432,7 +432,7 @@ def insertParameter(namaParameter):
             "VALUES (%s)"
         )
 
-        values = (namaParameter)
+        values = (namaParameter,)
         
         #commit query sql
         cursor.execute(queryInsert, values)
@@ -673,7 +673,7 @@ while appRunning:
 
             print("Satu node hanya dapat memiliki 3 parameter")
             print("Berapa parameter yang ingin anda assign ? ")
-            jumlahParam = int(input)
+            jumlahParam = int(input())
             if jumlahParam<3:
                 print("Maaf parameter hanya dapat 3")
                 mainMenu()
