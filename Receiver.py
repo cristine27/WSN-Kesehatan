@@ -394,10 +394,10 @@ def insertNode(namaNode):
         
         queryInsert = (
             "INSERT INTO node (namaNode, status)"
-            "VALUES (%s, 1)"
+            "VALUES (%s, %s)"
         )
 
-        values = (namaNode)
+        values = (namaNode,1)
         
         #commit query sql
         cursor.execute(queryInsert, values)
