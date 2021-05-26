@@ -674,7 +674,7 @@ while appRunning:
             print("Satu node hanya dapat memiliki 3 parameter")
             print("Berapa parameter yang ingin anda assign ? ")
             jumlahParam = int(input())
-            if jumlahParam<3:
+            if jumlahParam>3:
                 print("Maaf parameter hanya dapat 3")
                 mainMenu()
             elif jumlahParam>0 and jumlahParam<=3:
