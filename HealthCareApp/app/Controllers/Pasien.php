@@ -56,75 +56,10 @@ class Pasien extends BaseController
         $dataPasien = $this->pasienModel->getPasien($id);
         // d($dataPasien);
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
-        // foreach ($dataPeriksa->getResultArray() as $a) {
-        //     d($a);
-        // }
-        // $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
-        $i = 0;
-        $kumpulanhasil = [];
-        $kumpulanparam = [];
-        $kumpulanStatus = [];
-        $check = false;
 
-        foreach ($dataPeriksa->getResultArray() as $res) {
-            // d($res);
-            if ($res['idNode']) {
-                $check = true;
-                $kumpulanhasil[$i] = $res;
-            }
-            $i++;
-        }
-        $jumlahHasil = $i;
-
-        for ($j = 0; $j < $jumlahHasil; $j++) {
-            // d($hasil);
-            $idNode = $kumpulanhasil[$j]['idNode'];
-
-            $idParam = $this->memilikiModel->getParamid($idNode);
-            // dd($idParam);
-            $index = 0;
-            foreach ($idParam as $id) {
-                $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
-                $kumpulanparam[$j][$index] = $namaParam;
-                $kumpulanStatus[$j][$index] = $this->setStatus($namaParam, $kumpulanhasil[$j]['hasil' . strval($index + 1)]);
-                // d($hasil['hasil' . strval($index + 1)]);
-                // d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
-                $index++;
-            }
-            // dd($kumpulanparam);
-        }
-
-        if ($check == false) {
-            $jumlahHasil = 0;
-
-            $kumpulanhasil = [
-                0 => [
-                    'waktu' => "",
-                    'hasil1' => 0,
-                    'hasil2' => 0,
-                    'hasil3' => 0,
-                ]
-            ];
-
-            $kumpulanparam = [
-                0 => [
-                    'namaParameter' => ''
-                ]
-            ];
-
-            $kumpulanStatus = [
-                0 => "-"
-            ];
-        }
-        // dd($kumpulanStatus);
         $data = [
-            'title' => 'Detail Komik',
-            'pasien' => $dataPasien,
-            'hasilPeriksa' => $kumpulanhasil,
-            'parameter' => $kumpulanparam,
-            'status' => $kumpulanStatus,
-            'flag' => $check,
-            'jumlahHasil' => $jumlahHasil
+            'title' => 'Detail Pasien',
+            'pasien' => $dataPasien
         ];
 
         //jika pasien tidak ada
