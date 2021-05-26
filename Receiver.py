@@ -567,7 +567,7 @@ while appRunning:
                 
                 counter = counter + 1
                 time.sleep(1)
-                with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     msg = s.readline().decode("ascii").strip()
                     print(msg)
                     #check apakah alat terpasang dengan benar
