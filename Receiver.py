@@ -580,10 +580,11 @@ while appRunning:
                         # future2 = executor.submit(getDataSense, msg)
                         time.sleep(1)
                         data = future.result()
+                        print(data)
                         # data2 = future2.result()
 
-                        if future.done() and data != None:
-                            future = executor.submit(InsertDb, data)
+                        if data != None:
+                            future2 = executor.submit(InsertDb, data)
                         # if future2.done() and data2 != None:
                         #     future4 = executor.submit(InsertDb, data2)
                         
@@ -591,6 +592,7 @@ while appRunning:
                         print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
                 if counter==15:
                     counter = 0
+                    break
                     mainMenu()
 
         elif perintah == "2":
