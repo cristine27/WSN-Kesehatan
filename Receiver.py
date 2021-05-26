@@ -462,8 +462,8 @@ def assignNodeParam(namaNode,param):
 
     if verifyidNode(namaNode):
         idNode = Node.get(namaNode)
-        
-        if Parameter.get(param)!="":
+        print(Parameter.get(param))
+        if Parameter.get(param)!="0":
             idParam = Parameter.get(param)
 
             queryInsert = (
