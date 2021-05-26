@@ -288,7 +288,7 @@ def InsertDb(x):
     idPasien = Pasien.get(node)
     idNode = idN.get(node)
     # idNode = "".join(map(str, idN.get(node,None)))
-    print(idPasien + " " + idNode)
+    
     # convert data
     detak = str(detak)
     oksigen = str(oksigen)
@@ -536,6 +536,8 @@ while appRunning:
                 break
         print(" ")
         if(perintah == "1"):
+            print(Pasien.get("node1"))
+            print(idN.get("node1"))
             msg = s.readline().decode("ascii").strip()
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
