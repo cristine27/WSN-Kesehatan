@@ -263,6 +263,7 @@ def resetCounter():
 
 def InsertDb(x):
     # konekDb()
+    print("insert db")
     db = mysql.connector.connect(
         host='localhost',
         database='WSN',
@@ -286,7 +287,7 @@ def InsertDb(x):
     idPasien = "".join(map(str, Pasien.get(node,None)))
     idNode = "".join(map(str, Node.get(node,None)))
 
-    #convert data
+    # convert data
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
@@ -297,7 +298,7 @@ def InsertDb(x):
     )
 
     values = (idPasien, idNode, waktu, detak, oksigen, suhu)
-    # print(idPasien,idNode,waktu,detak,oksigen,suhu)
+    print(idPasien,idNode,waktu,detak,oksigen,suhu)
     
     #commit query sql
     cursor.execute(queryInsert, values)
