@@ -236,10 +236,9 @@ class Pasien extends BaseController
             // d("Masuk detak jantung");
             if ($value < 60) {
                 $res = "tidak normal";
-            }else if($value >= 60 and $value <= 100){
-                $res = "normal"
-            } 
-            else if ($value > 100) {
+            } else if ($value >= 60 and $value <= 100) {
+                $res = "normal";
+            } else if ($value > 100) {
                 $res = "tidak normal";
             } else if ($value > $max) {
                 $res = "tidak normal";
