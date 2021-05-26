@@ -374,7 +374,7 @@ def checkIfAttached(x):
 
 def insertNode(namaNode):
     flag = True
-    if verifyidNode(namaNode):
+    if not verifyidNode(namaNode):
         flag = False
         print("Maaf silahkan input nama node lain")
         print("Nama node tidak boleh duplikat")
