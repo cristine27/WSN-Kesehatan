@@ -173,7 +173,7 @@ def getDataSense(x):
     waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
     # print(localtime)
     
-    # print("masuk function getData")
+    print("masuk function getData")
     # print("data = ")
     # print(node, detak, oksigen, suhu, waktu)
     return node, detak, oksigen, suhu, waktu
@@ -578,7 +578,7 @@ while appRunning:
                         time.sleep(5)
                         future = executor.submit(getDataSense, msg)
                         # future2 = executor.submit(getDataSense, msg)
-                        # time.sleep(1)
+                        time.sleep(1)
                         data = future.result()
                         # data2 = future2.result()
 
