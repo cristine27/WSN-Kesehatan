@@ -389,9 +389,8 @@ def insertDataNodePasien(data,jumlahPasien):
 def checkIfAttached(x):
     check = False
     potong = x.split("|")
-    if(len(potong)>0):
-        if(potong[4]=='0'):
-            check = True
+    if(potong[len(potong)-1]=='0'):
+        check = True
     return check
 
 def insertNode(namaNode):
