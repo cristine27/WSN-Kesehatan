@@ -362,7 +362,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-        dd($kumpulanStatus);
+        // dd($kumpulanStatus);
         $data = [
             'title' => 'Riwayat Pasien',
             'pasien' => $dataPasien,
