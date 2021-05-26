@@ -233,14 +233,17 @@ class Pasien extends BaseController
         $age = intval($age);
         $max = 220 - $age;
         if ($param == "Detak jantung") {
+            d("Masuk detak jantung");
             if ($value < 60 || $value > 100 || $value > $max) {
                 $res = "tidak normal";
             }
         } else if ($param == "Saturasi Oksigen") {
+            d("Masuk oksi");
             if ($value <= 94 || $value > 100) {
                 $res = "tidak normal";
             }
         } else if ($param == "Temperatur") {
+            d("Masuk suhu");
             if ($value >= 38) {
                 $res = "tidak normal";
             }
