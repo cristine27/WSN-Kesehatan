@@ -574,15 +574,16 @@ while appRunning:
                     # time.sleep(1)
                     status = checkIfAttached(msg)
                     if status==False:
-                        time.sleep(1)
-                        future1 = executor.submit(getDataSense, msg)
+                        print("masuk if status=false")
+                        time.sleep(5)
+                        future = executor.submit(getDataSense, msg)
                         # future2 = executor.submit(getDataSense, msg)
-                        time.sleep(1)
-                        data1 = future1.result()
+                        # time.sleep(1)
+                        data = future.result()
                         # data2 = future2.result()
 
-                        if future1.done() and data1 != None:
-                            future3 = executor.submit(InsertDb, data1)
+                        if future.done() and data != None:
+                            future = executor.submit(InsertDb, data)
                         # if future2.done() and data2 != None:
                         #     future4 = executor.submit(InsertDb, data2)
                         
