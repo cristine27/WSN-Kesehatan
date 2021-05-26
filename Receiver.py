@@ -134,11 +134,10 @@ def mapNodeName():
     res = cursor.fetchall()
 
     for x in res:
-        idNode = x[0]
-        idParam = x[1]
-        print(idNode + " " + idParam)
-
-
+        namaNode = x[0]
+        namaParam = x[1]
+        if namaNode not in MapNodeParam.keys():
+            MapNodeParam[namaNode] = namaParam
     cursor.close()
     db.close()
     
@@ -472,6 +471,7 @@ def insertParameter(namaParameter):
 
 def assignNodeParam(namaNode,param):
     flag = True
+    isParamEx = False
     db = mysql.connector.connect(
             host='localhost',
             database='WSN',
@@ -482,11 +482,15 @@ def assignNodeParam(namaNode,param):
         )
 
     cursor = db.cursor(buffered=True)
-
+    print(verifyidNode(namaNode))
+    print(Node.get(namaNode))
     if verifyidNode(namaNode):
         idNode = Node.get(namaNode)
         print(Parameter.get(param))
-        if Parameter.get(param)!="None":
+        for key,value in MapNodeParam.items():
+            if key == namaNode and value == param:
+                isParamEx = True
+        if ((Parameter.get(param)!="None") and (not isParamEx)):
             idParam = Parameter.get(param)
 
             queryInsert = (
@@ -505,7 +509,10 @@ def assignNodeParam(namaNode,param):
             print("Selamat assign parameter ke node berhasil..")
         else:
             flag = False
-            print("Maaf parameter belum terdaftar mohon daftar terlebih dahulu")
+            if isParamEx:
+                print("Maaf parameter sudah terdaftar pada node")
+            else:
+                print("Maaf parameter belum terdaftar mohon daftar terlebih dahulu")
             mainMenu()
     else:
         flag = False
