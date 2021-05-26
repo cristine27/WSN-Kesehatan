@@ -283,10 +283,10 @@ def InsertDb(x):
     
     # convert data sebelum masuk ke db
     node = str(node)
-    
+    print(node)
     idPasien = "".join(map(str, Pasien.get(node,None)))
     idNode = "".join(map(str, idN.get(node,None)))
-
+    print(idPasien + " " + idNode)
     # convert data
     detak = str(detak)
     oksigen = str(oksigen)
