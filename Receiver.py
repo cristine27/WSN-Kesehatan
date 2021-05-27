@@ -586,7 +586,7 @@ while appRunning:
                         time.sleep(1)
                         data = future.result()
                         print(data)
-                        time.sleep(1)
+                        time.sleep(2)
                         # data2 = future2.result()
                         # future2 = executor.submit(InsertDb, data)
                         # if data != None:
