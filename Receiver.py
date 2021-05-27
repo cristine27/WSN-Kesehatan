@@ -583,7 +583,7 @@ while appRunning:
                         time.sleep(1)
                         future = executor.submit(getDataSense, msg)
                         # future2 = executor.submit(getDataSense, msg)
-                        time.sleep(1)
+                        time.sleep(2)
                         data = future.result()
                         print(data)
                         time.sleep(2)
