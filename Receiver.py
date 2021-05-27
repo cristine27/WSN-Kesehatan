@@ -389,7 +389,7 @@ def insertParameter(namaParameter):
     namaParameter.lower()
     flag = True
     
-    if Parameter.get(namaParameter)!=None:
+    if Parameter.get(namaParameter)==None:
         db = mysql.connector.connect(
             host='localhost',
             database='WSN',
