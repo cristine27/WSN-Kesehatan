@@ -283,17 +283,17 @@ def InsertDb(x):
     
     # convert data sebelum masuk ke db
     node = str(node)
-    print(node)
+    print(node,waktu,detak,oksigen,suhu)
     # idPasien = "".join(map(str, Pasien.get(node,None)))
     idPasien = Pasien.get(node)
     idNode = idN.get(node)
     # idNode = "".join(map(str, idN.get(node,None)))
-    
+    print(idPasien, idNode)
     # convert data
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
-    print(idPasien,idNode,waktu,detak,oksigen,suhu)
+    
     queryInsert = (
         "INSERT INTO periksa (idPasien, idNode, waktu, hasil1, hasil2, hasil3)"
         "VALUES (%s, %s, %s, %s, %s, %s)"
@@ -525,8 +525,8 @@ def assignNodeParam(namaNode,param):
 POOL_SIZE = 20
 
 while appRunning:
+    mapNodeName()
     while menuShow: 
-        mapNodeName()
         temp = 0
         while True:
             temp = temp + 1
@@ -571,10 +571,10 @@ while appRunning:
                 # ambil data sensing arduino
                 
                 counter = counter + 1
-                # time.sleep(1)
+                
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     msg = s.readline().decode("ascii").strip()
-                    print(msg)
+                    # print(msg)
                     #check apakah alat terpasang dengan benar
                     # time.sleep(1)
                     status = checkIfAttached(msg)
@@ -586,12 +586,13 @@ while appRunning:
                         time.sleep(1)
                         data = future.result()
                         print(data)
+                        time.sleep(1)
                         # data2 = future2.result()
-                        future2 = executor.submit(InsertDb, data)
+                        # future2 = executor.submit(InsertDb, data)
                         # if data != None:
                             
-                        # if future2.done() and data2 != None:
-                        #     future4 = executor.submit(InsertDb, data2)
+                        if future.done() and data != None:
+                            future2 = executor.submit(InsertDb, data)
                         
                     elif status==True:
                         print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
