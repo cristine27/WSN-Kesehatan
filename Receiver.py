@@ -538,7 +538,7 @@ while appRunning:
         if(perintah == "1"):
             print(Pasien.get("node1"))
             print(idN.get("node1"))
-            msg = s.readline().decode("ascii").strip()
+            # msg = s.readline().decode("ascii").strip()
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
