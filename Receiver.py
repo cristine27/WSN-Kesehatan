@@ -575,7 +575,7 @@ while appRunning:
                     elif jumlahParam>0 and jumlahParam<=3:
                         print("Parameter yang tersedia : ")
                         for key,value in Parameter.items():
-                            print("- " , value)
+                            print("-" , value , key)
                         while(jumlahParam>0):
                             print("Silahkan input nama parameter : ")
                             namaParameter = input()
@@ -614,7 +614,7 @@ while appRunning:
                 elif jumlahParam>0 and jumlahParam<=3:
                     print("Parameter yang tersedia : ")
                     for key,value in Parameter.items():
-                        print("- " , value)
+                        print("-" , value , key)
                     while(jumlahParam>0):
                         print("Silahkan input nama parameter : ")
                         namaParameter = input()
