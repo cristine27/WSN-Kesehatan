@@ -576,17 +576,17 @@ while appRunning:
                     msg = s.readline().decode("ascii").strip()
                     # print(msg)
                     #check apakah alat terpasang dengan benar
-                    # time.sleep(1)
+                    time.sleep(1)
                     status = checkIfAttached(msg)
                     if status==False:
                         # print("masuk if status=false")
-                        # time.sleep(1)
+                        time.sleep(1)
                         future = executor.submit(getDataSense, msg)
                         # future2 = executor.submit(getDataSense, msg)
-                        # time.sleep(2)
+                        time.sleep(2)
                         data = future.result()
                         # print(data)
-                        # time.sleep(2)
+                        time.sleep(2)
                         # data2 = future2.result()
                         # future2 = executor.submit(InsertDb, data)
                         # if data != None:
