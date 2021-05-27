@@ -567,12 +567,12 @@ while appRunning:
                     print("Assign Pasien pada Node Berhasil")
                     print(Pasien)
             #print("Nama Node | detak Jantung | Oksigen | Suhu | Waktu ")
-            while sensing and counter<15:
+            while sensing and counter<=10:
                 # ambil data sensing arduino
                 
                 counter = counter + 1
                 
-                with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                     msg = s.readline().decode("ascii").strip()
                     # print(msg)
                     #check apakah alat terpasang dengan benar
@@ -580,13 +580,13 @@ while appRunning:
                     status = checkIfAttached(msg)
                     if status==False:
                         # print("masuk if status=false")
-                        time.sleep(1)
+                        # time.sleep(1)
                         future = executor.submit(getDataSense, msg)
                         # future2 = executor.submit(getDataSense, msg)
-                        time.sleep(2)
+                        # time.sleep(2)
                         data = future.result()
-                        print(data)
-                        time.sleep(2)
+                        # print(data)
+                        # time.sleep(2)
                         # data2 = future2.result()
                         # future2 = executor.submit(InsertDb, data)
                         # if data != None:
@@ -596,7 +596,7 @@ while appRunning:
                         
                     elif status==True:
                         print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                if counter==15:
+                if counter==10:
                     counter = 0
                     break
             mainMenu()
