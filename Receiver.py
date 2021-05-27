@@ -383,14 +383,13 @@ def insertNode(namaNode):
 
         cursor.close()
         db.close()
-        print("Selamat Node baru berhasil ditambahkan..")
     return flag
 
 def insertParameter(namaParameter):
     namaParameter.lower()
     flag = True
     
-    if Parameter.get(namaParameter)!="":
+    if Parameter.get(namaParameter)!=None:
         db = mysql.connector.connect(
             host='localhost',
             database='WSN',
@@ -418,10 +417,8 @@ def insertParameter(namaParameter):
 
         cursor.close()
         db.close()
-        print("Selamat parameter baru berhasil ditambahkan..")
     else:  
         flag = False
-        print("Maaf parameter telah tersedia")
     return flag
 
 def assignNodeParam(namaNode,param):
@@ -592,7 +589,11 @@ while appRunning:
             print("Silahkan input nama parameter : ")
             namaParameter = input()
 
-            insertParameter(namaParameter)
+            flag = insertParameter(namaParameter)
+            if flag:
+                print("Selamat parameter baru berhasil ditambahkan..")
+            else:
+                print("Maaf parameter telah tersedia")
             mainMenu()
 
         elif perintah == "5":
