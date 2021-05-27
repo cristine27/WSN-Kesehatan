@@ -573,6 +573,9 @@ while appRunning:
                         print("Maaf parameter hanya dapat 3")
                         mainMenu()
                     elif jumlahParam>0 and jumlahParam<=3:
+                        print("Parameter yang tersedia : ")
+                        for key,value in Parameter.items():
+                            print("- " + value)
                         while(jumlahParam>0):
                             print("Silahkan input nama parameter : ")
                             namaParameter = input()
@@ -596,6 +599,7 @@ while appRunning:
                 print("Maaf parameter telah tersedia")
             mainMenu()
 
+        #assign param ke node
         elif perintah == "5":
             print("Silahkan input nama node : ")
             namaNode = input()
@@ -608,6 +612,9 @@ while appRunning:
                     print("Maaf parameter hanya dapat 3")
                     mainMenu()
                 elif jumlahParam>0 and jumlahParam<=3:
+                    print("Parameter yang tersedia : ")
+                    for key,value in Parameter.items():
+                        print("- " + value)
                     while(jumlahParam>0):
                         print("Silahkan input nama parameter : ")
                         namaParameter = input()
