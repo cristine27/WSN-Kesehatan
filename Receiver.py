@@ -350,8 +350,8 @@ def checkIfAttached(x):
 
 def insertNode(namaNode):
     flag = True
-    print(verifyidNode(namaNode))
-    if not verifyidNode(namaNode):
+    
+    if verifyidNode(namaNode):
         flag = False
         print("Maaf silahkan input nama node lain")
         print("Nama node tidak boleh duplikat")
@@ -486,64 +486,69 @@ while appRunning:
             counter = 0
             print("Silahkan Masukkan Jumlah Pasien yang Akan di Periksa: ")
             print("")
+            jumlahNode = len(Node)
             jumlahPasien = int(input())
-            
-            print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
-            print("Format Penulisan : idPasien1,namaNode|idPasien2,namaNode|idPasien3,namaNode|")
-            print("")
-            formatPasien = input()
+            if(jumlahPasien>jumlahNode):
+                print("Maaf jumlah node yang dapat digunakan paralel adalah " + jumlahNode)
+                print("Silahkan input ulang")
+                mainMenu()
+            else:
+                print("Silahkan Masukkan idPasien yang akan di Periksa oleh Tiap Node: ")
+                print("Format Penulisan : idPasien1,namaNode|idPasien2,namaNode|idPasien3,namaNode|")
+                print("")
+                formatPasien = input()
 
-            print("Mohon tunggu Assign pasien sedang dilakukan..")
-            temp = 0
-            while True:
-                temp = temp + 1
-                msg = s.readline().decode("ascii").strip()
-                getStatusNode(msg)
-                if temp == 8:
-                    break
-            
-            insertDataNodePasien(formatPasien,jumlahPasien)
-            print(StatusInput)
-            
-            flag = False
-            for key,value in StatusInput.items():
-                if value == 2:
-                    print("Maaf saat ini ", key, " sedang offline")
-                    print("")
-                elif value == 3:
-                    hasilError = hasilError.split(',')
-                    print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
-                    print("Silahkan ulangi atau check data kembali)")
-                else:
-                    flag = True
-            if flag:
-                    print("Assign Pasien pada Node Berhasil")
-                    print(Pasien)
-            
-            print("Pemeriksaan sedang dilakukan mohon tunggu...")
-            while sensing and counter<=10:
-                counter = counter + 1
-                
-                with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                print("Mohon tunggu Assign pasien sedang dilakukan..")
+                temp = 0
+                while True:
+                    temp = temp + 1
                     msg = s.readline().decode("ascii").strip()
-                    #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
-                    time.sleep(1)
-                    status = checkIfAttached(msg)
-                    if status==False:
+                    getStatusNode(msg)
+                    if temp == 8:
+                        break
+                
+                insertDataNodePasien(formatPasien,jumlahPasien)
+                print(StatusInput)
+                
+                flag = False
+                for key,value in StatusInput.items():
+                    if value == 2:
+                        print("Maaf saat ini ", key, " sedang offline")
+                        print("")
+                    elif value == 3:
+                        hasilError = hasilError.split(',')
+                        print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
+                        print("Silahkan ulangi atau check data kembali)")
+                    else:
+                        flag = True
+                if flag:
+                        print("Assign Pasien pada Node Berhasil")
+                        print(Pasien)
+                
+                print("Pemeriksaan sedang dilakukan mohon tunggu...")
+                while sensing and counter<=10:
+                    counter = counter + 1
+                    
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                        msg = s.readline().decode("ascii").strip()
+                        #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
                         time.sleep(1)
-                        future = executor.submit(getDataSense, msg)
-                        time.sleep(2)
-                        data = future.result()
-                        time.sleep(2)
-                        if future.done() and data != None:
-                            future2 = executor.submit(InsertDb, data)
-                        
-                    elif status==True:
-                        print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                if counter==10:
-                    counter = 0
-                    break
-            mainMenu()
+                        status = checkIfAttached(msg)
+                        if status==False:
+                            time.sleep(1)
+                            future = executor.submit(getDataSense, msg)
+                            time.sleep(2)
+                            data = future.result()
+                            time.sleep(2)
+                            if future.done() and data != None:
+                                future2 = executor.submit(InsertDb, data)
+                            
+                        elif status==True:
+                            print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
+                    if counter==10:
+                        counter = 0
+                        break
+                mainMenu()
 
         #cek status node
         elif perintah == "2":
@@ -567,7 +572,7 @@ while appRunning:
                     print("Satu node hanya dapat memiliki 3 parameter")
                     print("Berapa parameter yang ingin anda assign ? ")
                     jumlahParam = int(input())
-                    if jumlahParam<3:
+                    if jumlahParam>3:
                         print("Maaf parameter hanya dapat 3")
                         mainMenu()
                     elif jumlahParam>0 and jumlahParam<=3:
@@ -577,9 +582,12 @@ while appRunning:
                             namaParameter.lower()
                             assignNodeParam(namaNode,namaParameter)
                             jumlahParam = jumlahParam - 1
+                else:
+                    mainMenu()
             else:
                 mainMenu()
 
+        #daftar parameter baru
         elif perintah == "4":
             print("Silahkan input nama parameter : ")
             namaParameter = input()
