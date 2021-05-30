@@ -525,9 +525,9 @@ while appRunning:
                 print("Pemeriksaan sedang dilakukan mohon tunggu...")
                 while sensing and counter<=10:
                     counter = counter + 1
-                    
+                    msg = s.readline().decode("ascii").strip()
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                        msg = s.readline().decode("ascii").strip()
+                        # msg = s.readline().decode("ascii").strip()
                         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
                         time.sleep(5)
                         status = checkIfAttached(msg)
