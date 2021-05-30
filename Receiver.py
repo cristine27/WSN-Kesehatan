@@ -471,6 +471,27 @@ def assignNodeParam(namaNode,param):
         print("Maaf nama node yang dimasukkan tidak terdaftar")
     return flag
 
+class statusN():
+    def __init__(self, interval=3):
+        self.interval = interval
+
+        sensingThread = threading.Thread(target=self.run, args=())
+        sensingThread.daemon = True
+
+        sensingThread.start()
+
+    def run(self):
+        counter = 0
+        while counter<=5:
+            counter = counter + 1
+            msg = s.readline().decode("ascii").strip()
+            getStatusNode(msg)
+            
+            if counter==5:
+                break
+
+            time.sleep(self.interval)
+
 class periksa():
     statusPeriksa = False
     def __init__(self, interval=3):
@@ -526,13 +547,7 @@ while appRunning:
                 formatPasien = input()
 
                 print("Mohon tunggu Assign pasien sedang dilakukan..")
-                temp = 0
-                while True:
-                    temp = temp + 1
-                    msg = s.readline().decode("ascii").strip()
-                    getStatusNode(msg)
-                    if temp == 8:
-                        break
+                statusN()
                 
                 insertDataNodePasien(formatPasien,jumlahPasien)
                 print(StatusInput)
@@ -553,8 +568,10 @@ while appRunning:
                 if flag:
                         print("Assign Pasien pada Node Berhasil")
                         print(Pasien)
+                        print("Pemeriksaan sedang dilakukan mohon tunggu...")
+                        periksa()
                 
-                print("Pemeriksaan sedang dilakukan mohon tunggu...")
+                
                 # while sensing and counter<=5:
                 #     counter = counter + 1
                 #     # msg = s.readline().decode("ascii").strip()
@@ -583,7 +600,7 @@ while appRunning:
                     #     print("Pemeriksaan Telah Selesai")
                     #     break
                 # counter = 0
-                periksa()
+                
                 # mainMenu()
 
         #cek status node
