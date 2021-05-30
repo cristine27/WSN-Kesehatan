@@ -548,6 +548,7 @@ while appRunning:
                             print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
                     if counter==5:
                         counter = 0
+                        print("Pemeriksaan Telah Selesai")
                         break
                 mainMenu()
 
