@@ -528,6 +528,7 @@ while appRunning:
                     # msg = s.readline().decode("ascii").strip()
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                         msg = s.readline().decode("ascii").strip()
+                        print(counter)
                         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
                         time.sleep(5)#
                         status = checkIfAttached(msg)
@@ -545,7 +546,7 @@ while appRunning:
                             
                         elif status==True:
                             print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                    if counter==10:
+                    if counter==5:
                         counter = 0
                         break
                 mainMenu()
