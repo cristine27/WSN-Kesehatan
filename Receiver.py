@@ -471,7 +471,7 @@ def assignNodeParam(namaNode,param):
     return flag
 
 class periksa():
-    def __init__(self, interval) -> 3:
+    def __init__(self, interval=2):
         self.interval = interval
 
         sensingThread = threading.Thread(target=self.run, args=())
