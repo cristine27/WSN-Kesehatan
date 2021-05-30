@@ -497,7 +497,7 @@ class periksa():
             if counter==5:
                 statusPeriksa = True
                 print("Pemeriksaan Telah Selesai")
-                break
+                mainMenu()
 
             time.sleep(self.interval)
 
@@ -582,8 +582,7 @@ while appRunning:
                     #     break
                 # counter = 0
                 periksa()
-                if statusPeriksa==True:
-                    mainMenu()
+                # mainMenu()
 
         #cek status node
         elif perintah == "2":
