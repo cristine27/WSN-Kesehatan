@@ -65,9 +65,9 @@ print("Aplikasi Base Station Berjalan")
 print("----------------------")
 print("Daftar Menu Perintah : ")
 print("1. Mulai Pemeriksaan")
-print("2. Check status Node")
-print("3. Daftar Node baru")
-print("4. Daftar Parameter pemantauan baru")
+print("2. Cek Status Node")
+print("3. Daftar Node Baru")
+print("4. Daftar Parameter Pemantauan Baru")
 print("5. Assign Parameter ke Node")
 print("6. Keluar dari Aplikasi")
 print("----------------------")
@@ -80,9 +80,9 @@ def mainMenu():
     print("----------------------")
     print("Daftar Menu Perintah : ")
     print("1. Mulai Pemeriksaan")
-    print("2. Check status Node")
+    print("2. Cek Status Node")
     print("3. Daftar Node baru")
-    print("4. Daftar Parameter pemantauan baru")
+    print("4. Daftar Parameter Pemantauan Baru")
     print("5. Assign Parameter ke Node")
     print("6. Keluar dari Aplikasi")
     print("----------------------")
@@ -589,6 +589,9 @@ while appRunning:
 
         #daftar parameter baru
         elif perintah == "4":
+            print("Parameter yang telah tersedia : ")
+            for key,value in Parameter.items():
+                print("-" , value , key)
             print("Silahkan input nama parameter : ")
             namaParameter = input()
 
@@ -604,23 +607,32 @@ while appRunning:
             print("Silahkan input nama node : ")
             namaNode = input()
             namaNode.lower()
+            assignedParam = 0
             if(verifyidNode(namaNode)):
-                print("Satu node hanya dapat memiliki 3 parameter")
-                print("Berapa parameter yang ingin anda assign ? ")
-                jumlahParam = int(input())
-                if jumlahParam>3:
-                    print("Maaf parameter hanya dapat 3")
-                    mainMenu()
-                elif jumlahParam>0 and jumlahParam<=3:
-                    print("Parameter yang tersedia : ")
-                    for key,value in Parameter.items():
-                        print("-" , value , key)
-                    while(jumlahParam>0):
-                        print("Silahkan input nama parameter : ")
-                        namaParameter = input()
-                        namaParameter.lower()
-                        assignNodeParam(namaNode,namaParameter)
-                        jumlahParam = jumlahParam - 1
+                for key,value in MapNodeParam.items():
+                    if key == namaNode:
+                        assignedParam = assignedParam + 1
+                if assignedParam > 3: 
+                    print("Maaf ", namaNode, "telah memiliki 3 parameter")
+                elif assignedParam < 4 and assignedParam > 0:
+                    temp = 3 - assignedParam
+                    print("Satu node hanya dapat memiliki 3 parameter")
+                    print("Jumlah parameter yang dapat diassign : ", temp)
+                    print("Berapa parameter yang ingin anda assign ? ")
+                    jumlahParam = int(input())
+                    if jumlahParam>temp:
+                        print("Maaf parameter hanya dapat 3")
+                        mainMenu()
+                    elif jumlahParam<temp or jumlahParam==temp:
+                        print("Parameter yang tersedia : ")
+                        for key,value in Parameter.items():
+                            print("-" , value , key)
+                        while(jumlahParam>0):
+                            print("Silahkan input nama parameter : ")
+                            namaParameter = input()
+                            namaParameter.lower()
+                            assignNodeParam(namaNode,namaParameter)
+                            jumlahParam = jumlahParam - 1
             else:
                 print("Maaf node tidak terdaftar silahkan periksa kembali")
             mainMenu()
