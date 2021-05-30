@@ -14,6 +14,7 @@ sensing = True
 counter = 15
 insertDataPasien = True
 idPasien = 0
+statusPeriksa = False
 
 # dictionary untuk mapping pasien dengan node yang digunakan 
 # misal node1 : pasienX
@@ -471,6 +472,7 @@ def assignNodeParam(namaNode,param):
     return flag
 
 class periksa():
+    statusPeriksa = False
     def __init__(self, interval=3):
         self.interval = interval
 
@@ -493,7 +495,9 @@ class periksa():
                 print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
             if counter==5:
+                statusPeriksa = True
                 print("Pemeriksaan Telah Selesai")
+                break
 
             time.sleep(self.interval)
 
@@ -578,8 +582,7 @@ while appRunning:
                     #     break
                 # counter = 0
                 periksa()
-                if counter==5:
-                    counter = 0
+                if statusPeriksa==True:
                     mainMenu()
 
         #cek status node
