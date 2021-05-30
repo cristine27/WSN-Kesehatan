@@ -529,14 +529,14 @@ while appRunning:
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                         msg = s.readline().decode("ascii").strip()
                         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
-                        time.sleep(5)
+                        # time.sleep(5)
                         status = checkIfAttached(msg)
                         if status==False:
-                            time.sleep(5)
+                            # time.sleep(5)
                             future = executor.submit(getDataSense, msg)
-                            time.sleep(5)
+                            # time.sleep(5)
                             data = future.result()
-                            time.sleep(5)
+                            # time.sleep(5)
                             if future.done() and data != None:
                                 future2 = executor.submit(InsertDb, data)
                             
