@@ -529,7 +529,7 @@ while appRunning:
     mapNodeName()
     statusN()
     while menuShow: 
-        statusN()
+        # statusN()
         print(" ")
         if(perintah == "1"):
             counter = 0
