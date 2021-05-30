@@ -57,7 +57,7 @@ s = serial.Serial(
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
     bytesize=serial.EIGHTBITS,
-    timeout=1
+    timeout=3
 )
 
 # default tampilan
@@ -530,11 +530,11 @@ while appRunning:
                         msg = s.readline().decode("ascii").strip()
                         # print(counter)
                         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
-                        time.sleep(5)#
+                        time.sleep(1)#
                         status = checkIfAttached(msg)
                         time.sleep(1)
                         if status==False:
-                            time.sleep(5)#                            
+                            time.sleep(1)#                            
                             future = executor.submit(getDataSense, msg)
                             time.sleep(1)
                             data = future.result()
