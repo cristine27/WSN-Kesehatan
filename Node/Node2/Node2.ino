@@ -73,7 +73,7 @@ void loop() {
   sekarang = millis();
 
   int stat;
-  if(sekarang - temp > 4000){
+  if(sekarang - temp > 9000){
       Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
