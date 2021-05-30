@@ -73,7 +73,7 @@ void loop() {
   sekarang = millis();
 
   int stat;
-  if(sekarang - temp > 5000){
+  if(sekarang - temp > 8000){
       Serial.println("Hasil Pemantauan :");
       Serial.print(namaNode+" ");
       Serial.print("BPM : " + String(detak) + "bpm | ");
@@ -103,6 +103,7 @@ void bacaSensorSuhu(){
   if(curr_temperatur - prev_temperatur >= interval_temperatur){
       prev_temperatur = curr_temperatur;
       suhu = mlx.readObjectTempC();
+//      Serial.print(mlx.readObjectTempC());
   }
 }
 
