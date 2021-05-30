@@ -469,7 +469,33 @@ def assignNodeParam(namaNode,param):
         flag = False
         print("Maaf nama node yang dimasukkan tidak terdaftar")
     return flag
-        
+
+class periksa():
+    def __init__(self, interval) -> 3:
+        self.interval = interval
+
+        sensingThread = threading.Thread(target=self.run, args())
+        sensingThread.daemon = True
+
+        sensingThread.start()
+
+    def run(self):
+        counter = 0
+        while sensing and counter<=5:
+            counter = counter + 1
+            msg = s.readline().decode("ascii").strip()
+            status = checkIfAttached(msg)
+            if status==False:                           
+                data = getDataSense(msg)
+                if data != None:
+                    InsertDb(data)
+            elif status==True:
+                print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
+            
+            if counter==5:
+                print("Pemeriksaan Telah Selesai")
+
+            time.sleep(self.interval)
 
 # jumlah threads(jumlah max req dari dari app)
 POOL_SIZE = 20
@@ -523,34 +549,36 @@ while appRunning:
                         print(Pasien)
                 
                 print("Pemeriksaan sedang dilakukan mohon tunggu...")
-                while sensing and counter<=5:
-                    counter = counter + 1
-                    # msg = s.readline().decode("ascii").strip()
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                        msg = s.readline().decode("ascii").strip()
-                        # print(counter)
-                        #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
-                        time.sleep(1)#
-                        status = checkIfAttached(msg)
-                        time.sleep(1)
-                        if status==False:
-                            time.sleep(1)#                            
-                            future = executor.submit(getDataSense, msg)
-                            time.sleep(1)
-                            data = future.result()
-                            # time.sleep(5)#
+                # while sensing and counter<=5:
+                #     counter = counter + 1
+                #     # msg = s.readline().decode("ascii").strip()
+                #     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+                #         msg = s.readline().decode("ascii").strip()
+                #         # print(counter)
+                #         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
+                #         time.sleep(1)#
+                #         status = checkIfAttached(msg)
+                #         time.sleep(1)
+                #         if status==False:
+                #             time.sleep(1)#                            
+                #             future = executor.submit(getDataSense, msg)
+                #             time.sleep(1)
+                #             data = future.result()
+                #             # time.sleep(5)#
                             
-                            # time.sleep(5)
-                            if future.done() and data != None:
-                                future2 = executor.submit(InsertDb, data)
+                #             # time.sleep(5)
+                #             if future.done() and data != None:
+                #                 future2 = executor.submit(InsertDb, data)
                             
-                        elif status==True:
-                            print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                    if counter==5:
-                        counter = 0
-                        print("Pemeriksaan Telah Selesai")
-                        break
-                mainMenu()
+                #         elif status==True:
+                #             print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
+                    # if counter==5:
+                    #     counter = 0
+                    #     print("Pemeriksaan Telah Selesai")
+                    #     break
+                if counter==5:
+                    counter = 0
+                    mainMenu()
 
         #cek status node
         elif perintah == "2":
