@@ -474,7 +474,7 @@ class periksa():
     def __init__(self, interval) -> 3:
         self.interval = interval
 
-        sensingThread = threading.Thread(target=self.run, args())
+        sensingThread = threading.Thread(target=self.run, args=())
         sensingThread.daemon = True
 
         sensingThread.start()
