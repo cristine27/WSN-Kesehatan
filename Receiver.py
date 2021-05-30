@@ -534,10 +534,12 @@ while appRunning:
                         
                         if status==False:
                             time.sleep(5)
+                            
                             future = executor.submit(getDataSense, msg)
-                            time.sleep(5)
                             data = future.result()
                             time.sleep(5)
+                            
+                            # time.sleep(5)
                             if future.done() and data != None:
                                 future2 = executor.submit(InsertDb, data)
                             
