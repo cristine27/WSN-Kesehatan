@@ -542,10 +542,12 @@ while appRunning:
                     if value == 2:
                         print("Maaf saat ini ", key, " sedang offline")
                         print("")
+                        mainMenu()
                     elif value == 3:
                         hasilError = hasilError.split(',')
                         print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
                         print("Silahkan ulangi atau check data kembali)")
+                        mainMenu()
                     else:
                         flag = True
                 if flag:
