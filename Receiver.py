@@ -480,7 +480,7 @@ class periksa():
         sensingThread.start()
 
     def run(self):
-        counter = 0
+        # counter = 0
         while sensing and counter<=5:
             counter = counter + 1
             msg = s.readline().decode("ascii").strip()
@@ -576,6 +576,8 @@ while appRunning:
                     #     counter = 0
                     #     print("Pemeriksaan Telah Selesai")
                     #     break
+                counter = 0
+                periksa()
                 if counter==5:
                     counter = 0
                     mainMenu()
