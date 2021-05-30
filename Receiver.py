@@ -57,7 +57,7 @@ s = serial.Serial(
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
     bytesize=serial.EIGHTBITS,
-    timeout=0
+    timeout=2.5
 )
 
 # default tampilan
