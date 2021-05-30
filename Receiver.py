@@ -471,7 +471,7 @@ def assignNodeParam(namaNode,param):
     return flag
 
 class periksa():
-    def __init__(self, interval=2):
+    def __init__(self, interval=3):
         self.interval = interval
 
         sensingThread = threading.Thread(target=self.run, args=())
@@ -480,7 +480,7 @@ class periksa():
         sensingThread.start()
 
     def run(self):
-        # counter = 0
+        counter = 0
         while sensing and counter<=5:
             counter = counter + 1
             msg = s.readline().decode("ascii").strip()
@@ -576,7 +576,7 @@ while appRunning:
                     #     counter = 0
                     #     print("Pemeriksaan Telah Selesai")
                     #     break
-                counter = 0
+                # counter = 0
                 periksa()
                 if counter==5:
                     counter = 0
