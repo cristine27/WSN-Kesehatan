@@ -532,11 +532,11 @@ while appRunning:
                         time.sleep(5)
                         status = checkIfAttached(msg)
                         if status==False:
-                            time.sleep(1)
+                            time.sleep(5)
                             future = executor.submit(getDataSense, msg)
-                            time.sleep(2)
+                            time.sleep(5)
                             data = future.result()
-                            time.sleep(2)
+                            time.sleep(5)
                             if future.done() and data != None:
                                 future2 = executor.submit(InsertDb, data)
                             
