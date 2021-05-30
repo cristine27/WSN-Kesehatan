@@ -486,7 +486,7 @@ while appRunning:
             jumlahNode = len(Node)
             jumlahPasien = int(input())
             if(jumlahPasien>jumlahNode):
-                print("Maaf jumlah node yang dapat digunakan paralel adalah " + jumlahNode)
+                print("Maaf jumlah node yang dapat digunakan paralel adalah " , jumlahNode)
                 print("Silahkan input ulang")
                 mainMenu()
             else:
