@@ -531,11 +531,12 @@ while appRunning:
                         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
                         time.sleep(5)
                         status = checkIfAttached(msg)
-                        
+                        time.sleep(1)
                         if status==False:
                             time.sleep(5)
                             
                             future = executor.submit(getDataSense, msg)
+                            time.sleep(1)
                             data = future.result()
                             time.sleep(5)
                             
