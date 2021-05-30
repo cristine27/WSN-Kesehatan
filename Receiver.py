@@ -538,7 +538,7 @@ while appRunning:
                             future = executor.submit(getDataSense, msg)
                             time.sleep(1)
                             data = future.result()
-                            time.sleep(5)#
+                            # time.sleep(5)#
                             
                             # time.sleep(5)
                             if future.done() and data != None:
