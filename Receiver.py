@@ -528,7 +528,7 @@ while appRunning:
                     # msg = s.readline().decode("ascii").strip()
                     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                         msg = s.readline().decode("ascii").strip()
-                        print(counter)
+                        # print(counter)
                         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
                         time.sleep(5)#
                         status = checkIfAttached(msg)
