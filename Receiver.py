@@ -527,7 +527,7 @@ POOL_SIZE = 20
 
 while appRunning:
     mapNodeName()
-    
+    statusN()
     while menuShow: 
         # statusN()
         print(" ")
@@ -548,7 +548,7 @@ while appRunning:
                 formatPasien = input()
 
                 print("Mohon tunggu Assign pasien sedang dilakukan..")
-                statusN()
+                # statusN()
                 
                 insertDataNodePasien(formatPasien,jumlahPasien)
                 print(StatusInput)
