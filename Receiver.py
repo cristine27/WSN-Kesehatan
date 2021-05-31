@@ -551,7 +551,7 @@ while appRunning:
                 print(StatusInput)
                 
                 flag = False
-                print (StatusInput)
+                print(StatusInput)
                 for key,value in StatusInput.items():
                     if value == 2:
                         print("Maaf saat ini ", key, " sedang offline")
