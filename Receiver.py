@@ -545,7 +545,7 @@ while appRunning:
                 print("")
                 formatPasien = input()
                 cekFormat = formatPasien.split("|")
-                if(len(cekFormat)<jumlahPasien or len(cekFormat.split(","))<2) :
+                if(len(cekFormat)<jumlahPasien) :
                     print("Maaf input salah")
                     mainMenu()
                 else:
