@@ -134,7 +134,8 @@ def mapNodeName():
         namaNode = x[0].lower()
         namaParam = x[1].lower()
         if namaNode not in MapNodeParam.keys():
-            MapNodeParam[namaNode] = namaParam
+            MapNodeParam[namaNode] = list()
+        MapNodeParam[namaNode].extend(namaParam)
     cursor.close()
     db.close()
     
