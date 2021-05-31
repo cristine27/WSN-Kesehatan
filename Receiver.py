@@ -234,6 +234,7 @@ def getStatusNode(data):
     if validateData(data):
         potong = data.split("|")
         if(verifyidNode(potong[0])):
+            print(potong[0])
             Node[potong[0]] = "online"
             hidupkanNode(potong[0])
             status = True
@@ -674,10 +675,11 @@ while appRunning:
             if(verifyidNode(namaNode)):
                 for key,value in MapNodeParam.items():
                     if key == namaNode:
+                        print(key)
                         assignedParam = assignedParam + 1
-                if assignedParam > 3: 
+                if assignedParam == 3: 
                     print("Maaf ", namaNode, "telah memiliki 3 parameter")
-                elif assignedParam < 4 and assignedParam > 0:
+                elif assignedParam < 3 and assignedParam > 0:
                     temp = 3 - assignedParam
                     print("Satu node hanya dapat memiliki 3 parameter")
                     print("Jumlah parameter yang dapat diassign : ", temp)
