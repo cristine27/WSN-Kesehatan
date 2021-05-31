@@ -673,6 +673,7 @@ while appRunning:
             namaNode.lower()
             assignedParam = 0
             if(verifyidNode(namaNode)):
+                print(MapNodeParam)
                 for key,value in MapNodeParam.items():
                     if key == namaNode:
                         print(key)
