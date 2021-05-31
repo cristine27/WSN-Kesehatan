@@ -548,16 +548,15 @@ while appRunning:
                 print("Mohon tunggu Assign pasien sedang dilakukan..")
                 
                 insertDataNodePasien(formatPasien,jumlahPasien)
-                print(StatusInput)
                 
                 flag = False
-                print(StatusInput)
                 for key,value in StatusInput.items():
                     if value == 2:
                         print("Maaf saat ini ", key, " sedang offline")
                         print("")
                         mainMenu()
                     elif value == 3:
+                        print(hasilError)
                         hasilError = hasilError.split(',')
                         print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
                         print("Silahkan ulangi atau check data kembali)")
