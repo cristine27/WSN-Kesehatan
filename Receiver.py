@@ -556,8 +556,6 @@ while appRunning:
                         print("")
                         mainMenu()
                     elif value == 3:
-                        print(hasilError)
-                        hasilError = hasilError.split(',')
                         print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
                         print("Silahkan ulangi atau check data kembali)")
                         mainMenu()
