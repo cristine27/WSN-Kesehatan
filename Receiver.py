@@ -506,14 +506,15 @@ class periksa():
         counter = 0
         while sensing and counter<=15:
             counter = counter + 1
+            print("Timer : " , 15-counter)
             msg = s.readline().decode("ascii").strip()
             status = checkIfAttached(msg)
             if status==False:                           
                 data = getDataSense(msg)
                 if data != None:
                     InsertDb(data)
-            elif status==True:
-                print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
+            # elif status==True:
+            #     print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
             if counter==15:
                 statusPeriksa = True
