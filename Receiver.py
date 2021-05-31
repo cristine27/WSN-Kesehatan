@@ -556,8 +556,8 @@ while appRunning:
                         print("")
                         mainMenu()
                     elif value == 3:
-                        print("Maaf " + hasilError[0] + " dan " + hasilError[1] + " yang dimasukkan tidak ditemukan")
-                        print("Silahkan ulangi atau check data kembali)")
+                        print("nama node atau idPasien salah")
+                        print("Silahkan check data kembali")
                         mainMenu()
                     else:
                         flag = True
