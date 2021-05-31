@@ -134,7 +134,7 @@ def mapNodeName():
         namaNode = x[0].lower()
         namaParam = x[1].lower()
         if namaNode not in MapNodeParam.keys():
-            MapNodeParam.setdefault(key,namaNode)
+            MapNodeParam.setdefault(namaNode,[])
         MapNodeParam[namaNode].append(namaParam)
     cursor.close()
     db.close()
