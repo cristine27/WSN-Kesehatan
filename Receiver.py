@@ -674,11 +674,8 @@ while appRunning:
             namaNode.lower()
             assignedParam = 0
             if(verifyidNode(namaNode)):
-                print(len(MapNodeParam[namaNode]))
-                for value in MapNodeParam.items():
-                    if key == namaNode:
-                        print(key)
-                        assignedParam = assignedParam + 1
+                assignedParam = len(MapNodeParam[namaNode])
+                
                 if assignedParam == 3: 
                     print("Maaf ", namaNode, "telah memiliki 3 parameter")
                 elif assignedParam < 3 and assignedParam > 0:
