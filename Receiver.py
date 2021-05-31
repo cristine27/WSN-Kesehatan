@@ -167,8 +167,6 @@ def getDataSense(x):
 
     waktu = datetime.datetime.now()
     waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
-    
-    print("masuk function getData")
 
     return node, detak, oksigen, suhu, waktu
 
@@ -239,7 +237,7 @@ def getStatusNode(data):
             Node[potong[0]] = "online"
             hidupkanNode(potong[0])
             status = True
-    print(Node)
+    # print(Node)
     return status
 
 def InsertDb(x):
@@ -506,7 +504,7 @@ class periksa():
 
     def run(self):
         counter = 0
-        while sensing and counter<=10:
+        while sensing and counter<=15:
             counter = counter + 1
             msg = s.readline().decode("ascii").strip()
             status = checkIfAttached(msg)
@@ -517,7 +515,7 @@ class periksa():
             elif status==True:
                 print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
-            if counter==10:
+            if counter==15:
                 statusPeriksa = True
                 print("Pemeriksaan Telah Selesai")
                 mainMenu()
