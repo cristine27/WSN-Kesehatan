@@ -674,7 +674,8 @@ while appRunning:
             namaNode.lower()
             assignedParam = 0
             if(verifyidNode(namaNode)):
-                for value in MapNodeParam[namaNode].items():
+                print(len(MapNodeParam[namaNode]))
+                for value in MapNodeParam.items():
                     if key == namaNode:
                         print(key)
                         assignedParam = assignedParam + 1
