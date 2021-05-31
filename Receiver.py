@@ -516,11 +516,11 @@ class periksa():
             #     print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
             if counter==15:
-                sensing = False
                 print("Pemeriksaan Telah Selesai")
-                mainMenu()
+                break
 
             time.sleep(self.interval)
+        mainMenu()
 
 # jumlah threads(jumlah max req dari dari app)
 POOL_SIZE = 20
