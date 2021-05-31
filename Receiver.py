@@ -544,28 +544,37 @@ while appRunning:
                 print("Format Penulisan : idPasien1,namaNode|idPasien2,namaNode|idPasien3,namaNode|")
                 print("")
                 formatPasien = input()
-
-                print("Mohon tunggu Assign pasien sedang dilakukan..")
-                
-                insertDataNodePasien(formatPasien,jumlahPasien)
-                
-                flag = False
-                for key,value in StatusInput.items():
-                    if value == 2:
-                        print("Maaf saat ini ", key, " sedang offline")
-                        print("")
-                    elif value == 3:
-                        print("nama node atau idPasien salah")
-                        print("Silahkan check data kembali")
-                    else:
-                        flag = True
-                if flag:
-                        print("Assign Pasien pada Node Berhasil")
-                        print(Pasien)
-                        print("Pemeriksaan sedang dilakukan mohon tunggu...")
-                        periksa()
+                cekFormat = formatPasien.split("|")
+                if(len(cekFormat)<jumlahPasien or len(cekFormat.split(","))<2) :
+                    print("Maaf input salah")
+                    mainMenu()
                 else:
-                    mainMenu
+                    print("Mohon tunggu Assign pasien sedang dilakukan..")
+                    
+                    insertDataNodePasien(formatPasien,jumlahPasien)
+                    
+                    flag = False
+                    j = 0
+                    for key,value in StatusInput.items():
+                        if value == 2:
+                            print("Maaf saat ini ", key, " sedang offline")
+                            print("")
+                        elif value == 3:
+                            j = j + 1
+                        else:
+                            flag = True
+                    if flag:
+                            print("Assign Pasien pada Node Berhasil")
+                            print(Pasien)
+                            print("Pemeriksaan sedang dilakukan mohon tunggu...")
+                            periksa()
+                    else:
+                        if j>1:
+                            print("kedua input nama node atau idPasien salah")
+                        else:
+                            print("data input node atau idPasien salah")
+                        print("Silahkan check data kembali")
+                        mainMenu()
                 
                 
                 # while sensing and counter<=5:
