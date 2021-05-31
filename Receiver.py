@@ -233,7 +233,6 @@ def getStatusNode(data):
     if validateData(data):
         potong = data.split("|")
         if(verifyidNode(potong[0])):
-            print(potong[0])
             Node[potong[0]] = "online"
             hidupkanNode(potong[0])
             status = True
@@ -506,7 +505,7 @@ class periksa():
         counter = 0
         while sensing and counter<=15:
             counter = counter + 1
-            print("Timer : " , 15-counter)
+            print("Countdown Pemeriksaan : " , 15-counter)
             msg = s.readline().decode("ascii").strip()
             status = checkIfAttached(msg)
             if status==False:                           
@@ -517,7 +516,7 @@ class periksa():
             #     print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
             if counter==15:
-                statusPeriksa = True
+                sensing = False
                 print("Pemeriksaan Telah Selesai")
                 mainMenu()
 
