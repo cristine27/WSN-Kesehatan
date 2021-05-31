@@ -512,8 +512,6 @@ class periksa():
                 data = getDataSense(msg)
                 if data != None:
                     InsertDb(data)
-            # elif status==True:
-            #     print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
             if counter==15:
                 print("Pemeriksaan Telah Selesai")
@@ -553,6 +551,7 @@ while appRunning:
                 print(StatusInput)
                 
                 flag = False
+                print (StatusInput)
                 for key,value in StatusInput.items():
                     if value == 2:
                         print("Maaf saat ini ", key, " sedang offline")
