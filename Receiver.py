@@ -554,11 +554,9 @@ while appRunning:
                     if value == 2:
                         print("Maaf saat ini ", key, " sedang offline")
                         print("")
-                        mainMenu()
                     elif value == 3:
                         print("nama node atau idPasien salah")
                         print("Silahkan check data kembali")
-                        mainMenu()
                     else:
                         flag = True
                 if flag:
@@ -566,6 +564,8 @@ while appRunning:
                         print(Pasien)
                         print("Pemeriksaan sedang dilakukan mohon tunggu...")
                         periksa()
+                else:
+                    mainMenu
                 
                 
                 # while sensing and counter<=5:
