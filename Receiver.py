@@ -506,7 +506,7 @@ class periksa():
 
     def run(self):
         counter = 0
-        while sensing and counter<=5:
+        while sensing and counter<=10:
             counter = counter + 1
             msg = s.readline().decode("ascii").strip()
             status = checkIfAttached(msg)
@@ -517,7 +517,7 @@ class periksa():
             elif status==True:
                 print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
             
-            if counter==5:
+            if counter==10:
                 statusPeriksa = True
                 print("Pemeriksaan Telah Selesai")
                 mainMenu()
