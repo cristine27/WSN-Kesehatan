@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<meta http-equiv="refresh" content="8">
+<meta http-equiv="refresh" content="4">
 </head>
 
 <body>
