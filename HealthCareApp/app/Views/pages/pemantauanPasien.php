@@ -24,11 +24,13 @@
                                         </thead>
                                         <?php
                                         $index = 0;
+                                        $indexHasil = 1;
                                         for ($i = 0; $i < count($parameter); $i++) { ?>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                    <td><?= $hasilPeriksa[$index]['hasil' . strval($i + 1)]; ?></td>
+                                                    <?= ($parameter[$i]['namaParameter'] == "Saturasi Oksigen") ? $indexHasil = 2 : $indexHasil = 3; ?>
+                                                    <td><?= $hasilPeriksa[$index]['hasil' . strval($indexHasil)]; ?></td>
                                                     <td>
                                                         <p class="text-<?= $status[$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$i]; ?></p>
                                                     </td>
