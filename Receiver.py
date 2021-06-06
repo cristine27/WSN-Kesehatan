@@ -151,7 +151,7 @@ def validateData(x):
     potong = x.split("|")
     #isi data = namaNode | detak | oksigen | temperatur | status
     if len(potong) > 1:
-        if(potong[0] != "" and potong[1] != 0 and potong[2] != 0 and potong[3] != 0 and potong[4] != -1):
+        if(potong[0] != "" and potong[1] != -1 and potong[2] != -1 and potong[3] != 0 and potong[4] != -1):
             # print("masuk function validate")
             res = True
     return res
