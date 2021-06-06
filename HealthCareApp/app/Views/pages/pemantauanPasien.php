@@ -24,12 +24,20 @@
                                         </thead>
                                         <?php
                                         $index = 0;
-                                        $indexHasil = 1;
-                                        for ($i = 0; $i < count($parameter); $i++) { ?>
+                                        $indexHasil = 0;
+
+                                        for ($i = 0; $i < count($parameter); $i++) {
+                                            if ($parameter[$i]['namaParameter'] == "Detak jantung") {
+                                                $indexHasil = 1;
+                                            } else if ($parameter[$i]['namaParameter'] == "Saturasi Oksigen") {
+                                                $indexHasil = 2;
+                                            } else if ($parameter[$i]['namaParameter'] == "Temperatur") {
+                                                $indexHasil = 3;
+                                            }
+                                        ?>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"><?= $parameter[$i]['namaParameter']; ?></th>
-                                                    <?= ($parameter[$i]['namaParameter'] == "Saturasi Oksigen") ? $indexHasil = 2 : $indexHasil = 3; ?>
                                                     <td><?= $hasilPeriksa[$index]['hasil' . strval($indexHasil)]; ?></td>
                                                     <td>
                                                         <p class="text-<?= $status[$i] == "normal" ? 'success' : 'danger'; ?>"><?= $status[$i]; ?></p>
