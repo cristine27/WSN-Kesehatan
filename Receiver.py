@@ -524,9 +524,8 @@ class periksa():
 POOL_SIZE = 20
 
 while appRunning:
-    mapNodeName()
     while menuShow: 
-        # statusN()
+        mapNodeName()
         print(" ")
         if(perintah == "1"):
             statusN()
