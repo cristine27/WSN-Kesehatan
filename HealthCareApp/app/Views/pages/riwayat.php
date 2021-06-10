@@ -48,6 +48,7 @@
                                     </tr>
                                 </thead>
                                 <?php
+                                dd($parameter[$index]);
                                 for ($i = 0; $i < 3; $i++) { ?>
                                     <tbody>
                                         <tr>
