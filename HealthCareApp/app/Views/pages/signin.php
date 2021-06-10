@@ -3,21 +3,18 @@
 <?= $this->section('content'); ?>
 </head>
 
-<body>
+<body style="background-image: url('../img/bg hallway.jpg');">
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="display-4">WELCOME !</h1>
+                <h1 class="display-3">Health Care App</h1>
                 <hr class="my-4">
                 <div class="container-fluid w-75 h-50 p-3">
-                    <div class="row  d-flex justify-content-center text-center" style="background-image: url('../img/bg form.jpg')">
+                    <div class="row  d-flex justify-content-center text-center">
                         <div class="col">
-                            <img class="rounded-circle .mt-n2" src="../img/unpar.png" alt="Health Care Logo" width="150" height="150">
-                            <!-- <div class="jumbotron jumbotron-fluid">
+                            <img class="rounded-circle .mt-n2" src="../img/unpar.png" alt="Logo UNPAR" width="150" height="150">
 
-                            </div>  w-50 p-3-->
                             <div class="container w-50 my-3">
-
                                 <form method="POST" action="/SignIn/validateLogin">
                                     <?= csrf_field(); ?>
                                     <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->

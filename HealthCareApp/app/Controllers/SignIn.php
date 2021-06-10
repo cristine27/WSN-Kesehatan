@@ -36,7 +36,7 @@ class SignIn extends BaseController
             session()->remove('pasien');
         }
         $data = [
-            'title' => 'Sign In Pasien',
+            'title' => 'Health Care App Sign In',
             'validate' => 'true',
             'pesan' => '',
         ];
