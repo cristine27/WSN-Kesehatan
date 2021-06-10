@@ -16,12 +16,18 @@
                                     <?= session()->getFlashdata('pesan'); ?>
                                 </div>
                             <?php endif; ?>
-                            <h4 class="card-header" style="background-color: ffd3b4;">Health Care App</h4>
+                            <!-- <h4 class="card-header" style="background-color: ffd3b4;">Health Care App</h4>
                             <div class="card-body">
                                 <p class="card-text">
                                     Health Care App adalah sebuah aplikasi yang digunakan untuk melihat hasil Pemeriksaan kesehatan yang telah dilakukan oleh pasien.
                                     Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.
                                 </p>
+                            </div> -->
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                    <h1 class="display-4">Fluid jumbotron</h1>
+                                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
