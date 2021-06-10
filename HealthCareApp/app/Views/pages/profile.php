@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 </head>
 
-<body style="background-color: #4B77BE;">
+<body>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -11,7 +11,7 @@
                     <h1 class="display-4">Profile Pasien</h1>
                     <br><br>
                     <div class="col-md-8">
-                        <div class="card mb-3" style="background-color: bdd2b6;">
+                        <div class="card mb-3" style="background-color: #4B77BE;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
