@@ -3,8 +3,8 @@
 <?= $this->section('content'); ?>
 
 <style>
-    #jumbotron {
-        background-image: url(../img/bg);
+    .jumbotron {
+        background-image: url('../img/bg');
         background-size: cover;
         height: 100%;
     }
@@ -32,7 +32,7 @@
                                 </p>
                             </div> -->
                             <div class="jumbotron jumbotron-fluid">
-                                <div class="container" id="jumbotron">
+                                <div class="container">
                                     <h1 class="display-4">Health Care App</h1>
                                     <p class="lead">Aplikasi yang digunakan untuk melihat hasil Pemeriksaan kesehatan yang telah dilakukan oleh pasien.
                                         Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.</p>
