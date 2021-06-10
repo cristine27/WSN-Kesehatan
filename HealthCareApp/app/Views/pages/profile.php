@@ -11,7 +11,7 @@
                     <h1 class="display-4">Profile Pasien</h1>
                     <br><br>
                     <div class="col-md-8">
-                        <div class="card mb-3" style="background-color: #4B77BE;">
+                        <div class="card mb-3">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -79,7 +79,7 @@
                         <div class="card-header">
                             <b>Ganti Password</b>
                         </div>
-                        <div class="card-body" style="background-color: bisque;">
+                        <div class="card-body" style="background-color: #89cff0;">
                             <form action="/Home/gantiPass" method="POST">
                                 <div class="form-group">
                                     <input type="text" name="newPass" class="form-control <?= ($validation->hasError('newPass')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan password baru anda." required autofocus>
