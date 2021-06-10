@@ -4,7 +4,7 @@
 
 <style>
     .jumbotron {
-        background-image: url('../img/bg');
+        background-image: url('../img/bg hallway1');
         background-size: cover;
         height: 100%;
     }
