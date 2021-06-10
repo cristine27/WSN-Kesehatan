@@ -31,8 +31,8 @@
                                     Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.
                                 </p>
                             </div> -->
-                            <div class="jumbotron jumbotron-fluid" id="jumbotron">
-                                <div class="container">
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container" id="jumbotron">
                                     <h1 class="display-4">Health Care App</h1>
                                     <p class="lead">Aplikasi yang digunakan untuk melihat hasil Pemeriksaan kesehatan yang telah dilakukan oleh pasien.
                                         Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.</p>
