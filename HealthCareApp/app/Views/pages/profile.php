@@ -99,7 +99,7 @@
         </div>
 
         <div class="row">
-            <a class="btn btn-info w-25" href="/Home">Kembali</a>
+            <a class="btn btn-info w-25  mt-2" href="/Home">Kembali</a>
         </div>
     </div>
 </body>
