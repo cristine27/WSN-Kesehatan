@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 </head>
 
-<body>
+<body style="background-image: url('../img/bg hallway1.jpg');">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -13,6 +13,14 @@
                     <div class="col-md-8">
                         <div class="card mb-3" style="background-color: bdd2b6;">
                             <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">ID</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <?= $dataPasien['idPasien']; ?>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Nama</h6>
