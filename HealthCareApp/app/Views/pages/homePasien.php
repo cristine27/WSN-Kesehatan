@@ -23,7 +23,7 @@
                                     Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.
                                 </p>
                             </div> -->
-                            <div class="jumbotron jumbotron-fluid my-1" style="background-color: aquamarine;">
+                            <div class="jumbotron jumbotron-fluid my-1" style="background-color: #89C4F4;">
                                 <div class="container">
                                     <h1 class="display-4">Health Care App</h1>
                                     <p class="lead">Aplikasi yang digunakan untuk melihat hasil Pemeriksaan kesehatan yang telah dilakukan oleh pasien.
@@ -34,7 +34,7 @@
                     </div>
                     <div class="row">
                         <div class="card w-90 text-center">
-                            <h3 class="card-header" style="background-color: ffd3b4;">Selamat Datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></h3>
+                            <h3 class="card-header" style="background-color: #89C4F4;">Selamat Datang <?= ($dataPasien['gender'] == "Pria") ? "Bapak " : "Ibu "; ?> <?= $dataPasien['nama']; ?></h3>
                             <div class="card-body">
                                 <p class="card-text">
                                     Silahkan Memilih Fitur yang Ingin di Jalankan :
