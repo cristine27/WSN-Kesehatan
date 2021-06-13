@@ -610,9 +610,6 @@ while appRunning:
             s.write(str.encode("a").strip())
             msg = s.readline().decode("ascii").strip()
             print(msg)
-            s.write(str.encode("b").strip())
-            msg = s.readline().decode("ascii").strip()
-            print(msg)
         #cek status node
         elif perintah == "2":
             print("Mohon menunggu..")
