@@ -606,7 +606,13 @@ while appRunning:
                 # counter = 0
                 
                 # mainMenu()
-
+        elif perintah == "7":
+            s.write(str.encode("a").strip())
+            msg = s.readline().decode("ascii").strip()
+            print(msg)
+            s.write(str.encode("b").strip())
+            msg = s.readline().decode("ascii").strip()
+            print(msg)
         #cek status node
         elif perintah == "2":
             print("Mohon menunggu..")
@@ -712,14 +718,6 @@ while appRunning:
              print("Sensing Telah Dihentikan")
              print("Base Station Offline")
              exit()
-		elif perintah == "7":
-			s.write(str.encode("a").strip())
-			msg = s.readline().decode("ascii").strip()
-			print(msg)
-			s.write(str.encode("b").strip())
-			msg = s.readline().decode("ascii").strip()
-			print(msg)
-
         else:
             print("Input Perintah Salah")
             print("Restart Aplikasi")
