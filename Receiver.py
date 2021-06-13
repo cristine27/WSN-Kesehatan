@@ -606,10 +606,7 @@ while appRunning:
                 # counter = 0
                 
                 # mainMenu()
-        elif perintah == "7":
-            s.write(str.encode("a").strip())
-            msg = s.readline().decode("ascii").strip()
-            print(msg)
+                
         #cek status node
         elif perintah == "2":
             print("Mohon menunggu..")
