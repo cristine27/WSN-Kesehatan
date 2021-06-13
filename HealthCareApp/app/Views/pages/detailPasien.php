@@ -12,8 +12,9 @@
                     <h4 class="card-header">Detail Pasien</h4>
                     <div class="card-body">
                         <h5 class="card-title"><b>Nama : </b><?= $pasien['nama']; ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><b>Umur : </b><?= $pasien['umur']; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><b>ID : </b><?= $pasien['idPasien']; ?></h6>
                         <br>
+                        <p class="card-text"><b>Umur : </b> <?= $pasien['umur']; ?></p>
                         <p class="card-text"><b>Alamat : </b> <?= $pasien['alamat']; ?></p>
                         <p class="card-text"><b>Email : </b> <?= $pasien['email']; ?></p>
                         <p class="card-text"><b>Password : </b> <?= $pasien['password']; ?></p>
