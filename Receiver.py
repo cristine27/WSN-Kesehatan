@@ -508,9 +508,11 @@ class periksa():
             print("Countdown Pemeriksaan : " , 15-counter)
             msg = s.readline().decode("ascii").strip()
             status = checkIfAttached(msg)
-            if status==False:                           
+            if status==False:
+                time.sleep(1)                           
                 data = getDataSense(msg)
                 if data != None:
+                    time.sleep(1)
                     InsertDb(data)
             
             if counter==15:
