@@ -20,7 +20,7 @@ class periksaModel extends Model
             From periksa
                 WHERE waktu=(
                     SELECT MAX(waktu) FROM periksa WHERE idPasien = $id
-                )";
+                ) and idPasien = $id";
 
         return $this->db->query($sql);
         // return $this->table('periksa')->like('idPasien', $id);
