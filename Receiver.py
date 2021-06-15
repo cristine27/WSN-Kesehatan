@@ -634,7 +634,7 @@ while appRunning:
                 print("Selamat node baru berhasil ditambahkan.")
             else:
                 print("Maaf nama node telah tersedia.")
-                mainMenu()
+            mainMenu()
 
         #daftar parameter baru
         elif perintah == "4":
