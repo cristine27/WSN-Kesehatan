@@ -631,29 +631,9 @@ while appRunning:
             namaNode.lower()
             flag = insertNode(namaNode)
             if flag:
-                print("Apakah node ingin diassign ke parameter pemantauan ?")
-                print("Ketik 1 jika ingin melanjutkan dan 0 jika tidak")
-                masukkan = int(input())
-                if masukkan == 1:
-                    print("Satu node hanya dapat memiliki 3 parameter")
-                    print("Berapa parameter yang ingin anda assign ? ")
-                    jumlahParam = int(input())
-                    if jumlahParam>3:
-                        print("Maaf parameter hanya dapat 3")
-                        mainMenu()
-                    elif jumlahParam>0 and jumlahParam<=3:
-                        print("Parameter yang tersedia : ")
-                        for key,value in Parameter.items():
-                            print("-" , value , key)
-                        while(jumlahParam>0):
-                            print("Silahkan input nama parameter : ")
-                            namaParameter = input()
-                            namaParameter.lower()
-                            assignNodeParam(namaNode,namaParameter)
-                            jumlahParam = jumlahParam - 1
-                else:
-                    mainMenu()
+                print("Selamat node baru berhasil ditambahkan.")
             else:
+                print("Maaf nama node telah tersedia.")
                 mainMenu()
 
         #daftar parameter baru
@@ -666,9 +646,9 @@ while appRunning:
 
             flag = insertParameter(namaParameter)
             if flag:
-                print("Selamat parameter baru berhasil ditambahkan..")
+                print("Selamat parameter baru berhasil ditambahkan.")
             else:
-                print("Maaf parameter telah tersedia")
+                print("Maaf parameter telah tersedia.")
             mainMenu()
 
         #assign param ke node
