@@ -437,7 +437,6 @@ def assignNodeParam(namaNode,param):
 
     if verifyidNode(namaNode):
         idNode = idN.get(namaNode)
-        print(Parameter.get(param))#ini untuk dapatin idParameternya
         for key,value in MapNodeParam.items():
             if key == namaNode and value == param:
                 isParamEx = True
