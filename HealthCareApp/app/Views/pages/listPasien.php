@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <a href="" class="btn btn-primary mt-3 d-inline">Pemeriksaan</a>
+                <a href="/Pasien/tabelPeriksa" class="btn btn-primary mt-3 d-inline">Pemeriksaan</a>
                 <a href="/Pasien/addPasien" class="btn btn-primary mt-3 d-inline">Tambah Pasien</a>
                 <a href="/SignIn" role="button" class="btn btn-danger float-end d-inline">Log Out</a>
                 <?php if (session()->getFlashdata('pesan')) : ?>

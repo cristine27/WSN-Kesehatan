@@ -21,11 +21,6 @@
 
                         <a href="/Pasien/riwayatPasien/<?= $pasien['idPasien']; ?>" class="btn btn-info">Riwayat Periksa</a>
                         <a href="/Pasien/editPasien/<?= $pasien['idPasien']; ?>" class="btn btn-warning">Edit</a>
-                        <form action="/Pasien/<?= $pasien['idPasien']; ?>" method="POST" class="d-inline">
-                            <?= csrf_field(); ?>
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin mau menghapus pasien?');">Hapus</button>
-                        </form>
                     </div>
                 </div>
             </div>
