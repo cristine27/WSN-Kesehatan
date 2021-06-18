@@ -142,15 +142,15 @@ class Pasien extends BaseController
         return redirect()->to('/Pasien');
     }
 
-    public function deletePasien($idPasien)
-    {
-        //cara konvenstional bahaya karena bisa delete lewat url method->get 
-        // harus di tambahkan http method spoofing
-        $this->pasienModel->delete($idPasien);
-        session()->setFlashdata('pesan', 'Pasien berhasil dihapus.');
+    // public function deletePasien($idPasien)
+    // {
+    //     //cara konvenstional bahaya karena bisa delete lewat url method->get 
+    //     // harus di tambahkan http method spoofing
+    //     $this->pasienModel->delete($idPasien);
+    //     session()->setFlashdata('pesan', 'Pasien berhasil dihapus.');
 
-        return redirect()->to('/Pasien');
-    }
+    //     return redirect()->to('/Pasien');
+    // }
 
     public function editPasien($idPasien)
     {
@@ -380,5 +380,120 @@ class Pasien extends BaseController
                 'tidak ditemukan');
         }
         return view('pages/riwayatPasien', $data);
+    }
+
+    public function tabelPeriksa()
+    {
+        $tabelNode1 = $this->periksaModel->tabelPeriksaNode1();
+        $tabelNode2 = $this->periksaModel->tabelPeriksaNode2();
+        $dataPasien1 = $this->pasienModel->getPasien($tabelNode1['idPasien']);
+        $dataPasien2 = $this->pasienModel->getPasien($tabelNode2['idPasien']);
+
+        $i = 0;
+        $kumpulanhasil1 = [];
+        $kumpulanhasil2 = [];
+
+        $kumpulanparam1 = [];
+        $kumpulanStatus1 = [];
+
+        $kumpulanparam2 = [];
+        $kumpulanStatus2 = [];
+
+        $check = false;
+
+        foreach ($tabelNode1->getResultArray() as $res) {
+            if ($res['idNode']) {
+                $check = true;
+                $kumpulanhasil1[$i] = $res;
+            }
+            $i++;
+        }
+
+        $i = 0;
+        foreach ($tabelNode2->getResultArray() as $res) {
+            if ($res['idNode']) {
+                $check = true;
+                $kumpulanhasil1[$i] = $res;
+            }
+            $i++;
+        }
+
+        foreach ($kumpulanhasil1 as $hasil) {
+            $idNode = $hasil['idNode'];
+            $idParam = $this->memilikiModel->getParamid($idNode);
+
+            $index = 0;
+            foreach ($idParam as $id) {
+                $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
+                $kumpulanparam1[$index] = $namaParam;
+                $kumpulanStatus1[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $this->dataPasien1['umur']);
+                $index++;
+            }
+        }
+
+        foreach ($kumpulanhasil2 as $hasil) {
+            $idNode = $hasil['idNode'];
+            $idParam = $this->memilikiModel->getParamid($idNode);
+
+            $index = 0;
+            foreach ($idParam as $id) {
+                $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
+                $kumpulanparam2[$index] = $namaParam;
+                $kumpulanStatus2[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $this->dataPasien2['umur']);
+                $index++;
+            }
+        }
+
+        if ($check == false) {
+            $kumpulanhasil1 = [
+                0 => [
+                    'waktu' => "",
+                    'hasil1' => 0,
+                    'hasil2' => 0,
+                    'hasil3' => 0,
+                ]
+            ];
+
+            $kumpulanhasil2 = [
+                0 => [
+                    'waktu' => "",
+                    'hasil1' => 0,
+                    'hasil2' => 0,
+                    'hasil3' => 0,
+                ]
+            ];
+
+            $kumpulanparam1 = [
+                0 => [
+                    'namaParameter' => ''
+                ]
+            ];
+
+            $kumpulanparam2 = [
+                0 => [
+                    'namaParameter' => ''
+                ]
+            ];
+
+            $kumpulanStatus1 = [
+                0 => "-"
+            ];
+
+            $kumpulanStatus2 = [
+                0 => "-"
+            ];
+        }
+
+        $data = [
+            'title' => 'Pemantauan Node',
+            'node1' => $kumpulanhasil1,
+            'node2' => $kumpulanhasil2,
+            'status1' => $kumpulanStatus1,
+            'status2' => $kumpulanStatus2,
+            'param1' => $kumpulanparam1,
+            'param2' => $kumpulanparam2
+        ];
+
+        return view('pages/tabelPemantauan.php', $data);
     }
 }

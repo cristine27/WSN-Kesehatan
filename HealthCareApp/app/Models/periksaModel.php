@@ -34,4 +34,22 @@ class periksaModel extends Model
                             ORDER BY waktu desc";
         return $this->db->query($sql);
     }
+
+    public function tabelPeriksaNode1()
+    {
+        $sql = "SELECT idNode, hasil1, hasil2, hasil3, waktu
+                    FROM periksa
+                        where idNode = 1 and waktu = (SELECT MAX(waktu) FROM periksa WHERE idNode = 1)";
+
+        return $this->db->query($sql);
+    }
+
+    public function tabelPeriksaNode2()
+    {
+        $sql = "SELECT idNode, hasil1, hasil2, hasil3, waktu
+                    FROM periksa
+                        where idNode = 2 and waktu = (SELECT MAX(waktu) FROM periksa WHERE idNode = 2)";
+
+        return $this->db->query($sql);
+    }
 }
