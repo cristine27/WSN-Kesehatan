@@ -172,7 +172,7 @@ class Home extends BaseController
 				$res = "tidak normal";
 			}
 		} else if ($param == "Temperatur") {
-			if ($value >= 38) {
+			if ($value < 33 || $value >= 38) {
 				$res = "tidak normal";
 			}
 		}

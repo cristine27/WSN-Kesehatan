@@ -252,7 +252,7 @@ class Pasien extends BaseController
             }
         } else if ($param == "Temperatur") {
             // d("Masuk suhu");
-            if ($value >= 38) {
+            if ($value < 33 || $value >= 38) {
                 $res = "tidak normal";
             }
         }
