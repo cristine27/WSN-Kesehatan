@@ -10,8 +10,9 @@
             <div class="col">
                 <div class="container">
                     <div class="row">
+                        <h5>Node1</h5>
+                        <h5>Pasien : <?= $pasien1['nama']; ?></h5>
                         <?php for ($index = 0; $index < count($node1); $index++) { ?>
-                            <h5>Pasien : <?= $pasien1['nama']; ?></h5>
                             <h5 class="mt-5">Hasil Pemeriksaan : <?= $node1[$index]['waktu']; ?></h5>
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">
@@ -54,8 +55,9 @@
                 </div>
                 <div class="container">
                     <div class="row">
+                        <h5>Node2</h5>
+                        <h5>Pasien : <?= $pasien2['nama']; ?></h5>
                         <?php for ($index = 0; $index < count($node2); $index++) { ?>
-                            <h5>Pasien : <?= $pasien2['nama']; ?></h5>
                             <h5 class="mt-5">Hasil Pemeriksaan : <?= $node2[$index]['waktu']; ?></h5>
                             <div class="col d-flex justify-content-start">
                                 <div class="w-75 table-responsive">
