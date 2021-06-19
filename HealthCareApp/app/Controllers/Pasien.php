@@ -421,7 +421,7 @@ class Pasien extends BaseController
             }
             $i++;
         }
-        d($dataPasien2 = $this->pasienModel->getPasien($kumpulanhasil2[1]));
+        // d($dataPasien2 = $this->pasienModel->getPasien($kumpulanhasil2[1]));
         d($kumpulanhasil2);
         // dd($dataPasien2);
         foreach ($kumpulanhasil1 as $hasil) {
