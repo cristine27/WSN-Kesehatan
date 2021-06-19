@@ -386,8 +386,7 @@ class Pasien extends BaseController
     {
         $tabelNode1 = $this->periksaModel->tabelPeriksaNode1();
         $tabelNode2 = $this->periksaModel->tabelPeriksaNode2();
-        d($tabelNode1);
-        d($tabelNode2);
+
         $i = 0;
         $dataPasien1 = [];
         $dataPasien2 = [];
@@ -418,7 +417,7 @@ class Pasien extends BaseController
         foreach ($tabelNode2->getResultArray() as $res) {
             if ($res['idNode']) {
                 $check2 = true;
-                $kumpulanhasil1[$i] = $res;
+                $kumpulanhasil2[$i] = $res;
             }
             if ($res['idPasien']) {
                 $dataPasien2 = $this->pasienModel->getPasien($res['idPasien']);
