@@ -424,7 +424,7 @@ class Pasien extends BaseController
             }
             $i++;
         }
-
+        dd($dataPasien2);
         foreach ($kumpulanhasil1 as $hasil) {
             $idNode = $hasil['idNode'];
             $idParam = $this->memilikiModel->getParamid($idNode);
