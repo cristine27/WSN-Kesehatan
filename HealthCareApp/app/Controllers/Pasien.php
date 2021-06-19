@@ -500,7 +500,9 @@ class Pasien extends BaseController
             'status1' => $kumpulanStatus1,
             'status2' => $kumpulanStatus2,
             'param1' => $kumpulanparam1,
-            'param2' => $kumpulanparam2
+            'param2' => $kumpulanparam2,
+            'pasien1' => $dataPasien1,
+            'pasien2' => $dataPasien2
         ];
 
         return view('pages/tabelPemantauan.php', $data);
