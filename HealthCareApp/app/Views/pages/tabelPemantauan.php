@@ -30,7 +30,7 @@
                                         for ($i = 0; $i < count($param1); $i++) {
                                             if ($param1[$i]['namaParameter'] == "Detak jantung") {
                                                 $indexHasil = 1;
-                                            } else if ($parame1[$i]['namaParameter'] == "Saturasi Oksigen") {
+                                            } else if ($param1[$i]['namaParameter'] == "Saturasi Oksigen") {
                                                 $indexHasil = 2;
                                             } else if ($param1[$i]['namaParameter'] == "Temperatur") {
                                                 $indexHasil = 3;
