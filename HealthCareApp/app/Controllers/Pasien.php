@@ -492,7 +492,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-
+        d($kumpulanhasil2);
         $data = [
             'title' => 'Pemantauan Node',
             'node1' => $kumpulanhasil1,
