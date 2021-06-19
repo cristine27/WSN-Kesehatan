@@ -386,7 +386,8 @@ class Pasien extends BaseController
     {
         $tabelNode1 = $this->periksaModel->tabelPeriksaNode1();
         $tabelNode2 = $this->periksaModel->tabelPeriksaNode2();
-        dd($tabelNode2);
+        d($tabelNode1);
+        d($tabelNode2);
         $i = 0;
         $dataPasien1 = [];
         $dataPasien2 = [];
