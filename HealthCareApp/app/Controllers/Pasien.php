@@ -419,7 +419,7 @@ class Pasien extends BaseController
                 $check2 = true;
                 $kumpulanhasil2[$i] = $res;
             }
-            // d($this->pasienModel->getPasien($res['idPasien']));
+            d($this->pasienModel->getPasien($res['idPasien']));
             if ($res['idPasien']) {
                 $dataPasien2 = $this->pasienModel->getPasien($res['idPasien']);
             }
