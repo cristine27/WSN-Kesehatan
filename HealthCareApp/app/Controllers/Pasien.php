@@ -419,11 +419,12 @@ class Pasien extends BaseController
                 $check2 = true;
                 $kumpulanhasil2[$i] = $res;
             }
+            if ($res['idPasien']) {
+                $dataPasien2 = $this->pasienModel->getPasien($res['idPasien']);
+            }
             $i++;
         }
-        // d($dataPasien2 = $this->pasienModel->getPasien($kumpulanhasil2[1]));
-        d($kumpulanhasil2);
-        // dd($dataPasien2);
+
         foreach ($kumpulanhasil1 as $hasil) {
             $idNode = $hasil['idNode'];
             $idParam = $this->memilikiModel->getParamid($idNode);
