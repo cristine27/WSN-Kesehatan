@@ -386,7 +386,7 @@ class Pasien extends BaseController
     {
         $tabelNode1 = $this->periksaModel->tabelPeriksaNode1();
         $tabelNode2 = $this->periksaModel->tabelPeriksaNode2();
-
+        dd($tabelNode2);
         $i = 0;
         $dataPasien1 = [];
         $dataPasien2 = [];
@@ -492,7 +492,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-        d($kumpulanhasil2);
+
         $data = [
             'title' => 'Pemantauan Node',
             'node1' => $kumpulanhasil1,
