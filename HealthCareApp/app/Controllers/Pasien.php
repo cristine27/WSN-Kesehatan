@@ -386,10 +386,11 @@ class Pasien extends BaseController
     {
         $tabelNode1 = $this->periksaModel->tabelPeriksaNode1();
         $tabelNode2 = $this->periksaModel->tabelPeriksaNode2();
-        $dataPasien1 = $this->pasienModel->getPasien($tabelNode1['idPasien']);
-        $dataPasien2 = $this->pasienModel->getPasien($tabelNode2['idPasien']);
 
         $i = 0;
+        $dataPasien1 = [];
+        $dataPasien2 = [];
+
         $kumpulanhasil1 = [];
         $kumpulanhasil2 = [];
 
@@ -399,12 +400,15 @@ class Pasien extends BaseController
         $kumpulanparam2 = [];
         $kumpulanStatus2 = [];
 
-        $check = false;
-
+        $check1 = false;
+        $check2 = false;
         foreach ($tabelNode1->getResultArray() as $res) {
             if ($res['idNode']) {
-                $check = true;
+                $check1 = true;
                 $kumpulanhasil1[$i] = $res;
+            }
+            if ($res['idPasien']) {
+                $dataPasien1 = $this->pasienModel->getPasien($res['idPasien']);
             }
             $i++;
         }
@@ -412,8 +416,11 @@ class Pasien extends BaseController
         $i = 0;
         foreach ($tabelNode2->getResultArray() as $res) {
             if ($res['idNode']) {
-                $check = true;
+                $check2 = true;
                 $kumpulanhasil1[$i] = $res;
+            }
+            if ($res['idPasien']) {
+                $dataPasien2 = $this->pasienModel->getPasien($res['idPasien']);
             }
             $i++;
         }
@@ -444,17 +451,8 @@ class Pasien extends BaseController
             }
         }
 
-        if ($check == false) {
+        if ($check1 == false) {
             $kumpulanhasil1 = [
-                0 => [
-                    'waktu' => "",
-                    'hasil1' => 0,
-                    'hasil2' => 0,
-                    'hasil3' => 0,
-                ]
-            ];
-
-            $kumpulanhasil2 = [
                 0 => [
                     'waktu' => "",
                     'hasil1' => 0,
@@ -469,14 +467,25 @@ class Pasien extends BaseController
                 ]
             ];
 
+            $kumpulanStatus1 = [
+                0 => "-"
+            ];
+        }
+
+        if ($check2 == false) {
+            $kumpulanhasil2 = [
+                0 => [
+                    'waktu' => "",
+                    'hasil1' => 0,
+                    'hasil2' => 0,
+                    'hasil3' => 0,
+                ]
+            ];
+
             $kumpulanparam2 = [
                 0 => [
                     'namaParameter' => ''
                 ]
-            ];
-
-            $kumpulanStatus1 = [
-                0 => "-"
             ];
 
             $kumpulanStatus2 = [
