@@ -433,7 +433,7 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam1[$index] = $namaParam;
-                $kumpulanStatus1[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $this->dataPasien1['umur']);
+                $kumpulanStatus1[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $dataPasien1['umur']);
                 $index++;
             }
         }
@@ -446,7 +446,7 @@ class Pasien extends BaseController
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam2[$index] = $namaParam;
-                $kumpulanStatus2[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $this->dataPasien2['umur']);
+                $kumpulanStatus2[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $dataPasien2['umur']);
                 $index++;
             }
         }
