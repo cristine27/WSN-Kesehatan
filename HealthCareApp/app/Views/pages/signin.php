@@ -17,7 +17,6 @@
                             <div class="container w-50 my-3">
                                 <form method="POST" action="/SignIn/validateLogin">
                                     <?= csrf_field(); ?>
-                                    <!-- <h1 class="h3 mb-3 fw-normal">Please sign in</h1> -->
                                     <label for="email" class="fa fa-envelope prefix grey-text">Email</label>
                                     <input type="email" id="email" name="email" class="form-control <?= ($validate == 'false') ? 'is-invalid' : ''; ?>" placeholder="Email address" required autofocus>
 
@@ -36,9 +35,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="row d-flex">
-            <img src="../img/bg.png" alt="">
-        </div> -->
     </div>
 </body>
 <?= $this->endsection(); ?>

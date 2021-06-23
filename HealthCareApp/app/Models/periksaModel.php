@@ -7,11 +7,8 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class periksaModel extends Model
 {
-    protected $table = 'periksa'; //table apa yang digunakan
-    // protected $DBGroup = 'coba'; //db apa yang digunakan
-    protected $primaryKey = 'idPeriksa'; //primary key table
-    // untuk crud field yang dapat di isi manual
-    // protected $allowedFields = ['nama', 'alamat', 'umur', 'gender', 'email', 'password']; //kolom mana saja yang boleh di isi 
+    protected $table = 'periksa';
+    protected $primaryKey = 'idPeriksa';
 
     public function getHasilPeriksa($id)
     {
@@ -23,7 +20,6 @@ class periksaModel extends Model
                 ) and idPasien = $id";
 
         return $this->db->query($sql);
-        // return $this->table('periksa')->like('idPasien', $id);
     }
 
     public function getAllHasil($id)

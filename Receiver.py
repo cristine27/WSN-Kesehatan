@@ -138,21 +138,12 @@ def mapNodeName():
         MapNodeParam[namaNode].append(namaParam)
     cursor.close()
     db.close()
-    
-
-    # testing isi dictionary
-    #print(Pasien)
-    #print(Node)
-    #print(idNode)
 
 def validateData(x):
-    # print("masuk function validate")
     res = False
     potong = x.split("|")
-    #isi data = namaNode | detak | oksigen | temperatur | status
     if len(potong) > 1:
         if(potong[0] != "" and potong[1] != -1 and potong[2] != -1 and potong[3] != 0 and potong[4] != -1):
-            # print("masuk function validate")
             res = True
     return res
 
@@ -169,24 +160,6 @@ def getDataSense(x):
     waktu = waktu.strftime('%Y-%m-%d %H:%M:%S')
 
     return node, detak, oksigen, suhu, waktu
-
-def konekDb():
-    # connect to mysql database
-    try:
-        db = mysql.connector.connect(
-            host='localhost',
-            database='WSN',
-            user='phpmyadmin',
-            password='raspberry',
-            pool_name='mypool',
-            pool_size=POOL_SIZE+1
-        )
-
-        if db.is_connected():
-            print("connected to MySQL database")
-
-    except Error as e:
-        print(e)
 
 def hidupkanNode(namaNode):
     db = mysql.connector.connect(
@@ -236,11 +209,9 @@ def getStatusNode(data):
             Node[potong[0]] = "online"
             hidupkanNode(potong[0])
             status = True
-    # print(Node)
     return status
 
 def InsertDb(x):
-    # konekDb()
     db = mysql.connector.connect(
         host='localhost',
         database='WSN',
@@ -251,19 +222,15 @@ def InsertDb(x):
     )
 
     cursor = db.cursor(buffered=True)
-    # hasil get data dari arduino
     node = str(x[0])
     detak = str(x[1])
     oksigen = str(x[2])
     suhu = str(x[3])
     waktu = x[4]
     
-    # convert data sebelum masuk ke db
     node = str(node)
     idPasien = Pasien.get(node)
     idNode = idN.get(node)
-    # idNode = "".join(map(str, idN.get(node,None)))
-    # convert data
     detak = str(detak)
     oksigen = str(oksigen)
     suhu = str(suhu)
@@ -275,8 +242,6 @@ def InsertDb(x):
 
     values = (idPasien, idNode, waktu, detak, oksigen, suhu)
     
-    
-    #commit query sql
     cursor.execute(queryInsert, values)
     db.commit()
 
@@ -330,7 +295,6 @@ def insertDataNodePasien(data,jumlahPasien):
                 if(verifyidPasien(idP) and verifyidNode(namaNode)):
                     temp = Node.get(namaNode)
                     if temp =="online" or temp == "1":
-                        # masukan idPasien ke dalam dictionary dengan key NamaNode
                         Pasien[namaNode] = idP
                         StatusInput[i] = 1
                     else:
@@ -366,8 +330,6 @@ def insertNode(namaNode):
         )
 
         cursor = db.cursor(buffered=True)
-
-        #convert data
         
         queryInsert = (
             "INSERT INTO node (namaNode, status)"
@@ -375,10 +337,7 @@ def insertNode(namaNode):
         )
 
         values = (namaNode,1)
-        
-        #commit query sql
         cursor.execute(queryInsert, values)
-        # print("execute query")
         db.commit()
 
         cursor.close()
@@ -400,19 +359,14 @@ def insertParameter(namaParameter):
         )
 
         cursor = db.cursor(buffered=True)
-
-        #convert data
-        
         queryInsert = (
             "INSERT INTO parameter (namaParameter)"
             "VALUES (%s)"
         )
 
         values = (namaParameter,)
-        
-        #commit query sql
+
         cursor.execute(queryInsert, values)
-        # print("execute query")
         db.commit()
 
         cursor.close()
@@ -449,8 +403,7 @@ def assignNodeParam(namaNode,param):
             )
 
             values = (idNode,idParam)
-        
-            #commit query sql
+
             cursor.execute(queryInsert, values)
             
             db.commit()
@@ -463,7 +416,6 @@ def assignNodeParam(namaNode,param):
                 print("Maaf parameter sudah terdaftar pada node")
             else:
                 print("Maaf parameter belum terdaftar mohon daftar terlebih dahulu")
-            # mainMenu()
     else:
         flag = False
         print("Maaf nama node yang dimasukkan tidak terdaftar")
@@ -521,7 +473,6 @@ class periksa():
             time.sleep(self.interval)
         mainMenu()
 
-# jumlah threads(jumlah max req dari dari app)
 POOL_SIZE = 20
 
 while appRunning:
@@ -575,39 +526,7 @@ while appRunning:
                             print("data input node atau idPasien salah")
                         print("Silahkan check data kembali")
                         mainMenu()
-                
-                
-                # while sensing and counter<=5:
-                #     counter = counter + 1
-                #     # msg = s.readline().decode("ascii").strip()
-                #     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                #         msg = s.readline().decode("ascii").strip()
-                #         # print(counter)
-                #         #lakukan pengecekan apakah sensor terpasang dengan benar pada tubuh pasien
-                #         time.sleep(1)#
-                #         status = checkIfAttached(msg)
-                #         time.sleep(1)
-                #         if status==False:
-                #             time.sleep(1)#                            
-                #             future = executor.submit(getDataSense, msg)
-                #             time.sleep(1)
-                #             data = future.result()
-                #             # time.sleep(5)#
-                            
-                #             # time.sleep(5)
-                #             if future.done() and data != None:
-                #                 future2 = executor.submit(InsertDb, data)
-                            
-                #         elif status==True:
-                #             print("Sensor Tidak Terpasang dengan Baik, Silahkan Periksa Kembali Perangkat..")
-                    # if counter==5:
-                    #     counter = 0
-                    #     print("Pemeriksaan Telah Selesai")
-                    #     break
-                # counter = 0
-                
-                # mainMenu()
-                
+                        
         #cek status node
         elif perintah == "2":
             print("Mohon menunggu..")

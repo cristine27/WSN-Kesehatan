@@ -16,13 +16,6 @@
                                     <?= session()->getFlashdata('pesan'); ?>
                                 </div>
                             <?php endif; ?>
-                            <!-- <h4 class="card-header" style="background-color: ffd3b4;">Health Care App</h4>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Health Care App adalah sebuah aplikasi yang digunakan untuk melihat hasil Pemeriksaan kesehatan yang telah dilakukan oleh pasien.
-                                    Pemeriksaan kesehatan terdiri dari pemeriksaan detak jantung, saturasi oksigen, serta suhu tubuh.
-                                </p>
-                            </div> -->
                             <div class="jumbotron jumbotron-fluid my-1" style="background-color: #89C4F4;">
                                 <div class="container">
                                     <h1 class="display-4">Health Care App</h1>
@@ -40,7 +33,6 @@
                                     Silahkan Memilih Fitur yang Ingin di Jalankan :
                                 </p>
                                 <div class="container">
-                                    <!-- <div class="col"> -->
                                     <div class="d-flex justify-content-center">
                                         <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getHasilPantau" role="button">Hasil Pemantauan</a>
                                         <a class="btn btn-primary btn-lg d-inline p-2 mx-3" href="../Home/getRiwayat" role="button">Riwayat Pemantauan</a>
@@ -53,7 +45,6 @@
                     </div>
                 </div>
 
-                <!-- Modal -->
                 <div onload="showModal($flag)" class="modal" id="myModal" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">

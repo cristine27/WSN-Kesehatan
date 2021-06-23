@@ -7,9 +7,8 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class memilikiModel extends Model
 {
-    protected $table = 'memiliki'; //table apa yang digunakan
-    // protected $DBGroup = 'coba'; //db apa yang digunakan
-    protected $primaryKey = 'idMemiliki'; //primary key table
+    protected $table = 'memiliki';
+    protected $primaryKey = 'idMemiliki';
 
     public function getParamid($id)
     {

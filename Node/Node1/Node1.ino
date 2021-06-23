@@ -21,10 +21,6 @@ unsigned long prev_temperatur = 0;
 #define REPORTING_PERIOD_MS     1000
 uint32_t tsLastReport = 0;
 
-/*variabel*/
-bool isMlxOn = false; //check apakah sensor max30100 nyala 
-bool isMaxOn = false; //check apakah sensor mlx90164 nyala
-
 float suhu = 0.0; //suhu tubuh
 int detak = 0; //detak jantung
 int oksigen = 0; //oksigen dalam darah
@@ -43,26 +39,17 @@ bool onBeatDetected()
 }
 
 void setup() {
-  // put your setup code here, to run once:
   Wire.begin();
   Serial.begin(9600);
   xbee.begin(9600);
-
-  /*Test kerja sensor*/
-  Serial.println("Pulse oxymeter test!");
-  Serial.println("Adafruit MLX90164 test!");
-  pox.begin();//pox harus di letakkan sebelum mlx
-
+  pox.begin();
   mlx.begin();  
  
   pox.setOnBeatDetectedCallback(onBeatDetected); 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:  
-
   pox.update();
-  /*tanpa menggunakan trigger serial*/
   if(millis() - tsLastReport > REPORTING_PERIOD_MS){
     tsLastReport = millis();
     bacaSensorDetak();
@@ -104,21 +91,4 @@ void bacaSensorSuhu(){
       prev_temperatur = curr_temperatur;
       suhu = mlx.readObjectTempC();
   }
-}
-
-
-//check status node apakah online atau tidak
-boolean checkStatus(){
-  boolean isActive = false;
-  if(pox.begin()){//node temperatur
-    isMaxOn = true;
-  }
-  if(mlx.begin()){//node detak
-    isMlxOn = true;
-  }
-
-  if(isMlxOn || isMaxOn){
-    isActive = true;
-  }
-  return isActive;
 }

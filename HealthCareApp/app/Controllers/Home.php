@@ -29,17 +29,13 @@ class Home extends BaseController
 		$this->nodeModel = new nodeModel();
 		$this->memilikiModel = new memilikiModel();
 		$this->parameterModel = new parameterModel();
-		// $this->dataPasien = session()->getFlashData('pasien');
 	}
 
 	public function index()
 	{
-		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
-		// dd($this->dataPasien);
-		// dd(isset($_SESSION['pasien']));
 		$this->dataPasien = session()->get('pasien');
 		$check = false;
-		if ($this->dataPasien['password'] == "password") {
+		if ($this->dataPasien['password'] == $this->dataPasien['email']) {
 			$check = true;
 		}
 		$newData = $this->pasienModel->getPasien($this->dataPasien['idPasien']);
@@ -59,11 +55,8 @@ class Home extends BaseController
 
 	public function getHasilPantau()
 	{
-		// $idPasien = $dataPasien['idPasien'];
-		// $this->dataPasien = $this->pasienModel->getPasien($idPasien);
 		$this->dataPasien = session()->get('pasien');
 		$dataPeriksa = $this->periksaModel->getHasilPeriksa($this->dataPasien['idPasien']);
-		// d($dataPeriksa);
 		$i = 0;
 		$kumpulanhasil = [];
 		$kumpulanparam = [];
@@ -81,9 +74,7 @@ class Home extends BaseController
 		}
 
 		foreach ($kumpulanhasil as $hasil) {
-			// d($hasil);
 			$idNode = $hasil['idNode'];
-			// d($idNode);
 			$idParam = $this->memilikiModel->getParamid($idNode);
 
 			$index = 0;
@@ -91,25 +82,9 @@ class Home extends BaseController
 				$namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
 				$kumpulanparam[$index] = $namaParam;
 				$kumpulanStatus[$index] = $this->setStatus($namaParam['namaParameter'], $hasil['hasil' . strval($index + 1)], $this->dataPasien['umur']);
-				// d($hasil['hasil' . strval($index + 1)]);
-				// d($namaParam['namaParameter']);
-				// d($hasil['hasil' . strval($index + 1)]);
-				// d($this->setStatus($namaParam, $hasil['hasil' . strval($index + 1)]));
 				$index++;
 			}
 		}
-		// $this->hasilPeriksa = $dataPeriksaArr;
-		// $idNode = $dataPeriksaArr['idNode'];
-		// $idParam = $this->memilikiModel->getParamid($idNode);
-		// $kumpulanparam = [];
-		// // dd($idParam);
-		// $index = 0;
-		// foreach ($idParam as $id) {
-		// 	// d("masuk");
-		// 	$kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
-		// 	$index++;
-		// }
-		// dd($kumpulanparam);
 
 		if ($check == false) {
 			$kumpulanhasil = [
@@ -146,7 +121,6 @@ class Home extends BaseController
 
 	public function getPasienProfile()
 	{
-		// d($this->dataPasien);
 		$this->dataPasien = session()->get('pasien');
 		$data = [
 			'title' => 'Profile Pasien',
@@ -214,26 +188,10 @@ class Home extends BaseController
 	public function getRiwayat()
 	{
 		$tanggal = $this->request->getVar('tanggal');
-		// d($tanggal);
 		$this->dataPasien = session()->get('pasien');
 
-		// if ($tanggal != "") {
-		//     // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
-		//     $coba = $this->periksaModel->getWaktu($id, $tanggal);
-		//     d($coba);
-		//     foreach ($coba->getResultArray() as $res) {
-		//         d("hasil foreach");
-		//         d($res);
-		//     }
-		// }
-
 		$dataPeriksa = ($this->periksaModel->getAllHasil($this->dataPasien['idPasien']));
-		// d($dataPasien);
 
-		// foreach ($dataPeriksa->getResultArray() as $a) {
-		//     d($a);
-		// }
-		// $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
 		$i = 0;
 		$hasilSementara = [];
 		$kumpulanhasil = [];
@@ -267,29 +225,20 @@ class Home extends BaseController
 		}
 
 		$jumlahHasil = count($kumpulanhasil);
-		// d($kumpulanhasil);
 		$j = 0;
 		foreach ($kumpulanhasil as $key => $res) {
-			// d($hasil);
 			$idNode = $res['idNode'];
 
 			$idParam = $this->memilikiModel->getParamid($idNode);
-			// dd($idParam);
 			$index = 0;
 
 			foreach ($idParam as $id) {
 				$namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
 				$kumpulanparam[$j][$index] = $namaParam;
-				// d($namaParam['namaParameter']);
-				// d($kumpulanhasil[$j]['hasil' . strval($index + 1)]);
-				// d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
 				$kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)], $this->dataPasien['umur']);
-				// d($hasil['hasil' . strval($index + 1)]);
-				// d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
 				$index++;
 			}
 			$j++;
-			// dd($kumpulanparam);
 		}
 
 		if ($check == false) {
@@ -326,7 +275,6 @@ class Home extends BaseController
 			'flagFilter' => $flagFilter
 		];
 
-		//jika pasien tidak ada
 		if (empty($data['pasien'])) {
 			throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
 				'tidak ditemukan');

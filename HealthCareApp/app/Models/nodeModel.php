@@ -7,9 +7,8 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class nodeModel extends Model
 {
-    protected $table = 'node'; //table apa yang digunakan
-    // protected $DBGroup = 'coba'; //db apa yang digunakan
-    protected $primaryKey = 'idNode'; //primary key table
+    protected $table = 'node';
+    protected $primaryKey = 'idNode';
 
     public function getStatusNode($id)
     {

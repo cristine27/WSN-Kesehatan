@@ -64,15 +64,6 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- <div class="alert alert-secondary w-25" role="alert">
-                            <label>Keterangan batas normal : </label>
-                            <p>
-                                Detak jantung = 70 bpm<br>
-                                Saturasi oksigen = 90%<br>
-                                Suhu = 37<span>&#8451;</span><br>
-                                Tekanan darah = 120/70<br>
-                            </p>
-                        </div> -->
                         </div>
                     </div>
                 </div>

@@ -65,10 +65,8 @@ class SignIn extends BaseController
                 $idNode = $dataPeriksaArr['idNode'];
                 $idParam = $this->memilikiModel->getParamid($idNode);
                 $kumpulanparam = [];
-                // dd($idParam);
                 $index = 0;
                 foreach ($idParam as $id) {
-                    // d("masuk");
                     $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
                     $index++;
                 }
@@ -76,7 +74,6 @@ class SignIn extends BaseController
                 $data = [
                     'title' => 'Profile Pasien',
                     'dataPasien' => $dataPasien
-                    // 'idParam' => $idParam
                 ];
                 session()->set('pasien', $dataPasien);
                 return redirect()->to('../Home');
@@ -93,9 +90,7 @@ class SignIn extends BaseController
 
     public function getHasilPantau($idPasien)
     {
-        // $idPasien = $dataPasien['idPasien'];
         $dataPeriksa = $this->periksaModel->getHasilPeriksa($idPasien);
-        // d($dataPeriksa);
         $dataPeriksaArr = 0;
         foreach ($dataPeriksa->getResultArray() as $res) {
             $dataPeriksaArr = $res;
@@ -104,10 +99,9 @@ class SignIn extends BaseController
         $idNode = $dataPeriksaArr['idNode'];
         $idParam = $this->memilikiModel->getParamid($idNode);
         $kumpulanparam = [];
-        // dd($idParam);
         $index = 0;
         foreach ($idParam as $id) {
-            // d("masuk");
+
             $kumpulanparam[$index] = $this->parameterModel->getNamaParam($id['idParameter']);
             $index++;
         }
@@ -116,7 +110,6 @@ class SignIn extends BaseController
             'title' => 'Pemeriksaan Pasien',
             'hasilPeriksa' => $dataPeriksaArr,
             'parameter' => $kumpulanparam
-            // 'idParam' => $idParam
         ];
 
         return view('pages/pemantauanPasien', $data);

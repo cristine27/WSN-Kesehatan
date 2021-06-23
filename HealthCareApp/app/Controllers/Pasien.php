@@ -31,7 +31,6 @@ class Pasien extends BaseController
 
     public function index()
     {
-        // dd($this->request->getVar('page_pasien'));
         $currentPage = $this->request->getVar('page_pasien') ? $this->request->getVar('page_pasien') : 1;
 
         $pencarian = $this->request->getVar('pencarian');
@@ -59,7 +58,6 @@ class Pasien extends BaseController
             'pasien' => $dataPasien
         ];
 
-        //jika pasien tidak ada
         if (empty($data['pasien'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
                 'tidak ditemukan');
@@ -69,8 +67,6 @@ class Pasien extends BaseController
 
     public function addPasien()
     {
-        // session(); pindah ke basecontroller
-        // session();
         $data = [
             'title' => 'Form Tambah Pasien',
             'validation' => \Config\Services::validation()
@@ -81,8 +77,6 @@ class Pasien extends BaseController
 
     public function savePasien()
     {
-
-        //validasi input, ditarget berdasasrkan name form
         if (!$this->validate([
             'nama' => [
                 'rules' => 'required|alpha_space',
@@ -118,14 +112,9 @@ class Pasien extends BaseController
                 ]
             ]
         ])) {
-            //pesan error
             $validation = \Config\Services::validation();
-            // dd($validation);
-            //mengirimkan validasi dan pesan error ke halaman add pasien
             return redirect()->to('/Pasien/addPasien')->withInput()->with('validation', $validation);
         }
-
-        $password = 'password';
 
         $this->pasienModel->save([
             'nama'      => $this->request->getVar('nama'),
@@ -133,24 +122,13 @@ class Pasien extends BaseController
             'umur'      => $this->request->getVar('usia'),
             'gender'    => $this->request->getVar('gender'),
             'email'     => $this->request->getVar('email'),
-            'password'  => $password
+            'password'  => $this->request->getVar('email')
         ]);
 
-        //buat flash data notif save berhasil
         session()->setFlashdata('pesan', 'Pasien berhasil ditambahkan.');
 
         return redirect()->to('/Pasien');
     }
-
-    // public function deletePasien($idPasien)
-    // {
-    //     //cara konvenstional bahaya karena bisa delete lewat url method->get 
-    //     // harus di tambahkan http method spoofing
-    //     $this->pasienModel->delete($idPasien);
-    //     session()->setFlashdata('pesan', 'Pasien berhasil dihapus.');
-
-    //     return redirect()->to('/Pasien');
-    // }
 
     public function editPasien($idPasien)
     {
@@ -165,7 +143,6 @@ class Pasien extends BaseController
 
     public function updatePasien($idPasien)
     {
-        //validasi input, ditarget berdasasrkan name form
         if (!$this->validate([
             'nama' => [
                 'rules' => 'required|alpha_space',
@@ -201,15 +178,11 @@ class Pasien extends BaseController
                 ]
             ]
         ])) {
-            //pesan error
             $validation = \Config\Services::validation();
-            // dd($validation);
-            //mengirimkan validasi dan pesan error ke halaman add pasien
             return redirect()->to('/Pasien/editPasien/' . $idPasien)->withInput()->with('validation', $validation);
         }
 
         $password = 'password';
-        // dd($this->request->getVar());
         $this->pasienModel->save([
             'idPasien' => $idPasien,
             'nama' => $this->request->getVar('nama'),
@@ -220,7 +193,6 @@ class Pasien extends BaseController
             'password'  => $password
         ]);
 
-        //buat flash data notif save berhasil
         session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
 
         return redirect()->to('/Pasien');
@@ -233,12 +205,9 @@ class Pasien extends BaseController
         $age = intval($age);
         $max = 220 - $age;
         if ($param == "Detak jantung") {
-            // d("Masuk detak jantung");
             if ($value >= 60 and $value <= 100) {
-                // d("masuk batas if pertama");
                 $res = "normal";
             } else if ($value < 60) {
-                // d("masuk batas if kedua");
                 $res = "tidak normal";
             } else if ($value > 100) {
                 $res = "tidak normal";
@@ -246,12 +215,10 @@ class Pasien extends BaseController
                 $res = "tidak normal";
             }
         } else if ($param == "Saturasi Oksigen") {
-            // d("Masuk oksi");
             if ($value <= 94 || $value > 100) {
                 $res = "tidak normal";
             }
         } else if ($param == "Temperatur") {
-            // d("Masuk suhu");
             if ($value < 33 || $value >= 38) {
                 $res = "tidak normal";
             }
@@ -262,26 +229,10 @@ class Pasien extends BaseController
     public function riwayatPasien($id)
     {
         $tanggal = $this->request->getVar('tanggal');
-        // d($tanggal);
         $dataPasien = $this->pasienModel->getPasien($id);
 
-        // if ($tanggal != "") {
-        //     // $dataPeriksa = ($this->periksaModel->getHasilPeriksaByTime($id, $tanggal));
-        //     $coba = $this->periksaModel->getWaktu($id, $tanggal);
-        //     d($coba);
-        //     foreach ($coba->getResultArray() as $res) {
-        //         d("hasil foreach");
-        //         d($res);
-        //     }
-        // }
-
         $dataPeriksa = ($this->periksaModel->getAllHasil($id));
-        // d($dataPasien);
 
-        // foreach ($dataPeriksa->getResultArray() as $a) {
-        //     d($a);
-        // }
-        // $dataPeriksa = $this->periksaModel->getHasilPeriksa($id);
         $i = 0;
         $hasilSementara = [];
         $kumpulanhasil = [];
@@ -315,29 +266,21 @@ class Pasien extends BaseController
         }
 
         $jumlahHasil = count($kumpulanhasil);
-        // d($kumpulanhasil);
+
         $j = 0;
         foreach ($kumpulanhasil as $key => $res) {
-            // d($hasil);
             $idNode = $res['idNode'];
 
             $idParam = $this->memilikiModel->getParamid($idNode);
-            // dd($idParam);
             $index = 0;
 
             foreach ($idParam as $id) {
                 $namaParam = $this->parameterModel->getNamaParam($id['idParameter']);
                 $kumpulanparam[$j][$index] = $namaParam;
-                // d($namaParam['namaParameter']);
-                // d($res['hasil' . strval($index + 1)]);
-                // d($this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)], $dataPasien['umur']));
                 $kumpulanStatus[$j][$index] = $this->setStatus($namaParam['namaParameter'], $res['hasil' . strval($index + 1)], $dataPasien['umur']);
-                // d($hasil['hasil' . strval($index + 1)]);
-                // d($this->setStatus($namaParam['namaParameter'], $kumpulanhasil[$j]['hasil' . strval($index + 1)]));
                 $index++;
             }
             $j++;
-            // dd($kumpulanparam);
         }
 
         if ($check == false) {
@@ -362,7 +305,7 @@ class Pasien extends BaseController
                 0 => "-"
             ];
         }
-        // dd($kumpulanStatus);
+
         $data = [
             'title' => 'Riwayat Pasien',
             'pasien' => $dataPasien,
@@ -374,7 +317,6 @@ class Pasien extends BaseController
             'flagFilter' => $flagFilter
         ];
 
-        //jika pasien tidak ada
         if (empty($data['pasien'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Pasien dengan id ' . $id .
                 'tidak ditemukan');

@@ -7,12 +7,10 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class pasienModel extends Model
 {
-    protected $table = 'pasien'; //table apa yang digunakan
-    // protected $DBGroup = 'coba'; //db apa yang digunakan
-    protected $primaryKey = 'idPasien'; //primary key table
+    protected $table = 'pasien';
+    protected $primaryKey = 'idPasien';
     protected $useTimestamps = true;
-    // untuk crud field yang dapat di isi manual
-    protected $allowedFields = ['nama', 'alamat', 'umur', 'gender', 'email', 'password']; //kolom mana saja yang boleh di isi 
+    protected $allowedFields = ['nama', 'alamat', 'umur', 'gender', 'email', 'password'];
     protected $createdField  = '';
     protected $updatedField  = '';
     protected $deletedField  = '';
@@ -45,7 +43,6 @@ class pasienModel extends Model
     {
         $data = $this->where(['email' => $email])->first();
         if ($data) {
-            // dd($data);
             return $data;
         } else {
             return 0;
