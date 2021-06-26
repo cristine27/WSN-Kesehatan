@@ -297,7 +297,9 @@ class Pasien extends BaseController
 
             $kumpulanparam = [
                 0 => [
-                    'namaParameter' => ''
+                    [
+                        '1' => "-"
+                    ]
                 ]
             ];
 
