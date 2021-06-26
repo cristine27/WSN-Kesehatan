@@ -9,8 +9,8 @@
             <div class="col-8">
                 <h1 class="center mb-3">Form Ubah Data Pasien</h1>
                 <div class="container-md">
-                    <form action="/Pasien/updatePasien/<?= $pasien['idPasien'];
-                                                        dd($pasien) ?>" method="POST" class="w-100">
+                    <?php d($pasien); ?>
+                    <form action="/Pasien/updatePasien/<?= $pasien['idPasien']; ?>" method="POST" class="w-100">
                         <?= csrf_field(); ?>
                         <div class="form-group row mb-2">
                             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
