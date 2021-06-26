@@ -9,7 +9,9 @@
             <div class="col-8">
                 <h1 class="center mb-3">Form Ubah Data Pasien</h1>
                 <div class="container-md">
-                    <?php d($pasien); ?>
+                    <?php d($pasien);
+                    old('nama');
+                    old('alamat'); ?>
                     <form action="/Pasien/updatePasien/<?= $pasien['idPasien']; ?>" method="POST" class="w-100">
                         <?= csrf_field(); ?>
                         <div class="form-group row mb-2">
