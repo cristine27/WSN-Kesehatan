@@ -8,7 +8,6 @@
         <div class="row">
             <div class="col-8">
                 <h1 class="center mb-3">Form Ubah Data Pasien</h1>
-                <!-- tampilin semua error $validation->listErrors();-->
                 <div class="container-md">
                     <form action="/Pasien/updatePasien/<?= $pasien['idPasien']; ?>" method="POST" class="w-100">
                         <?= csrf_field(); ?>
