@@ -9,9 +9,7 @@
             <div class="col-8">
                 <h1 class="center mb-3">Form Ubah Data Pasien</h1>
                 <div class="container-md">
-                    <?php d($pasien);
-                    old('nama');
-                    old('alamat'); ?>
+                    <?php d($pasien); ?>
                     <form action="/Pasien/updatePasien/<?= $pasien['idPasien']; ?>" method="POST" class="w-100">
                         <?= csrf_field(); ?>
                         <div class="form-group row mb-2">
@@ -26,7 +24,7 @@
                         <div class="form-group row mb-2">
                             <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                             <div class="col-5">
-                                <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" aria-label="Alamat" name="alamat" value=<?= $pasien['alamat'] ?>></textarea>
+                                <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" aria-label="Alamat" name="alamat"><?= (old('alamat')) ? old('alamat') : $pasien['alamat'] ?></textarea>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('alamat'); ?>
                                 </div>
