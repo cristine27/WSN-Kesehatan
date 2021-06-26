@@ -98,9 +98,7 @@ class Home extends BaseController
 
 			$kumpulanparam = [
 				0 => [
-					[
-						'namaParameter' => "-"
-					]
+					'namaParameter' => "-"
 				]
 			];
 
