@@ -38,6 +38,8 @@
                 foreach ($hasilPeriksa as $key => $value) {
                     d($hasilPeriksa);
                     d($parameter);
+                    d($parameter[$index]);
+                    d($parameter[$index][$i]['namaParameter']);
                     dd($status); ?>
                     <h5 class="mt-3">Hasil Pemeriksaan : <?= $value['waktu']; ?></h5>
                     <div class="col d-flex justify-content-start">
