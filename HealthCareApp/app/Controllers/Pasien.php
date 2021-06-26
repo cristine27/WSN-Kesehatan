@@ -182,7 +182,6 @@ class Pasien extends BaseController
             return redirect()->to('/Pasien/editPasien/' . $idPasien)->withInput()->with('validation', $validation);
         }
 
-        $password = 'password';
         $this->pasienModel->save([
             'idPasien' => $idPasien,
             'nama' => $this->request->getVar('nama'),
@@ -190,7 +189,7 @@ class Pasien extends BaseController
             'umur' => $this->request->getVar('usia'),
             'gender' => $this->request->getVar('gender'),
             'email'     => $this->request->getVar('email'),
-            'password'  => $password
+            'password'  => $this->request->getVar('password')
         ]);
 
         session()->setFlashdata('pesan', 'Pasien berhasil diubah.');
@@ -426,9 +425,11 @@ class Pasien extends BaseController
                 ]
             ];
 
-            $kumpulanparam2 = [
+            $kumpulanparam = [
                 0 => [
-                    'namaParameter' => ''
+                    [
+                        'namaParameter' => "-"
+                    ]
                 ]
             ];
 
