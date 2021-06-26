@@ -90,9 +90,9 @@ class Home extends BaseController
 			$kumpulanhasil = [
 				0 => [
 					'waktu' => "",
+					'hasil0' => 0,
 					'hasil1' => 0,
 					'hasil2' => 0,
-					'hasil3' => 0,
 				]
 			];
 
