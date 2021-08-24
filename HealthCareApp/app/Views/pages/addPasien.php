@@ -8,7 +8,6 @@
         <div class="row">
             <div class="col-8">
                 <h1 class="center mb-3">Form Tambah Pasien</h1>
-                <!-- tampilin semua error $validation->listErrors();-->
                 <div class="container-md">
                     <form action="/Pasien/savePasien" method="POST" class="w-100">
                         <?= csrf_field(); ?>

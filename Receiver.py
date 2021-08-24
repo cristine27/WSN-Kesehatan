@@ -576,6 +576,7 @@ while appRunning:
             namaNode.lower()
             assignedParam = 0
             if(verifyidNode(namaNode)):
+				print(MapNodeParam[namaNode])
                 assignedParam = len(MapNodeParam[namaNode])
                 
                 if assignedParam == 3: 
